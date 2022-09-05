@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'import_export',
+    'tinymce',
     'catalog.apps.CatalogConfig'
 ]
 
@@ -79,7 +80,7 @@ WSGI_APPLICATION = 'vts.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test_db',
+        'NAME': 'vts_db',
         'USER': 'root',
         'PASSWORD': 'vbhAuiebfrvrf334_paQm',
         'HOST': '127.0.0.1',

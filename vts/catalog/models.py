@@ -1,9 +1,11 @@
-from pyexpat import model
 from django.db import models
+import uuid
+from tinymce.models import HTMLField
 
 # Create your models here.
 
 class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField('Назва', max_length=200, help_text='Вкажіть назву категорії')
     image = models.ImageField(upload_to='categories', blank = True)
 
@@ -14,6 +16,7 @@ class Category(models.Model):
         return self.name
 
 class SubCategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField('Назва', max_length=200, help_text='Вкажіть назву субкатегорії')
     image = models.ImageField(upload_to='subcategories', blank = True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
@@ -25,6 +28,7 @@ class SubCategory(models.Model):
         return self.name
 
 class SubSubCategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField('Назва', max_length=200, help_text='Вкажіть назву суб-субкатегорії')
     image = models.ImageField(upload_to='subcategories', blank = True)
     subcategory = models.ManyToManyField(SubCategory)
@@ -44,94 +48,94 @@ class Phone(models.Model):
 
 class Product(models.Model):
     HEATER_TYPES = (
-        ('нак', 'Накопичувальний'),
-        ('прт', 'Проточний'),
+        ('накопичувальний', 'Накопичувальний'),
+        ('проточний', 'Проточний'),
     )
     BOILER_TYPES = (
-        ('газ', 'Газовий'),
-        ('рід', 'Рідкопаливний'),
-        ('ком', 'Комбінований'),
-        ('твр', 'Твердопаливний'),
-        ('ел', 'Електричний')
+        ('газовий', 'Газовий'),
+        ('рідкопаливний', 'Рідкопаливний'),
+        ('комбінований', 'Комбінований'),
+        ('твердопаливний', 'Твердопаливний'),
+        ('електричний', 'Електричний')
     )
     WORK_TYPES_OF_GAS_BOILER = (
-        ('стн', 'Стандартний'),
-        ('кнд', 'Конденсаційний')
+        ('стандартний', 'Стандартний'),
+        ('конденсаційний', 'Конденсаційний')
     )
     WORK_TYPES_OF_SOLID_FUEL_BOILER = (
-        ('дтг', 'Довготривалого горіння'),
-        ('пел', 'Пелетний'),
-        ('пір', 'Піролізний'),
-        ('стн', 'Стандартний')
+        ('довготривалого горіння', 'Довготривалого горіння'),
+        ('пелетний', 'Пелетний'),
+        ('піролізний', 'Піролізний'),
+        ('стандартний', 'Стандартний')
     )
     TYPES_OF_THRUST = (
-        ('прм', 'Примусова'),
-        ('звч', 'Звичайна')
+        ('примусова', 'Примусова'),
+        ('звичайна', 'Звичайна')
     )
     FUEL_TYPES = (
-        ('диз', 'Дизель'),
-        ('дер', 'Деревина'),
-        ('кок', 'Кокс'),
-        ('пел', 'Пелети'),
-        ('прг', 'Природній газ'),
-        ('скг', 'Скраплений газ'),
-        ('сол', 'Солома'),
-        ('тор', 'Торфобрикети/Торф'),
-        ('вуг', 'Вугілля'),
-        ('еле', 'Електрика')
+        ('дизель', 'Дизель'),
+        ('деревина', 'Деревина'),
+        ('кокс', 'Кокс'),
+        ('пелети', 'Пелети'),
+        ('природній газ', 'Природній газ'),
+        ('скраплений газ', 'Скраплений газ'),
+        ('солома', 'Солома'),
+        ('торфобрикети', 'Торфобрикети/Торф'),
+        ('вугілля', 'Вугілля'),
+        ('електрика', 'Електрика')
     )
     HEAT_CARRIER_TYPES = (
-        ('вод', 'Вода'),
-        ('етл', 'Етиленгліколь'),
-        ('прп', 'Пропіленгліколь'),
-        ('сум', 'Суміші')
+        ('вода', 'Вода'),
+        ('етиленгліколь', 'Етиленгліколь'),
+        ('пропіленгліколь', 'Пропіленгліколь'),
+        ('суміші', 'Суміші')
     )
     CONTROL_TYPES = (
-        ('мех', 'Механічне'),
-        ('еле', 'Електронне')
+        ('механічне', 'Механічне'),
+        ('електронне', 'Електронне')
     )
     IGNITION_TYPES = (
-        ('авт', 'Автоматичний'),
-        ('руч', 'Ручний'),
-        ('пєз', 'П\'єзоелектричний')
+        ('автоматичний', 'Автоматичний'),
+        ('ручний', 'Ручний'),
+        ('п\'єзоелектричний', 'П\'єзоелектричний')
     )
     HEATING_TYPES = (
-        ('газ', 'Газовий'),
-        ('ком', 'Комбінований'),
-        ('неп', 'Непрямий'),
-        ('еле', 'Електричний')
+        ('газовий', 'Газовий'),
+        ('комбінований', 'Комбінований'),
+        ('непрямий', 'Непрямий'),
+        ('електричний', 'Електричний')
     )
     COMBUSTION_CHAMBER_TYPES = (
-        ('від', 'Відчинена'),
-        ('зач', 'Зачинена')
+        ('відчинена', 'Відчинена'),
+        ('зачинена', 'Зачинена')
     )
     TANK_FORMS = (
-        ('цил', 'Циліндрична'),
-        ('плс', 'Плоска')
+        ('циліндрична', 'Циліндрична'),
+        ('плоска', 'Плоска')
     )
     HEATING_ELEMENTS = (
-        ('трб', 'Трубчастий'),
-        ('спі', 'Спіральний'),
-        ('сух', 'Сухий'),
-        ('мок', 'Мокрий')
+        ('трубчастий', 'Трубчастий'),
+        ('спіральний', 'Спіральний'),
+        ('сухий', 'Сухий'),
+        ('мокрий', 'Мокрий')
     )
     TANK_TYPES = (
-        ('без', 'Безнапорний'),
-        ('нап', 'Напорний')
+        ('безнапорний', 'Безнапорний'),
+        ('напорний', 'Напорний')
     )
-    BOILER_PURPOSES = (
-        ('дво', 'Двоконтурний'),
-        ('одн', 'Одноконтурний')
-    )
+    BOILER_PURPOSES = [
+        ('двоконтурний', 'Двоконтурний'),
+        ('одноконтурний', 'Одноконтурний')
+    ]
     INSTALLATION_METHODS = (
-        ('навіс', 'Навісний'),
-        ('підлог', 'Підлоговий'),
-        ('вертик', 'Вертикальний'),
-        ('гориз', 'Горизонтальний')
+        ('навісний', 'Навісний'),
+        ('підлоговий', 'Підлоговий'),
+        ('вертикальний', 'Вертикальний'),
+        ('горизонтальний', 'Горизонтальний')
     )
     HEAT_EXCHANGER_MATERIALS = (
         ('сталь', 'Сталь'),
-        ('нержавіюча', 'Нержавіюча сталь'),
+        ('нержавіюча сталь', 'Нержавіюча сталь'),
         ('чавун', 'Чавун'),
         ('мідь', 'Мідь')
     )
@@ -139,9 +143,9 @@ class Product(models.Model):
         ('глибинний', 'Глибинний'),
         ('дренажний', 'Дренажний'),
         ('поверхневий', 'Поверхневий'),
-        ('занур', 'Занурювальний'),
-        ('каналіз', 'Каналізаційний'),
-        ('циркул', 'Циркуляційний'),
+        ('занурювальний', 'Занурювальний'),
+        ('каналізаційний', 'Каналізаційний'),
+        ('циркуляційний', 'Циркуляційний'),
     )
     EYELINER_TYPES = (
         ('бокова', 'Бокова'),
@@ -159,7 +163,8 @@ class Product(models.Model):
         ('eight', '8'),
     )
 
-    title = models.CharField('Назва', max_length=200, help_text='Вкажіть назву продукту')
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    title = models.CharField('Назва', max_length=300, help_text='Вкажіть назву продукту')
     category = models.ManyToManyField(Category)
     subcategory = models.ManyToManyField(SubCategory)
     subsubcategory = models.ManyToManyField(SubSubCategory)
@@ -167,149 +172,131 @@ class Product(models.Model):
     article = models.CharField('Артикул', max_length=200, help_text='Вкажіть артикул продукту', blank=True)
     manufacturer = models.CharField('Виробник', max_length=200, help_text='Вкажіть виробника', blank=True)
     water_heater_type = models.CharField(
-        max_length=3,
+        'Тип водонагрівача',
+        max_length=100,
         choices=HEATER_TYPES,
         blank=True,
-        # default='m',
-        help_text='Вкажіть тип водонагрівача'
     )
     boiler_type = models.CharField(
-        max_length=3,
+        'Тип котла',
+        max_length=100,
         choices=BOILER_TYPES,
         blank=True,
-        # default='m',
-        help_text='Вкажіть тип котла'
     )
     work_type_of_gas_boiler = models.CharField(
-        max_length=3,
+        'Принцип роботи газового котла',
+        max_length=100,
         choices=WORK_TYPES_OF_GAS_BOILER,
         blank=True,
-        # default='m',
-        help_text='Вкажіть принцип роботи газового котла'
     )
     work_type_of_solid_fuel_boiler = models.CharField(
-        max_length=3,
+        'Принцип роботи твердопаливного котла',
+        max_length=100,
         choices=WORK_TYPES_OF_SOLID_FUEL_BOILER,
         blank=True,
-        # default='m',
-        help_text='Вкажіть принцип роботи твердопаливного котла'
     )
     type_of_thrust = models.CharField(
-        max_length=3,
+        'Вид тяги',
+        max_length=100,
         choices=TYPES_OF_THRUST,
         blank=True,
-        # default='m',
-        help_text='Вид тяги'
     )
     fuel_type = models.CharField(
-        max_length=3,
+        'Вид палива',
+        max_length=100,
         choices=FUEL_TYPES,
         blank=True,
-        # default='m',
-        help_text='Вид палива'
     )
     heat_carrier_type = models.CharField(
-        max_length=3,
+        'Вид теплоносія',
+        max_length=100,
         choices=HEAT_CARRIER_TYPES,
         blank=True,
-        # default='m',
-        help_text='Вид теплоносія'
     )
-    coefficient_of_performance = models.IntegerField('ККД (%)', blank=True)
-    max_fuel_consumption = models.IntegerField('Максимальна витрата палива (м3/год)', blank=True)
-    heat_area = models.IntegerField('Максимальна площа обігріву (кв м)', blank=True)
+    coefficient_of_performance = models.IntegerField('ККД (%)', blank=True, null=True)
+    max_fuel_consumption = models.IntegerField('Максимальна витрата палива (м3/год)', blank=True, null=True)
+    heat_area = models.IntegerField('Максимальна площа обігріву (кв м)', blank=True, null=True)
     control_type = models.CharField(
-        max_length=3,
+        'Тип керування',
+        max_length=100,
         choices=CONTROL_TYPES,
         blank=True,
-        # default='m',
-        help_text='Тип керування'
     )
     ignition_type = models.CharField(
-        max_length=3,
+        'Тип розпалу',
+        max_length=100,
         choices=IGNITION_TYPES,
         blank=True,
-        # default='m',
-        help_text='Тип розпалу'
     )
     heat_range_temperature = models.CharField('Діапазон температури опалення (°С)', max_length=200, blank=True)
     water_range_temperature = models.CharField('Діапазон температури водопостачання (°С)', max_length=200, blank=True)
     heating_time = models.CharField('Час нагріву (хв)', max_length=200, blank=True)
     heating_type = models.CharField(
-        max_length=3,
+        'Тип опалення',
+        max_length=100,
         choices=HEATING_TYPES,
         blank=True,
-        # default='m',
-        help_text='Тип розпалу'
     )
-    productivity = models.IntegerField('Продуктивність (л/хв)', blank=True)
+    productivity = models.IntegerField('Продуктивність (л/хв)', blank=True, null=True)
     combustion_chamber_type = models.CharField(
-        max_length=3,
+        'Тип камери згорання',
+        max_length=100,
         choices=COMBUSTION_CHAMBER_TYPES,
         blank=True,
-        # default='m',
-        help_text='Тип камери згорання'
     )
     tank_form = models.CharField(
-        max_length=3,
+        'Форма баку',
+        max_length=100,
         choices=TANK_FORMS,
         blank=True,
-        # default='m',
-        help_text='Форма баку'
     )
     heating_element = models.CharField(
-        max_length=3,
+        'Нагріваючий елемент',
+        max_length=100,
         choices=HEATING_ELEMENTS,
         blank=True,
-        # default='m',
-        help_text='Нагріваючий елемент'
     )
-    pressure_in_min = models.IntegerField('Тиск на вході (min атм)', blank=True)
-    pressure_in_max = models.IntegerField('Тиск на вході (max атм)', blank=True)
-    max_temperature_water_heating = models.IntegerField('Максимальна температура нагріва води (°С)', blank=True)
+    pressure_in_min = models.IntegerField('Тиск на вході (min атм)', blank=True, null=True)
+    pressure_in_max = models.IntegerField('Тиск на вході (max атм)', blank=True, null=True)
+    max_temperature_water_heating = models.IntegerField('Максимальна температура нагріва води (°С)', blank=True, null=True)
     power = models.CharField('Напруга (В)', max_length=10, blank=True)
     tank_type = models.CharField(
-        max_length=3,
+        'Тип баку',
+        max_length=100,
         choices=TANK_TYPES,
         blank=True,
-        # default='m',
-        help_text='Тип баку'
     )
-    heating_power = models.IntegerField('Теплова потужність (кВт)', blank=True)
-    electric_power = models.IntegerField('Електрична потужність (кВт)', blank=True)
+    heating_power = models.IntegerField('Теплова потужність (кВт)', blank=True, null=True)
+    electric_power = models.IntegerField('Електрична потужність (кВт)', blank=True, null=True)
     price = models.IntegerField('Ціна', blank=False)
     show_price_in_hrn = models.BooleanField('Показувати ціну в гривнях', default=False)
     manufacturer_country = models.CharField('Країна виробник', max_length=200, blank=True)
     boiler_purpose = models.CharField(
-        max_length=3,
+        'Призначення котла',
+        max_length=100,
         choices=BOILER_PURPOSES,
         blank=True,
-        # default='m',
-        help_text='Призначення котла'
     )
     installation_method = models.CharField(
-        max_length=8,
+        'Спосіб установки',
+        max_length=100,
         choices=INSTALLATION_METHODS,
         blank=True,
-        # default='m',
-        help_text='Спосіб установки'
     )
     heat_exchanger_material = models.CharField(
-        max_length=12,
+        'Матеріал теплообмінника',
+        max_length=100,
         choices=HEAT_EXCHANGER_MATERIALS,
         blank=True,
-        # default='m',
-        help_text='Спосіб установки'
     )
-    boiler_capacity = models.IntegerField('Місткість водонагрівача (л)', blank=True)
+    boiler_capacity = models.IntegerField('Місткість водонагрівача (л)', blank=True, null=True)
     pump_type = models.CharField(
-        max_length=12,
+        'Тип насосу',
+        max_length=100,
         choices=PUMP_TYPES,
         blank=True,
-        # default='m',
-        help_text='Тип насосу'
     )
-    pump_type = models.BooleanField('Автозапалювання', default=False)
+    auto_ignition = models.BooleanField('Автозапалювання', default=False)
     auto_on = models.BooleanField('Автоматичне ввімкнення', default=False)
     auto_off = models.BooleanField('Автоматичне вимкнення', default=False)
     power_indicator = models.BooleanField('Індикатор ввімкнення', default=False)
@@ -323,28 +310,36 @@ class Product(models.Model):
     overheating_defence = models.BooleanField('Захист від перегріву', default=False)
     safety_valve = models.BooleanField('Запобіжний клапан', default=False)
     eyeliner = models.CharField(
-        max_length=12,
+        'Підводка',
+        max_length=100,
         choices=EYELINER_TYPES,
         blank=True,
-        # default='m',
-        help_text='Підводка'
     )
     water_level_defense = models.CharField(
-        max_length=12,
+        'Рівень захисту від води',
+        max_length=100,
         choices=WATER_LEVEL_DEFENSE_TYPES,
         blank=True,
-        # default='m',
-        help_text='Рівень захисту від води'
     )
-    width = models.IntegerField('Ширина (мм)', blank=True)
-    height = models.IntegerField('Висота (мм)', blank=True)
-    length = models.IntegerField('Глибина (мм)', blank=True)
-    weight = models.IntegerField('Вага (кг)', blank=True)
-    description = models.TextField(max_length=10000, help_text='Опис', blank=True)
+    width = models.IntegerField('Ширина (мм)', blank=True, null=True)
+    height = models.IntegerField('Висота (мм)', blank=True, null=True)
+    length = models.IntegerField('Глибина (мм)', blank=True, null=True)
+    weight = models.IntegerField('Вага (кг)', blank=True, null=True)
+    description = HTMLField('Опис', max_length=999999, blank=True, null=True)
     warranty = models.CharField('Гарантія (міс)', max_length=10, blank=True)
     available = models.BooleanField('В наявності', default=True)
     hide_on_site = models.BooleanField('Приховувати на сайті', default=False)
-    discount_price = models.IntegerField('Акційна ціна', blank=True)
-    discount_and_date = models.DateField('Кінець акції', null=True, blank=True)
-    title_without_serial_number = models.CharField(max_length=200, help_text='Назва без порядкового номеру')
-    created_at = models.DateTimeField(auto_now_add=True)
+    discount_price = models.IntegerField('Акційна ціна', blank=True, null=True)
+    discount_end_date = models.DateField('Кінець акції', null=True, blank=True)
+    title_without_serial_number = models.CharField('Назва без серійного номеру', max_length=300,)
+    created_at = models.DateTimeField('Дата створення')
+
+    class Meta:
+        ordering = ['created_at']
+
+    indexes = [
+        models.Index(fields=['title',])
+    ]
+
+    def __str__(self):
+        return self.title
