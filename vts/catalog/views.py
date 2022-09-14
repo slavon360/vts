@@ -1,3 +1,4 @@
+import datetime
 from django.shortcuts import render
 from .models import Category, Phone, SubSubCategory, Product
 
@@ -5,25 +6,14 @@ from .models import Category, Phone, SubSubCategory, Product
 
 def index(request):
     categories = Category.objects.all()
-    products = Product.objects.all()
-    # phones = Phone.objects.all()
-    subsubcategories = SubSubCategory.objects.all()
-    # image_field = getattr(phones[0], 'image')
-    subcat_field = getattr(subsubcategories[0], 'subcategory').all()
-    product_field = getattr(products[0], 'subcategory').all()
-    for field in subcat_field:
-        print(field)
-        print(type(field))
-    
-    print('product fields: ')
-    for product_f in product_field:
-        print(product_f)
-    # print('subcat_field')
-    # print(subcat_field)
+    hot_deal_products = Product.objects.filter(discount_end_date__gte = datetime.date.today())
+    phones = Phone.objects.all()
 
+    print('hot_deal_products: ', hot_deal_products.count())
     context = {
         'categories': categories,
-        # 'phones': phones
+        'phones': phones,
+        'hot_deal_products': hot_deal_products
     }
 
     return render(request, 'index.html', context=context)

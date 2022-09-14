@@ -66,7 +66,9 @@
 												<a href="tel:{{ phone.phone_number | cut:" " }}"
 													class="d-inline pr-10">
 													{{ phone.phone_number }}
-													<img class="pl-5" src="image/{{ phone.image }}">
+													{% if phone.image %}
+														<img class="pl-5" src="image/{{ phone.image }}">
+													{% endif %}
 												</a>
 											{% endfor %}
 										</li>
@@ -284,7 +286,7 @@
 				</div>
 				<!-- Header Middle Area End Here -->
 				<!-- Begin Header Bottom Area -->
-				<div class="header-bottom header-sticky d-none d-lg-block">
+				<div class="header-bottom header-sticky d-none d-lg-block mb-0">
 					<div class="container">
 						<div class="row">
 							<div class="col-lg-12">

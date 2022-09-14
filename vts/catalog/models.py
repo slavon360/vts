@@ -1,8 +1,20 @@
+from locale import currency
 from django.db import models
 import uuid
 from tinymce.models import HTMLField
 
 # Create your models here.
+
+class Currency(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    currency_name = models.CharField('Назва курсу', max_length=200, help_text='Наприклад: Євро - Гривня')
+    currency_value = models.DecimalField('Значення', max_digits=8, decimal_places=2, null=True, blank=True)
+
+    class Meta:
+        ordering = ['currency_name']
+
+    def __str__(self):
+        return self.currency_name
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -213,9 +225,9 @@ class Product(models.Model):
         choices=HEAT_CARRIER_TYPES,
         blank=True,
     )
-    coefficient_of_performance = models.IntegerField('ККД (%)', blank=True, null=True)
-    max_fuel_consumption = models.IntegerField('Максимальна витрата палива (м3/год)', blank=True, null=True)
-    heat_area = models.IntegerField('Максимальна площа обігріву (кв м)', blank=True, null=True)
+    coefficient_of_performance = models.CharField('ККД (%)', max_length=200, null=True, blank=True)
+    max_fuel_consumption = models.CharField('Максимальна витрата палива (м3/год)', max_length=200, null=True, blank=True)
+    heat_area = models.CharField('Максимальна площа обігріву (кв м)', max_length=200, null=True, blank=True)
     control_type = models.CharField(
         'Тип керування',
         max_length=100,
@@ -237,7 +249,7 @@ class Product(models.Model):
         choices=HEATING_TYPES,
         blank=True,
     )
-    productivity = models.IntegerField('Продуктивність (л/хв)', blank=True, null=True)
+    productivity = models.CharField('Продуктивність (л/хв)', max_length=200, null=True, blank=True)
     combustion_chamber_type = models.CharField(
         'Тип камери згорання',
         max_length=100,
@@ -256,9 +268,9 @@ class Product(models.Model):
         choices=HEATING_ELEMENTS,
         blank=True,
     )
-    pressure_in_min = models.IntegerField('Тиск на вході (min атм)', blank=True, null=True)
-    pressure_in_max = models.IntegerField('Тиск на вході (max атм)', blank=True, null=True)
-    max_temperature_water_heating = models.IntegerField('Максимальна температура нагріва води (°С)', blank=True, null=True)
+    pressure_in_min = models.CharField('Тиск на вході (min атм)', max_length=200, null=True, blank=True)
+    pressure_in_max = models.CharField('Тиск на вході (max атм)', max_length=200, null=True, blank=True)
+    max_temperature_water_heating = models.CharField('Максимальна температура нагріва води (°С)', max_length=200, null=True, blank=True)
     power = models.CharField('Напруга (В)', max_length=10, blank=True)
     tank_type = models.CharField(
         'Тип баку',
@@ -266,9 +278,9 @@ class Product(models.Model):
         choices=TANK_TYPES,
         blank=True,
     )
-    heating_power = models.IntegerField('Теплова потужність (кВт)', blank=True, null=True)
-    electric_power = models.IntegerField('Електрична потужність (кВт)', blank=True, null=True)
-    price = models.IntegerField('Ціна', blank=False)
+    heating_power = models.CharField('Теплова потужність (кВт)', max_length=200, null=True, blank=True)
+    electric_power = models.CharField('Електрична потужність (кВт)', max_length=200, null=True, blank=True)
+    price = models.DecimalField('Ціна', blank=False, max_digits=8, decimal_places=2)
     show_price_in_hrn = models.BooleanField('Показувати ціну в гривнях', default=False)
     manufacturer_country = models.CharField('Країна виробник', max_length=200, blank=True)
     boiler_purpose = models.CharField(
@@ -289,7 +301,7 @@ class Product(models.Model):
         choices=HEAT_EXCHANGER_MATERIALS,
         blank=True,
     )
-    boiler_capacity = models.IntegerField('Місткість водонагрівача (л)', blank=True, null=True)
+    boiler_capacity = models.CharField('Місткість водонагрівача (л)', max_length=200, null=True, blank=True)
     pump_type = models.CharField(
         'Тип насосу',
         max_length=100,
@@ -321,18 +333,19 @@ class Product(models.Model):
         choices=WATER_LEVEL_DEFENSE_TYPES,
         blank=True,
     )
-    width = models.IntegerField('Ширина (мм)', blank=True, null=True)
-    height = models.IntegerField('Висота (мм)', blank=True, null=True)
-    length = models.IntegerField('Глибина (мм)', blank=True, null=True)
-    weight = models.IntegerField('Вага (кг)', blank=True, null=True)
+    width = models.DecimalField('Ширина (мм)', max_digits=8, decimal_places=2, null=True, blank=True)
+    height = models.DecimalField('Висота (мм)', max_digits=8, decimal_places=2, null=True, blank=True)
+    length = models.DecimalField('Глибина (мм)', max_digits=8, decimal_places=2, null=True, blank=True)
+    weight = models.DecimalField('Вага (кг)', max_digits=8, decimal_places=2, null=True, blank=True)
     description = HTMLField('Опис', max_length=999999, blank=True, null=True)
     warranty = models.CharField('Гарантія (міс)', max_length=10, blank=True)
     available = models.BooleanField('В наявності', default=True)
     hide_on_site = models.BooleanField('Приховувати на сайті', default=False)
-    discount_price = models.IntegerField('Акційна ціна', blank=True, null=True)
+    discount_price = models.DecimalField('Акційна ціна', max_digits=8, decimal_places=2, null=True, blank=True)
     discount_end_date = models.DateField('Кінець акції', null=True, blank=True)
     title_without_serial_number = models.CharField('Назва без серійного номеру', max_length=300,)
     created_at = models.DateTimeField('Дата створення')
+    currency = models.ForeignKey(Currency, on_delete=models.SET_NULL, null=True, blank=True)
 
     class Meta:
         ordering = ['created_at']
