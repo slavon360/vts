@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from locale import currency
 from django.db import models
 import uuid
@@ -333,10 +334,10 @@ class Product(models.Model):
         choices=WATER_LEVEL_DEFENSE_TYPES,
         blank=True,
     )
-    width = models.DecimalField('Ширина (мм)', max_digits=8, decimal_places=2, null=True, blank=True)
-    height = models.DecimalField('Висота (мм)', max_digits=8, decimal_places=2, null=True, blank=True)
-    length = models.DecimalField('Глибина (мм)', max_digits=8, decimal_places=2, null=True, blank=True)
-    weight = models.DecimalField('Вага (кг)', max_digits=8, decimal_places=2, null=True, blank=True)
+    width = models.CharField('Ширина (мм)', max_length=10, null=True, blank=True)
+    height = models.CharField('Висота (мм)', max_length=10, null=True, blank=True)
+    length = models.CharField('Глибина (мм)', max_length=10, null=True, blank=True)
+    weight = models.CharField('Вага (кг)', max_length=10, null=True, blank=True)
     description = HTMLField('Опис', max_length=999999, blank=True, null=True)
     warranty = models.CharField('Гарантія (міс)', max_length=10, blank=True)
     available = models.BooleanField('В наявності', default=True)
@@ -354,5 +355,15 @@ class Product(models.Model):
         models.Index(fields=['title',])
     ]
 
+    def get_actual_price(self):
+        if (self.show_price_in_hrn):
+            return self.price
+        else:
+            return self.price * self.currency.currency_value
+
     def __str__(self):
         return self.title
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name="images", on_delete=models.SET_NULL, null=True, blank=True)
+    image_url = models.ImageField(upload_to="products")

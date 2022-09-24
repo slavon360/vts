@@ -101,7 +101,7 @@
 												<h4><a class="product_name" href="#">{{ hot_deal_product.title }}</a></h4>
 												<div class="price-box">
 													{% load humanize %}
-													<span class="new-price">₴ {{ hot_deal_product.discount_price | floatformat:2 | intcomma }}</span>
+													<span class="new-price">₴ {{ hot_deal_product.get_actual_price | floatformat:2 | intcomma }}</span>
 												</div>
 												<div class="countersection">
 													<div class="li-countdown" data-end-date="{{ hot_deal_product.discount_end_date|date:"Y/m/d" }}"></div>
