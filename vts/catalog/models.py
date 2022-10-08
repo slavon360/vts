@@ -3,6 +3,7 @@ from locale import currency
 from django.db import models
 import uuid
 from tinymce.models import HTMLField
+from django.urls import reverse
 
 # Create your models here.
 
@@ -361,9 +362,51 @@ class Product(models.Model):
         else:
             return self.price * self.currency.currency_value
 
+    def get_actual_discount_price(self):
+        if (self.show_price_in_hrn):
+            return self.discount_price
+        else:
+            return self.discount_price * self.currency.currency_value
+
+    def get_discount_in_percents(self):
+        discount_percents = round(100 - (self.discount_price / self.price) * 100)
+        if (discount_percents > 0):
+            return f'-{discount_percents}%'
+        return ''
+
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('product-detail', args=[str(self.id)])
+
+    def get_fields(self):
+        not_allowed_keys = [
+            'id',
+            'Назва',
+            'image',
+            'Артикул',
+            'Виробник',
+            'Ціна',
+            'Показувати ціну в гривнях',
+            'Опис',
+            'В наявності',
+            'Приховувати на сайті',
+            'Акційна ціна',
+            'Кінець акції',
+            'Назва без серійного номеру',
+            'Дата створення',
+            'currency'
+        ]
+        return [(field.verbose_name, field.value_from_object(self)) for field in self.__class__._meta.fields if field.verbose_name not in not_allowed_keys]
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name="images", on_delete=models.SET_NULL, null=True, blank=True)
     image_url = models.ImageField(upload_to="products")
+
+class Banner(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    brief_text = models.CharField('Опис', max_length=200)
+
+    def __str__(self):
+        return self.brief_text

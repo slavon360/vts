@@ -1063,9 +1063,14 @@ textarea:focus {
   margin-right: 10px;
 }
 
-.product-details-images .lg-image img, 
+.product-details-images .lg-image img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+.product-details-images .lg-image img,
 .product-details-thumbs .sm-image img {
-  width: 100%;
+  width: 80%;
 }
 
 .product-details-thumbs .sm-image {
@@ -1172,6 +1177,9 @@ textarea:focus {
 .cart-quantity .add-to-cart:hover {
   background: #242424;
   color: #ffffff;
+}
+.cart-quantity .wishlist-btn {
+	font-size: 25px;
 }
 .cart-plus-minus {
   float: left;
@@ -1764,6 +1772,13 @@ textarea:focus {
 	font-weight: 500;
 	padding: 8px 0;
 }
+.hb-menu-2 nav > ul > li > .address > a {
+	display: block;
+	color: #444;
+}
+.hb-menu-2 nav > ul > li > .address > a:hover {
+	color: #fff;
+}
 .hb-menu nav > ul > li:hover > a, 
 .hb-menu nav > ul > li:hover > a::after {
 		color: #ffffff;
@@ -2026,8 +2041,14 @@ textarea:focus {
 	align-items: center;
 	display: flex;
 }
+
+.owl-item .single-slide .slider-product-image-wrp {
+	margin-left: 30px;
+}
+.owl-item .single-slide .slider-product-image-wrp .slider-product-image {
+	width: 80%;
+}
 .slider-content {
-	position: absolute;
 	padding-left: 58px;
 }
 .slider-content > h5 {
@@ -2041,7 +2062,7 @@ textarea:focus {
 	color: #e80f0f;
 }
 .slider-content > h2 {
-	font-size: 35px;
+	font-size: 30px;
 	font-weight: 400;
 	text-transform: capitalize;
 	max-width: 310px;
@@ -2053,9 +2074,19 @@ textarea:focus {
 	line-height: 24px;
 	margin-bottom: 64px;
 }
-.slider-content > h3 > span {
+.slider-content > h3:first-child {
+	margin-bottom: 15px;
+}
+.slider-content > h3 > .discount-price,
+.slider-content > h3 > .price {
 	font-size: 30px;
 	color: #e80f0f;
+}
+.slider-content > h3 > .actual-price {
+	padding-left: 10px;
+	font-size: 22px;
+	color: #333;
+	text-decoration: line-through;
 }
 /*----------------------------------------*/
 /*  2.3 Li's Static Top
@@ -2234,6 +2265,9 @@ textarea:focus {
 }
 .review-item:hover::before {
 	color: #fed700;
+}
+.rating-with-review-item li .fa-book {
+	color: #7a7a7a;
 }
 .rating li i {
   font-size: 12px;
@@ -4976,6 +5010,8 @@ span.required {
 }
 .product-image > a img {
   width: 100%;
+  object-fit: contain;
+  height: 300px;
 }
 .shop-products-wrapper .tab-content .tab-pane.active {
     display: block;

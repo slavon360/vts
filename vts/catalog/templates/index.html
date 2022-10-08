@@ -11,44 +11,34 @@
 						<div class="slider-area pt-sm-30 pt-xs-30">
 							<div class="slider-active owl-carousel">
 								<!-- Begin Single Slide Area -->
-								<div class="single-slide align-center-left animation-style-02 bg-4">
-									<div class="slider-progress"></div>
-									<div class="slider-content">
-										<h5>Sale Offer <span>-20% Off</span> This Week</h5>
-										<h2>Chamcham Galaxy S9 | S9+</h2>
-										<h3>Starting at <span>$589.00</span></h3>
-										<div class="default-btn slide-btn">
-											<a class="links" href="shop-left-sidebar.html">Shopping Now</a>
+								{% if banners %}
+									{% for banner in banners %}
+										<div class="single-slide align-center-left animation-style-02 bg-4">
+											<div class="slider-progress"></div>
+											<div class="slider-content">
+												<h3>{{ banner.brief_text }}</h3>
+												<h2>{{ banner.product.title }}</h2>
+												{% if banner.product.discount_price %}
+													{% load humanize %}
+													<h3>
+														<span class="discount-price">₴ {{ banner.product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
+														<span class="actual-price">₴ {{ banner.product.get_actual_price | floatformat:2 | intcomma }}</span>
+													</h3>
+													{% else %}
+													<h3>
+														<span class="price">₴ {{ banner.product.get_actual_price | floatformat:2 | intcomma }}</span>
+													</h3>
+												{% endif %}
+												<div class="default-btn slide-btn">
+													<a class="links" href="#">Дізнатися більше</a>
+												</div>
+											</div>
+											<div class="slider-product-image-wrp">
+												<img class="slider-product-image" src="image/{{ banner.product.image }}">
+											</div>
 										</div>
-									</div>
-								</div>
-								<!-- Single Slide Area End Here -->
-								<!-- Begin Single Slide Area -->
-								<div class="single-slide align-center-left animation-style-01 bg-5">
-									<div class="slider-progress"></div>
-									<div class="slider-content">
-										<h5>Sale Offer <span>Black Friday</span> This Week</h5>
-										<h2>Work Desk Surface Studio 2018</h2>
-										<h3>Starting at <span>$1599.00</span></h3>
-										<div class="default-btn slide-btn">
-											<a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-										</div>
-									</div>
-								</div>
-								<!-- Single Slide Area End Here -->
-								<!-- Begin Single Slide Area -->
-								<div class="single-slide align-center-left animation-style-02 bg-6">
-									<div class="slider-progress"></div>
-									<div class="slider-content">
-										<h5>Sale Offer <span>-10% Off</span> This Week</h5>
-										<h2>Phantom 4 Pro+ Obsidian</h2>
-										<h3>Starting at <span>$809.00</span></h3>
-										<div class="default-btn slide-btn">
-											<a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-										</div>
-									</div>
-								</div>
-								<!-- Single Slide Area End Here -->
+									{% endfor %}
+								{% endif %}
 							</div>
 						</div>
 					</div>
@@ -77,7 +67,7 @@
 									<!-- single-product-wrap start -->
 									<div class="single-product-wrap">
 										<div class="product-image">
-											<a href="#">
+											<a href="{{ hot_deal_product.get_absolute_url }}">
 												<img src="image/{{ hot_deal_product.image }}" alt="{{ hot_deal_product.title_without_serial_number }}">
 											</a>
 											<span class="sticker">New</span>
@@ -98,10 +88,16 @@
 														</ul>
 													</div>
 												</div>
-												<h4><a class="product_name" href="#">{{ hot_deal_product.title }}</a></h4>
+												<h4><a class="product_name" href="{{ hot_deal_product.get_absolute_url }}">{{ hot_deal_product.title }}</a></h4>
 												<div class="price-box">
-													{% load humanize %}
-													<span class="new-price">₴ {{ hot_deal_product.get_actual_price | floatformat:2 | intcomma }}</span>
+													{% if hot_deal_product.discount_price %}
+														{% load humanize %}
+														<span class="new-price new-price-2">₴ {{ hot_deal_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
+															<span class="old-price">₴ {{ hot_deal_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="discount-percentage">{{hot_deal_product.get_discount_in_percents}}</span>
+													{% else %}
+														<span class="new-price">₴ {{ hot_deal_product.get_actual_price | floatformat:2 | intcomma }}</span>
+													{% endif %}
 												</div>
 												<div class="countersection">
 													<div class="li-countdown" data-end-date="{{ hot_deal_product.discount_end_date|date:"Y/m/d" }}"></div>
@@ -134,4 +130,235 @@
 		</section>
 	{% endif %}
 	<!-- Li's Special Product Area End Here -->
+
+	{% if spare_parts_products %}
+		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+			<div class="container">
+				<div class="row">
+					<!-- Begin Li's Section Area -->
+					<div class="col-lg-12">
+						<div class="li-section-title">
+							<h2>
+								<span>Запчастини</span>
+							</h2>
+						</div>
+						<div class="row">
+							<div class="special-product-active owl-carousel">
+								{% for spare_parts_product in spare_parts_products %}
+								<div class="col-lg-12">
+									<!-- single-product-wrap start -->
+									<div class="single-product-wrap">
+										<div class="product-image">
+											<a href="{{ spare_parts_product.get_absolute_url }}">
+												<img src="image/{{ spare_parts_product.image }}" alt="{{ spare_parts_product.title_without_serial_number }}">
+											</a>
+										</div>
+										<div class="product_desc">
+											<div class="product_desc_info">
+												<div class="product-review">
+													<h5 class="manufacturer">
+														<a href="#">{{ spare_parts_product.manufacturer }}</a>
+													</h5>
+													<div class="rating-box">
+														<ul class="rating">
+															<li><i class="fa fa-star-o"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+															<li class="no-star"><i class="fa fa-star-o"></i></li>
+															<li class="no-star"><i class="fa fa-star-o"></i></li>
+														</ul>
+													</div>
+												</div>
+												<h4><a class="product_name" href="{{ spare_parts_product.get_absolute_url }}">{{ spare_parts_product.title }}</a></h4>
+												<div class="price-box">
+													{% if spare_parts_product.discount_price %}
+														{% load humanize %}
+														<span class="new-price new-price-2">₴ {{ spare_parts_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
+															<span class="old-price">₴ {{ spare_parts_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="discount-percentage">{{spare_parts_product.get_discount_in_percents}}</span>
+													{% else %}
+														<span class="new-price">₴ {{ spare_parts_product.get_actual_price | floatformat:2 | intcomma }}</span>
+													{% endif %}
+												</div>
+											</div>
+											<div class="add-actions">
+												<ul class="add-actions-link">
+													<li class="add-cart active">
+														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													</li>
+													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													<li>
+														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+															<i class="fa fa-eye"></i>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- single-product-wrap end -->
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<!-- Li's Section Area End Here -->
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+	{% if boiler_products %}
+		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+			<div class="container">
+				<div class="row">
+					<!-- Begin Li's Section Area -->
+					<div class="col-lg-12">
+						<div class="li-section-title">
+							<h2>
+								<span>Водонагрівачі</span>
+							</h2>
+						</div>
+						<div class="row">
+							<div class="special-product-active owl-carousel">
+								{% for boiler_product in boiler_products %}
+								<div class="col-lg-12">
+									<!-- single-product-wrap start -->
+									<div class="single-product-wrap">
+										<div class="product-image">
+											<a href="{{ boiler_product.get_absolute_url }}">
+												<img src="image/{{ boiler_product.image }}" alt="{{ boiler_product.title_without_serial_number }}">
+											</a>
+										</div>
+										<div class="product_desc">
+											<div class="product_desc_info">
+												<div class="product-review">
+													<h5 class="manufacturer">
+														<a href="#">{{ boiler_product.manufacturer }}</a>
+													</h5>
+													<div class="rating-box">
+														<ul class="rating">
+															<li><i class="fa fa-star-o"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+															<li class="no-star"><i class="fa fa-star-o"></i></li>
+															<li class="no-star"><i class="fa fa-star-o"></i></li>
+														</ul>
+													</div>
+												</div>
+												<h4><a class="product_name" href="{{ boiler_product.get_absolute_url }}">{{ boiler_product.title }}</a></h4>
+												<div class="price-box">
+													{% if boiler_product.discount_price %}
+														{% load humanize %}
+														<span class="new-price new-price-2">₴ {{ boiler_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
+															<span class="old-price">₴ {{ boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="discount-percentage">{{boiler_product.get_discount_in_percents}}</span>
+													{% else %}
+														<span class="new-price">₴ {{ boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+													{% endif %}
+												</div>
+											</div>
+											<div class="add-actions">
+												<ul class="add-actions-link">
+													<li class="add-cart active">
+														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													</li>
+													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													<li>
+														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+															<i class="fa fa-eye"></i>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- single-product-wrap end -->
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<!-- Li's Section Area End Here -->
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+	{% if gas_boiler_products %}
+		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+			<div class="container">
+				<div class="row">
+					<!-- Begin Li's Section Area -->
+					<div class="col-lg-12">
+						<div class="li-section-title">
+							<h2>
+								<span>Котли</span>
+							</h2>
+						</div>
+						<div class="row">
+							<div class="special-product-active owl-carousel">
+								{% for gas_boiler_product in gas_boiler_products %}
+								<div class="col-lg-12">
+									<!-- single-product-wrap start -->
+									<div class="single-product-wrap">
+										<div class="product-image">
+											<a href="{{ gas_boiler_product.get_absolute_url }}">
+												<img src="image/{{ gas_boiler_product.image }}" alt="{{ gas_boiler_product.title_without_serial_number }}">
+											</a>
+										</div>
+										<div class="product_desc">
+											<div class="product_desc_info">
+												<div class="product-review">
+													<h5 class="manufacturer">
+														<a href="#">{{ gas_boiler_product.manufacturer }}</a>
+													</h5>
+													<div class="rating-box">
+														<ul class="rating">
+															<li><i class="fa fa-star-o"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+															<li><i class="fa fa-star-o"></i></li>
+															<li class="no-star"><i class="fa fa-star-o"></i></li>
+															<li class="no-star"><i class="fa fa-star-o"></i></li>
+														</ul>
+													</div>
+												</div>
+												<h4><a class="product_name" href="{{ gas_boiler_product.get_absolute_url }}">{{ gas_boiler_product.title }}</a></h4>
+												<div class="price-box">
+													{% if gas_boiler_product.discount_price %}
+														{% load humanize %}
+														<span class="new-price new-price-2">₴ {{ gas_boiler_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
+															<span class="old-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="discount-percentage">{{gas_boiler_product.get_discount_in_percents}}</span>
+													{% else %}
+														<span class="new-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+													{% endif %}
+												</div>
+											</div>
+											<div class="add-actions">
+												<ul class="add-actions-link">
+													<li class="add-cart active">
+														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													</li>
+													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													<li>
+														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+															<i class="fa fa-eye"></i>
+														</a>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- single-product-wrap end -->
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+					<!-- Li's Section Area End Here -->
+				</div>
+			</div>
+		</section>
+	{% endif %}
 {% endblock %}
