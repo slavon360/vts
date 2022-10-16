@@ -2339,11 +2339,12 @@ textarea:focus {
 	float: right;
 	color: #e80f0f;
 }
- .product_desc .product_desc_info .old-price {
-  color: #666;
-  font-size: 14px;
-  font-weight: 400;
-  text-decoration: line-through;
+.product-details-view-content .product-info .old-price,
+.product_desc .product_desc_info .old-price {
+	color: #666;
+	font-size: 14px;
+	font-weight: 400;
+	text-decoration: line-through;
 }
 .product_desc .product_desc_info .price-box {
   line-height: 1;

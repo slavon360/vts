@@ -110,7 +110,18 @@
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
-														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+														<a href="#" title="quick view" class="quick-view-btn"
+															data-toggle="modal"
+															data-target="#exampleModalCenter"
+															data-product-title="{{ hot_deal_product.title }}"
+															data-product-manufacturer="{{ hot_deal_product.manufacturer }}"
+															data-product-actual-price="{{ hot_deal_product.get_actual_price }}"
+															{% if hot_deal_product.get_actual_discount_price %}
+																data-product-discount-price="{{ hot_deal_product.get_actual_discount_price }}"
+															{% endif %}
+															data-product-description="{{ hot_deal_product.description }}"
+															data-product-images-urls="{% for product_image in hot_deal_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+														>
 															<i class="fa fa-eye"></i>
 														</a>
 													</li>
@@ -188,7 +199,20 @@
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
-														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+														<a href="#"
+															title="quick view"
+															class="quick-view-btn"
+															data-toggle="modal"
+															data-target="#exampleModalCenter"
+															data-product-title="{{ spare_parts_product.title }}"
+															data-product-manufacturer="{{ spare_parts_product.manufacturer }}"
+															data-product-actual-price="{{ spare_parts_product.get_actual_price }}"
+															{% if spare_parts_product.get_actual_discount_price %}
+																data-product-discount-price="{{ spare_parts_product.get_actual_discount_price }}"
+															{% endif %}
+															data-product-description="{{ spare_parts_product.description }}"
+															data-product-images-urls="{% for product_image in spare_parts_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+														>
 															<i class="fa fa-eye"></i>
 														</a>
 													</li>
@@ -265,7 +289,20 @@
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
-														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+														<a href="#"
+															title="quick view"
+															class="quick-view-btn"
+															data-toggle="modal"
+															data-target="#exampleModalCenter"
+															data-product-title="{{ boiler_product.title }}"
+															data-product-manufacturer="{{ boiler_product.manufacturer }}"
+															data-product-actual-price="{{ boiler_product.get_actual_price }}"
+															{% if boiler_product.get_actual_discount_price %}
+															data-product-discount-price="{{ boiler_product.get_actual_discount_price }}"
+															{% endif %}
+															data-product-description="{{ boiler_product.description }}"
+															data-product-images-urls="{% for product_image in boiler_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+														>
 															<i class="fa fa-eye"></i>
 														</a>
 													</li>
@@ -328,7 +365,7 @@
 													{% if gas_boiler_product.discount_price %}
 														{% load humanize %}
 														<span class="new-price new-price-2">₴ {{ gas_boiler_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
-															<span class="old-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="old-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
 														<span class="discount-percentage">{{gas_boiler_product.get_discount_in_percents}}</span>
 													{% else %}
 														<span class="new-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
@@ -342,7 +379,18 @@
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
-														<a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter">
+														<a href="#" title="quick view" class="quick-view-btn"
+															data-toggle="modal"
+															data-target="#exampleModalCenter"
+															data-product-title="{{ gas_boiler_product.title }}"
+															data-product-manufacturer="{{ gas_boiler_product.manufacturer }}"
+															data-product-actual-price="{{ gas_boiler_product.get_actual_price }}"
+															{% if gas_boiler_product.get_actual_discount_price %}
+															data-product-discount-price="{{ gas_boiler_product.get_actual_discount_price }}"
+															{% endif %}
+															data-product-description="{{ gas_boiler_product.description }}"
+															data-product-images-urls="{% for product_image in gas_boiler_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+														>
 															<i class="fa fa-eye"></i>
 														</a>
 													</li>
@@ -361,4 +409,5 @@
 			</div>
 		</section>
 	{% endif %}
+	{% include "quick-view-modal.html" %}
 {% endblock %}

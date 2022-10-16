@@ -363,10 +363,11 @@ class Product(models.Model):
             return self.price * self.currency.currency_value
 
     def get_actual_discount_price(self):
-        if (self.show_price_in_hrn):
-            return self.discount_price
-        else:
-            return self.discount_price * self.currency.currency_value
+        if self.discount_price:
+            if (self.show_price_in_hrn):
+                return self.discount_price
+            else:
+                return self.discount_price * self.currency.currency_value
 
     def get_discount_in_percents(self):
         discount_percents = round(100 - (self.discount_price / self.price) * 100)
