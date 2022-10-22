@@ -296,15 +296,15 @@
 										<ul>
 										{% for category in categories %}
 											{% if category.subcategory_set.all.count > 0 %}
-												<li class="megamenu-static-holder"><a href="#">{{ category.name }}</a>
+												<li class="megamenu-static-holder"><a href="/products-catalog/{{category.id}}">{{ category.name }}</a>
 													<ul class="megamenu hb-megamenu">
 														{% for subcategory in category.subcategory_set.all %}
 															<li style="min-width: calc(100% / {{ category.subcategory_set.all.count }})">
-																<a href="shop-left-sidebar.html">{{ subcategory.name }}</a>
+																<a href="/products-subcatalog/{{category.id}}/{{subcategory.id}}">{{ subcategory.name }}</a>
 																{% if subcategory.subsubcategory_set.all.count > 0 %}
 																	<ul>
 																	{% for subsubcategory in subcategory.subsubcategory_set.all %}
-																		<li><a href="#">{{ subsubcategory.name }}</a></li>
+																		<li><a href="/products-subsubcatalog/{{subcategory.id}}/{{subsubcategory.id}}">{{ subsubcategory.name }}</a></li>
 																	{% endfor %}
 																	</ul>
 																{% endif %}
@@ -388,16 +388,23 @@
 			<!-- Header Area End Here -->
 
 			{% block breadcrumbs %}
-				<div class="breadcrumb-area">
-					<div class="container">
-						<div class="breadcrumb-content">
-							<ul>
-								<li><a href="/">Home</a></li>
-								<li class="active">Shop Left Sidebar</li>
-							</ul>
+				{% if breadcrumbs %}
+					<div class="breadcrumb-area">
+						<div class="container">
+							<div class="breadcrumb-content">
+								<ul>
+									{% for breadcrumb in breadcrumbs %}
+										{% if breadcrumb.link %}
+											<li><a href="/{{ breadcrumb.link }}">{{ breadcrumb.title }}</a></li>
+											{% else %}
+											<li class="active">{{ breadcrumb.title }}</li>
+										{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
+				{% endif %}
 			{% endblock %}
 
 			{% block content %}
