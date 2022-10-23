@@ -1940,6 +1940,10 @@ textarea:focus {
 .megamenu-static-holder .hb-megamenu > li:first-child {
 	padding-left: 10px;
 }
+.megamenu-static-holder .hb-megamenu > li > ul {
+	max-height: 400px;
+	overflow-y: auto;
+}
 .hb-menu nav > ul > .megamenu-static-holder > a::after {
 	position: static;
 	margin: -1px 0 0 10px;
@@ -2311,6 +2315,11 @@ textarea:focus {
 }
 .product_desc .product_desc_info .product_name:hover {
   text-decoration: underline;
+}
+.product_desc .product_desc_info .description-block {
+	height: 15em;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .product_desc .manufacturer a {
 	color: #a4a4a4;
