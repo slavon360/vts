@@ -1,8 +1,12 @@
 import datetime
 from operator import itemgetter
 from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, generics
 from django.views.generic import DetailView, ListView
 from .models import Category, Phone, Banner, Product
+from .serializers import ProductSerializer 
 
 # Create your views here.
 
@@ -107,6 +111,34 @@ class ProductDetailView(DetailView, Breadcrumbs):
 		)
 		return context
 
+class ProductsCatalogApiView(generics.ListAPIView):
+	model = Product
+	serializer_class = ProductSerializer
+
+	def get_queryset(self):
+		sort_by = self.request.query_params.get('sort_by')
+		category_id = self.request.query_params.get('category_id')
+		subcategory_id = self.request.query_params.get('subcategory_id')
+		subsubcategory_id = self.request.query_params.get('subsubcategory_id')
+		products = Product.objects
+		if category_id and category_id.strip():
+			products = Product.objects.filter(category__in=[category_id])
+		if subcategory_id and subcategory_id.strip():
+			products = products.filter(subcategory__in=[subcategory_id])
+		if subsubcategory_id and subsubcategory_id.strip():
+			products = products.filter(subsubcategory__in=[subsubcategory_id])
+
+		print('category_id: ', category_id, 'subcategory_id: ', subcategory_id, 'subsubcategory_id: ', subsubcategory_id)
+
+		if 'rating' in sort_by and 'descending' in sort_by:
+			products = products.order_by('-created_at')
+		elif 'price' in sort_by and 'descending' in sort_by:
+			products = products.order_by('-price')
+		else:
+			products = products.order_by('price')		
+
+		return products
+
 class ProductsCatalogView(ListView, Breadcrumbs):
 	model = Product
 	paginate_by = 12
@@ -141,4 +173,5 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 			subsubcategory = self.kwargs['subsubcategory']
 		)
 		context['page_title'] = self.page_title
+		context['url_params'] = self.kwargs
 		return context

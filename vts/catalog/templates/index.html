@@ -19,14 +19,13 @@
 												<h3>{{ banner.brief_text }}</h3>
 												<h2>{{ banner.product.title }}</h2>
 												{% if banner.product.discount_price %}
-													{% load humanize %}
 													<h3>
-														<span class="discount-price">₴ {{ banner.product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
-														<span class="actual-price">₴ {{ banner.product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="discount-price">₴ {{ banner.product.get_actual_discount_price }}</span>
+														<span class="actual-price">₴ {{ banner.product.get_actual_price }}</span>
 													</h3>
 													{% else %}
 													<h3>
-														<span class="price">₴ {{ banner.product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="price">₴ {{ banner.product.get_actual_price }}</span>
 													</h3>
 												{% endif %}
 												<div class="default-btn slide-btn">
@@ -91,12 +90,11 @@
 												<h4><a class="product_name" href="{{ hot_deal_product.get_absolute_url }}">{{ hot_deal_product.title }}</a></h4>
 												<div class="price-box">
 													{% if hot_deal_product.discount_price %}
-														{% load humanize %}
-														<span class="new-price new-price-2">₴ {{ hot_deal_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
-															<span class="old-price">₴ {{ hot_deal_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price new-price-2">₴ {{ hot_deal_product.get_actual_discount_price }}</span>
+															<span class="old-price">₴ {{ hot_deal_product.get_actual_price }}</span>
 														<span class="discount-percentage">{{hot_deal_product.get_discount_in_percents}}</span>
 													{% else %}
-														<span class="new-price">₴ {{ hot_deal_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price">₴ {{ hot_deal_product.get_actual_price }}</span>
 													{% endif %}
 												</div>
 												<div class="countersection">
@@ -183,12 +181,11 @@
 												<h4><a class="product_name" href="{{ spare_parts_product.get_absolute_url }}">{{ spare_parts_product.title }}</a></h4>
 												<div class="price-box">
 													{% if spare_parts_product.discount_price %}
-														{% load humanize %}
-														<span class="new-price new-price-2">₴ {{ spare_parts_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
-															<span class="old-price">₴ {{ spare_parts_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price new-price-2">₴ {{ spare_parts_product.get_actual_discount_price }}</span>
+															<span class="old-price">₴ {{ spare_parts_product.get_actual_price }}</span>
 														<span class="discount-percentage">{{spare_parts_product.get_discount_in_percents}}</span>
 													{% else %}
-														<span class="new-price">₴ {{ spare_parts_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price">₴ {{ spare_parts_product.get_actual_price }}</span>
 													{% endif %}
 												</div>
 											</div>
@@ -273,12 +270,11 @@
 												<h4><a class="product_name" href="{{ boiler_product.get_absolute_url }}">{{ boiler_product.title }}</a></h4>
 												<div class="price-box">
 													{% if boiler_product.discount_price %}
-														{% load humanize %}
-														<span class="new-price new-price-2">₴ {{ boiler_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
-															<span class="old-price">₴ {{ boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price new-price-2">₴ {{ boiler_product.get_actual_discount_price }}</span>
+															<span class="old-price">₴ {{ boiler_product.get_actual_price }}</span>
 														<span class="discount-percentage">{{boiler_product.get_discount_in_percents}}</span>
 													{% else %}
-														<span class="new-price">₴ {{ boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price">₴ {{ boiler_product.get_actual_price }}</span>
 													{% endif %}
 												</div>
 											</div>
@@ -363,12 +359,11 @@
 												<h4><a class="product_name" href="{{ gas_boiler_product.get_absolute_url }}">{{ gas_boiler_product.title }}</a></h4>
 												<div class="price-box">
 													{% if gas_boiler_product.discount_price %}
-														{% load humanize %}
-														<span class="new-price new-price-2">₴ {{ gas_boiler_product.get_actual_discount_price | floatformat:2 | intcomma }}</span>
-														<span class="old-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price new-price-2">₴ {{ gas_boiler_product.get_actual_discount_price }}</span>
+														<span class="old-price">₴ {{ gas_boiler_product.get_actual_price }}</span>
 														<span class="discount-percentage">{{gas_boiler_product.get_discount_in_percents}}</span>
 													{% else %}
-														<span class="new-price">₴ {{ gas_boiler_product.get_actual_price | floatformat:2 | intcomma }}</span>
+														<span class="new-price">₴ {{ gas_boiler_product.get_actual_price }}</span>
 													{% endif %}
 												</div>
 											</div>

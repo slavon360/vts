@@ -75,11 +75,10 @@
 						</div>
 						<div class="price-box pt-20">
 							{% if product.discount_price %}
-								{% load humanize %}
-								<span class="new-price new-price-2">{{ product.get_actual_discount_price | floatformat:2 | intcomma }} грн.</span>
-								<span class="old-price">{{ product.get_actual_price | floatformat:2 | intcomma }} грн.</span>
+								<span class="new-price new-price-2">{{ product.get_actual_discount_price }} грн.</span>
+								<span class="old-price">{{ product.get_actual_price }} грн.</span>
 							{% else %}
-								<span class="new-price">{{ product.get_actual_price | floatformat:2 | intcomma }} грн.</span>
+								<span class="new-price">{{ product.get_actual_price }} грн.</span>
 							{% endif %}
 						</div>
 						{% if product.discount_end_date %}

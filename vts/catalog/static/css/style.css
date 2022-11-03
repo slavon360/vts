@@ -5066,13 +5066,16 @@ span.required {
 .pagination-box > li {
   display: inline-block;
 }
-.pagination-box > li.active a {
+.pagination-box > li.active a,
+.pagination-box > li.active .page-number {
   color: #fed700;
 }
-.pagination-box > li a {
+.pagination-box > li a,
+.pagination-box > li .page-number {
   color: #333333;
   display: block;
   padding: 0 10px;
+  cursor: pointer;
 }
 .pagination-box > li a:hover {
 	color: #fed700;

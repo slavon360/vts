@@ -1,6 +1,6 @@
 {% extends "base_generic.html" %}
 {% block title %}<title>{{ page_title }}</title>{% endblock %}
-
+{% load static %}
 {% block content %}
 	<!-- Begin Li's Content Wraper Area -->
 		<div class="content-wraper pt-60 pb-60">
@@ -24,15 +24,17 @@
 							<!-- product-select-box start -->
 							<div class="product-select-box">
 								<div class="product-short">
-									<p>Sort By:</p>
-									<select class="nice-select">
-										<option value="trending">Relevance</option>
-										<option value="sales">Name (A - Z)</option>
-										<option value="sales">Name (Z - A)</option>
-										<option value="rating">Price (Low &gt; High)</option>
-										<option value="date">Rating (Lowest)</option>
-										<option value="price-asc">Model (A - Z)</option>
-										<option value="price-asc">Model (Z - A)</option>
+									<p>Відсортувати:</p>
+									<select
+										id="sort_products_catalog"
+										class="nice-select"
+										data-category_id="{{url_params.category|default_if_none:''}}"
+										data-subcategory_id="{{url_params.subcategory|default_if_none:''}}"
+										data-subsubcategory_id="{{url_params.subsubcategory|default_if_none:''}}"
+									>
+										<option value="rating_descending">За популярністю</option>
+										<option value="price_descending">Від дорогих до дешевих</option>
+										<option value="price_ascending">Від дешевих до дорогих</option>
 									</select>
 								</div>
 							</div>
@@ -44,8 +46,7 @@
 							<div class="tab-content">
 								<div id="grid-view" class="tab-pane fade active show" role="tabpanel">
 									<div class="product-area shop-product-area">
-										<div class="row">
-
+										<div class="row grid-view-products">
 											{% for product in products_catalog %}
 											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
 												<!-- single-product-wrap start -->
@@ -76,11 +77,10 @@
 															<h4><a class="product_name" href="{{ product.get_absolute_url }}">{{ product.title }}</a></h4>
 															<div class="price-box">
 																{% if product.discount_price %}
-																	{% load humanize %}
-																	<span class="new-price new-price-2">{{ product.get_actual_discount_price | floatformat:2 | intcomma }} грн.</span>
-																	<span class="old-price">{{ product.get_actual_price | floatformat:2 | intcomma }} грн.</span>
+																	<span class="new-price new-price-2">{{ product.get_actual_discount_price }} грн.</span>
+																	<span class="old-price">{{ product.get_actual_price }} грн.</span>
 																{% else %}
-																	<span class="new-price">{{ product.get_actual_price | floatformat:2 | intcomma }} грн.</span>
+																	<span class="new-price">{{ product.get_actual_price }} грн.</span>
 																{% endif %}
 															</div>
 														</div>
@@ -135,11 +135,10 @@
 																</h4>
 																<div class="price-box">
 																	{% if product.discount_price %}
-																		{% load humanize %}
-																		<span class="new-price new-price-2">{{ product.get_actual_discount_price | floatformat:2 | intcomma }} грн.</span>
-																		<span class="old-price">{{ product.get_actual_price | floatformat:2 | intcomma }} грн.</span>
+																		<span class="new-price new-price-2">{{ product.get_actual_discount_price }} грн.</span>
+																		<span class="old-price">{{ product.get_actual_price }} грн.</span>
 																	{% else %}
-																		<span class="new-price">{{ product.get_actual_price | floatformat:2 | intcomma }} грн.</span>
+																		<span class="new-price">{{ product.get_actual_price }} грн.</span>
 																	{% endif %}
 																</div>
 																<div class="description-block">
@@ -216,4 +215,8 @@
 			</div>
 		</div>
 		<!-- Content Wraper Area End Here -->
+{% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/catalog.js' %}" defer></script>
 {% endblock %}

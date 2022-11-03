@@ -358,16 +358,18 @@ class Product(models.Model):
 
     def get_actual_price(self):
         if (self.show_price_in_hrn):
-            return self.price
+            return f'{self.price:,}'
         else:
-            return self.price * self.currency.currency_value
+            rounded_price = round(self.price * self.currency.currency_value, 2)
+            return f'{rounded_price:,}'
 
     def get_actual_discount_price(self):
         if self.discount_price:
             if (self.show_price_in_hrn):
-                return self.discount_price
+                return f'{self.discount_price:,}'
             else:
-                return self.discount_price * self.currency.currency_value
+                rounded_price = round(self.discount_price * self.currency.currency_value, 2)
+                return f'{rounded_price:,}'
 
     def get_discount_in_percents(self):
         discount_percents = round(100 - (self.discount_price / self.price) * 100)
@@ -380,6 +382,15 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('product-detail', args=[str(self.id)])
+
+    def first_image(self):
+        if self.images:
+            return self.images.first()
+        else:
+            return None
+
+    def images_list(self):
+        return self.images.all()
 
     def get_fields(self):
         not_allowed_keys = [

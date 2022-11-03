@@ -25,5 +25,9 @@ urlpatterns = [
 		kwargs={
 			'category': None
 		}
+	),
+	path(
+		'products-catalog/api',
+		views.ProductsCatalogApiView.as_view()
 	)
 ]
