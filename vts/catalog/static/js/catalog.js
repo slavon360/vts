@@ -2,8 +2,9 @@
 	"use strict";
 	let current_page = 1;
 	const $sort_products_catalog = $('#sort_products_catalog');
+	const $toolbar_amount_active_page = $('.toolbar-amount .active-page-nmb');
 	const renderPagination = ({ count, next, previous, results}) => {
-		function makePagesArray ({current_page, last_page, display_pages_qty}) {
+		function makePagesArray ({current_page, last_page, show_on_both_sides}) {
 			const page_link = current_page === last_page ? previous : next;
 			let pages_list = Array.from({length: last_page}, (_, i) => i + 1).map(page_n => ({
 				page: page_n,
@@ -11,30 +12,45 @@
 				active: current_page === page_n
 			}));
 			const addIntermediatePage = pages => {
-				if (last_page - display_pages_qty > current_page) {
-					const int_page = current_page + display_pages_qty;
+				if (last_page - show_on_both_sides > current_page) {
+					const int_page = current_page + show_on_both_sides;
 
-					pages[display_pages_qty - 2] = {
+					pages[pages.length - 2] = {
 						page: '...',
-						link: next.replace(`page=${current_page + 1}`, `page=${int_page}`),
+						link: next.replace(/(page=)(\d*)/g, `page=${int_page}`),
+						active: false
+					}
+				}
+				if (current_page <= last_page && current_page > (show_on_both_sides + 1)) {
+					const int_page = Math.floor((Number(pages_list[show_on_both_sides - 1].page) + current_page) / 2);
+
+					pages[show_on_both_sides - 1] = {
+						page: '...',
+						link: (next || previous).replace(/(page=)(\d*)/g, `page=${int_page}`),
 						active: false
 					}
 				}
 			}
 			const conditionallySlicePages = () => {
-				if (last_page > display_pages_qty) {
-					const sliced_pages = pages_list.slice(current_page > 1 ? current_page - 1 : 0, display_pages_qty);
-					sliced_pages[display_pages_qty - 1] = pages_list[last_page - 1];
+				if (last_page > show_on_both_sides * 2) {
+
+					let sliced_pages = pages_list.slice(current_page > 1 ? current_page - 1 : 0, current_page + show_on_both_sides);
+					sliced_pages[sliced_pages.length - 1] = pages_list[last_page - 1];
+
+					if (current_page > show_on_both_sides) {
+						const sliced_from_start = pages_list.slice(0, show_on_both_sides);
+						sliced_pages = [...sliced_from_start, ...sliced_pages];
+					}
 
 					return sliced_pages;
 				}
 				return pages_list;
 			}
-			
-			pages_list = conditionallySlicePages();
-			addIntermediatePage(pages_list);
 
-			return pages_list;
+			const sliced_pages_list = conditionallySlicePages();
+			addIntermediatePage(sliced_pages_list);
+
+			return sliced_pages_list;
 		}
 		const $pagination_area = $('.paginatoin-area');
 		// const page_nmb = previous && previous.match(/(page=)(\d*)/g)[0].replace('page=', '');
@@ -43,7 +59,7 @@
 		const pages_array = makePagesArray({
 			current_page: current_page,
 			last_page: last_page_number,
-			display_pages_qty: 6
+			show_on_both_sides: 3
 		});
 		const previous_page = previous 
 		? `<li>
@@ -65,10 +81,10 @@
 
 		$pagination_area.html(`
 			<div class="row">
-				<div class="col-lg-6 col-md-6">
+				<div class="col-lg-4 col-md-3 d-none d-md-block">
 					<p>Сторінка <b>${current_page}</b> з <b>${last_page_number}</b></p>
 				</div>
-				<div class="col-lg-6 col-md-6">
+				<div class="col-lg-8 col-md-9">
 					<ul class="pagination-box">
 						${previous_page}
 						${pages_elements}
@@ -151,13 +167,16 @@
 		const category_id = $(this).data('category_id');
 		const subcategory_id = $(this).data('subcategory_id');
 		const subsubcategory_id = $(this).data('subsubcategory_id');
-
 		const queries = [
 			category_id ? `&category_id=${category_id}` : null,
 			subcategory_id ? `&subcategory_id=${subcategory_id}` : null,
 			subsubcategory_id ? `&subsubcategory_id=${subsubcategory_id}` : null
 		].join('');
+		current_page = 1;
 
+		updateQueryStringParams({ sort_by, page: current_page });
+		$toolbar_amount_active_page.text(current_page);
+		
 		$.ajax({
 			url: `/products-catalog/api?sort_by=${sort_by}${queries}`,
 			success: function (response) {
@@ -187,11 +206,23 @@
 		const { sort_by, page } = qs_obj;
 		current_page = Number(page) || 1;
 
+		$toolbar_amount_active_page.text(current_page);
 		$.ajax({
 			url,
 			success: function (response) {
 				updateProductsHandler(sort_by, response);
+				updateQueryStringParams({ sort_by, page });
 			}
 		});
+	}
+	function updateQueryStringParams ({ sort_by, page }) {
+		// Construct URLSearchParams object instance from current URL querystring.
+		const queryParams = new URLSearchParams(window.location.search);
+				
+		// Set new or modify existing parameter value. 
+		queryParams.set('sort_by', sort_by);
+		queryParams.set('page', page);
+		// Replace current querystring with the new one.
+		history.replaceState(null, null, `?${queryParams.toString()}`);
 	}
 })(jQuery);

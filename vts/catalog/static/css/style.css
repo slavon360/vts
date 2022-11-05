@@ -5077,7 +5077,8 @@ span.required {
   padding: 0 10px;
   cursor: pointer;
 }
-.pagination-box > li a:hover {
+.pagination-box > li a:hover,
+.pagination-box > li .page-number:hover {
 	color: #fed700;
 }
 .product-layout-list .product_desc .product_desc_info .rating-box {

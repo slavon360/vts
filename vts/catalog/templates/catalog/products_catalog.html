@@ -18,7 +18,7 @@
 									<!-- shop-item-filter-list end -->
 								</div>
 								<div class="toolbar-amount">
-									<span>Сторінка <b class="text-muted">{{ page_obj.number }}</b> з <b class="text-muted">{{ page_obj.paginator.num_pages }}</b></span>
+									<span>Сторінка <b class="text-muted active-page-nmb">{{ page_obj.number }}</b> з <b class="text-muted">{{ page_obj.paginator.num_pages }}</b></span>
 								</div>
 							</div>
 							<!-- product-select-box start -->
@@ -32,9 +32,30 @@
 										data-subcategory_id="{{url_params.subcategory|default_if_none:''}}"
 										data-subsubcategory_id="{{url_params.subsubcategory|default_if_none:''}}"
 									>
-										<option value="rating_descending">За популярністю</option>
-										<option value="price_descending">Від дорогих до дешевих</option>
-										<option value="price_ascending">Від дешевих до дорогих</option>
+										<option
+											value="rating_descending"
+											{% if sort_by == 'rating_descending' %}
+												selected
+											{% endif%}
+										>
+											За популярністю
+										</option>
+										<option
+											value="price_descending"
+											{% if sort_by == 'price_descending' %}
+												selected
+											{% endif%}
+										>
+											Від дорогих до дешевих
+										</option>
+										<option
+											value="price_ascending"
+											{% if sort_by == 'price_ascending' %}
+												selected
+											{% endif%}
+										>
+											Від дешевих до дорогих
+										</option>
 									</select>
 								</div>
 							</div>
@@ -163,14 +184,18 @@
 								</div>
 								<div class="paginatoin-area">
 									<div class="row">
-										<div class="col-lg-6 col-md-6">
+										<div class="col-lg-4 col-md-3 d-none d-md-block">
 											<p>Сторінка <b>{{ page_obj.number }}</b> з <b>{{ page_obj.paginator.num_pages }}</b></p>
 										</div>
-										<div class="col-lg-6 col-md-6">
+										<div class="col-lg-8 col-md-9">
 											<ul class="pagination-box">
 												<li>
 													{% if page_obj.has_previous %}
+														{% if request.GET.sort_by %}
+														<a href="?page={{ page_obj.previous_page_number }}&sort_by={{ request.GET.sort_by }}" class="Previous"><i class="fa fa-chevron-left"></i> Попередня</a>
+														{% else %}
 														<a href="?page={{ page_obj.previous_page_number }}" class="Previous"><i class="fa fa-chevron-left"></i> Попередня</a>
+														{% endif %}
 													{% endif %}
 												</li>
 												
@@ -180,7 +205,11 @@
 												{% get_proper_elided_page_range paginator page_obj.number as page_range %}
 												{% for page_num in page_range %}
 													{% if page_obj.number == page_num %}
-															<li class="active"><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+															{% if request.GET.sort_by %}
+																<li class="active"><a href="?page={{ page_num }}&sort_by={{ request.GET.sort_by }}">{{ page_num }}</a></li>
+																{% else %}
+																<li class="active"><a href="?page={{ page_num }}">{{ page_num }}</a></li>
+															{% endif %}
 														{% else %}
 															{% if page_num == paginator.ELLIPSIS %}
 																<li>
@@ -188,9 +217,15 @@
 																</li>
 																{% else %}
 																<li>
-																	<a href="?page={{ page_num }}">
-																		{{ page_num }}
-																	</a>
+																	{% if request.GET.sort_by %}
+																		<a href="?page={{ page_num }}&sort_by={{ request.GET.sort_by }}">
+																			{{ page_num }}
+																		</a>
+																		{% else %}
+																		<a href="?page={{ page_num }}">
+																			{{ page_num }}
+																		</a>
+																	{% endif %}
 																</li>
 															{% endif %}
 													{% endif %}
@@ -198,9 +233,15 @@
 
 												<li>
 													{% if page_obj.has_next %}
+														{% if request.GET.sort_by %}
+														<a class="Next" href="?page={{ page_obj.next_page_number }}&sort_by={{ request.GET.sort_by }}">
+															Наступна <i class="fa fa-chevron-right"></i>
+														</a>
+														{% else %}
 														<a class="Next" href="?page={{ page_obj.next_page_number }}">
 															Наступна <i class="fa fa-chevron-right"></i>
 														</a>
+														{% endif %}
 													{% endif %}
 												</li>
 											</ul>

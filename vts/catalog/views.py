@@ -128,8 +128,6 @@ class ProductsCatalogApiView(generics.ListAPIView):
 		if subsubcategory_id and subsubcategory_id.strip():
 			products = products.filter(subsubcategory__in=[subsubcategory_id])
 
-		print('category_id: ', category_id, 'subcategory_id: ', subcategory_id, 'subsubcategory_id: ', subsubcategory_id)
-
 		if 'rating' in sort_by and 'descending' in sort_by:
 			products = products.order_by('-created_at')
 		elif 'price' in sort_by and 'descending' in sort_by:
@@ -146,12 +144,14 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 	template_name = 'catalog/products_catalog.html'
 	context_object_name = 'products_catalog'
 	page_title = 'VTS | '
+	sort_by = ''
 
 	def get_queryset(self):
 		queryset = super().get_queryset()
 		category = self.kwargs['category']
 		subcategory = self.kwargs['subcategory']
 		subsubcategory = self.kwargs['subsubcategory']
+		self.sort_by = self.request.GET.get('sort_by', '')
 
 		if category:
 			queryset = queryset.filter(category__in=[category])
@@ -159,6 +159,13 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 			queryset = queryset.filter(subcategory__in=[subcategory])
 		if subsubcategory:
 			queryset = queryset.filter(subsubcategory__in=[subsubcategory])
+		if 'rating' in self.sort_by and 'descending' in self.sort_by:
+			queryset = queryset.order_by('-created_at')
+		elif 'price' in self.sort_by and 'descending' in self.sort_by:
+			queryset = queryset.order_by('-price')
+		else:
+			queryset = queryset.order_by('price')
+
 		return queryset
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
@@ -174,4 +181,5 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 		)
 		context['page_title'] = self.page_title
 		context['url_params'] = self.kwargs
+		context['sort_by'] = self.sort_by
 		return context
