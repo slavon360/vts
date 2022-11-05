@@ -122,7 +122,7 @@
 								</div>
 								<div id="list-view" class="tab-pane product-list-view fade" role="tabpanel">
 									<div class="row">
-										<div class="col">
+										<div class="col list-view-products">
 											{% for product in products_catalog %}
 												<div class="row product-layout-list {% if forloop.last%}last-child{% endif %}">
 													<div class="col-lg-3 col-md-5 ">
@@ -151,9 +151,6 @@
 																		</ul>
 																	</div>
 																</div>
-																<h4>
-																	<a class="product_name" href="">{{ product.manufacturer }}</a>
-																</h4>
 																<div class="price-box">
 																	{% if product.discount_price %}
 																		<span class="new-price new-price-2">{{ product.get_actual_discount_price }} грн.</span>
@@ -162,9 +159,9 @@
 																		<span class="new-price">{{ product.get_actual_price }} грн.</span>
 																	{% endif %}
 																</div>
-																<div class="description-block">
+																{% comment %} <div class="description-block">
 																	<p>{{ product.description | safe }}</p>
-																</div>
+																</div> {% endcomment %}
 															</div>
 														</div>
 													</div>

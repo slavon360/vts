@@ -161,6 +161,74 @@
 			);
 		});
 	};
+	const renderProductsList = (products) => {
+		const $list_view_products = $('.list-view-products');
+
+		$list_view_products.html('');
+		products.forEach(({
+			get_absolute_url,
+			manufacturer,
+			title,
+			discount_price,
+			get_actual_discount_price,
+			get_actual_price,
+			first_image
+		}, index) => {
+			const price_block = discount_price 
+			? 
+			`
+			<span class="new-price new-price-2">${get_actual_discount_price} грн.</span>
+			<span class="old-price">${get_actual_price} грн.</span>
+			`
+			: `<span class="new-price">${get_actual_price} грн.</span>`;
+
+			$list_view_products.append(
+				`
+				<div class="row product-layout-list ${index === products.length - 1 ? 'last-child' : ''}">
+					<div class="col-lg-3 col-md-5">
+						<div class="product-image">
+							<a href="${get_absolute_url}">
+								<img src="${first_image.image_url}" alt="${title}">
+							</a>
+						</div>
+					</div>
+					<div class="col-lg-5 col-md-7">
+						<div class="product_desc">
+							<div class="product_desc_info">
+								<div class="product-review">
+									<h5 class="manufacturer">
+										<a href="">${manufacturer}</a>
+									</h5>
+									<div class="rating-box">
+										<ul class="rating">
+											<li><i class="fa fa-star-o"></i></li>
+											<li><i class="fa fa-star-o"></i></li>
+											<li><i class="fa fa-star-o"></i></li>
+											<li class="no-star"><i class="fa fa-star-o"></i></li>
+											<li class="no-star"><i class="fa fa-star-o"></i></li>
+										</ul>
+									</div>
+								</div>
+								<div class="price-box">
+									${price_block}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="shop-add-action">
+							<ul class="add-actions-link">
+								<li class="add-cart"><a href="#">Купити</a></li>
+								<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
+								<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Швидкий перегляд</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				`
+			);
+		});
+	};
 
 	function sortProductsHandler () {
 		const sort_by = this.value;
@@ -186,7 +254,7 @@
 	}
 	$sort_products_catalog.on('change', sortProductsHandler);
 	function updateProductsHandler (sort_by, response) {
-		let { results = [] } = response;
+		let { results = [], next, previous } = response;
 
 		if (sort_by.includes('price')) {
 			const sign = sort_by.includes('ascending') ? 1 : -1;
@@ -197,7 +265,10 @@
 		}
 
 		renderProductsGrid(results);
-		renderPagination(response);
+		renderProductsList(results);
+		if (next || previous) {
+			renderPagination(response);
+		}
 	}
 
 	function pageClickHandler () {
