@@ -108,7 +108,25 @@
 														<div class="add-actions">
 															<ul class="add-actions-link">
 																<li class="add-cart active"><a href="#">Купити</a></li>
-																<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+																<li>
+																	<a
+																		href="#"
+																		title="quick view"
+																		class="quick-view-btn"
+																		data-toggle="modal"
+																		data-target="#exampleModalCenter"
+																		data-product-title="{{ product.title }}"
+																		data-product-manufacturer="{{ product.manufacturer }}"
+																		data-product-actual-price="{{ product.get_actual_price }}"
+																		{% if product.get_actual_discount_price %}
+																			data-product-discount-price="{{ product.get_actual_discount_price }}"
+																		{% endif %}
+																		data-product-description="{{ product.description }}"
+																		data-product-images-urls="{% for product_image in product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+																	>
+																		<i class="fa fa-eye"></i>
+																	</a>
+																</li>
 																<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 															</ul>
 														</div>
@@ -170,7 +188,25 @@
 															<ul class="add-actions-link">
 																<li class="add-cart"><a href="#">Купити</a></li>
 																<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
-																<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Швидкий перегляд</a></li>
+																<li>
+																	<a
+																		class="quick-view"
+																		data-toggle="modal"
+																		data-target="#exampleModalCenter"
+																		href="#"
+																		data-product-title="{{ product.title }}"
+																		data-product-manufacturer="{{ product.manufacturer }}"
+																		data-product-actual-price="{{ product.get_actual_price }}"
+																		{% if product.get_actual_discount_price %}
+																			data-product-discount-price="{{ product.get_actual_discount_price }}"
+																		{% endif %}
+																		data-product-description="{{ product.description }}"
+																		data-product-images-urls="{% for product_image in product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+																	>
+																		<i class="fa fa-eye"></i>
+																		Швидкий перегляд
+																	</a>
+																</li>
 															</ul>
 														</div>
 													</div>
@@ -253,8 +289,10 @@
 			</div>
 		</div>
 		<!-- Content Wraper Area End Here -->
+		{% include "quick-view-modal.html" %}
 {% endblock %}
 
 {% block local_scripts %}
 	<script src="{% static 'js/catalog.js' %}" defer></script>
+	<script src="{% static 'js/modals.js' %}"></script>
 {% endblock %}

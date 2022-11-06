@@ -107,7 +107,9 @@
 			discount_price,
 			get_actual_discount_price,
 			get_actual_price,
-			first_image
+			first_image,
+			images_list,
+			description
 		}) => {
 			const price_block = discount_price 
 			? 
@@ -116,6 +118,8 @@
 			<span class="old-price">${get_actual_price} грн.</span>
 			`
 			: `<span class="new-price">${get_actual_price} грн.</span>`;
+			const discount = get_actual_discount_price ? `data-product-discount-price="${get_actual_discount_price}"` : '';
+			const images_urls = images_list.reduce((result, { image_url }) => result += image_url, '');
 
 			$grid_view_products.append(
 				`
@@ -150,7 +154,23 @@
 							<div class="add-actions">
 								<ul class="add-actions-link">
 									<li class="add-cart active"><a href="#">Купити</a></li>
-									<li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
+									<li>
+										<a
+											href="#"
+											title="quick view"
+											class="quick-view-btn"
+											data-toggle="modal"
+											data-target="#exampleModalCenter"
+											data-product-title="${title}"
+											data-product-manufacturer="${manufacturer}"
+											data-product-actual-price="${get_actual_price}"
+											${discount}
+											data-product-description="${description.replace(/"/gi, '\'')}"
+											data-product-images-urls="${images_urls}"
+										>
+											<i class="fa fa-eye"></i>
+										</a>
+									</li>
 									<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 								</ul>
 							</div>

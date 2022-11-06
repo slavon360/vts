@@ -416,6 +416,9 @@ class ProductImage(models.Model):
     product = models.ForeignKey(Product, related_name="images", on_delete=models.SET_NULL, null=True, blank=True)
     image_url = models.ImageField(upload_to="products")
 
+    # def __str__(self):
+    #     return self.image_url
+
 class Banner(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     brief_text = models.CharField('Опис', max_length=200)

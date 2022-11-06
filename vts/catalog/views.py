@@ -86,6 +86,7 @@ class Breadcrumbs():
 				add_subcategory_breadcrumb(categ)
 
 		sorted_breadcrumbs = sorted(breadcrumbs, key=itemgetter('link'), reverse=True)
+		sorted_breadcrumbs.insert(0, { 'title': 'Головна', 'link': '/' })
 		return sorted_breadcrumbs
 
 class ProductDetailView(DetailView, Breadcrumbs):

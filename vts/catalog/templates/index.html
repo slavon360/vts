@@ -1,4 +1,5 @@
 {% extends "base_generic.html" %}
+{% load static %}
 {% block title %}<title>Головна</title>{% endblock %}
 
 {% block content %}
@@ -405,4 +406,8 @@
 		</section>
 	{% endif %}
 	{% include "quick-view-modal.html" %}
+{% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/modals.js' %}"></script>
 {% endblock %}

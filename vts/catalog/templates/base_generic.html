@@ -395,7 +395,13 @@
 								<ul>
 									{% for breadcrumb in breadcrumbs %}
 										{% if breadcrumb.link %}
-											<li><a href="/{{ breadcrumb.link }}">{{ breadcrumb.title }}</a></li>
+											<li>
+												{% if breadcrumb.link == '/' %}
+													<a href="{{ breadcrumb.link }}">{{ breadcrumb.title }}</a>
+												{% else %}
+													<a href="/{{ breadcrumb.link }}">{{ breadcrumb.title }}</a>
+												{% endif %}
+											</li>
 											{% else %}
 											<li class="active">{{ breadcrumb.title }}</li>
 										{% endif %}
@@ -2821,7 +2827,6 @@
 		</div>
 		<!-- Body Wrapper End Here -->
 
-		{% block local_scripts %}{% endblock %}
 		<!-- jQuery-V1.12.4 -->
 		<script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
 		<!-- Popper js -->
@@ -2865,6 +2870,6 @@
 		<!-- Main/Activator js -->
 		<script src="{% static 'js/main.js' %}"></script>
 
-		<script src="{% static 'js/modals.js' %}"></script>
+		{% block local_scripts %}{% endblock %}
 	</body>
 </html>
