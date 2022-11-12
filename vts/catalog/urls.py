@@ -29,5 +29,9 @@ urlpatterns = [
 	path(
 		'products-catalog/api',
 		views.ProductsCatalogApiView.as_view()
+	),
+	path(
+		'products-search/api',
+		views.ProductsSearchApiView.as_view()
 	)
 ]

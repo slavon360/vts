@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from rest_framework import status, generics
 from django.views.generic import DetailView, ListView
 from .models import Category, Phone, Banner, Product
-from .serializers import ProductSerializer 
+from .serializers import ProductSerializer, ProductSearchSerializer 
 
 # Create your views here.
 
@@ -111,6 +111,17 @@ class ProductDetailView(DetailView, Breadcrumbs):
 			subsubcategory = subsubcategory_id
 		)
 		return context
+
+class ProductsSearchApiView(generics.ListAPIView):
+	model = Product
+	serializer_class = ProductSearchSerializer
+
+	def get_queryset(self):
+		title = self.request.query_params.get('title')
+
+		products = Product.objects.filter(title__icontains=title)
+		print(title)
+		return products
 
 class ProductsCatalogApiView(generics.ListAPIView):
 	model = Product

@@ -9,6 +9,14 @@ class ProductImagesListSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = ProductImage
 		fields = ['image_url']
+class ProductSearchSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Product
+		fields = (
+			'title',
+			'get_absolute_url'
+		)
+
 class ProductSerializer(serializers.ModelSerializer):
 	first_image = serializers.SerializerMethodField()
 	images_list = serializers.SerializerMethodField()

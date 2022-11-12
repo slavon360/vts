@@ -5464,6 +5464,51 @@ span.required {
  #search-form button:hover {
  	color:#fed700;
  }
+ .search-input-container {
+	position: relative;
+	z-index: 2;
+	width: calc(100% - 45px);
+ }
+ .searched-results {
+	background-color: #fefefe;
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	left: 0;
+	max-height: 400px;
+	overflow-y: auto;
+ }
+ .searched-results .preloader {
+	width: 100%;
+    height: 4px;
+    position: relative;
+    overflow: hidden;
+ }
+ .searched-results .preloader:before {
+	position: absolute;
+	content: '';
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: -100%;
+	background: linear-gradient(90deg, var(--yellow) 0%, var(--yellow) 25%, var(--yellow) 25%, var(--yellow) 37.5%, var(--orange) 37.5%, var(--orange) 50%, var(--yellow) 50%, var(--yellow) 75%, var(--yellow) 75%, var(--yellow) 87.5%, var(--pink) 87.5%, var(--pink) 100%);
+	animation: 1.3s progress ease infinite;
+ }
+ .searched-results .searched-product {
+	display: block;
+	padding: 10px;
+	color: #000;
+	border-bottom: 1px solid #ccc;
+ }
+ .searched-results .searched-product:hover {
+	color: #fed700;
+ }
+ .searched-results .empty-results {
+	padding: 10px;
+ }
+ .searched-results .empty-results a {
+	padding-right: 15px;
+ }
  .error-button a {
  	background: #fed700 none repeat scroll 0 0;
  	border-radius: 35px;
@@ -5480,6 +5525,15 @@ span.required {
 .error-button a:hover{background:#242424;color:#fff;}
 .small-version {
   display: none;
+}
+
+@keyframes progress {
+  0% {
+    transform: translate(0)
+  }
+  100% {
+    transform: translate(50%)
+  }
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/
