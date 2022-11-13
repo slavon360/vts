@@ -110,7 +110,15 @@
 														</div>
 														<div class="add-actions">
 															<ul class="add-actions-link">
-																<li class="add-cart active"><a href="#">Купити</a></li>
+																<li class="add-cart active">
+																	<div class="add-product-to-cart"
+																		data-product-title="{{ product.title }}"
+																		data-product-qty="1"
+																		data-product-price="{{ product.get_actual_price }}"
+																	>
+																		Купити
+																	</div>
+																</li>
 																<li>
 																	<a
 																		href="#"
@@ -189,7 +197,15 @@
 													<div class="col-lg-4">
 														<div class="shop-add-action">
 															<ul class="add-actions-link">
-																<li class="add-cart"><a href="#">Купити</a></li>
+																<li class="add-cart">
+																	<div class="add-product-to-cart"
+																		data-product-title="{{ product.title }}"
+																		data-product-qty="1"
+																		data-product-price="{{ product.get_actual_price }}"
+																	>
+																		Купити
+																	</div>
+																</li>
 																<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
 																<li>
 																	<a
@@ -298,4 +314,5 @@
 {% block local_scripts %}
 	<script src="{% static 'js/catalog.js' %}" defer></script>
 	<script src="{% static 'js/modals.js' %}"></script>
+	<script src="{% static 'js/shopping-cart.js' %}"></script>
 {% endblock %}

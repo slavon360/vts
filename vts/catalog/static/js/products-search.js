@@ -46,7 +46,9 @@
     }
 
     function hideSearchedResults () {
-        $products_results.addClass('d-none');
+        setTimeout(() => {
+            $products_results.addClass('d-none');
+        }, 500);
     }
 
     function showSearchedResults () {

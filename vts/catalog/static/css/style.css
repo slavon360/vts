@@ -2420,14 +2420,17 @@ textarea:focus {
 	-webkit-transition: all 300ms ease-in 0s;
 	transition: all 300ms ease-in 0s;
 }
-.add-actions-link li.add-cart.active a {
+.add-actions-link li.add-cart.active a,
+.add-actions-link li.add-cart.active .add-product-to-cart {
 	color: #242424;
 }
 .add-actions-link li:hover a, 
 .add-actions-link li.add-cart:hover a {
 	color: #242424;
 }
-.add-actions-link li.add-cart > a {
+.add-actions-link li.add-cart > a,
+.add-actions-link li.add-cart > .add-product-to-cart {
+	cursor: pointer;
 	color: #a4a4a4;
 	font-size: 13px;
 	font-weight: 500;
@@ -5472,13 +5475,30 @@ span.required {
  .searched-results {
 	background-color: #fefefe;
 	position: absolute;
+	z-index: 100000000000000000;
 	width: 100%;
 	top: 100%;
 	left: 0;
 	max-height: 400px;
 	overflow-y: auto;
  }
+ .search-products-input:focus {
+	background-color: #fff;
+	position: relative;
+	z-index: 1;
+ }
+ .search-products-input:focus ~ .overlay {
+	position: fixed;
+	z-index: -1;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(0,0,0,.4);
+ }
  .searched-results .preloader {
+	position: relative;
+	z-index: 1;
 	width: 100%;
     height: 4px;
     position: relative;
