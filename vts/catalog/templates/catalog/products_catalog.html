@@ -76,7 +76,7 @@
 												<!-- single-product-wrap start -->
 												<div class="single-product-wrap">
 													<div class="product-image">
-													{% with product.images.all|first as first_image %}
+													{% with product.images.all|first as first_image %} 
 														<a href="{{ product.get_absolute_url }}">
 															<img src="/image/{{first_image.image_url}}" alt="Li's Product Image">
 														</a>
@@ -110,12 +110,14 @@
 														</div>
 														<div class="add-actions">
 															<ul class="add-actions-link">
-																<li class="add-cart active">
-																	<div class="add-product-to-cart"
-																		data-product-title="{{ product.title }}"
-																		data-product-qty="1"
-																		data-product-price="{{ product.get_actual_price }}"
-																	>
+																<li class="add-cart active"
+																	data-product-title="{{ product.title }}"
+																	data-product-qty="1"
+																	data-product-price="{{ product.get_actual_price }}"
+																	data-product-link="{{ product.get_absolute_url }}"
+																	data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+																>
+																	<div class="add-product-to-cart">
 																		Купити
 																	</div>
 																</li>
@@ -197,12 +199,14 @@
 													<div class="col-lg-4">
 														<div class="shop-add-action">
 															<ul class="add-actions-link">
-																<li class="add-cart">
-																	<div class="add-product-to-cart"
-																		data-product-title="{{ product.title }}"
-																		data-product-qty="1"
-																		data-product-price="{{ product.get_actual_price }}"
-																	>
+																<li class="add-cart"
+																	data-product-title="{{ product.title }}"
+																	data-product-qty="1"
+																	data-product-price="{{ product.get_actual_price }}"
+																	data-product-link="{{ product.get_absolute_url }}"
+																	data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+																>
+																	<div class="add-product-to-cart">
 																		Купити
 																	</div>
 																</li>

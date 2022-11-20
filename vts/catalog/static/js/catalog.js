@@ -153,7 +153,17 @@
 							</div>
 							<div class="add-actions">
 								<ul class="add-actions-link">
-									<li class="add-cart active"><a href="#">Купити</a></li>
+									<li class="add-cart active"
+										data-product-title="${title}"
+										data-product-qty="1"
+										data-product-price="${get_actual_price}"
+										data-product-link="${get_absolute_url}"
+										data-product-img-url="${first_image.image_url}"
+									>
+										<div class="add-product-to-cart">
+											Купити
+										</div>
+									</li>
 									<li>
 										<a
 											href="#"
@@ -238,7 +248,17 @@
 					<div class="col-lg-4">
 						<div class="shop-add-action">
 							<ul class="add-actions-link">
-								<li class="add-cart"><a href="#">Купити</a></li>
+								<li class="add-cart"
+									data-product-title="${title}"
+									data-product-qty="1"
+									data-product-price="${get_actual_price}"
+									data-product-link="${get_absolute_url}"
+									data-product-img-url="${first_image.image_url}"
+								>
+									<div class="add-product-to-cart">
+										Купити
+									</div>
+								</li>
 								<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
 								<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Швидкий перегляд</a></li>
 							</ul>
@@ -262,6 +282,7 @@
 		].join('');
 		current_page = 1;
 
+		triggerAddToCartBtnsRemoveListeners();
 		updateQueryStringParams({ sort_by, page: current_page });
 		$toolbar_amount_active_page.text(current_page);
 		
@@ -286,6 +307,8 @@
 
 		renderProductsGrid(results);
 		renderProductsList(results);
+		triggerAddToCartBtnsListeners();
+		triggerUpdateAddToCartBtns();
 		if (next || previous) {
 			renderPagination(response);
 		}
@@ -316,4 +339,21 @@
 		// Replace current querystring with the new one.
 		history.replaceState(null, null, `?${queryParams.toString()}`);
 	}
+	function triggerAddToCartBtnsListeners () {
+		const evnt = new CustomEvent('add_to_cart_btns_listeners');
+
+		document.dispatchEvent(evnt);
+	}
+	function triggerAddToCartBtnsRemoveListeners () {
+		const evnt = new CustomEvent('add_to_cart_btns_remove_listeners');
+
+		document.dispatchEvent(evnt);
+	}
+	function triggerUpdateAddToCartBtns () {
+		const evnt = new CustomEvent('update_add_to_cart_btns');
+
+		document.dispatchEvent(evnt);
+	}
+
+	triggerAddToCartBtnsListeners();
 })(jQuery);
