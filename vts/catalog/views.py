@@ -31,6 +31,9 @@ def index(request):
 
 	return render(request, 'index.html', context=context)
 
+def shopping_cart(request):
+	return render(request, 'catalog/shopping-cart.html')
+
 class Breadcrumbs():
 	def get_breadcrumbs(self, *args, **kwargs):
 		breadcrumbs = []

@@ -101,6 +101,7 @@
 
 		$grid_view_products.html('');
 		products.forEach(({
+			id,
 			get_absolute_url,
 			manufacturer,
 			title,
@@ -154,6 +155,7 @@
 							<div class="add-actions">
 								<ul class="add-actions-link">
 									<li class="add-cart active"
+										data-product-id="${id}"
 										data-product-title="${title}"
 										data-product-qty="1"
 										data-product-price="${get_actual_price}"
@@ -196,6 +198,7 @@
 
 		$list_view_products.html('');
 		products.forEach(({
+			id,
 			get_absolute_url,
 			manufacturer,
 			title,
@@ -249,6 +252,7 @@
 						<div class="shop-add-action">
 							<ul class="add-actions-link">
 								<li class="add-cart"
+									data-product-id="${id}"
 									data-product-title="${title}"
 									data-product-qty="1"
 									data-product-price="${get_actual_price}"

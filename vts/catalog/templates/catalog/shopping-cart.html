@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Кошик</title>{% endblock %}
+{% load static %}
+{% block content %}
+<!--Shopping Cart Area Strat-->
+	<div class="Shopping-cart-area pt-60 pb-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<form action="#">
+						<div class="table-content table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="li-product-remove">Видалити</th>
+										<th class="li-product-thumbnail"></th>
+										<th class="cart-product-name">Продукт</th>
+										<th class="li-product-price">Ціна</th>
+										<th class="li-product-quantity">Кількість</th>
+										<th class="li-product-subtotal">Сума</th>
+									</tr>
+								</thead>
+								<tbody class="shopping-cart-tbody"></tbody>
+							</table>
+						</div>
+						<div class="row">
+							<div class="col-md-5 ml-auto">
+								<div class="cart-page-total">
+									<h2>Підсумок</h2>
+									<ul>
+										<li>Загальна сума <span class="sum"></span></li>
+									</ul>
+									<a href="#">Оформити замовлення</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--Shopping Cart Area End-->
+{% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/shopping-cart.js' %}"></script>
+{% endblock %}

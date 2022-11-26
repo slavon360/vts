@@ -3566,6 +3566,13 @@ li.right-menu .cat-mega-menu-2 > li {
 	border-bottom: 1px solid #ebebeb;
 	border-right: 1px solid #ebebeb;
 }
+.table-content table td .img-thumbnail-wrp {
+	display: block;
+	max-width: 200px;
+}
+.table-content table td .img-thumbnail-wrp img {
+	width: 100%;
+}
 .table-content table th {
 	border-top: medium none;
 	font-size: 15px;
@@ -3598,6 +3605,7 @@ li.right-menu .cat-mega-menu-2 > li {
 	font-size: 16px;
 	font-weight: 500;
 	text-transform: capitalize;
+	max-width: 300px;
 }
 .table-content table td.li-product-price {
 	font-size: 16px;
@@ -4155,7 +4163,7 @@ thead {
 	list-style: none;
 	font-size: 15px;
 	color: #252525;
-	padding: 10px 30px;
+	padding: 10px 15px 10px 30px;
 	border-bottom: 1px solid #ebebeb;
 	font-weight: 700;
 	font-family: 'Montserrat', sans-serif;
