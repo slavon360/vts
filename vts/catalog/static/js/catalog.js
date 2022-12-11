@@ -179,6 +179,11 @@
 											${discount}
 											data-product-description="${description.replace(/"/gi, '\'')}"
 											data-product-images-urls="${images_urls}"
+											data-product-id="${id}"
+											data-product-qty="1"
+											data-product-price="${get_actual_price}"
+											data-product-link="${get_absolute_url}"
+											data-product-img-url="${images_list[0].image_url}"
 										>
 											<i class="fa fa-eye"></i>
 										</a>
@@ -205,8 +210,12 @@
 			discount_price,
 			get_actual_discount_price,
 			get_actual_price,
-			first_image
+			first_image,
+			images_list,
+			description
 		}, index) => {
+			const discount = get_actual_discount_price ? `data-product-discount-price="${get_actual_discount_price}"` : '';
+			const images_urls = images_list.reduce((result, { image_url }) => result += image_url, '');
 			const price_block = discount_price 
 			? 
 			`
@@ -264,7 +273,18 @@
 									</div>
 								</li>
 								<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
-								<li><a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"><i class="fa fa-eye"></i>Швидкий перегляд</a></li>
+								<li>
+									<a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"
+										data-product-title="${title}"
+										data-product-manufacturer="${manufacturer}"
+										data-product-actual-price="${get_actual_price}"
+										${discount}
+										data-product-description="${description.replace(/"/gi, '\'')}"
+										data-product-images-urls="${images_urls}"
+									>
+										<i class="fa fa-eye"></i>Швидкий перегляд
+									</a>
+								</li>
 							</ul>
 						</div>
 					</div>

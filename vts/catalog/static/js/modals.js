@@ -20,6 +20,7 @@
 		const productPrice = $relatedTarget.data('product-price');
 		const productLink = $relatedTarget.data('product-link');
 		const productImageUrl = $relatedTarget.data('product-img-url');
+		const productQty = $relatedTarget.data('product-qty');
 		const productDetailsLeft = document.querySelector('.product-details-left');
 		const addToCartContainer = currentTarget.querySelector('.add-to-cart-container');
 		const renderProductImages = () => {
@@ -95,6 +96,8 @@
 
 		renderProductImages();
 		addToCartContainer.setAttribute('data-product-id', productId);
+		addToCartContainer.setAttribute('data-product-title', productTitle);
+		addToCartContainer.setAttribute('data-product-qty', productQty);
 		addToCartContainer.setAttribute('data-product-price', productPrice);
 		addToCartContainer.setAttribute('data-product-link', productLink);
 		addToCartContainer.setAttribute('data-product-img-url', productImageUrl);

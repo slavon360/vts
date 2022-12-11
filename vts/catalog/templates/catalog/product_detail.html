@@ -92,31 +92,30 @@
 							<p>{{ product.description | safe }}</p>
 						</div>
 						<div class="single-add-to-cart">
-							<div class="cart-quantity">
-								<div class="quantity">
-									<label>Кількість</label>
-									<div class="cart-plus-minus">
-										<input class="cart-plus-minus-box" value="1" type="text">
-										<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-										<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-										<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-										<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+							{% if product.available %}
+								<div class="cart-quantity">
+									<div class="quantity">
+										<label>Кількість</label>
+										<div class="cart-plus-minus">
+											<input class="cart-plus-minus-box" value="1" type="text">
+											<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+											<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+											<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+											<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+										</div>
+									</div>
+									<div class="add-to-cart-container d-inline-block"
+										data-product-id="{{ product.id }}"
+										data-product-title="{{ product.title }}"
+										data-product-qty="1"
+										data-product-price="{{ product.get_actual_price }}"
+										data-product-link="{{ product.get_absolute_url }}"
+										data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+									>
+										<button from-modal="true" class="add-to-cart add-product-to-cart">Купити</button>
 									</div>
 								</div>
-								<div class="add-to-cart-container d-inline-block"
-									data-product-id="{{ product.id }}"
-									data-product-title="{{ product.title }}"
-									data-product-qty="1"
-									data-product-price="{{ product.get_actual_price }}"
-									data-product-link="{{ product.get_absolute_url }}"
-									data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-								>
-									<button class="add-to-cart add-product-to-cart">Купити</button>
-								</div>
-								<a class="wishlist-btn ml-20" href="#">
-									<i class="fa fa-heart-o"></i>
-								</a>
-							</div>
+							{% endif %}
 							<div class="alert alert-success d-none">
 								<i class="fa fa-check" aria-hidden="true"></i> 
 								Товар додано в <a href="/shopping-cart" class="text-primary">кошик</a>

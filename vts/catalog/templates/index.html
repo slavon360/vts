@@ -104,6 +104,7 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
+												{% if hot_deal_product.available %}
 													<li class="add-cart active"
 														data-product-id="{{ hot_deal_product.id }}"
 														data-product-title="{{ hot_deal_product.title }}"
@@ -116,7 +117,13 @@
 															Купити
 														</div>
 													</li>
-													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													{% else %}
+													<li class="text-nowrap preorder-only">
+														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+														під замовлення
+														</a>
+													</li>
+												{% endif %}
 													<li>
 														<a href="#" title="quick view" class="quick-view-btn"
 															data-toggle="modal"
@@ -206,6 +213,7 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
+												{% if spare_parts_product.available %}
 													<li class="add-cart active"
 														data-product-id="{{ spare_parts_product.id }}"
 														data-product-title="{{ spare_parts_product.title }}"
@@ -218,7 +226,13 @@
 															Купити
 														</div>
 													</li>
-													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													{% else %}
+													<li class="text-nowrap preorder-only">
+														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+														під замовлення
+														</a>
+													</li>
+												{% endif %}
 													<li>
 														<a href="#"
 															title="quick view"
@@ -309,6 +323,7 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
+												{% if boiler_product.available %}
 													<li class="add-cart active"
 														data-product-id="{{ boiler_product.id }}"
 														data-product-title="{{ boiler_product.title }}"
@@ -321,7 +336,13 @@
 															Купити
 														</div>
 													</li>
-													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													{% else %}
+													<li class="text-nowrap preorder-only">
+														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+														під замовлення
+														</a>
+													</li>
+												{% endif %}
 													<li>
 														<a href="#"
 															title="quick view"
@@ -412,6 +433,7 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
+												{% if gas_boiler_product.available %}
 													<li class="add-cart active"
 														data-product-id="{{ gas_boiler_product.id }}"
 														data-product-title="{{ gas_boiler_product.title }}"
@@ -424,7 +446,9 @@
 															Купити
 														</div>
 													</li>
-													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
+													{% else %}
+													<li>Під замовлення</li>
+												{% endif %}
 													<li>
 														<a href="#" title="quick view" class="quick-view-btn"
 															data-toggle="modal"

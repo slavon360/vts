@@ -97,7 +97,7 @@
 			}
 		}
 		updateAddToCartBtn(product_id) {
-			const add_to_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .add-product-to-cart`);
+			const add_to_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .add-product-to-cart:not([from-modal="true"])`);
 			const shopping_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .go-to-cart-btn`);
 
 			if (add_to_cart_btns.length) {
@@ -145,6 +145,8 @@
 			localStorage.setItem(ShoppingCart.shopping_cart_key, stringified_data);
 		}
 		addProductToCart(element) {
+			const is_from_modal = element.getAttribute('from-modal');
+			console.log(element);
 			const added_product = {
 				id: element.parentNode.getAttribute('data-product-id'),
 				title: element.parentNode.getAttribute('data-product-title'),
@@ -162,8 +164,12 @@
 			];
 			this.setShoppingCartData(this.shopping_cart_data);
 			this.updateProductsCounterAndSum();
-			this.updateAddToCartBtn(added_product.id);
 			this.renderProductsList();
+
+			if (is_from_modal) {
+				this.updateSingleAddProductArea({ detail: { product_id: added_product.id } });
+			}
+			this.updateAddToCartBtn(added_product.id);
 		}
 		addSingleProductToCart(element) {
 			this.addProductToCartHandler = this.addProductToCart.bind(this, element);

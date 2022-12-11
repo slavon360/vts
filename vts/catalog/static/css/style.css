@@ -2401,6 +2401,9 @@ textarea:focus {
 	transition: all 300ms ease-in 0s;
 	width: 100%;
 }
+.add-actions-link .preorder-only {
+	width: 140px;
+}
 .add-actions-link li {
 	line-height: 1;
 	margin: 0 0 0 3px;
