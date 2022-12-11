@@ -28,11 +28,13 @@
 			return Number(price.replace(/,/g, '')) * Number(qty);
 		}
 		removeProductFromShoppingCartTable(product_id) {
-			const tr_product = this.shopping_cart_tbody_element.querySelector(`[id="${product_id}"]`);
+			if (location.pathname.includes('shopping-cart')) {
+				const tr_product = this.shopping_cart_tbody_element.querySelector(`[id="${product_id}"]`);
 
-			if (tr_product) {
-				tr_product.closest('tr').remove();
-				this.updateShoppingCartPageSum();
+				if (tr_product) {
+					tr_product.closest('tr').remove();
+					this.updateShoppingCartPageSum();
+				}
 			}
 		}
 		initShoppingCartTableHandler() {
@@ -47,7 +49,7 @@
 				return result += `<tr id="${id}">
 					<td class="li-product-remove"><a href="#" data-product-id="${id}"><i data-product-id="${id}" class="fa fa-times"></i></a></td>
 					<td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="${link}"><img src="${img_url}" alt="${title}"></a></td>
-					<td class="li-product-name"><a href="#">${title}</a></td>
+					<td class="li-product-name"><a href="${link}">${title}</a></td>
 					<td class="li-product-price"><span class="amount">${price} грн.</span></td>
 					<td class="quantity">
 						<div class="cart-plus-minus">
@@ -83,23 +85,38 @@
 			}, '');
 			this.cart_products_list.innerHTML = products;
 		}
+		updateSingleAddProductArea(event) {
+			const { detail: { product_id }} = event;
+			const single_add_to_cart = document.querySelector('.single-add-to-cart');
+			const add_to_cart_prod_id = single_add_to_cart.querySelector(`[data-product-id="${product_id}"]`);
+			const exist = this.shopping_cart_data.find(({ id }) => id === product_id);
+
+			if (add_to_cart_prod_id) {
+				single_add_to_cart.querySelector('.cart-quantity').classList[exist ? 'add' : 'remove']('d-none');
+				single_add_to_cart.querySelector('.alert-success').classList[exist ? 'remove' : 'add']('d-none');
+			}
+		}
 		updateAddToCartBtn(product_id) {
-			const add_to_cart_btn = document.querySelector(`.tab-pane.active [data-product-id="${product_id}"] .add-product-to-cart`);
-			const shopping_cart_btn = document.querySelector(`.tab-pane.active [data-product-id="${product_id}"] .go-to-cart-btn`);
+			const add_to_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .add-product-to-cart`);
+			const shopping_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .go-to-cart-btn`);
 
-			if (add_to_cart_btn) {
-				this.unbindAddProductToCartListener(add_to_cart_btn);
-				add_to_cart_btn.parentElement.innerHTML = `<a href="/shopping-cart" class="go-to-cart-btn text-success">
-				<i class="fa fa-check" aria-hidden="true"></i> &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
-				</a>`;
-			} else if (shopping_cart_btn) {
-				const add_product_btn = document.createElement('div');
-				add_product_btn.className = 'add-product-to-cart';
-				add_product_btn.textContent = 'Купити';
+			if (add_to_cart_btns.length) {
+				add_to_cart_btns.forEach(add_to_cart_btn => {
+					this.unbindAddProductToCartListener(add_to_cart_btn);
+					add_to_cart_btn.parentElement.innerHTML = `<a href="/shopping-cart" class="go-to-cart-btn text-success">
+					<i class="fa fa-check" aria-hidden="true"></i> &nbsp;<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+					</a>`;
+				});
+			} else if (shopping_cart_btns.length) {
+				shopping_cart_btns.forEach(shopping_cart_btn => {
+					const add_product_btn = document.createElement('div');
+					add_product_btn.className = 'add-product-to-cart';
+					add_product_btn.textContent = 'Купити';
 
-				shopping_cart_btn.parentElement.append(add_product_btn);
-				shopping_cart_btn.remove();
-				this.addSingleProductToCart(add_product_btn);
+					shopping_cart_btn.parentElement.append(add_product_btn);
+					shopping_cart_btn.remove();
+					this.addSingleProductToCart(add_product_btn);
+				});
 			}
 		}
 		updateAddToCartBtns() {
@@ -127,7 +144,15 @@
 
 			localStorage.setItem(ShoppingCart.shopping_cart_key, stringified_data);
 		}
-		addProductToCart(added_product) {
+		addProductToCart(element) {
+			const added_product = {
+				id: element.parentNode.getAttribute('data-product-id'),
+				title: element.parentNode.getAttribute('data-product-title'),
+				qty: element.parentNode.getAttribute('data-product-qty'),
+				price: element.parentNode.getAttribute('data-product-price'),
+				link: element.parentNode.getAttribute('data-product-link'),
+				img_url: element.parentNode.getAttribute('data-product-img-url')
+			};
 			const existed_product = this.shopping_cart_data.find(({id}) => id === added_product.id);
 			const product = existed_product ? { ...existed_product, qty: ++existed_product.qty } : added_product;
 
@@ -141,16 +166,7 @@
 			this.renderProductsList();
 		}
 		addSingleProductToCart(element) {
-			const product_data = {
-				id: element.parentNode.getAttribute('data-product-id'),
-				title: element.parentNode.getAttribute('data-product-title'),
-				qty: element.parentNode.getAttribute('data-product-qty'),
-				price: element.parentNode.getAttribute('data-product-price'),
-				link: element.parentNode.getAttribute('data-product-link'),
-				img_url: element.parentNode.getAttribute('data-product-img-url')
-			};
-
-			this.addProductToCartHandler = this.addProductToCart.bind(this, product_data);
+			this.addProductToCartHandler = this.addProductToCart.bind(this, element);
 			element.addEventListener('click', this.addProductToCartHandler);
 		}
 		addToCartBindListeners() {
@@ -161,9 +177,10 @@
 			});
 		}
 		removeCartProduct(event) {
-			event.preventDefault();
 			const { target } = event;
 			const product_id = target.getAttribute('data-product-id');
+
+			if (!target.href && !target.parentElement.href) event.preventDefault();
 
 			if (product_id) {
 				this.shopping_cart_data = this.shopping_cart_data.filter(({ id }) => id !== product_id);
@@ -177,6 +194,7 @@
 		initBindListeners() {
 			document.addEventListener('add_to_cart_btns_listeners', this.addToCartBindListeners.bind(this));
 			document.addEventListener('update_add_to_cart_btns', this.updateAddToCartBtns.bind(this));
+			document.addEventListener('update_single_add_product_area', this.updateSingleAddProductArea.bind(this));
 			[this.cart_products_list, this.shopping_cart_tbody_element].forEach(element => {
 				if (element) {
 					element.addEventListener('click', this.removeCartProduct.bind(this));

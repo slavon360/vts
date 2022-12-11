@@ -473,6 +473,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
  $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
  $(".qtybutton").on("click", function() {
+	var $add_to_cart_container = $('.add-to-cart-container');
     var $button = $(this);
     var oldValue = $button.parent().find("input").val();
     if ($button.hasClass('inc')) {
@@ -486,6 +487,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
        }
        }
     $button.parent().find("input").val(newVal);
+	$add_to_cart_container.attr('data-product-qty', newVal);
    });
 /*----------------------------------------*/
 /* 23. Single Prduct Carousel Activision

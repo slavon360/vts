@@ -1,6 +1,12 @@
 (function ($) {
 	"use Strict";
 
+	function triggerUpdateSingleAddProductArea (product_id) {
+		const evnt = new CustomEvent('update_single_add_product_area', { detail: { product_id }});
+
+		document.dispatchEvent(evnt);
+	}
+
 	$('#exampleModalCenter').on('shown.bs.modal', function (event) {
 		const currentTarget = event.currentTarget;
 		const $relatedTarget = $(event.relatedTarget);
@@ -10,7 +16,12 @@
 		const discountPrice = $relatedTarget.data('product-discount-price');
 		const productDescription = $relatedTarget.data('product-description');
 		const productImagesUrls = $relatedTarget.data('product-images-urls');
+		const productId = $relatedTarget.data('product-id');
+		const productPrice = $relatedTarget.data('product-price');
+		const productLink = $relatedTarget.data('product-link');
+		const productImageUrl = $relatedTarget.data('product-img-url');
 		const productDetailsLeft = document.querySelector('.product-details-left');
+		const addToCartContainer = currentTarget.querySelector('.add-to-cart-container');
 		const renderProductImages = () => {
 			const img_regex = /(?:jpg|gif|png|jpeg)/gi;
 			const details_images = document.createElement('div');
@@ -83,9 +94,14 @@
 		}
 
 		renderProductImages();
+		addToCartContainer.setAttribute('data-product-id', productId);
+		addToCartContainer.setAttribute('data-product-price', productPrice);
+		addToCartContainer.setAttribute('data-product-link', productLink);
+		addToCartContainer.setAttribute('data-product-img-url', productImageUrl);
 		currentTarget.querySelector('.product-title').textContent = productTitle;
 		currentTarget.querySelector('.product-details-ref').textContent = productManufacturer;
 		currentTarget.querySelector('.product-desc').innerHTML = productDescription;
+
 
 		if (discountPrice) {
 			currentTarget.querySelector('.new-price').textContent = `${discountPrice} грн.`;
@@ -93,5 +109,7 @@
 		} else {
 			currentTarget.querySelector('.new-price').textContent = `${actualPrice} грн.`;
 		}
+
+		triggerUpdateSingleAddProductArea(productId);
 	});
 })(jQuery);

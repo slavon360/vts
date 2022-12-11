@@ -32,7 +32,24 @@ def index(request):
 	return render(request, 'index.html', context=context)
 
 def shopping_cart(request):
-	return render(request, 'catalog/shopping-cart.html')
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = 'Кошик'
+	)
+
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data
+	}
+	return render(request, 'catalog/shopping-cart.html', context=context)
 
 class Breadcrumbs():
 	def get_breadcrumbs(self, *args, **kwargs):
@@ -88,6 +105,8 @@ class Breadcrumbs():
 				add_category_breadcrumb(categ)
 				add_subcategory_breadcrumb(categ)
 
+		if kwargs['optional_title']:
+			breadcrumbs.append({ 'title': kwargs['optional_title'], 'link': '' })
 		sorted_breadcrumbs = sorted(breadcrumbs, key=itemgetter('link'), reverse=True)
 		sorted_breadcrumbs.insert(0, { 'title': 'Головна', 'link': '/' })
 		return sorted_breadcrumbs
@@ -111,7 +130,8 @@ class ProductDetailView(DetailView, Breadcrumbs):
 			None,
 			category = category_id,
 			subcategory = subcategory_id,
-			subsubcategory = subsubcategory_id
+			subsubcategory = subsubcategory_id,
+			optional_title = ''
 		)
 		return context
 
@@ -192,7 +212,8 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 			None,
 			category = self.kwargs['category'],
 			subcategory = self.kwargs['subcategory'],
-			subsubcategory = self.kwargs['subsubcategory']
+			subsubcategory = self.kwargs['subsubcategory'],
+			optional_title = ''
 		)
 		context['page_title'] = self.page_title
 		context['url_params'] = self.kwargs

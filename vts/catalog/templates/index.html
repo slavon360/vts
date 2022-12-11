@@ -104,14 +104,28 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
-													<li class="add-cart active">
-														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													<li class="add-cart active"
+														data-product-id="{{ hot_deal_product.id }}"
+														data-product-title="{{ hot_deal_product.title }}"
+														data-product-qty="1"
+														data-product-price="{{ hot_deal_product.get_actual_price }}"
+														data-product-link="{{ hot_deal_product.get_absolute_url }}"
+														data-product-img-url="{% with hot_deal_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+													>
+														<div class="add-product-to-cart">
+															Купити
+														</div>
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
 														<a href="#" title="quick view" class="quick-view-btn"
 															data-toggle="modal"
 															data-target="#exampleModalCenter"
+															data-product-id="{{ hot_deal_product.id }}"
+															data-product-qty="1"
+															data-product-price="{{ hot_deal_product.get_actual_price }}"
+															data-product-link="{{ hot_deal_product.get_absolute_url }}"
+															data-product-img-url="{% with hot_deal_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
 															data-product-title="{{ hot_deal_product.title }}"
 															data-product-manufacturer="{{ hot_deal_product.manufacturer }}"
 															data-product-actual-price="{{ hot_deal_product.get_actual_price }}"
@@ -192,8 +206,17 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
-													<li class="add-cart active">
-														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													<li class="add-cart active"
+														data-product-id="{{ spare_parts_product.id }}"
+														data-product-title="{{ spare_parts_product.title }}"
+														data-product-qty="1"
+														data-product-price="{{ spare_parts_product.get_actual_price }}"
+														data-product-link="{{ spare_parts_product.get_absolute_url }}"
+														data-product-img-url="{% with spare_parts_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+													>
+														<div class="add-product-to-cart">
+															Купити
+														</div>
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
@@ -202,6 +225,11 @@
 															class="quick-view-btn"
 															data-toggle="modal"
 															data-target="#exampleModalCenter"
+															data-product-id="{{ spare_parts_product.id }}"
+															data-product-qty="1"
+															data-product-price="{{ spare_parts_product.get_actual_price }}"
+															data-product-link="{{ spare_parts_product.get_absolute_url }}"
+															data-product-img-url="{% with spare_parts_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
 															data-product-title="{{ spare_parts_product.title }}"
 															data-product-manufacturer="{{ spare_parts_product.manufacturer }}"
 															data-product-actual-price="{{ spare_parts_product.get_actual_price }}"
@@ -281,8 +309,17 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
-													<li class="add-cart active">
-														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													<li class="add-cart active"
+														data-product-id="{{ boiler_product.id }}"
+														data-product-title="{{ boiler_product.title }}"
+														data-product-qty="1"
+														data-product-price="{{ boiler_product.get_actual_price }}"
+														data-product-link="{{ boiler_product.get_absolute_url }}"
+														data-product-img-url="{% with boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+													>
+														<div class="add-product-to-cart">
+															Купити
+														</div>
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
@@ -291,6 +328,11 @@
 															class="quick-view-btn"
 															data-toggle="modal"
 															data-target="#exampleModalCenter"
+															data-product-id="{{ boiler_product.id }}"
+															data-product-qty="1"
+															data-product-price="{{ boiler_product.get_actual_price }}"
+															data-product-link="{{ boiler_product.get_absolute_url }}"
+															data-product-img-url="{% with boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
 															data-product-title="{{ boiler_product.title }}"
 															data-product-manufacturer="{{ boiler_product.manufacturer }}"
 															data-product-actual-price="{{ boiler_product.get_actual_price }}"
@@ -370,14 +412,28 @@
 											</div>
 											<div class="add-actions">
 												<ul class="add-actions-link">
-													<li class="add-cart active">
-														<a href="#"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+													<li class="add-cart active"
+														data-product-id="{{ gas_boiler_product.id }}"
+														data-product-title="{{ gas_boiler_product.title }}"
+														data-product-qty="1"
+														data-product-price="{{ gas_boiler_product.get_actual_price }}"
+														data-product-link="{{ gas_boiler_product.get_absolute_url }}"
+														data-product-img-url="{% with gas_boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+													>
+														<div class="add-product-to-cart">
+															Купити
+														</div>
 													</li>
 													<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 													<li>
 														<a href="#" title="quick view" class="quick-view-btn"
 															data-toggle="modal"
 															data-target="#exampleModalCenter"
+															data-product-id="{{ gas_boiler_product.id }}"
+															data-product-qty="1"
+															data-product-price="{{ gas_boiler_product.get_actual_price }}"
+															data-product-link="{{ gas_boiler_product.get_absolute_url }}"
+															data-product-img-url="{% with gas_boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
 															data-product-title="{{ gas_boiler_product.title }}"
 															data-product-manufacturer="{{ gas_boiler_product.manufacturer }}"
 															data-product-actual-price="{{ gas_boiler_product.get_actual_price }}"
@@ -410,4 +466,6 @@
 
 {% block local_scripts %}
 	<script src="{% static 'js/modals.js' %}"></script>
+	<script src="{% static 'js/shopping-cart.js' %}"></script>
+	<script src="{% static 'js/homepage.js' %}"></script>
 {% endblock %}
