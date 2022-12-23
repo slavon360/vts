@@ -7,6 +7,7 @@ from rest_framework import status, generics
 from django.views.generic import DetailView, ListView
 from .models import Category, Phone, Banner, Product
 from .serializers import ProductSerializer, ProductSearchSerializer 
+from .forms import CheckoutForm
 
 # Create your views here.
 
@@ -50,6 +51,39 @@ def shopping_cart(request):
 		'breadcrumbs': breadcrumbs_data
 	}
 	return render(request, 'catalog/shopping-cart.html', context=context)
+
+def checkout_page(request):
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = 'Оформлення замовлення'
+	)
+
+	if request.method == 'POST':
+		form = CheckoutForm(request.POST)
+		if form.is_valid():
+			name = form.cleaned_data['name']
+			phone_number = form.cleaned_data['phone_number']
+			# shipping_address = form.cleaned_data['shipping_address']
+			email = form.cleaned_data['email']
+			print(f'Success! {name}, {phone_number}, {email}')
+	else:
+		form = CheckoutForm()
+	
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data,
+		'form': form
+	}
+
+	return render(request, 'catalog/checkout.html', context=context)
 
 class Breadcrumbs():
 	def get_breadcrumbs(self, *args, **kwargs):

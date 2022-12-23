@@ -425,3 +425,10 @@ class Banner(models.Model):
 
     def __str__(self):
         return self.brief_text
+
+class Customer(models.Model):
+    name = models.CharField('ПІБ', max_length=100)
+    email = models.EmailField(max_length = 254, default='', blank=True)
+    phone_number = models.CharField('Телефон', max_length=50)
+    created_at = models.DateTimeField(auto_now_add = True)
+    shipping_address = models.CharField(max_length=200, default='', blank=True)
