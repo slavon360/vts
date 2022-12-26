@@ -2,7 +2,7 @@
 	"use strict";
 
 	const $search_input = $('#search-products');
-	const $products_results = $('.searched-results');
+	const $products_results = $('.searched-results[data-phones]');
 	const phones = $products_results.data('phones').split('|').map(nmb => (`
 		<a href="tel:${nmb.replace(/ /g, '')}">${nmb}</a>
 	`)).join('');

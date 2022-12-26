@@ -5524,13 +5524,16 @@ span.required {
 	right: 0;
 	background-color: rgba(0,0,0,.4);
  }
- .searched-results .searched-product {
+ .searched-results .searched-product,
+ .searched-results .searched-city {
 	display: block;
 	padding: 10px;
 	color: #000;
 	border-bottom: 1px solid #ccc;
+	cursor: pointer;
  }
- .searched-results .searched-product:hover {
+ .searched-results .searched-product:hover,
+ .searched-results .searched-city:hover {
 	color: #fed700;
  }
  .searched-results .empty-results {
@@ -5623,6 +5626,13 @@ span.required {
 	border-radius: 50%;
 	height: 15px;
 	width: 15px;
+}
+.post-field-container {
+	position: relative;
+}
+.post-field-container .searched-results {
+	border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
 }
 
 

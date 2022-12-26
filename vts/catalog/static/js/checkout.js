@@ -59,12 +59,126 @@
 				elem.addEventListener('keyup', this.isFilledElement.bind(null, elem));
 			});
 			// this.email_field.addEventListener('key')
-			this.nova_post_city_field.addEventListener('keyup', window.debounce(this.searchCityNovaPost.bind(this), 800))
+			this.nova_post_city_field.addEventListener('keyup', window.debounce(this.searchCityNovaPost.bind(this), 800));
+			this.checkout_form.addEventListener('click', this.hideSearchedResults.bind(this));
+			this.nova_post_city_field.addEventListener('click', this.showSearchedResults);
+		}
+		showPreloader(active_field) {
+			active_field.setAttribute('disabled', true);
+			active_field.nextElementSibling.classList.remove('d-none');
+		}
+		hidePreloader(active_field) {
+			active_field.removeAttribute('disabled');
+			active_field.nextElementSibling.classList.add('d-none');
+		}
+		showDeliveryCompanyError(error_element, errors) {
+			const not_found_msg = 'Місто не знайдено. Перевірте правильність написання.';
+			const err = errors.reduce((result, current) => result += current, '');
+			console.error(err);
+			error_element.textContent = not_found_msg;
+		}
+		hideDeliveryCompanyError(error_element) {
+			error_element.textContent = '';
+		}
+		hideSearchedResults() {
+			const results_containers = this.checkout_form.querySelectorAll('.searched-results');
+
+			results_containers.forEach(container => container.classList.add('d-none'));
+		}
+		showSearchedResults(event) {
+			event.stopPropagation();
+			const { target } = event;
+			const results_container = target.parentElement.querySelector('.searched-results');
+
+			results_container.classList.remove('d-none');
+		}
+		renderCities({
+			results_container,
+			addresses,
+			search_query,
+			data_target_select_id
+		}) {
+			const results = addresses.map(({Present, MainDescription}) => {
+				const query = new RegExp(search_query, 'ig');
+				const title_content = Present.replace(query, `<b>${search_query}</b>`).toLowerCase();
+				return `<div class="searched-city" data-city-name="${MainDescription}" data-target-select-id="${data_target_select_id}">${title_content}</div>`;
+			}).join('');
+			results_container.innerHTML = results;
+			results_container.classList.remove('d-none');
+			results_container.querySelectorAll('.searched-city')
+				.forEach(elem => {
+					elem.addEventListener('click', this.bindCityClickHandler.bind(this));
+				});
+		}
+		bindCityClickHandler(event) {
+			const { target } = event;
+			const city_name = target.getAttribute('data-city-name');
+			const target_select_id = target.getAttribute('data-target-select-id');
+
+			switch (target_select_id) {
+				case 'nova-post-office':
+					this.searchWarehousesNovaPost({city_name, target_select_id});
+					break;
+			
+				default:
+					break;
+			}
+		}
+		searchWarehousesNovaPost({city_name, target_select_id}) {
+			const select_tag_element = this.checkout_form.querySelector(`#${target_select_id}`);
+			const parent_element = select_tag_element.parentElement;
+			this.showPreloader(select_tag_element);
+			this.nova_post_city_field.value = city_name;
+
+			this.hideSearchedResults();
+			fetch(this.nova_post_url, {
+				method: 'POST',
+				headers: {
+					'Accept': '/',
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					apiKey: '60635140d18ae9c0354f3158bc6c77bb',
+					modelName: 'Address',
+					calledMethod: 'getWarehouses',
+					methodProperties: {
+						CityName : city_name,
+						Page : '1',
+						Limit : '50'
+					}
+				})
+			}).then(res => res.json())
+			.then(({ errors, data, success }) => {
+				const error_element = parent_element.querySelector('.text-danger');
+
+				if (!success) {
+					this.showDeliveryCompanyError(error_element, errors);
+				} else {
+					data.forEach(({ Description, Schedule, WarehouseIndex }) => {
+						select_tag_element.add(new Option(Description, WarehouseIndex));
+					});
+				}
+			})
+			.finally(() => {
+				this.hidePreloader(select_tag_element);
+			});
+		}
+		unbindSearchedResultsClickHandlersAndRemove() {
+			const cities_elements = this.checkout_form.querySelectorAll('.searched-results .searched-city');
+
+			cities_elements.forEach(elem => {
+				elem.removeEventListener('click', this.bindCityClickHandler);
+				elem.remove();
+			})
+
 		}
 		searchCityNovaPost(event) {
 			const { target: { value } } = event;
+			const data_target_select_id = event.target.getAttribute('data-target-select-id');
 
 			if (value.trim()) {
+				this.showPreloader(event.target);
+				this.unbindSearchedResultsClickHandlersAndRemove();
 				fetch(this.nova_post_url, {
 					method: 'POST',
 					headers: {
@@ -82,7 +196,29 @@
 						}
 					})
 				}).then(res => res.json())
-				.then(res => console.log(res));
+				.then(({ errors, data, success }) => {
+					const [{ TotalCount, Addresses } = {}] = data;
+					const container = event.target.parentElement;
+					const error_element = container.querySelector('.text-danger');
+
+					if (!success || TotalCount === 0) {
+						this.showDeliveryCompanyError(error_element, errors);
+					} else {
+						const results_container = container.querySelector('.searched-results');
+						const addresses = Addresses.map(({Present, MainDescription}) => ({Present, MainDescription}));
+						this.hideDeliveryCompanyError(error_element);
+						this.renderCities({
+							results_container,
+							addresses,
+							search_query: value,
+							data_target_select_id
+						});
+					}
+				})
+				.finally(() => {
+					this.hidePreloader(event.target);
+					event.target.focus();
+				});
 			}
 		}
 		submit(event) {

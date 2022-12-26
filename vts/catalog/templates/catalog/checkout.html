@@ -42,7 +42,7 @@
 								<input id="ukr-post-city" type="text" class="form-control">
 							</div>
 							<div class="form-group">
-								<label for="ukr-post-office">виберіть відповідне відділення</label>
+								<label for="ukr-post-office">Виберіть відповідне відділення</label>
 								<select id="ukr-post-office" class="form-control"></select>
 							</div>
 						</div>
@@ -56,12 +56,27 @@
 						</div>
 						<div class="delivery-company-form">
 							<div class="form-group">
-								<label for="nova-post-city">Назва міста (населеного пункту)</label>
-								<input id="nova-post-city" type="text" class="form-control">
+								<div class="post-field-container">
+									<label for="nova-post-city">Назва міста (населеного пункту)</label>
+									<input
+										id="nova-post-city"
+										data-target-select-id="nova-post-office"
+										type="text"
+										class="form-control"
+									>
+									<div class="preloader d-none"></div>
+									<span class="text-danger"></span>
+									<div class="searched-results"></div>
+								</div>
 							</div>
 							<div class="form-group">
-								<label for="nova-post-office">виберіть відповідне відділення</label>
-								<select id="nova-post-office" class="form-control"></select>
+								<div class="post-field-container">
+									<label for="nova-post-office">Виберіть відповідне відділення</label>
+									<select id="nova-post-office" class="form-control"></select>
+									<div class="preloader d-none"></div>
+									<span class="text-danger"></span>
+									<div class="searched-results"></div>
+								</div>
 							</div>
 						</div>
 					</div>
