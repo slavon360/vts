@@ -1,15 +1,21 @@
 import datetime
+import requests
 from operator import itemgetter
 from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.core.mail import send_mail
 from rest_framework import status, generics
+from decouple import config
+from django.http import JsonResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.views.generic import DetailView, ListView
 from .models import Category, Phone, Banner, Product
 from .serializers import ProductSerializer, ProductSearchSerializer 
 from .forms import CheckoutForm
 
 # Create your views here.
+
+nova_post_url = 'https://api.novaposhta.ua/v2.0/json/'
+np_key = config('NOVA_POSHTA_API_KEY')
 
 def index(request):
 	categories = Category.objects.all()
@@ -71,8 +77,15 @@ def checkout_page(request):
 			name = form.cleaned_data['name']
 			phone_number = form.cleaned_data['phone_number']
 			# shipping_address = form.cleaned_data['shipping_address']
-			email = form.cleaned_data['email']
-			print(f'Success! {name}, {phone_number}, {email}')
+			to = form.cleaned_data['email']
+
+			send_mail(
+				'Order is in process',
+				f'Hi, {name}!',
+				'viacheslav360@gmail.com',
+				[to]
+			)
+			return HttpResponseRedirect(reverse('success-checkout'))
 	else:
 		form = CheckoutForm()
 	
@@ -84,6 +97,60 @@ def checkout_page(request):
 	}
 
 	return render(request, 'catalog/checkout.html', context=context)
+
+def checkout_success_page(request):
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = ''
+	)
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data
+	}
+
+	return render(request, 'catalog/success-checkout.html', context=context)
+
+def nova_poshta_settlements(request):
+	request_data = request.POST
+	body_request_data = {
+		'csrfmiddlewaretoken': request_data['csrfmiddlewaretoken'],
+		'apiKey': np_key,
+		'modelName': 'Address',
+		'calledMethod': 'searchSettlements',
+		'methodProperties': {
+			'CityName': request_data['CityName'],
+			'Page': request_data['Page'],
+			'Limit': request_data['Limit']
+		}
+	}
+
+	r = requests.post(nova_post_url, json=body_request_data)
+	return JsonResponse(r.json())
+
+def nova_poshta_warehouses(request):
+	request_data = request.POST
+	body_request_data = {
+		'csrfmiddlewaretoken': request_data['csrfmiddlewaretoken'],
+		'apiKey': np_key,
+		'modelName': 'Address',
+		'calledMethod': 'getWarehouses',
+		'methodProperties': {
+			'CityName': request_data['CityName'],
+			'Page': request_data['Page'],
+			'Limit': request_data['Limit']
+		}
+	}
+
+	r = requests.post(nova_post_url, json=body_request_data)
+	return JsonResponse(r.json())
 
 class Breadcrumbs():
 	def get_breadcrumbs(self, *args, **kwargs):

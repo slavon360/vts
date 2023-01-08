@@ -10,9 +10,11 @@
 			this.shipping_address_field = this.checkout_form.querySelector('#shipping-address');
 			this.shipping_address_error_msg = this.checkout_form.querySelector('.shipping-address-error-msg');
 			this.nova_post_city_field = this.checkout_form.querySelector('#nova-post-city');
+			this.csrfmiddlewaretoken_field = this.checkout_form.querySelector('[name="csrfmiddlewaretoken"]');
 			this.nova_post_office_select = this.checkout_form.querySelector('#nova-post-office');
 			this.checkout_url = '/checkout';
-			this.nova_post_url = 'https://api.novaposhta.ua/v2.0/json/';
+			this.nova_post_settlements_url = '/external/nova-poshta/search-settlements/api';
+			this.nova_post_warehouses_url = '/external/nova-poshta/search-warehouses/api';
 
 			this.bindListeners();
 		}
@@ -30,12 +32,12 @@
 
 				return result && filled;
 			}, true);
-			const valid_shipping_address = this.is_valid_shipping_address();
+			const valid_shipping_address = this.validateShippingAddress();
 			const all_fields_valid = valid_shipping_address && this.is_valid_email(this.email_field.value) && required_fields_filled;
 			
 			return all_fields_valid;
 		}
-		is_valid_shipping_address = () => {
+		validateShippingAddress = () => {
 			const filled_address = this.shipping_address_field.value.trim();
 			this.shipping_address_error_msg.textContent = filled_address
 			? '' : 'Будь ласка, введіть адресу доставки';
@@ -62,6 +64,7 @@
 			this.nova_post_city_field.addEventListener('keyup', window.debounce(this.searchCityNovaPost.bind(this), 800));
 			this.checkout_form.addEventListener('click', this.hideSearchedResults.bind(this));
 			this.nova_post_city_field.addEventListener('click', this.showSearchedResults);
+			this.nova_post_office_select.addEventListener('change', this.setNovaPostShippingAddress.bind(this));
 		}
 		showPreloader(active_field) {
 			active_field.setAttribute('disabled', true);
@@ -114,38 +117,44 @@
 			const { target } = event;
 			const city_name = target.getAttribute('data-city-name');
 			const target_select_id = target.getAttribute('data-target-select-id');
+			const city_and_region_name = target.textContent;
+			console.log(target.textContent)
 
 			switch (target_select_id) {
 				case 'nova-post-office':
-					this.searchWarehousesNovaPost({city_name, target_select_id});
+					this.searchWarehousesNovaPost({city_name, target_select_id, city_and_region_name});
 					break;
 			
 				default:
 					break;
 			}
 		}
-		searchWarehousesNovaPost({city_name, target_select_id}) {
+		setNovaPostShippingAddress(event) {
+			const city_and_region_name = this.nova_post_city_field.value;
+			const warehouse_address = event.target.value;
+
+			this.shipping_address_field.value = `${city_and_region_name} ${warehouse_address}`;
+			this.validateShippingAddress();
+		}
+		searchWarehousesNovaPost({city_name, target_select_id, city_and_region_name}) {
 			const select_tag_element = this.checkout_form.querySelector(`#${target_select_id}`);
 			const parent_element = select_tag_element.parentElement;
+			select_tag_element.innerHTML = '';
 			this.showPreloader(select_tag_element);
-			this.nova_post_city_field.value = city_name;
+			this.nova_post_city_field.value = city_and_region_name;
 
 			this.hideSearchedResults();
-			fetch(this.nova_post_url, {
+			fetch(this.nova_post_warehouses_url, {
 				method: 'POST',
 				headers: {
 					'Accept': '/',
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/x-www-form-urlencoded'
 				},
-				body: JSON.stringify({
-					apiKey: '60635140d18ae9c0354f3158bc6c77bb',
-					modelName: 'Address',
-					calledMethod: 'getWarehouses',
-					methodProperties: {
-						CityName : city_name,
-						Page : '1',
-						Limit : '50'
-					}
+				body: new URLSearchParams({
+					csrfmiddlewaretoken: this.csrfmiddlewaretoken_field.value,
+					CityName : city_name,
+					Page : '1',
+					Limit : '500'
 				})
 			}).then(res => res.json())
 			.then(({ errors, data, success }) => {
@@ -154,8 +163,9 @@
 				if (!success) {
 					this.showDeliveryCompanyError(error_element, errors);
 				} else {
+					select_tag_element.add(new Option('', ''));
 					data.forEach(({ Description, Schedule, WarehouseIndex }) => {
-						select_tag_element.add(new Option(Description, WarehouseIndex));
+						select_tag_element.add(new Option(Description, Description));
 					});
 				}
 			})
@@ -179,21 +189,17 @@
 			if (value.trim()) {
 				this.showPreloader(event.target);
 				this.unbindSearchedResultsClickHandlersAndRemove();
-				fetch(this.nova_post_url, {
+				fetch(this.nova_post_settlements_url, {
 					method: 'POST',
 					headers: {
 						'Accept': '/',
-						'Content-Type': 'application/json'
+						'Content-Type': 'application/x-www-form-urlencoded'
 					},
-					body: JSON.stringify({
-						apiKey: '60635140d18ae9c0354f3158bc6c77bb',
-						modelName: 'Address',
-						calledMethod: 'searchSettlements',
-						methodProperties: {
-							CityName : value,
-							Page : '1',
-							Limit : '50'
-						}
+					body: new URLSearchParams({
+						csrfmiddlewaretoken: this.csrfmiddlewaretoken_field.value,
+						CityName : value,
+						Page : '1',
+						Limit : '50'
 					})
 				}).then(res => res.json())
 				.then(({ errors, data, success }) => {
@@ -222,11 +228,37 @@
 			}
 		}
 		submit(event) {
-			event.preventDefault();
+			// event.preventDefault();
 			const is_valid = this.validate(event);
+			const required_fields = [].reduce.call(this.required_fields, (result, {name, value}) => {
+				return result = {...result, [name]: value};
+			}, {});
+			const spinner = this.submit_btn.querySelector('.spinner-border');
 
 			if (is_valid) {
-				
+				spinner.classList.remove('d-none');
+				fetch(this.checkout_url, {
+					method: 'POST',
+					headers: {
+						'Accept': '/',
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: new URLSearchParams({
+						shipping_address: this.shipping_address_field.value,
+						email: this.email_field.value,
+						csrfmiddlewaretoken: this.csrfmiddlewaretoken_field.value,
+						...required_fields
+					})
+				})
+				.then(({redirected, status, url}) => {
+					console.log(status, redirected);
+					if (status === 200 && redirected) {
+						location.href = url;
+					}
+				})
+				.finally(() => {
+					spinner.classList.add('d-none');
+				});
 			}
 		}
 	}

@@ -140,3 +140,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 12,
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = '8000'
+EMAIL_HOST_USER = 'viacheslav360@gmail.com'
+EMAIL_HOST_PASSWORD = 'cedkinznsyeeppxi'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
