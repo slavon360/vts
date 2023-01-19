@@ -8,7 +8,7 @@ from decouple import config
 from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.views.generic import DetailView, ListView
-from .models import Category, Phone, Banner, Product
+from .models import Category, Phone, Banner, Product, Customer, Order
 from .serializers import ProductSerializer, ProductSearchSerializer 
 from .forms import CheckoutForm
 
@@ -76,15 +76,35 @@ def checkout_page(request):
 		if form.is_valid():
 			name = form.cleaned_data['name']
 			phone_number = form.cleaned_data['phone_number']
-			# shipping_address = form.cleaned_data['shipping_address']
+			shipping_address = form.cleaned_data['shipping_address']
 			to = form.cleaned_data['email']
 
-			send_mail(
-				'Order is in process',
-				f'Hi, {name}!',
-				'viacheslav360@gmail.com',
-				[to]
+			# send_mail(
+			# 	'Order is in process',
+			# 	f'Hi, {name}!',
+			# 	'viacheslav360@gmail.com',
+			# 	[to]
+			# )
+			new_customer = Customer(
+				name = name,
+				phone_number = phone_number,
+				email = to,
+				shipping_address = shipping_address
 			)
+			details = request.POST.get('details')
+			print(f'details: {details}')
+			print(dir(request.POST))
+			new_order = Order(
+				name = name,
+				phone_number = phone_number,
+				email = to,
+				shipping_address = shipping_address,
+				customer = new_customer,
+				details = details
+			)
+
+			new_customer.save()
+			new_order.save()
 			return HttpResponseRedirect(reverse('success-checkout'))
 	else:
 		form = CheckoutForm()

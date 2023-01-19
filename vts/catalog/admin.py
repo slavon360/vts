@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
-from .models import Currency, Category, SubCategory, SubSubCategory, Phone, Product, ProductImage, Banner
+from .models import Currency, Category, SubCategory, SubSubCategory, Phone, Product, ProductImage, Banner, Customer, Order
 
 class ProductImageResource(resources.ModelResource):
     class Meta:
@@ -25,6 +25,11 @@ class ProductAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ('category', 'subcategory', 'subsubcategory', 'created_at')
     search_fields = ('title',)
 
+class CustomerAdmin(admin.ModelAdmin):
+    readonly_fields = ('created_at',)
+
+class OrderAdmin(admin.ModelAdmin):
+    readonly_fields = ('created_at',)
 # Register your models here.
 
 admin.site.register(Currency)
@@ -35,3 +40,5 @@ admin.site.register(Phone)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(Banner)
+admin.site.register(Customer, CustomerAdmin)
+admin.site.register(Order, OrderAdmin)

@@ -427,8 +427,32 @@ class Banner(models.Model):
         return self.brief_text
 
 class Customer(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField('ПІБ', max_length=100)
     email = models.EmailField(max_length = 254, default='', blank=True)
     phone_number = models.CharField('Телефон', max_length=50)
-    created_at = models.DateTimeField(auto_now_add = True)
+    created_at = models.DateTimeField('Дата створення', auto_now_add=True)
+    shipping_address = models.CharField('Адреса', max_length=350, default='', blank=True)
+
+    def __str__(self):
+        return f'{self.name} {self.phone_number} {self.shipping_address}'
+
+class Order(models.Model):
+    def default_order_number():
+        last_order = Order.objects.order_by('-number').first()
+        print(last_order.number)
+        print(dir(last_order))
+        return last_order.number + 1 if last_order.number else 10000
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    number = models.IntegerField(default=default_order_number, blank=True, null=True)
+    name = models.CharField('ПІБ', max_length=100)
+    email = models.EmailField(max_length = 254, default='', blank=True)
+    phone_number = models.CharField('Телефон', max_length=50)
+    created_at = models.DateTimeField('Дата створення', auto_now_add=True)
     shipping_address = models.CharField(max_length=200, default='', blank=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    details = HTMLField('Деталі', max_length=999999, blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.name} #{self.number}'
