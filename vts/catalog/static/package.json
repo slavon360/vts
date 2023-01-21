@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:script-dev": "node scripts-bundler.js --env development --module_path",
+    "build:script-prod": "node scripts-bundler.js --env production --module_path"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +16,7 @@
     "webpack-cli": "^5.0.1"
   },
   "dependencies": {
-    "squirrelly": "^8.0.8"
+    "squirrelly": "^8.0.8",
+    "yargs": "^17.6.2"
   }
 }
