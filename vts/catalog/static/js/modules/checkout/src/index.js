@@ -1,6 +1,6 @@
 import * as Sqrl from 'squirrelly';
-import ordered_products from '../../../../templates/ordered-products.html';
-
+import ordered_products from '../../../../../templates/ordered-products.html';
+import { debounce, numberWithCommas } from '../../../utils/utils.js';
 
 class Checkout {
 	constructor() {
@@ -23,9 +23,8 @@ class Checkout {
 	getShoppingCartData() {
 		const cart_data = JSON.parse(localStorage.getItem(this.shopping_cart_key));
 		const total = cart_data.reduce((result, {price}) => result += Number(price.replace(/,/g, '')), 0);
+		const result = Sqrl.render(ordered_products, { cart_data, total: numberWithCommas(total) });
 
-		const result = Sqrl.render(ordered_products, { cart_data, total });
-		console.log(result);
 		return result;
 	}
 	isFilledElement(element) {
@@ -71,7 +70,7 @@ class Checkout {
 			elem.addEventListener('keyup', this.isFilledElement.bind(null, elem));
 		});
 		// this.email_field.addEventListener('key')
-		this.nova_post_city_field.addEventListener('keyup', window.debounce(this.searchCityNovaPost.bind(this), 800));
+		this.nova_post_city_field.addEventListener('keyup', debounce(this.searchCityNovaPost.bind(this), 800));
 		this.checkout_form.addEventListener('click', this.hideSearchedResults.bind(this));
 		this.nova_post_city_field.addEventListener('click', this.showSearchedResults);
 		this.nova_post_office_select.addEventListener('change', this.setNovaPostShippingAddress.bind(this));
