@@ -1,7 +1,7 @@
 const path = require('path');
 const args = require('yargs').argv;
 const { env, module_path, watch } = args;
-console.log(process.env.test_var, args);
+// console.log(process.env.test_var, args);
 const config_path = path.join(__dirname, `/${module_path}`);
 const callback = () => {
 	console.log('script reloaded');
