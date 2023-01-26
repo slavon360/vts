@@ -1,0 +1,16 @@
+{{@each(it.products) => prod, index}}
+	<tr id="{{prod.id}}">
+		<td class="li-product-remove"><a href="#" data-product-id="{{prod.id}}"><i data-product-id="{{prod.id}}" class="fa fa-times"></i></a></td>
+		<td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="{{prod.link}}"><img src="{{prod.img_url}}" alt="{{prod.title}}"></a></td>
+		<td class="li-product-name"><a href="{{prod.link}}">{{prod.title}}</a></td>
+		<td class="li-product-price"><span class="amount">{{prod.price}} грн.</span></td>
+		<td class="quantity">
+			<div class="cart-plus-minus">
+				<input class="cart-plus-minus-box" value="{{prod.qty}}" type="text">
+				<div class="dec qtybutton" data-product-id="{{prod.id}}" data-product-price="{{prod.price}}"><i class="fa fa-angle-down"></i></div>
+				<div class="inc qtybutton" data-product-id="{{prod.id}}" data-product-price="{{prod.price}}"><i class="fa fa-angle-up"></i></div>
+			</div>
+		</td>
+		<td class="product-subtotal"><span class="amount sum">{{prod.amount}} грн.</span></td>
+	</tr>
+{{/each}}

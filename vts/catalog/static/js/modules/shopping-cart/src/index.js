@@ -1,4 +1,9 @@
+import { render } from 'squirrelly';
 import { numberWithCommas } from '../../../utils/utils.js';
+import shopping_cart_products_template from '../../../../../templates/catalog/shopping-cart/products.html';
+import shopping_cart_product_list_template from '../../../../../templates/catalog/shopping-cart/products-list.html';
+
+const squirellyRender = render;
 
 class ShoppingCart {
 	static shopping_cart_key = 'shopping-cart-vts-service';
@@ -40,24 +45,11 @@ class ShoppingCart {
 		}
 	}
 	renderShoppingCartTable() {
-		const table_data = this.shopping_cart_data.reduce((result, { id, title, price, qty, img_url, link }) => {
-			const amount = this.getProductTotal(price, qty).toFixed(2);
-
-			return result += `<tr id="${id}">
-				<td class="li-product-remove"><a href="#" data-product-id="${id}"><i data-product-id="${id}" class="fa fa-times"></i></a></td>
-				<td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="${link}"><img src="${img_url}" alt="${title}"></a></td>
-				<td class="li-product-name"><a href="${link}">${title}</a></td>
-				<td class="li-product-price"><span class="amount">${price} грн.</span></td>
-				<td class="quantity">
-					<div class="cart-plus-minus">
-						<input class="cart-plus-minus-box" value="${qty}" type="text">
-						<div class="dec qtybutton" data-product-id="${id}" data-product-price="${price}"><i class="fa fa-angle-down"></i></div>
-						<div class="inc qtybutton" data-product-id="${id}" data-product-price="${price}"><i class="fa fa-angle-up"></i></div>
-					</div>
-				</td>
-				<td class="product-subtotal"><span class="amount sum">${numberWithCommas(amount)} грн.</span></td>
-			</tr>`;
-		}, '');
+		const products = this.shopping_cart_data.map(product_data => ({
+			...product_data,
+			amount: numberWithCommas(this.getProductTotal(product_data.price, product_data.qty).toFixed(2))
+		}));
+		const table_data = squirellyRender(shopping_cart_products_template, { products });
 
 		this.shopping_cart_tbody_element.innerHTML = table_data;
 		this.qty_btns = this.shopping_cart_tbody_element.querySelectorAll('.qtybutton');
@@ -67,20 +59,8 @@ class ShoppingCart {
 		this.shopping_cart_page_sum.textContent = `${numberWithCommas(this.products_counter.sum)} грн.`;
 	}
 	renderProductsList() {
-		const products = this.shopping_cart_data.reduce((result, { id, title, price, qty, img_url, link }) => {
-			return result += `<li class="product-cart-info">
-				<a href="${link}" class="minicart-product-image"><img src="${img_url}" alt="${title}"></a>
-				<div class="minicart-product-details">
-					<h6><a href="${link}">${title}</a></h6>
-					<span>${price} грн. x ${qty}</span>
-				</div>
-				<button data-product-id="${id}" class="close">
-					<i data-product-id="${id}" class="fa fa-close"></i>
-				</button>
-		</li>`
-
-		}, '');
-		this.cart_products_list.innerHTML = products;
+		const table_data = squirellyRender(shopping_cart_product_list_template, { products: this.shopping_cart_data });
+		this.cart_products_list.innerHTML = table_data;
 	}
 	updateSingleAddProductArea(event) {
 		const { detail: { product_id }} = event;
@@ -143,7 +123,6 @@ class ShoppingCart {
 	}
 	addProductToCart(element) {
 		const is_from_modal = element.getAttribute('from-modal');
-		console.log(element);
 		const added_product = {
 			id: element.parentNode.getAttribute('data-product-id'),
 			title: element.parentNode.getAttribute('data-product-title'),

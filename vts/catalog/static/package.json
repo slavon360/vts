@@ -17,7 +17,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "squirrelly": "^8.0.8",
-    "yargs": "^17.6.2"
+    "minimist": "^1.2.7",
+    "squirrelly": "^8.0.8"
   }
 }
