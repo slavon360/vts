@@ -9,3 +9,15 @@ export function triggerAddToCartBtnsListeners () {
 
     document.dispatchEvent(evnt);
 }
+
+export function triggerAddToCartBtnsRemoveListeners () {
+	const evnt = new CustomEvent('add_to_cart_btns_remove_listeners');
+
+	document.dispatchEvent(evnt);
+}
+
+export function triggerUpdateAddToCartBtns () {
+	const evnt = new CustomEvent('update_add_to_cart_btns');
+
+	document.dispatchEvent(evnt);
+}
