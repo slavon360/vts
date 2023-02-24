@@ -8,6 +8,9 @@ const squirellyRender = render;
 class ShoppingCart {
 	static shopping_cart_key = 'shopping-cart-vts-service';
 	constructor() {
+		this.addToCartBindListenersHandler = null;
+		this.updateAddToCartBtnsHandler = null;
+		this.updateSingleAddProductAreaHandler = null;
 		this.addProductToCartHandler = null;
 		this.shopping_cart_data = [];
 		this.products_quantity_element = document.querySelector('.hm-minicart .cart-item-count');
@@ -92,7 +95,7 @@ class ShoppingCart {
 
 				shopping_cart_btn.parentElement.append(add_product_btn);
 				shopping_cart_btn.remove();
-				this.addSingleProductToCart(add_product_btn);
+				this.addSingleProductToCartAddEventListener(add_product_btn);
 			});
 		}
 	}
@@ -147,7 +150,7 @@ class ShoppingCart {
 		}
 		this.updateAddToCartBtn(added_product.id);
 	}
-	addSingleProductToCart(element) {
+	addSingleProductToCartAddEventListener(element) {
 		this.addProductToCartHandler = this.addProductToCart.bind(this, element);
 		element.addEventListener('click', this.addProductToCartHandler);
 	}
@@ -155,7 +158,7 @@ class ShoppingCart {
 		const add_to_cart_btns = document.querySelectorAll('.add-product-to-cart');
 
 		add_to_cart_btns.forEach(elm => {
-			this.addSingleProductToCart(elm);
+			this.addSingleProductToCartAddEventListener(elm);
 		});
 	}
 	removeCartProduct(event) {
@@ -174,9 +177,13 @@ class ShoppingCart {
 		}
 	}
 	initBindListeners() {
-		document.addEventListener('add_to_cart_btns_listeners', this.addToCartBindListeners.bind(this));
-		document.addEventListener('update_add_to_cart_btns', this.updateAddToCartBtns.bind(this));
-		document.addEventListener('update_single_add_product_area', this.updateSingleAddProductArea.bind(this));
+		this.addToCartBindListenersHandler = this.addToCartBindListeners.bind(this);
+		this.updateAddToCartBtnsHandler = this.updateAddToCartBtns.bind(this);
+		this.updateSingleAddProductAreaHandler = this.updateSingleAddProductArea.bind(this);
+
+		document.addEventListener('add_to_cart_btns_listeners', this.addToCartBindListenersHandler);
+		document.addEventListener('update_add_to_cart_btns', this.updateAddToCartBtnsHandler);
+		document.addEventListener('update_single_add_product_area', this.updateSingleAddProductAreaHandler);
 		[this.cart_products_list, this.shopping_cart_tbody_element].forEach(element => {
 			if (element) {
 				element.addEventListener('click', this.removeCartProduct.bind(this));

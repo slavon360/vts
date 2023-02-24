@@ -177,7 +177,6 @@ function sortProductsHandler () {
 	].join('');
 	current_page = 1;
 
-	triggerAddToCartBtnsRemoveListeners();
 	updateQueryStringParams({ sort_by, page: current_page });
 	$toolbar_amount_active_page.text(current_page);
 	
@@ -200,6 +199,7 @@ function updateProductsHandler (sort_by, response) {
 		: sign * -1);
 	}
 
+	triggerAddToCartBtnsRemoveListeners();
 	renderProductsGrid(results);
 	renderProductsList(results);
 	triggerAddToCartBtnsListeners();

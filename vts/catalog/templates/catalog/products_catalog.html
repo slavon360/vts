@@ -129,6 +129,13 @@
 																		class="quick-view-btn"
 																		data-toggle="modal"
 																		data-target="#exampleModalCenter"
+																		data-product-id="{{ product.id }}"
+																		data-product-qty="1"
+																		data-product-price="{{ product.get_actual_price }}"
+																		data-product-link="{{ product.get_absolute_url }}"
+																		{% with product.images.all|first as first_image %}
+																			data-product-img-url="/image/{{ first_image.image_url}}"
+																		{% endwith %}
 																		data-product-title="{{ product.title }}"
 																		data-product-manufacturer="{{ product.manufacturer }}"
 																		data-product-actual-price="{{ product.get_actual_price }}"
@@ -319,5 +326,5 @@
 
 {% block local_scripts %}
 	<script src="{% static 'js/modules/catalog/dist/main.js' %}" defer></script>
-	<script src="{% static 'js/modals.js' %}"></script>
+	<script src="{% static 'js/modules/modals/dist/main.js' %}"></script>
 {% endblock %}
