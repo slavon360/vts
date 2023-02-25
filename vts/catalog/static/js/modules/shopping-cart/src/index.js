@@ -8,6 +8,7 @@ const squirellyRender = render;
 class ShoppingCart {
 	static shopping_cart_key = 'shopping-cart-vts-service';
 	constructor() {
+		this.is_single_product_page = document.querySelector('.single-product-area');
 		this.addToCartBindListenersHandler = null;
 		this.updateAddToCartBtnsHandler = null;
 		this.updateSingleAddProductAreaHandler = null;
@@ -80,6 +81,11 @@ class ShoppingCart {
 		const add_to_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .add-product-to-cart:not([from-modal="true"])`);
 		const shopping_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .go-to-cart-btn`);
 
+		if (this.is_single_product_page) {
+			this.updateSingleAddProductArea({ detail: { product_id } });
+			return;
+		}
+
 		if (add_to_cart_btns.length) {
 			add_to_cart_btns.forEach(add_to_cart_btn => {
 				this.unbindAddProductToCartListener(add_to_cart_btn);
@@ -100,9 +106,11 @@ class ShoppingCart {
 		}
 	}
 	updateAddToCartBtns() {
-		this.shopping_cart_data.forEach(({ id }) => {
-			this.updateAddToCartBtn(id);
-		});
+		if (!this.is_single_product_page) {
+			this.shopping_cart_data.forEach(({ id }) => {
+				this.updateAddToCartBtn(id);
+			});
+		}
 	}
 	updateProductsCounterAndSum() {
 		this.products_counter = this.shopping_cart_data.reduce((result, { qty, price }) => ({

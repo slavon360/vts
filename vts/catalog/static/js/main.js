@@ -485,7 +485,7 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
          } else {
          newVal = 0;
        }
-       }
+	}
     $button.parent().find("input").val(newVal);
 	$add_to_cart_container.attr('data-product-qty', newVal);
    });
