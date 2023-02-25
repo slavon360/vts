@@ -36,6 +36,9 @@ class Checkout {
 	}
 	validate(event) {
 		event.preventDefault();
+		const required_fields_not_filled = [].filter.call(this.required_fields, field => {
+			return !this.isFilledElement(field);
+		});
 		const required_fields_filled = [].reduce.call(this.required_fields, (result, elem) => {
 			const filled = this.isFilledElement(elem);
 
@@ -44,6 +47,17 @@ class Checkout {
 		const valid_shipping_address = this.validateShippingAddress();
 		const all_fields_valid = valid_shipping_address && this.is_valid_email(this.email_field.value) && required_fields_filled;
 		
+		if (required_fields_not_filled && required_fields_not_filled.length) {
+			const [ first_field ] = required_fields_not_filled;
+			const first_field_top_position = first_field.parentElement.getBoundingClientRect().top;
+			const { scrollY } = window;
+
+			window.scroll({
+				top: first_field_top_position < 0 ? scrollY + first_field_top_position : first_field_top_position,
+				behavior: 'smooth'
+			});
+		}
+
 		return all_fields_valid;
 	}
 	validateShippingAddress = () => {
