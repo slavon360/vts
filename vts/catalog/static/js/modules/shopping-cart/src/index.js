@@ -14,12 +14,14 @@ class ShoppingCart {
 		this.updateSingleAddProductAreaHandler = null;
 		this.addProductToCartHandler = null;
 		this.shopping_cart_data = [];
-		this.products_quantity_element = document.querySelector('.hm-minicart .cart-item-count');
-		this.products_sum_element = document.querySelector('.hm-minicart .cart-sum');
-		this.cart_products_list = document.querySelector('.hm-minicart .minicart-product-list');
-		this.cart_total_element = document.querySelector('.hm-minicart .minicart-total .sum');
+		this.hm_minicart = document.querySelector('.hm-minicart');
+		this.products_quantity_element = this.hm_minicart.querySelector('.cart-item-count');
+		this.products_sum_element = this.hm_minicart.querySelector('.cart-sum');
+		this.cart_products_list = this.hm_minicart.querySelector('.minicart-product-list');
+		this.cart_total_element = this.hm_minicart.querySelector('.minicart-total .sum');
 		this.shopping_cart_tbody_element = document.querySelector('.Shopping-cart-area .shopping-cart-tbody');
 		this.shopping_cart_page_sum = document.querySelector('.Shopping-cart-area .sum');
+		this.minicart_buttons = this.hm_minicart.querySelectorAll('.minicart-button .btn');
 		this.qty_btns = [];
 		this.products_counter = null;
 		this.getShoppingCartData();
@@ -118,9 +120,24 @@ class ShoppingCart {
 			sum: Math.round(((result.sum + this.getProductTotal(price, qty)) + Number.EPSILON) * 100) / 100
 		}), { qty: 0, sum: 0 });
 
+		const products_sum = numberWithCommas(this.products_counter.sum);
+
+		console.log(products_sum, this.products_counter);
 		this.products_quantity_element.textContent = this.products_counter.qty || '';
-		this.products_sum_element.textContent = `${numberWithCommas(this.products_counter.sum) || ''} грн.`;
+		this.products_sum_element.textContent = this.products_counter.sum > 0 ? `${products_sum} грн.` : '';
 		this.cart_total_element.innerHTML = `${numberWithCommas(this.products_counter.sum)} <span class="text-lowercase">грн.</span>`;
+		this.conditionallyDisableMinicartButtons();
+	}
+	conditionallyDisableMinicartButtons() {
+		if (this.products_counter.qty <= 0) {
+			this.minicart_buttons.forEach(btn => {
+				btn.classList.add('disabled');
+			});
+		} else {
+			this.minicart_buttons.forEach(btn => {
+				btn.classList.remove('disabled');
+			});
+		}
 	}
 	getShoppingCartData() {
 		const cart_data = JSON.parse(localStorage.getItem(ShoppingCart.shopping_cart_key));

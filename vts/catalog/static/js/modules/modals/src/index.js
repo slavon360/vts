@@ -1,7 +1,7 @@
 import { triggerUpdateSingleAddProductArea } from '../../../utils/events.js';
+import { ProductQtyInput } from '../../../utils/utils.js';
 
 $('#exampleModalCenter').on('show.bs.modal', function (event) {
-    // this.classList.remove('show');
     const modal_body = this.querySelector('.modal-body');
 
     modal_body.classList.remove('show');
@@ -91,6 +91,8 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
             });
         });
     }
+
+    new ProductQtyInput();
 
     addToCartContainer.setAttribute('data-product-id', productId);
     addToCartContainer.setAttribute('data-product-title', productTitle);

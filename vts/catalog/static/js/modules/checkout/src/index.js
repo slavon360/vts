@@ -2,10 +2,14 @@ import * as Sqrl from 'squirrelly';
 import ordered_products from '../../../../../templates/ordered-products.html';
 import { debounce, numberWithCommas } from '../../../utils/utils.js';
 
+const COUNTRY_CODE = '+38';
+
 class Checkout {
 	constructor() {
 		this.shopping_cart_key = 'shopping-cart-vts-service';
 		this.checkout_form = document.querySelector('#checkout-form');
+		this.phone_field = this.checkout_form.querySelector('#id_phone_number');
+		this.phone_number_code = this.checkout_form.querySelector('.number-code');
 		this.email_field = this.checkout_form.querySelector('[type="email"]');
 		this.submit_btn = this.checkout_form.querySelector('[type="submit"]');
 		this.required_fields = this.checkout_form.querySelectorAll('input[required]');
@@ -18,6 +22,7 @@ class Checkout {
 		this.nova_post_settlements_url = '/external/nova-poshta/search-settlements/api';
 		this.nova_post_warehouses_url = '/external/nova-poshta/search-warehouses/api';
 
+		this.setPhoneNumberCode();
 		this.bindListeners();
 	}
 	getShoppingCartData() {
@@ -39,13 +44,11 @@ class Checkout {
 		const required_fields_not_filled = [].filter.call(this.required_fields, field => {
 			return !this.isFilledElement(field);
 		});
-		const required_fields_filled = [].reduce.call(this.required_fields, (result, elem) => {
-			const filled = this.isFilledElement(elem);
-
-			return result && filled;
-		}, true);
+		const required_fields_filled = [].every.call(this.required_fields, elem => this.isFilledElement(elem));
 		const valid_shipping_address = this.validateShippingAddress();
-		const all_fields_valid = valid_shipping_address && this.is_valid_email(this.email_field.value) && required_fields_filled;
+		const valid_phone = this.is_valid_phone_number(this.phone_field.value);
+		const valid_email = this.is_valid_email(this.email_field.value);
+		const all_fields_valid = valid_shipping_address && valid_phone && valid_email && required_fields_filled;
 		
 		if (required_fields_not_filled && required_fields_not_filled.length) {
 			const [ first_field ] = required_fields_not_filled;
@@ -67,7 +70,16 @@ class Checkout {
 
 		return filled_address;
 	}
-	is_valid_email = (email) => {
+	setPhoneNumberCode() {
+		this.phone_number_code.textContent = COUNTRY_CODE;
+	}
+	is_valid_phone_number = phone => {
+		const regex = /^[\+]?[38]{2}[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
+		const valid = phone.match(regex);
+		this.phone_field.nextElementSibling.textContent = valid ? '' : 'Будь ласка, введіть валідний номер';
+		return valid;
+	}
+	is_valid_email = email => {
 		const valid = String(email)
 			.toLowerCase()
 			.match(
@@ -75,19 +87,44 @@ class Checkout {
 		);
 		this.email_field.nextElementSibling.textContent = !valid && email ? 'Будь ласка, введіть валідний емейл' : '';
 		return valid;
-
 	}
 	bindListeners() {
 		this.submit_btn.addEventListener('click', this.submit.bind(this));
 		this.checkout_form.addEventListener('submit', this.submit.bind(this));
 		this.required_fields.forEach(elem => {
-			elem.addEventListener('keyup', this.isFilledElement.bind(null, elem));
+			elem.addEventListener('keyup', this.requiredFieldsKeyupHandler.bind(this, elem));
 		});
-		// this.email_field.addEventListener('key')
 		this.nova_post_city_field.addEventListener('keyup', debounce(this.searchCityNovaPost.bind(this), 800));
 		this.checkout_form.addEventListener('click', this.hideSearchedResults.bind(this));
 		this.nova_post_city_field.addEventListener('click', this.showSearchedResults);
 		this.nova_post_office_select.addEventListener('change', this.setNovaPostShippingAddress.bind(this));
+	}
+	requiredFieldsKeyupHandler(elem, event) {
+		this.isFilledElement(elem);
+		this.phoneNumberFormatHandler(elem, event);
+	}
+	phoneNumberFormatHandler(elem, event) {
+		if (elem.id === this.phone_field.id) {
+			if (!event.key.match(/^\d+$/)) {
+				this.phone_field.value = this.phone_field.value.replaceAll(event.key, '');
+				return;
+			}
+			if (elem.value.length > 14) {
+				this.phone_field.value = elem.value.slice(0, 14);
+				return;
+			}
+			switch (elem.value.length) {
+				case 3:
+					this.phone_field.value = `(${elem.value})`;
+					break;
+				case 8:
+					this.phone_field.value = `${elem.value.slice(0,5)} ${elem.value.slice(5)}`;
+				case 10:
+					this.phone_field.value = `${elem.value.slice(0,9)} ${elem.value.slice(9)}`;
+				default:
+					break;
+			}
+		}
 	}
 	showPreloader(active_field) {
 		active_field.setAttribute('disabled', true);

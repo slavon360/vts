@@ -1,0 +1,6 @@
+.phone-number-container .number-code {
+    display: inline-block;
+}
+.phone-number-container input[name="phone_number"] {
+    width: calc(100% - 30px);
+}
