@@ -1,6 +1,13 @@
+.phone-number-container {
+    background: #eceff8;
+    height: 45px;
+    vertical-align: top;
+    line-height: 3.3;
+}
 .phone-number-container .number-code {
     display: inline-block;
 }
 .phone-number-container input[name="phone_number"] {
     width: calc(100% - 30px);
+    padding-left: 0;
 }
