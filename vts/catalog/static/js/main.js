@@ -471,24 +471,25 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 22. Cart Plus Minus Button
 /*----------------------------------------*/
- $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
- $(".qtybutton").on("click", function() {
-	var $add_to_cart_container = $('.add-to-cart-container');
-    var $button = $(this);
-    var oldValue = $button.parent().find("input").val();
-    if ($button.hasClass('inc')) {
-       var newVal = parseFloat(oldValue) + 1;
-    } else {
-        // Don't allow decrementing below zero
-       if (oldValue > 0) {
-         var newVal = parseFloat(oldValue) - 1;
-         } else {
-         newVal = 0;
-       }
-	}
-    $button.parent().find("input").val(newVal);
-	$add_to_cart_container.attr('data-product-qty', newVal);
-   });
+//  $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
+//  $(".qtybutton").on("click", function() {
+// 	var $add_to_cart_container = $('.add-to-cart-container');
+//     var $button = $(this);
+//     var oldValue = $button.parent().find("input").val();
+//     if ($button.hasClass('inc')) {
+//        var newVal = parseFloat(oldValue) + 1;
+//     } else {
+//         // Don't allow decrementing below zero
+//        if (oldValue > 0) {
+//          var newVal = parseFloat(oldValue) - 1;
+//          } else {
+//          newVal = 0;
+//        }
+// 	}
+// 	console.log('newVal: ', newVal);
+//     $button.parent().find("input").val(newVal);
+// 	$add_to_cart_container.attr('data-product-qty', newVal);
+//    });
 /*----------------------------------------*/
 /* 23. Single Prduct Carousel Activision
 /*----------------------------------------*/

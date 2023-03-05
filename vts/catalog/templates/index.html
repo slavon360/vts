@@ -247,6 +247,10 @@
 															data-product-title="{{ spare_parts_product.title }}"
 															data-product-manufacturer="{{ spare_parts_product.manufacturer }}"
 															data-product-actual-price="{{ spare_parts_product.get_actual_price }}"
+															{% if spare_parts_product.available %}
+																{% else %}
+																data-product-preorder-only-phone={% with phones.all|first as phone%}{{ phone.phone_number | cut:" " }}{% endwith %}
+															{% endif %}
 															{% if spare_parts_product.get_actual_discount_price %}
 																data-product-discount-price="{{ spare_parts_product.get_actual_discount_price }}"
 															{% endif %}
@@ -447,7 +451,11 @@
 														</div>
 													</li>
 													{% else %}
-													<li>Під замовлення</li>
+													<li class="text-nowrap preorder-only">
+														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+														під замовлення
+														</a>
+													</li>
 												{% endif %}
 													<li>
 														<a href="#" title="quick view" class="quick-view-btn"

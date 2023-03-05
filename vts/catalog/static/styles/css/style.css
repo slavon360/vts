@@ -1154,7 +1154,6 @@ textarea:focus {
 }
 .cart-quantity {
 	margin-top: 25px;
-	overflow: hidden;
 	float: left;
 	width: 100%;
 }

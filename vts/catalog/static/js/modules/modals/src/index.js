@@ -18,8 +18,10 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
     const productLink = $relatedTarget.data('product-link');
     const productImageUrl = $relatedTarget.data('product-img-url');
     const productQty = $relatedTarget.data('product-qty');
+    const preorder_phone = $relatedTarget.data('product-preorder-only-phone');
     const productDetailsLeft = document.querySelector('.product-details-left');
     const addToCartContainer = currentTarget.querySelector('.add-to-cart-container');
+    const preorderOnlyBtn = currentTarget.querySelector('.preorder-only');
     const renderProductImages = () => {
         const img_regex = /(?:jpg|gif|png|jpeg)/gi;
         const details_images = document.createElement('div');
@@ -100,6 +102,19 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
     addToCartContainer.setAttribute('data-product-price', productPrice);
     addToCartContainer.setAttribute('data-product-link', productLink);
     addToCartContainer.setAttribute('data-product-img-url', productImageUrl);
+
+    if (preorder_phone) {
+        preorderOnlyBtn.querySelector('a').setAttribute('href', `tel:${preorder_phone}`);
+        preorderOnlyBtn.classList.remove('d-none');
+        addToCartContainer.classList.add('d-none');
+        addToCartContainer.classList.remove('d-inline-block');
+        modal_body.querySelector('.quantity').classList.add('d-none');
+    } else {
+        preorderOnlyBtn.classList.add('d-none');
+        addToCartContainer.classList.remove('d-none');
+        addToCartContainer.classList.add('d-inline-block');
+        modal_body.querySelector('.quantity').classList.remove('d-none');
+    }
     currentTarget.querySelector('.product-title').textContent = productTitle;
     currentTarget.querySelector('.product-details-ref').textContent = productManufacturer;
     currentTarget.querySelector('.product-desc').innerHTML = productDescription;

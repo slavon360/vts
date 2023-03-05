@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'vts_db',
         'USER': 'root',
-        'PASSWORD': 'vbhAuiebfrvrf334_paQm',
+        'PASSWORD': 'slavon360',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'default-character-set': 'utf8'

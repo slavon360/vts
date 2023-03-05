@@ -1,6 +1,7 @@
 import * as Sqrl from 'squirrelly';
 import ordered_products from '../../../../../templates/ordered-products.html';
 import { debounce, numberWithCommas } from '../../../utils/utils.js';
+require('@root/styles/modules/checkout/checkout.scss');
 
 const COUNTRY_CODE = '+38';
 

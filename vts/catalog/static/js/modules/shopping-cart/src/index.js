@@ -22,7 +22,8 @@ class ShoppingCart {
 		this.shopping_cart_tbody_element = document.querySelector('.Shopping-cart-area .shopping-cart-tbody');
 		this.shopping_cart_page_sum = document.querySelector('.Shopping-cart-area .sum');
 		this.minicart_buttons = this.hm_minicart.querySelectorAll('.minicart-button .btn');
-		this.qty_btns = [];
+		this.shopping_cart_qty_btns = [];
+		this.add_to_cart_qty_btns = document.querySelectorAll('.single-add-to-cart .qtybutton');
 		this.products_counter = null;
 		this.getShoppingCartData();
 		this.updateProductsCounterAndSum();
@@ -58,7 +59,7 @@ class ShoppingCart {
 		const table_data = squirellyRender(shopping_cart_products_template, { products });
 
 		this.shopping_cart_tbody_element.innerHTML = table_data;
-		this.qty_btns = this.shopping_cart_tbody_element.querySelectorAll('.qtybutton');
+		this.shopping_cart_qty_btns = this.shopping_cart_tbody_element.querySelectorAll('.qtybutton');
 		this.updateShoppingCartPageSum();
 	}
 	updateShoppingCartPageSum() {
@@ -122,7 +123,6 @@ class ShoppingCart {
 
 		const products_sum = numberWithCommas(this.products_counter.sum);
 
-		console.log(products_sum, this.products_counter);
 		this.products_quantity_element.textContent = this.products_counter.qty || '';
 		this.products_sum_element.textContent = this.products_counter.sum > 0 ? `${products_sum} грн.` : '';
 		this.cart_total_element.innerHTML = `${numberWithCommas(this.products_counter.sum)} <span class="text-lowercase">грн.</span>`;
@@ -214,12 +214,33 @@ class ShoppingCart {
 				element.addEventListener('click', this.removeCartProduct.bind(this));
 			}
 		});
-		this.qty_btns.forEach(qty_btn => {
+		this.shopping_cart_qty_btns.forEach(qty_btn => {
 			qty_btn.addEventListener('click', this.increaseDecreaseProductQty.bind(this));
+		});
+		this.add_to_cart_qty_btns.forEach(btn => {
+			btn.addEventListener('click', this.increaseDecreaseSingleProductQty);
 		});
 	}
 	unbindAddProductToCartListener(elm) {
 		elm.removeEventListener('click', this.addProductToCartHandler);
+	}
+	increaseDecreaseSingleProductQty(event) {
+		const add_to_cart_container = document.querySelector('.add-to-cart-container');
+		const button = event.currentTarget;
+		const oldValue = button.parentNode.querySelector('input').value;
+		let newVal;
+		if (button.classList.contains('inc')) {
+			newVal = parseFloat(oldValue) + 1;
+		} else {
+			// Don't allow decrementing below zero
+			if (oldValue > 1) {
+				newVal = parseFloat(oldValue) - 1;
+			} else {
+				newVal = 1;
+			}
+		}
+		button.parentNode.querySelector('input').value = newVal;
+		add_to_cart_container.setAttribute('data-product-qty', newVal);
 	}
 	increaseDecreaseProductQty(event) {
 		event.stopPropagation();
@@ -232,7 +253,9 @@ class ShoppingCart {
 		if (qty_btn.classList.contains('inc')) {
 			++current_qty;
 		} else {
-			--current_qty;
+			if (current_qty > 1) {
+				--current_qty;
+			}
 		}
 		const product_sum = (price * current_qty).toFixed(2);
 		this.shopping_cart_tbody_element.querySelector(`[id="${product_id}"] input`).value = current_qty;

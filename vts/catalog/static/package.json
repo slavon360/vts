@@ -6,12 +6,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:script-dev": "node scripts-bundler.js --env development --module_path",
+    "build:all-scripts-dev": "node scripts-bundler.js --env development --all",
     "build:script-prod": "node scripts-bundler.js --env production --module_path"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "file-loader": "^6.2.0",
     "html-loader": "^4.2.0",
+    "sass": "^1.58.3",
+    "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
     "webpack-cli": "^5.0.1",
     "webpack-merge": "^5.8.0"
