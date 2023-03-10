@@ -1,7 +1,9 @@
 {% extends "base_generic.html" %}
 {% load static %}
 {% block title %}<title>Головна</title>{% endblock %}
-
+{% block local_styles %}
+	<link rel="stylesheet" href="{% static 'styles/css/homepage/homepage.css' %}">
+{% endblock %}
 {% block content %}
 	<!-- Begin Slider With Category Menu Area -->
 		<div class="slider-with-banner">

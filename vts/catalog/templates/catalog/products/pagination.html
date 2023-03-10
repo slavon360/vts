@@ -12,7 +12,11 @@
 			</li>
 		{{/if}}
 		{{@each(it.pages_elements) => page, index}}
-			<li {{@if (page.active)}} class="active" {{/if}}>
+		{{@if (page.active)}}
+			<li class="active">
+			{{#else}}
+			<li>
+		{{/if}}
 				<div class="page-number" data-link="{{page.link}}">
 					{{page.number}}
 				</div>
