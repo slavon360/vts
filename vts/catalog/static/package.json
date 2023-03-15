@@ -6,18 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:script-dev": "node scripts-bundler.js --env development --module_path",
-    "build:all-scripts-dev": "node scripts-bundler.js --env development --all",
     "build:script-prod": "node scripts-bundler.js --env production --module_path",
-    "purgecss:catalog-products-page": "purgecss -css styles/css/catalog/*.css --content html/catalog.html js/modules/catalog/src/*.js js/modules/products-search/src/*.js js/modules/modals/src/*.js js/jquery.nice-select.min.js js/bootstrap.min.js --output styles/dist/catalog"
+    "build:all-scripts-dev": "node scripts-bundler.js --env development --all",
+    "build:all-scripts-prod": "node scripts-bundler.js --env production --all",
+    "purgecss:catalog-products-page": "purgecss -css styles/css/catalog/*.css --content html/catalog.html js/modules/catalog/src/*.js js/modules/products-search/src/*.js js/modules/modals/src/*.js js/jquery.nice-select.min.js --output styles/dist/catalog"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^5.0.0",
     "css-loader": "^6.7.3",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "file-loader": "^6.2.0",
+    "glob-all": "^3.3.1",
     "html-loader": "^4.2.0",
     "mini-css-extract-plugin": "^2.7.3",
+    "purgecss": "^5.0.0",
+    "purgecss-webpack-plugin": "^5.0.0",
     "sass": "^1.58.3",
     "sass-loader": "^13.2.0",
     "webpack": "^5.75.0",
@@ -26,6 +30,7 @@
   },
   "dependencies": {
     "minimist": "^1.2.7",
-    "squirrelly": "^8.0.8"
+    "squirrelly": "^8.0.8",
+    "tiny-slider": "^2.9.4"
   }
 }

@@ -26,6 +26,8 @@ export class ProductQtyInput {
         this.add_to_cart_container.setAttribute('data-product-qty', value > 0 ? value : 1);
     }
     bindEventListeners() {
-        this.product_qty_input.addEventListener('keyup', this.changeProductQuantity.bind(this));
+		if (this.product_qty_input) {
+			this.product_qty_input.addEventListener('keyup', this.changeProductQuantity.bind(this));
+		}
     }
 }

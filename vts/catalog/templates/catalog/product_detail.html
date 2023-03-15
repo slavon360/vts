@@ -2,7 +2,10 @@
 {% load static %}
 {% block title %}<title>{{ product.title }}</title>{% endblock %}
 {% block local_styles %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+	<!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
 	<link rel="stylesheet" href="{% static 'styles/css/product-detail/product-detail.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/css/product-detail/product-detail-local-styles.css' %}">
 {% endblock %}
 {% block content %}
 <div class="content-wraper mt-25 mb-25">
@@ -11,16 +14,16 @@
 			<div class="col-lg-5 col-md-6">
 				<!-- Product Details Left -->
 				<div class="product-details-left">
-					<div class="product-details-images slider-navigation-1">
+					<div class="product-tns-details-images">
 						{% for product_image in product.images.all %}
-							<div class="lg-image">
+							<div class="product-image-item">
 								<img src="/image/{{product_image.image_url}}" alt="product image">
 							</div>
 						{% endfor %}
 					</div>
-					<div class="product-details-thumbs slider-thumbs-1 mt-25">
+					<div class="product-tns-details-thumbs">
 						{% for product_image in product.images.all %}
-							<div class="sm-image">
+							<div class="product-thumb-item">
 								<img src="/image/{{product_image.image_url}}" alt="product image thumb">
 							</div>
 						{% endfor %}

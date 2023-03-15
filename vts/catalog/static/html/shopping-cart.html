@@ -1,0 +1,687 @@
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths" lang="zxx" style=""><head>
+    <title>Кошик</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
+    <!-- Add additional CSS in static file -->
+    
+    
+<link rel="stylesheet" href="/static/styles/css/shopping-cart/shopping-cart.css">
+
+    <!-- Modernizr js -->
+    <script src="/static/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Begin Body Wrapper -->
+    <div class="body-wrapper">
+        <!-- Begin Header Area -->
+        <header>
+            <!-- Begin Header Top Area -->
+            <div class="header-top">
+                <div class="container">
+                    <div class="row">
+                        <!-- Begin Header Top Left Area -->
+                        <div class="col-md-5">
+                            <div class="header-top-left">
+                                <ul class="phone-wrap">
+                                    <li>
+                                        
+                                            <a href="tel:0993658871" class="d-inline pr-10">
+                                                099 365 88 71
+                                                
+                                            </a>
+                                        
+                                            <a href="tel:0684020821" class="d-inline pr-10">
+                                                068 40 20 821
+                                                
+                                                    <img class="pl-5" src="/image/about/xnsfrx5bqgauhafabmbw_aetYXFF_OIYChH8_ykK28Yd.png">
+                                                
+                                            </a>
+                                        
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Header Top Left Area End Here -->
+                        <!-- Begin Header Top Right Area -->
+                        <div class="col-md-7">
+                            <div class="header-top-right">
+                                <ul class="ht-menu">
+                                    <!-- Begin Setting Area -->
+                                    <li>
+                                        <div class="ht-setting-trigger"><span>Setting</span></div>
+                                        <div class="setting ht-setting">
+                                            <ul class="ht-setting-list">
+                                                <li><a href="login-register.html">My Account</a></li>
+                                                <li><a href="checkout.html">Checkout</a></li>
+                                                <li><a href="login-register.html">Sign In</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- Setting Area End Here -->
+                                    <!-- Begin Currency Area -->
+                                    <li>
+                                        <span class="currency-selector-wrapper">Currency :</span>
+                                        <div class="ht-currency-trigger"><span>USD $</span></div>
+                                        <div class="currency ht-currency">
+                                            <ul class="ht-setting-list">
+                                                <li><a href="#">EUR €</a></li>
+                                                <li class="active"><a href="#">USD $</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- Currency Area End Here -->
+                                    <!-- Begin Language Area -->
+                                    <li>
+                                        <span class="language-selector-wrapper">Language :</span>
+                                        <div class="ht-language-trigger"><span>English</span></div>
+                                        <div class="language ht-language">
+                                            <ul class="ht-setting-list">
+                                                <li class="active"><a href="#"><img src="images/menu/flag-icon/1.jpg" alt="">English</a></li>
+                                                <li><a href="#"><img src="images/menu/flag-icon/2.jpg" alt="">Français</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <!-- Language Area End Here -->
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Header Top Right Area End Here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Header Top Area End Here -->
+            <!-- Begin Header Middle Area -->
+            <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
+                <div class="container">
+                    <div class="row">
+                        <!-- Begin Header Logo Area -->
+                        <div class="col-lg-3">
+                            <div class="logo pb-sm-30 pb-xs-30">
+                                <a href="index.html">
+                                    <img src="images/menu/logo/1.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Header Logo Area End Here -->
+                        <!-- Begin Header Middle Right Area -->
+                        <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+                            <!-- Begin Header Middle Searchbox Area -->
+                            <form action="#" class="hm-searchbox">
+                                <div class="search-input-container">
+                                    <input id="search-products" class="search-products-input" type="text" placeholder="Я шукаю...">
+                                    <div class="overlay"></div>
+                                    <div class="searched-results" data-phones="099 365 88 71|068 40 20 821"></div>
+                                </div>
+                                <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                            </form>
+                            <!-- Header Middle Searchbox Area End Here -->
+                            <!-- Begin Header Middle Right Area -->
+                            <div class="header-middle-right">
+                                <ul class="hm-menu">
+                                    <!-- Begin Header Mini Cart Area -->
+                                    <li class="hm-minicart">
+                                        <div class="hm-minicart-trigger">
+                                            <span class="item-icon"></span>
+                                            <span class="item-text">
+                                                <span class="cart-sum">2,894.26 грн.</span>
+                                                <span class="cart-item-count">4</span>
+                                            </span>
+                                        </div>
+                                        <span></span>
+                                        <div class="minicart">
+                                            <ul class="minicart-product-list"> <li class="product-cart-info"> <a href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535" class="minicart-product-image"><img src="/image/products/zc0uucitbiibelrtxyg1.jpg" alt="39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M"></a> <div class="minicart-product-details"> <h6><a href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535">39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M</a></h6> <span>2,570.40 грн. x 1</span> </div> <button data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="close"> <i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-close"></i> </button> </li>  <li class="product-cart-info"> <a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="minicart-product-image"><img src="/image/products/ibuxki5wgiqetzuw8cpv.png" alt="39837690  Уплотнение теплообменника отопительного контура Ferroli "></a> <div class="minicart-product-details"> <h6><a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc">39837690  Уплотнение теплообменника отопительного контура Ferroli </a></h6> <span>36.72 грн. x 0</span> </div> <button data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="close"> <i data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="fa fa-close"></i> </button> </li>  <li class="product-cart-info"> <a href="/products/2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="minicart-product-image"><img src="/image/products/arpusjsstgyvwgwmoqtp.jpg" alt="Z0380.03.00.06 Ручка выбора температуры G19-01, 02  Termet"></a> <div class="minicart-product-details"> <h6><a href="/products/2386f32c-5822-43fd-9c05-970ba3b9ea1a">Z0380.03.00.06 Ручка выбора температуры G19-01, 02  Termet</a></h6> <span>99.14 грн. x 2</span> </div> <button data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="close"> <i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-close"></i> </button> </li>  <li class="product-cart-info"> <a href="/products/d84c43b7-ef9d-4bf5-9314-085a725d213b" class="minicart-product-image"><img src="/image/products/pzztnjckd1ued2as2b1z.jpg" alt="65104623 Конденсатоотводчик на котел Ariston BS, Clas, Genus"></a> <div class="minicart-product-details"> <h6><a href="/products/d84c43b7-ef9d-4bf5-9314-085a725d213b">65104623 Конденсатоотводчик на котел Ariston BS, Clas, Genus</a></h6> <span>125.58 грн. x 1</span> </div> <button data-product-id="d84c43b7-ef9d-4bf5-9314-085a725d213b" class="close"> <i data-product-id="d84c43b7-ef9d-4bf5-9314-085a725d213b" class="fa fa-close"></i> </button> </li> </ul>
+                                            <p class="minicart-total">До сплати: <span class="sum">2,894.26 <span class="text-lowercase">грн.</span></span></p>
+                                            <div class="minicart-button">
+                                                <a href="/shopping-cart" class="li-button btn li-button-dark li-button-fullwidth li-button-sm">
+                                                    <span>Перейти до кошику</span>
+                                                </a>
+                                                <a href="/checkout" class="li-button btn li-button-fullwidth li-button-sm">
+                                                    <span>Оформити замовлення</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <!-- Header Mini Cart Area End Here -->
+                                </ul>
+                            </div>
+                            <!-- Header Middle Right Area End Here -->
+                        </div>
+                        <!-- Header Middle Right Area End Here -->
+                    </div>
+                </div>
+            </div>
+            <!-- Header Middle Area End Here -->
+            <!-- Begin Header Bottom Area -->
+            <div class="header-bottom header-sticky d-none d-lg-block mb-0">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Begin Header Bottom Menu Area -->
+                            <div class="hb-menu hb-menu-2 d-xl-block">
+                                <nav style="display: block;">
+                                    <ul>
+                                    
+                                        
+                                            <li class="megamenu-static-holder"><a href="/products-catalog/8b3742d8-8c43-4902-8c78-c2156857c814">Водонагрівачі</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                    
+                                                        <li style="min-width: calc(100% / 2)">
+                                                            <a href="/products-subcatalog/8b3742d8-8c43-4902-8c78-c2156857c814/f70ee91f-71cb-4aab-846e-403311c27693">Газові водонагрівачі</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f70ee91f-71cb-4aab-846e-403311c27693/9d1039df-547b-4e31-b553-aeb7372cec1a">Газові водонагрівачі Termet</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 2)">
+                                                            <a href="/products-subcatalog/8b3742d8-8c43-4902-8c78-c2156857c814/24b56a02-7d06-4bf1-af3e-67b7c16eb9ca">Електричні водонагрівачі</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/24b56a02-7d06-4bf1-af3e-67b7c16eb9ca/e5ad005e-db09-4419-8176-462d351dd733">Електричні водонагрівачі Roda</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                        
+                                            <li class="megamenu-static-holder"><a href="/products-catalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536">Запчастини</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                    
+                                                        <li style="min-width: calc(100% / 5)">
+                                                            <a href="/products-subcatalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536/c1d68d4c-096e-4e72-9405-47076292a818">Запчастини для обігрівачів непрямого нагріву</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/c1d68d4c-096e-4e72-9405-47076292a818/a264cc6a-b5e5-4411-adf2-bd7f0a72dac8">Автоматика Euroster</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 5)">
+                                                            <a href="/products-subcatalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536/f8514b33-85f3-424c-8f67-18c24aa7545f">Запчастини на газові колонки</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/19eb63f4-5ec7-4811-9ea0-a9a8277095b3">Ariston</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/aa219ca4-ccd5-40a6-8f0e-4fba8016f4a1">Beretta</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/b1171192-16cc-4aa4-addd-9a9a76238e8a">Chaffoteaux</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/dc4c7a1a-6674-4147-92a0-2279ffbd5bfa">Demrad</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/0fa75ae2-21b4-463f-9b1f-6a013e2878c6">Ferroli</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/aef187b5-5476-4ec4-ab61-7c4661ef8d35">Junkers</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/37278a6d-5ec6-4479-9d64-0f7ff136ffe9">Saunier Duval</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/627b7888-2f58-4341-818e-e2c8fdde68ce">Termet</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/5a766c22-c9d6-4a77-9015-38640db3f4ff">Vaillant</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/f8514b33-85f3-424c-8f67-18c24aa7545f/a264cc6a-b5e5-4411-adf2-bd7f0a72dac8">Автоматика Euroster</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 5)">
+                                                            <a href="/products-subcatalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536/40fde998-8562-43d7-8faf-2888b47a78a4">Запчастини на газові котли</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/19eb63f4-5ec7-4811-9ea0-a9a8277095b3">Ariston</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/aa219ca4-ccd5-40a6-8f0e-4fba8016f4a1">Beretta</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/f0a6d8ac-cf05-46a4-a9c6-72bfa91884cf">Bosch</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/b1171192-16cc-4aa4-addd-9a9a76238e8a">Chaffoteaux</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/dc4c7a1a-6674-4147-92a0-2279ffbd5bfa">Demrad</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/0fa75ae2-21b4-463f-9b1f-6a013e2878c6">Ferroli</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/cc4c410a-f6e4-48a0-9198-b38ecde0d23f">Fondital</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/ac7846be-aa92-42e2-b356-bb1dd52fb8e9">Hermann</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/96511ccc-7ba1-4a94-bfd3-b512b8f24f51">Hitherm</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/259ae706-c4a2-4a3c-b184-462cfe80bc23">Immergas</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/ced62936-45e8-4c17-a6a0-e2dd72acc3bb">Protherm</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/2506fc88-418f-431a-9625-a32f3151779a">Roda</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/37278a6d-5ec6-4479-9d64-0f7ff136ffe9">Saunier Duval</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/4b9d8dc5-b723-445b-b9e9-6dd981be9e0b">Sime</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/627b7888-2f58-4341-818e-e2c8fdde68ce">Termet</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/842bcc27-3f14-41ce-b197-b07da11d3f98">Thermex</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/5a766c22-c9d6-4a77-9015-38640db3f4ff">Vaillant</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/ce231648-0938-4889-805a-0c37a585c7fa">Viessmann</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/40fde998-8562-43d7-8faf-2888b47a78a4/a264cc6a-b5e5-4411-adf2-bd7f0a72dac8">Автоматика Euroster</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 5)">
+                                                            <a href="/products-subcatalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536/65d98aab-8351-438c-85ae-1c65032683ce">Запчастини на електро котли</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/65d98aab-8351-438c-85ae-1c65032683ce/0fa75ae2-21b4-463f-9b1f-6a013e2878c6">Ferroli</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/65d98aab-8351-438c-85ae-1c65032683ce/b63117ce-29a9-4768-bc9a-23a2bb5dcf93">Kospel</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/65d98aab-8351-438c-85ae-1c65032683ce/ced62936-45e8-4c17-a6a0-e2dd72acc3bb">Protherm</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/65d98aab-8351-438c-85ae-1c65032683ce/a264cc6a-b5e5-4411-adf2-bd7f0a72dac8">Автоматика Euroster</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 5)">
+                                                            <a href="/products-subcatalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536/00badcfe-e269-4baa-b2a9-f6ec35ca0535">Запчастини на електроводонагрівачі</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/19eb63f4-5ec7-4811-9ea0-a9a8277095b3">Ariston</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/1644f217-1dc8-405c-a9a3-1f4f74858312">Arti</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/72699a62-a96b-480c-8a53-51572d8cdfbc">Drazice</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/0fa75ae2-21b4-463f-9b1f-6a013e2878c6">Ferroli</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/be4c825a-6024-4f8d-b45f-5863dc3ea596">Gorenje</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/2506fc88-418f-431a-9625-a32f3151779a">Roda</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/5a766c22-c9d6-4a77-9015-38640db3f4ff">Vaillant</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/00badcfe-e269-4baa-b2a9-f6ec35ca0535/a264cc6a-b5e5-4411-adf2-bd7f0a72dac8">Автоматика Euroster</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                        
+                                            <li class="megamenu-static-holder"><a href="/products-catalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e">Котли</a>
+                                                <ul class="megamenu hb-megamenu">
+                                                    
+                                                        <li style="min-width: calc(100% / 3)">
+                                                            <a href="/products-subcatalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e/97628efd-5602-4343-ab28-d58b8d67abb0">Газові котли</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/ced62936-45e8-4c17-a6a0-e2dd72acc3bb">Protherm</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/5a766c22-c9d6-4a77-9015-38640db3f4ff">Vaillant</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/a215252b-0876-4c1b-96fd-a0d3693e7749">Газові котли Immergas</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/48e4ee1b-9a27-4912-b99e-d7c50572bf4f">Газові котли Roda</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/dc142dbb-b034-4e9f-8c58-9208b1aa7788">Газові котли Termet</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/c45dc2a4-5fdb-40b8-a3c2-638bfc904528">Газові котли Vaillant серія PLUS</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/2d481cc4-cb78-4dc5-8349-88d8ca0a4f08">Газові котли Vaillant серія PRO</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/0f07aeb1-1064-4c96-98f7-0e6532c8760d">Конденсаційні котли Vaillant серія PLUS</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/5999a8bd-ff58-48de-84e2-691c338d6f6b">Конденсаційні котли Vaillant серія PRO</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/97628efd-5602-4343-ab28-d58b8d67abb0/6325096e-c3ac-463f-9fb4-adfbbedce39a">Конденсаційні котли Vaillant серія PURE</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 3)">
+                                                            <a href="/products-subcatalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e/d60c241b-3a6a-4a9e-8582-5bb1319f04f9">Електичні котли</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/d60c241b-3a6a-4a9e-8582-5bb1319f04f9/ced62936-45e8-4c17-a6a0-e2dd72acc3bb">Protherm</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/d60c241b-3a6a-4a9e-8582-5bb1319f04f9/5b946e79-e68a-4b15-aac7-f17b658e20f2">Електричні котли Leberg</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/d60c241b-3a6a-4a9e-8582-5bb1319f04f9/f91d033b-d966-494a-b612-d119c9955d16">Електричні котли Protherm Ray (Скат)</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/d60c241b-3a6a-4a9e-8582-5bb1319f04f9/c6944f02-67d3-4adb-b679-3a43a8e78b11">Електричні котли Roda</a></li>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/d60c241b-3a6a-4a9e-8582-5bb1319f04f9/119ef4c4-4044-47db-b559-3104c6e1075e">Електричні котли Vaillant</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                        <li style="min-width: calc(100% / 3)">
+                                                            <a href="/products-subcatalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e/94c0de9e-535b-4740-9570-43e137629e88">Твердопаливні котли</a>
+                                                            
+                                                                <ul>
+                                                                
+                                                                    <li><a href="/products-subsubcatalog/94c0de9e-535b-4740-9570-43e137629e88/e2eb463d-79e1-4c8a-8408-1b6ad8b9b186">Твердопаливні котли Roda</a></li>
+                                                                
+                                                                </ul>
+                                                            
+                                                        </li>
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                        
+                                            <li><a href="#">Програматори, терморегулятори</a></li>
+                                        
+                                    
+                                        <!-- Begin Header Bottom Menu Information Area -->
+                                        <li class="hb-info f-right p-0 d-sm-none d-lg-block">
+                                            <div class="address">
+                                                <a href="https://goo.gl/maps/G3E46L1FV4m91pGp6">вулиця Краснопільська, 9, офіс 209, Дніпро</a>
+                                            </div>
+                                        </li>
+                                        <!-- Header Bottom Menu Information Area End Here -->
+                                    </ul>
+                                </nav>
+                            </div>
+                            <!-- Header Bottom Menu Area End Here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Header Bottom Area End Here -->
+            <!-- Begin Mobile Menu Area -->
+            <div class="mobile-menu-area d-lg-none d-xl-none col-12">
+                <div class="container"> 
+                    <div class="row">
+                        <div class="mobile-menu">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu Area End Here -->
+        </header>
+        <!-- Header Area End Here -->
+
+        
+            
+                <div class="breadcrumb-area">
+                    <div class="container">
+                        <div class="breadcrumb-content">
+                            <ul>
+                                
+                                    
+                                        <li>
+                                            
+                                                <a href="/">Головна</a>
+                                            
+                                        </li>
+                                        
+                                
+                                    
+                                        <li class="active">Кошик</li>
+                                    
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+        
+
+        
+<!--Shopping Cart Area Strat-->
+<div class="Shopping-cart-area pt-60 pb-60">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="table-content table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="li-product-remove">Видалити</th>
+                                <th class="li-product-thumbnail"></th>
+                                <th class="cart-product-name">Продукт</th>
+                                <th class="li-product-price">Ціна</th>
+                                <th class="li-product-quantity">Кількість</th>
+                                <th class="li-product-subtotal">Сума</th>
+                            </tr>
+                        </thead>
+                        <tbody class="shopping-cart-tbody"> <tr id="0733d41c-2db4-4904-bba6-cb53c4b73535"> <td class="li-product-remove"><a href="#" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535"><i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-times"></i></a></td> <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535"><img src="/image/products/zc0uucitbiibelrtxyg1.jpg" alt="39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M"></a></td> <td class="li-product-name"><a href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535">39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M</a></td> <td class="li-product-price"><span class="amount">2,570.40 грн.</span></td> <td class="quantity"> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="1" type="text"> <div class="dec qtybutton" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" data-product-price="2,570.40"><i class="fa fa-angle-down"></i></div> <div class="inc qtybutton" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" data-product-price="2,570.40"><i class="fa fa-angle-up"></i></div> </div> </td> <td class="product-subtotal"><span class="amount sum">2,570.40 грн.</span></td> </tr>  <tr id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc"> <td class="li-product-remove"><a href="#" data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc"><i data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="fa fa-times"></i></a></td> <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc"><img src="/image/products/ibuxki5wgiqetzuw8cpv.png" alt="39837690  Уплотнение теплообменника отопительного контура Ferroli "></a></td> <td class="li-product-name"><a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc">39837690  Уплотнение теплообменника отопительного контура Ferroli </a></td> <td class="li-product-price"><span class="amount">36.72 грн.</span></td> <td class="quantity"> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="0" type="text"> <div class="dec qtybutton" data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" data-product-price="36.72"><i class="fa fa-angle-down"></i></div> <div class="inc qtybutton" data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" data-product-price="36.72"><i class="fa fa-angle-up"></i></div> </div> </td> <td class="product-subtotal"><span class="amount sum">0.00 грн.</span></td> </tr>  <tr id="2386f32c-5822-43fd-9c05-970ba3b9ea1a"> <td class="li-product-remove"><a href="#" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a"><i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-times"></i></a></td> <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/2386f32c-5822-43fd-9c05-970ba3b9ea1a"><img src="/image/products/arpusjsstgyvwgwmoqtp.jpg" alt="Z0380.03.00.06 Ручка выбора температуры G19-01, 02  Termet"></a></td> <td class="li-product-name"><a href="/products/2386f32c-5822-43fd-9c05-970ba3b9ea1a">Z0380.03.00.06 Ручка выбора температуры G19-01, 02  Termet</a></td> <td class="li-product-price"><span class="amount">99.14 грн.</span></td> <td class="quantity"> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="2" type="text"> <div class="dec qtybutton" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" data-product-price="99.14"><i class="fa fa-angle-down"></i></div> <div class="inc qtybutton" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" data-product-price="99.14"><i class="fa fa-angle-up"></i></div> </div> </td> <td class="product-subtotal"><span class="amount sum">198.28 грн.</span></td> </tr>  <tr id="d84c43b7-ef9d-4bf5-9314-085a725d213b"> <td class="li-product-remove"><a href="#" data-product-id="d84c43b7-ef9d-4bf5-9314-085a725d213b"><i data-product-id="d84c43b7-ef9d-4bf5-9314-085a725d213b" class="fa fa-times"></i></a></td> <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/d84c43b7-ef9d-4bf5-9314-085a725d213b"><img src="/image/products/pzztnjckd1ued2as2b1z.jpg" alt="65104623 Конденсатоотводчик на котел Ariston BS, Clas, Genus"></a></td> <td class="li-product-name"><a href="/products/d84c43b7-ef9d-4bf5-9314-085a725d213b">65104623 Конденсатоотводчик на котел Ariston BS, Clas, Genus</a></td> <td class="li-product-price"><span class="amount">125.58 грн.</span></td> <td class="quantity"> <div class="cart-plus-minus"> <input class="cart-plus-minus-box" value="1" type="text"> <div class="dec qtybutton" data-product-id="d84c43b7-ef9d-4bf5-9314-085a725d213b" data-product-price="125.58"><i class="fa fa-angle-down"></i></div> <div class="inc qtybutton" data-product-id="d84c43b7-ef9d-4bf5-9314-085a725d213b" data-product-price="125.58"><i class="fa fa-angle-up"></i></div> </div> </td> <td class="product-subtotal"><span class="amount sum">125.58 грн.</span></td> </tr> </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 ml-auto">
+                        <div class="cart-page-total">
+                            <h2>Підсумок</h2>
+                            <ul>
+                                <li>Загальна сума <span class="sum">2,894.26 грн.</span></li>
+                            </ul>
+                            <a href="/checkout">Оформити замовлення</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Shopping Cart Area End-->
+
+
+
+
+    <div class="footer">
+        <div class="footer-static-middle">
+            <div class="container">
+                <div class="footer-logo-wrap pt-50 pb-35">
+                    <div class="row">
+                        <!-- Begin Footer Logo Area -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="footer-logo">
+                                <img src="images/menu/logo/1.jpg" alt="Footer Logo">
+                                <p class="info">
+                                    
+                                </p>
+                            </div>
+                            <ul class="des">
+                                <li>
+                                    <span>Адреса: </span>
+                                    <a href="https://goo.gl/maps/G3E46L1FV4m91pGp6">вулиця Краснопільська, 9, офіс 209, Дніпро</a>
+                                </li>
+                                <li>
+                                    <span>Контакти: </span>
+                                    
+                                        
+                                        <a href="tel:0993658871">
+                                            099 365 88 71
+                                        </a>
+                                    
+                                        
+                                            | 
+                                        
+                                        <a href="tel:0684020821">
+                                            068 40 20 821
+                                        </a>
+                                    
+                                </li>
+                                <li>
+                                    <span>Email: </span>
+                                    <a href="mailto://vts.07@ukr.net">vts.07@ukr.net</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Footer Logo Area End Here -->
+                        <!-- Begin Footer Block Area -->
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="footer-block">
+                                <h3 class="footer-block-title">Product</h3>
+                                <ul>
+                                    <li><a href="#">Prices drop</a></li>
+                                    <li><a href="#">New products</a></li>
+                                    <li><a href="#">Best sales</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Footer Block Area End Here -->
+                        <!-- Begin Footer Block Area -->
+                        <div class="col-lg-2 col-md-3 col-sm-6">
+                            <div class="footer-block">
+                                <h3 class="footer-block-title">Our company</h3>
+                                <ul>
+                                    <li><a href="#">Delivery</a></li>
+                                    <li><a href="#">Legal Notice</a></li>
+                                    <li><a href="#">About us</a></li>
+                                    <li><a href="#">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Footer Block Area End Here -->
+                        <!-- Begin Footer Block Area -->
+                        <div class="col-lg-4">
+                            <div class="footer-block">
+                                <h3 class="footer-block-title">Follow Us</h3>
+                                <ul class="social-link">
+                                    <li class="twitter">
+                                        <a href="https://twitter.com/" data-toggle="tooltip" target="_blank" title="" data-original-title="Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="rss">
+                                        <a href="https://rss.com/" data-toggle="tooltip" target="_blank" title="" data-original-title="RSS">
+                                            <i class="fa fa-rss"></i>
+                                        </a>
+                                    </li>
+                                    <li class="google-plus">
+                                        <a href="https://www.plus.google.com/discover" data-toggle="tooltip" target="_blank" title="" data-original-title="Google +">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                    </li>
+                                    <li class="facebook">
+                                        <a href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="" data-original-title="Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="youtube">
+                                        <a href="https://www.youtube.com/" data-toggle="tooltip" target="_blank" title="" data-original-title="Youtube">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li class="instagram">
+                                        <a href="https://www.instagram.com/" data-toggle="tooltip" target="_blank" title="" data-original-title="Instagram">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- Begin Footer Newsletter Area -->
+                            <div class="footer-newsletter">
+                                <h4>Sign up to newsletter</h4>
+                                <form action="#" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="footer-subscribe-form validate" target="_blank" novalidate="">
+                                    <div id="mc_embed_signup_scroll">
+                                        <div id="mc-form" class="mc-form subscribe-form form-group">
+                                        <input id="mc-email" type="email" autocomplete="off" placeholder="Enter your email">
+                                        <button class="btn" id="mc-submit">Subscribe</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <!-- Footer Newsletter Area End Here -->
+                        </div>
+                        <!-- Footer Block Area End Here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <!-- Body Wrapper End Here -->
+
+    <!-- jQuery-V1.12.4 -->
+    <script src="/static/js/vendor/jquery-3.6.1.min.js"></script>
+    <!-- Popper js -->
+    <script src="/static/js/vendor/popper.min.js"></script>
+    <!-- Bootstrap V4.1.3 Fremwork js -->
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!-- Ajax Mail js -->
+    <script src="/static/js/ajax-mail.js"></script>
+    <!-- Meanmenu js -->
+    <script src="/static/js/jquery.meanmenu.min.js"></script>
+    <!-- Wow.min js -->
+    <script src="/static/js/wow.min.js"></script>
+    <!-- Slick Carousel js -->
+    <script src="/static/js/slick.min.js"></script>
+    <!-- Owl Carousel-2 js -->
+    <script src="/static/js/owl.carousel.min.js"></script>
+    <!-- Magnific popup js -->
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <!-- Isotope js -->
+    <script src="/static/js/isotope.pkgd.min.js"></script>
+    <!-- Imagesloaded js -->
+    <script src="/static/js/imagesloaded.pkgd.min.js"></script>
+    <!-- Mixitup js -->
+    <script src="/static/js/jquery.mixitup.min.js"></script>
+    <!-- Countdown -->
+    <script src="/static/js/jquery.countdown.min.js"></script>
+    <!-- Counterup -->
+    <script src="/static/js/jquery.counterup.min.js"></script>
+    <!-- Waypoints -->
+    <script src="/static/js/jquery.waypoints.min.js"></script>
+    <!-- Barrating -->
+    <script src="/static/js/jquery.barrating.min.js"></script>
+    <!-- Jquery-ui -->
+    <script src="/static/js/jquery-ui.min.js"></script>
+    <!-- Venobox -->
+    <script src="/static/js/venobox.min.js"></script>
+    <!-- Nice Select js -->
+    <script src="/static/js/jquery.nice-select.min.js"></script>
+    <!-- ScrollUp js -->
+    <script src="/static/js/scrollUp.min.js"></script>
+    <!-- Main/Activator js -->
+    <script src="/static/js/main.js"></script><a id="scrollUp" href="#top" style="position: fixed; z-index: 2147483647; display: none;"><i class="fa fa-angle-double-up"></i></a>
+
+    <!--shopping-cart module-->
+    <script src="/static/js/modules/shopping-cart/dist/main.js" defer=""></script>
+    <!--shopping-cart module-->
+
+    <!-- products-search module -->
+    <script src="/static/js/modules/products-search/dist/main.js" defer=""></script>
+    <!-- products-search module -->
+
+    
+
+
+</body></html>

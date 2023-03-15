@@ -1,6 +1,9 @@
 {% extends "base_generic.html" %}
 {% block title %}<title>Кошик</title>{% endblock %}
 {% load static %}
+{% block local_styles %}
+	<link rel="stylesheet" href="{% static 'styles/css/shopping-cart/shopping-cart.css' %}">
+{% endblock %}
 {% block content %}
 <!--Shopping Cart Area Strat-->
 	<div class="Shopping-cart-area pt-60 pb-60">

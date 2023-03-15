@@ -1,4 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
 const { getWorkingDirInversePath } = require('../../utils/webpack-utils.js');
 const path = require('path');
 const DIST_DIR = path.resolve(__dirname, 'dist');
@@ -44,6 +46,15 @@ module.exports = {
 	plugins: [
 		new MiniCssExtractPlugin({
 		  filename: `${working_dir_inverse_path}styles/css/checkout/checkout.css`,
+		}),
+		new PurgeCSSPlugin({
+			paths: glob.sync([
+				`${SRC_DIR}/*`,
+				`${current_working_dir}/js/modules/products-search/src/*.js`,
+				`${current_working_dir}/js/jquery.meanmenu.min.js`,
+				`${current_working_dir}/html/checkout.html`
+			]),
+			keyframes: true
 		})
 	]
 };
