@@ -17,7 +17,35 @@ module.exports = {
 						}
 					]
 				}
-			})
+			}),
+			(compiler) => {
+				const TerserPlugin = require('terser-webpack-plugin');
+				new TerserPlugin({
+				  terserOptions: {
+					compress: {},
+				  }
+				}).apply(compiler);
+			}
 		],
 	},
+	module: {
+		rules: [
+			{
+				test: /\.(png|jpe?g|gif|svg|webp)$/,
+				type: 'asset',
+				parser: {
+					// Conditions for converting to base64
+					dataUrlCondition: {
+						maxSize: 25 * 1024, // 25kb
+					}
+				},
+				generator: {
+					filename: 'images/[contenthash][ext][query]',
+				},
+			}
+		]
+	},
+	output: {
+		filename: '[name].[contenthash].js'
+	}
 };

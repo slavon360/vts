@@ -1,3 +1,4 @@
+import os
 import datetime
 import requests
 from operator import itemgetter
@@ -16,6 +17,12 @@ from .forms import CheckoutForm
 
 nova_post_url = 'https://api.novaposhta.ua/v2.0/json/'
 np_key = config('NOVA_POSHTA_API_KEY')
+
+def get_js_file_name(directory_path):
+	current_file_path = os.path.abspath(__file__)
+	current_directory_path = os.path.dirname(current_file_path)
+
+	return [directory for directory in os.listdir(current_directory_path + directory_path) if directory.endswith('.js')][0]
 
 def index(request):
 	categories = Category.objects.all()
@@ -243,7 +250,9 @@ class ProductDetailView(DetailView, Breadcrumbs):
 		category_id = getattr(categ, 'id')
 		subcategory_id = getattr(subcateg, 'id')
 		subsubcategory_id = getattr(subsubcateg, 'id')
+		js_name = get_js_file_name('/static/js/modules/product-detail/dist')
 
+		context['js_name'] = js_name
 		context['categories'] = Category.objects.all()
 		context['phones'] = Phone.objects.all()
 		context['breadcrumbs'] = self.get_breadcrumbs(

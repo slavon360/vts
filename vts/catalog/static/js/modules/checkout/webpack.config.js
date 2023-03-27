@@ -19,13 +19,25 @@ module.exports = {
 	},
 	module: {
 		rules: [
+			...base_config.module.rules,
 			{
 				test: /\.html$/i,
 				loader: "html-loader",
 			},
 			{
 				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
+				use: [
+					MiniCssExtractPlugin.loader, 
+					{
+						loader: "css-loader",
+						// options: {
+						// 	modules: {
+						// 		mode: 'global',
+						// 		localIdentName: '[sha512:hash:base64:7]'
+						// 	},
+						// }
+					}
+				],
 			},
 			{
 				test: /\.scss$/,

@@ -13,10 +13,12 @@ module.exports = {
 	...base_config,
 	entry: SRC_DIR,
 	output: {
+		...base_config.output,
 		path: DIST_DIR
 	},
 	module: {
 		rules: [
+			...base_config.module.rules,
 			{
 				test: /\.html$/i,
 				loader: "html-loader",

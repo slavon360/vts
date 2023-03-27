@@ -50,12 +50,12 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
  /*  02. Header Dropdown
  /*----------------------------------------*/
  	// Li's Dropdown Menu
- 	$('.ht-setting-trigger, .ht-currency-trigger, .ht-language-trigger, .hm-minicart-trigger, .cw-sub-menu').on('click', function (e) {
- 		e.preventDefault();
- 		$(this).toggleClass('is-active');
- 		$(this).siblings('.ht-setting, .ht-currency, .ht-language, .minicart, .cw-sub-menu li').slideToggle();
- 	});
- 	$('.ht-setting-trigger.is-active').siblings('.catmenu-body').slideDown();
+ 	// $('.ht-setting-trigger, .ht-currency-trigger, .ht-language-trigger, .hm-minicart-trigger, .cw-sub-menu').on('click', function (e) {
+ 	// 	e.preventDefault();
+ 	// 	$(this).toggleClass('is-active');
+ 	// 	$(this).siblings('.ht-setting, .ht-currency, .ht-language, .minicart, .cw-sub-menu li').slideToggle();
+ 	// });
+ 	// $('.ht-setting-trigger.is-active').siblings('.catmenu-body').slideDown();
 /*----------------------------------------*/
 /* 03. Li's Sticky Menu Activation
 /*----------------------------------------*/
@@ -148,17 +148,17 @@ Note: main.js, All Default Scripting Languages For This Theme Included In This F
 /*----------------------------------------*/
 /* 08. Countdown
 /*----------------------------------------*/
-   $(".li-countdown")
-	.each(function(i, item) {
-		var $countdown_item = $(item);
-		var end_date = $countdown_item.data('end-date');
+//    $(".li-countdown")
+// 	.each(function(i, item) {
+// 		var $countdown_item = $(item);
+// 		var end_date = $countdown_item.data('end-date');
 
-		$countdown_item.countdown(end_date, function(event) {
-			$(this).html(
-				event.strftime('<div class="count">%D <span>Days:</span></div> <div class="count">%H <span>Hours:</span></div> <div class="count">%M <span>Mins:</span></div><div class="count"> %S <span>Secs</span></div>')
-			);
-		});
-	});
+// 		$countdown_item.countdown(end_date, function(event) {
+// 			$(this).html(
+// 				event.strftime('<div class="count">%D <span>Days:</span></div> <div class="count">%H <span>Hours:</span></div> <div class="count">%M <span>Mins:</span></div><div class="count"> %S <span>Secs</span></div>')
+// 			);
+// 		});
+// 	});
 /*----------------------------------------*/
 /* 09. Tooltip Active
 /*----------------------------------------*/

@@ -1,55 +1,55 @@
 import { debounce } from '../../../utils/utils.js';
 
-const $search_input = $('#search-products');
-const $products_results = $('.searched-results[data-phones]');
-const phones = $products_results.data('phones').split('|').map(nmb => (`
-    <a href="tel:${nmb.replace(/ /g, '')}">${nmb}</a>
+const searchInput = document.querySelector('#search-products');
+const productsResults = document.querySelector('.searched-results[data-phones]');
+const phones = productsResults.dataset.phones.split('|').map(nmb => (`
+<a href="tel:${nmb.replace(/ /g, '')}">${nmb}</a>
 `)).join('');
-let prev_search_text = null;
+let prevSearchText = null;
 
-function searchProductHandler (event) {
-    const { target: { value: search_query } } = event;
+function searchProductHandler(event) {
+    const searchQuery = event.target.value.trim();
 
-    if (!search_query.trim()) {
-        $products_results.html('');
+    if (!searchQuery) {
+        productsResults.innerHTML = '';
     }
-    if (search_query.trim() && search_query !== prev_search_text) {
-        $products_results.html('<div class="preloader"></div>');
-        $.ajax({
-            url: `/products-search/api?title=${search_query}`,
-            success: function (response) {
-                prev_search_text = search_query;
-                const { results } = response;
-                const content = results.length ?
+    if (searchQuery && searchQuery !== prevSearchText) {
+        productsResults.innerHTML = '<div class="preloader"></div>';
+        fetch(`/products-search/api?title=${searchQuery}`)
+            .then(response => response.json())
+            .then(data => {
+            const { results } = data;
+            const content = results.length ?
                 results.map(({ get_absolute_url, title }) => {
-                    const query = new RegExp(search_query, 'ig');
-                    const title_content = title.replace(query, `<b>${search_query}</b>`).toLowerCase();
-                    return `<a class="searched-product" href="${get_absolute_url}">${title_content}</a>`;
+                const query = new RegExp(searchQuery, 'ig');
+                const titleContent = title.replace(query, `<b>${searchQuery}</b>`).toLowerCase();
+                return `<a class="searched-product" href="${get_absolute_url}">${titleContent}</a>`;
                 }).join('') :
                 `<div class="empty-results">
-                    Відсутні товари за даним запитом
-                    <br>
-                    Зв'яжіться будь ласка з нами для уточнення інформації:
-                    <br>
-                    ${phones}
+                Відсутні товари за даним запитом
+                <br>
+                Зв'яжіться будь ласка з нами для уточнення інформації:
+                <br>
+                ${phones}
                 </div>`;
-                $products_results.html(content);
-                showSearchedResults();
-            }
-        });
+            productsResults.innerHTML = content;
+            showSearchedResults();
+            })
+            .catch(error => console.error(error));
+        
+        prevSearchText = searchQuery;        
     }
 }
 
-function hideSearchedResults () {
+function hideSearchedResults() {
     setTimeout(() => {
-        $products_results.addClass('d-none');
+        productsResults.classList.add('d-none');
     }, 500);
 }
-
-function showSearchedResults () {
-    $products_results.removeClass('d-none');
+function showSearchedResults() {
+    productsResults.classList.remove('d-none');
 }
 
-$search_input.on('keyup', debounce(searchProductHandler, 800));
-$search_input.on('blur', hideSearchedResults);
-$search_input.on('focus', showSearchedResults);
+searchInput.addEventListener('keyup', debounce(searchProductHandler, 800));
+searchInput.addEventListener('blur', hideSearchedResults);
+searchInput.addEventListener('focus', showSearchedResults);

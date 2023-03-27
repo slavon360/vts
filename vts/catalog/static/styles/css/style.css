@@ -1258,6 +1258,8 @@ textarea:focus {
 /* 1.14 Scroll Up
 /*----------------------------------------*/
 #scrollUp {
+	position: fixed;
+	z-index: 2147483647;
 	right: 25px;
 	bottom: 25px;
 	height: 50px;
@@ -1269,7 +1271,6 @@ textarea:focus {
 	border: 1px solid #fff;
 	-webkit-animation: liSlideInUp 0.8s ease-in-out 1 both;
 	animation: liSlideInUp 0.8s ease-in-out 1 both;
-	z-index: 1000 !important;
 	overflow: hidden;
 	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -1557,11 +1558,6 @@ textarea:focus {
 		left: -10px;
 }
 .minicart {
-	position: absolute;
-	right: 0;
-	top: 100%;
-	z-index: 9;
-	display: none;
 	border: 1px solid #e5e5e5;
 	padding: 20px;
 	width: 310px;
@@ -1818,6 +1814,9 @@ textarea:focus {
 .hm-minicart-trigger .item-text::after {
 	color: #fff;
 } 
+.hm-minicart-trigger.active .item-text::after {
+	transform: rotate(180deg);
+}
 .ht-menu > li .ht-setting-trigger.is-active span::after, 
 .ht-menu > li .ht-currency-trigger.is-active span::after, 
 .ht-menu > li .ht-language-trigger.is-active span::after,

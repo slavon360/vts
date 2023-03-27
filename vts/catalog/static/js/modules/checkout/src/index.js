@@ -1,6 +1,7 @@
 import * as Sqrl from 'squirrelly';
 import ordered_products from '../../../../../templates/ordered-products.html';
 import { debounce, numberWithCommas } from '../../../utils/utils.js';
+import { IconsLoader } from '@root/js/modules/icons-loader/src';
 require('@root/styles/css/material-design-iconic-font.min.css');
 require('@root/styles/css/font-awesome.min.css');
 require('@root/styles/css/fontawesome-stars.css');
@@ -20,8 +21,9 @@ require('@root/styles/modules/checkout/checkout.scss');
 
 const COUNTRY_CODE = '+38';
 
-class Checkout {
+class Checkout extends IconsLoader {
 	constructor() {
+		super();
 		this.shopping_cart_key = 'shopping-cart-vts-service';
 		this.checkout_form = document.querySelector('#checkout-form');
 		this.phone_field = this.checkout_form.querySelector('#id_phone_number');
