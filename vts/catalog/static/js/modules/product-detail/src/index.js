@@ -1,29 +1,16 @@
 import { tns } from 'tiny-slider';
-import { triggerUpdateSingleAddProductArea, triggerAddToCartBtnsListeners } from '@root/js/utils/events.js';
-import { ProductQtyInput } from '../../../utils/utils.js';
-import { slideToggle } from '@root/js/utils/slide-toggle.js';
-import { countdown } from '@root/js/utils/countdown.js';
-import { scrollUp } from '@root/js/utils/scroll-up.js';
-import { IconsLoader } from '@root/js/modules/icons-loader/src';
-import '@root/js/modules/products-search/src';
-import '@root/js/modules/shopping-cart/src';
-require('@root/styles/css/material-design-iconic-font.min.css');
-require('@root/styles/css/font-awesome.min.css');
-require('@root/styles/css/fontawesome-stars.css');
-require('@root/styles/css/meanmenu.css');
-require('@root/styles/css/owl.carousel.min.css');
-require('@root/styles/css/slick.css');
-require('@root/styles/css/animate.css');
-require('@root/styles/css/jquery-ui.min.css');
-require('@root/styles/css/venobox.css');
-require('@root/styles/css/nice-select.css');
-require('@root/styles/css/magnific-popup.css');
-require('@root/styles/css/bootstrap.min.css');
-require('@root/styles/css/helper.css');
-require('@root/styles/css/style.css');
-require('@root/styles/css/responsive.css');
-require('@root/styles/modules/product-detail/product-detail.scss');
-require('@root/styles/modules/slide-toggle/slide-toggle.scss');
+import { triggerUpdateSingleAddProductArea, triggerAddToCartBtnsListeners } from '@utils/events.js';
+import { ProductQtyInput } from '@utils/utils.js';
+import { slideToggle } from '@utils/slide-toggle.js';
+import { countdown } from '@utils/countdown.js';
+import { scrollUp } from '@utils/scroll-up.js';
+import { IconsLoader } from '@modules/icons-loader/src';
+import '@modules/products-search/src';
+import '@modules/shopping-cart/src';
+import { mmenu } from '@utils/mean-menu.js';
+require('@styles/css/common.css');
+require('@styles/modules/product-detail/product-detail.scss');
+require('@styles/modules/slide-toggle/slide-toggle.scss');
 
 class ProductDetails extends ProductQtyInput {
     constructor() {
@@ -41,6 +28,7 @@ class ProductDetails extends ProductQtyInput {
         });
         countdown('.li-countdown');
         scrollUp('#scrollUp');
+        mmenu();
     }
 
     triggerAddToCartBtnsListenersHandler() {

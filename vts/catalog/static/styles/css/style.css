@@ -1274,6 +1274,7 @@ textarea:focus {
 	overflow: hidden;
 	-webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 #scrollUp:hover {
 	background: #fed700 none repeat scroll 0 0;
@@ -1477,7 +1478,7 @@ textarea:focus {
 /*Header Middle Right*/
 .header-middle-right {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: space-around;
 }
 /*Header Middle Wishlist*/
 .hm-wishlist {

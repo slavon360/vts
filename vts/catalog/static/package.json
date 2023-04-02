@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "minimist": "^1.2.7",
+    "mmenu-js": "^9.3.0",
     "squirrelly": "^8.0.8",
     "tiny-slider": "^2.9.4"
   }

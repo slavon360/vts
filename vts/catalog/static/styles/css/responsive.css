@@ -54,7 +54,7 @@ Note: responsive.css, All Responsive CSS Style For This Theme Included In This F
 	/*Header Right*/
 	.header-middle-right {
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 	}
 	/*Header Middle*/
 	.hm-searchbox {
@@ -229,7 +229,7 @@ Note: responsive.css, All Responsive CSS Style For This Theme Included In This F
 	}
 	.header-middle-right {
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 	}
 	.hm-wishlist {
 		margin-right: 15px;
@@ -652,7 +652,7 @@ Note: responsive.css, All Responsive CSS Style For This Theme Included In This F
 	}
 	.header-middle-right {
 		display: flex;
-		justify-content: flex-start;
+		justify-content: space-around;
 		padding-top: 40px;
 	}
 	.mean-container a.meanmenu-reveal {

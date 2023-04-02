@@ -3,7 +3,10 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 module.exports = {
 	resolve: {
 		alias: {
-			'@root': process.cwd()
+			'@root': process.cwd(),
+			'@styles': `${process.cwd()}/styles`,
+			'@utils': `${process.cwd()}/js/utils`,
+			'@modules': `${process.cwd()}/js/modules`
 		}
 	},
 	optimization : {
@@ -46,6 +49,7 @@ module.exports = {
 		]
 	},
 	output: {
-		filename: '[name].[contenthash].js'
+		filename: '[name].[contenthash].js',
+		clean: true
 	}
 };

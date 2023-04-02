@@ -1,1 +1,13 @@
-.toggle-container{overflow:hidden;transition:all .35s ease-in-out}.toggle-container.toggle-container-align-right{position:absolute;right:0;top:100%;z-index:9}.toggle-container:not(.active){display:none}
+.toggle-container {
+  transition: all 0.35s ease-in-out;
+  overflow: hidden;
+}
+.toggle-container.toggle-container-align-right {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  z-index: 9;
+}
+.toggle-container:not(.active) {
+  display: none;
+}

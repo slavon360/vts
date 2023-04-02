@@ -47,15 +47,15 @@ module.exports = {
 		new MiniCssExtractPlugin({
 		  filename: `${working_dir_inverse_path}styles/css/product-detail/product-detail.css`,
 		}),
-		new PurgeCSSPlugin({
-			paths: glob.sync([
-				`${SRC_DIR}/*`,
-				`${current_working_dir}/js/modules/products-search/src/*.js`,
-				`${current_working_dir}/js/jquery.meanmenu.min.js`,
-				`${current_working_dir}/node_modules/tiny-slider/src/tiny-slider.js`,
-				`${current_working_dir}/html/product-detail.html`
-			]),
-			keyframes: true
-		})
+		// new PurgeCSSPlugin({
+		// 	paths: glob.sync([
+		// 		`${SRC_DIR}/*`,
+		// 		`${current_working_dir}/js/modules/products-search/src/*.js`,
+		// 		`${current_working_dir}/node_modules/mmenu-js/dist/mmenu.js`,
+		// 		`${current_working_dir}/node_modules/tiny-slider/src/tiny-slider.js`,
+		// 		`${current_working_dir}/html/product-detail.html`
+		// 	]),
+		// 	keyframes: true
+		// })
 	]
 };
