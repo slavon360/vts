@@ -325,6 +325,6 @@
 {% endblock %}
 
 {% block local_scripts %}
-	<script src="{% static 'js/modules/catalog/dist/main.js' %}" defer></script>
-	<script src="{% static 'js/modules/modals/dist/main.js' %}"></script>
+	<script src="{% static 'js/modules/catalog/dist/' %}{{js_name}}" defer></script>
+	{% comment %} <script src="{% static 'js/modules/modals/dist/main.js' %}"></script> {% endcomment %}
 {% endblock %}

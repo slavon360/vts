@@ -7,26 +7,24 @@ import {
 	triggerAddToCartBtnsRemoveListeners,
 	triggerUpdateAddToCartBtns
 } from '../../../utils/events.js';
-require('@root/styles/css/material-design-iconic-font.min.css');
-require('@root/styles/css/font-awesome.min.css');
-require('@root/styles/css/fontawesome-stars.css');
-require('@root/styles/css/meanmenu.css');
-require('@root/styles/css/owl.carousel.min.css');
-require('@root/styles/css/slick.css');
-require('@root/styles/css/animate.css');
-require('@root/styles/css/jquery-ui.min.css');
-require('@root/styles/css/venobox.css');
-require('@root/styles/css/nice-select.css');
-require('@root/styles/css/magnific-popup.css');
-require('@root/styles/css/bootstrap.min.css');
-require('@root/styles/css/helper.css');
-require('@root/styles/css/style.css');
-require('@root/styles/css/responsive.css');
+import '@modules/shopping-cart/src';
+import '@modules/products-search/src';
+import { slideToggle } from '@utils/slide-toggle.js';
+import { mmenu } from '@utils/mean-menu.js';
+import { scrollUp } from '@utils/scroll-up.js';
+require('@styles/css/common.css');
 
 const squirellyRender = render;
 let current_page = 1;
-const $sort_products_catalog = $('#sort_products_catalog');
-const $toolbar_amount_active_page = $('.toolbar-amount .active-page-nmb');
+const sort_products_catalog = document.querySelector('#sort_products_catalog');
+const toolbar_amount_active_page = document.querySelector('.toolbar-amount .active-page-nmb');
+
+slideToggle({
+	selector: '.hm-minicart-trigger',
+	target_container_selector: '.toggle-container'
+});
+scrollUp('#scrollUp');
+mmenu();
 const renderPagination = ({ count, next, previous, results}) => {
 	function makePagesArray ({current_page, last_page, show_on_both_sides}) {
 		const page_link = current_page === last_page ? previous : next;
@@ -76,18 +74,15 @@ const renderPagination = ({ count, next, previous, results}) => {
 
 		return sliced_pages_list;
 	}
-	const $pagination_area = $('.paginatoin-area');
+	const pagination_area = document.querySelector('.paginatoin-area');
+	const page_num_element = pagination_area.querySelector('.page-number');
 	const last_page_number = next ? Math.ceil(count / results.length) : current_page;
 	const pages_array = makePagesArray({
 		current_page: current_page,
 		last_page: last_page_number,
 		show_on_both_sides: 3
 	});
-	const pages_elements = pages_array.map(({
-		page,
-		link,
-		active
-	}) => ({
+	const pages_elements = pages_array.map(({page, link, active}) => ({
 		number: page,
 		link,
 		active
@@ -100,14 +95,18 @@ const renderPagination = ({ count, next, previous, results}) => {
 		next_page: next
 	});
 
-	$pagination_area.off('click', '.page-number', pageClickHandler);
-	$pagination_area.html(pagination_view);
-	$pagination_area.on('click', '.page-number', pageClickHandler);
+	if (page_num_element) {
+		page_num_element.removeEventListener('click', pageClickHandler);
+	}
+	pagination_area.innerHTML = pagination_view;
+	pagination_area.querySelectorAll('.page-number').forEach(elm => {
+		elm.addEventListener('click', pageClickHandler);
+	});
 };
 const renderProductsGrid = (products) => {
-	const $grid_view_products = $('.grid-view-products');
+	const grid_view_products = document.querySelector('.grid-view-products');
 
-	$grid_view_products.html('');
+	grid_view_products.innerHTML = '';
 	const prod = products.map(({
 		id,
 		get_absolute_url,
@@ -119,29 +118,28 @@ const renderProductsGrid = (products) => {
 		first_image,
 		images_list,
 		description
-	}) => 
-		({
-			id,
-			get_absolute_url,
-			manufacturer,
-			title,
-			discount_price,
-			get_actual_discount_price,
-			get_actual_price,
-			first_image_url: first_image.image_url,
-			images_list,
-			description: description.replace(/"/gi, '\''),
-			discount: get_actual_discount_price ? `data-product-discount-price="${get_actual_discount_price}"` : '',
-			images_urls: images_list.reduce((result, { image_url }) => result += image_url, '')
-		}));
-	const grid_view = squirellyRender(grid_view_template, { products: prod });
+	}) => ({
+		id,
+		get_absolute_url,
+		manufacturer,
+		title,
+		discount_price,
+		get_actual_discount_price,
+		get_actual_price,
+		first_image_url: first_image.image_url,
+		images_list,
+		description: description.replace(/"/gi, '\''),
+		discount: get_actual_discount_price ? `data-product-discount-price="${get_actual_discount_price}"` : '',
+		images_urls: images_list.reduce((result, {image_url}) => result += image_url, '')
+	}));
+	const grid_view = squirellyRender(grid_view_template, {products: prod});
 
-	$grid_view_products.append(grid_view);
+	grid_view_products.insertAdjacentHTML('beforeend', grid_view);
 };
 const renderProductsList = (products) => {
-	const $list_view_products = $('.list-view-products');
+	const list_view_products = document.querySelector('.list-view-products');
 
-	$list_view_products.html('');
+	list_view_products.innerHTML = '';
 	const prod = products.map(({
 		id,
 		get_absolute_url,
@@ -177,32 +175,31 @@ const renderProductsList = (products) => {
 	}));
 	const list_view = squirellyRender(list_view_template, { products: prod });
 
-	$list_view_products.append(list_view);
+	list_view_products.insertAdjacentHTML('beforeend', list_view);
 };
 
-function sortProductsHandler () {
+function sortProductsHandler() {
 	const sort_by = this.value;
-	const category_id = $(this).data('category_id');
-	const subcategory_id = $(this).data('subcategory_id');
-	const subsubcategory_id = $(this).data('subsubcategory_id');
+	const category_id = this.dataset.category_id;
+	const subcategory_id = this.dataset.subcategory_id;
+	const subsubcategory_id = this.dataset.subsubcategory_id;
 	const queries = [
 		category_id ? `&category_id=${category_id}` : null,
 		subcategory_id ? `&subcategory_id=${subcategory_id}` : null,
 		subsubcategory_id ? `&subsubcategory_id=${subsubcategory_id}` : null
-	].join('');
+	].filter(Boolean).join('');
 	current_page = 1;
 
-	updateQueryStringParams({ sort_by, page: current_page });
-	$toolbar_amount_active_page.text(current_page);
-	
-	$.ajax({
-		url: `/products-catalog/api?sort_by=${sort_by}${queries}`,
-		success: function (response) {
-			updateProductsHandler(sort_by, response);
-		}
-	});
+	updateQueryStringParams({sort_by, page: current_page});
+	toolbar_amount_active_page.textContent = current_page;
+
+	fetch(`/products-catalog/api?sort_by=${sort_by}${queries}`)
+		.then(response => response.json())
+		.then(data => updateProductsHandler(sort_by, data))
+		.catch(error => console.log(error));
 }
-$sort_products_catalog.on('change', sortProductsHandler);
+
+sort_products_catalog.addEventListener('change', sortProductsHandler);
 function updateProductsHandler (sort_by, response) {
 	let { results = [], next, previous } = response;
 
@@ -225,19 +222,19 @@ function updateProductsHandler (sort_by, response) {
 }
 
 function pageClickHandler () {
-	const url = $(this).data('link');
+	const url = this.dataset.link;
 	const qs_obj = JSON.parse('{"' + decodeURI(url).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
 	const { sort_by, page } = qs_obj;
 	current_page = Number(page) || 1;
 
-	$toolbar_amount_active_page.text(current_page);
-	$.ajax({
-		url,
-		success: function (response) {
+	toolbar_amount_active_page.textContent = current_page;
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
 			updateProductsHandler(sort_by, response);
 			updateQueryStringParams({ sort_by, page });
-		}
-	});
+		})
+		.catch(error => console.log(error));
 }
 function updateQueryStringParams ({ sort_by, page }) {
 	// Construct URLSearchParams object instance from current URL querystring.

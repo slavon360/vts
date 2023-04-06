@@ -1,4 +1,5 @@
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	resolve: {
@@ -45,6 +46,19 @@ module.exports = {
 				generator: {
 					filename: 'images/[contenthash][ext][query]',
 				},
+			},
+			{
+				test: /\.html$/i,
+				loader: "html-loader",
+			},
+			{
+				test: /\.scss$/,
+				exclude: /node_modules/,
+				use: ['style-loader', 'css-loader', 'sass-loader']
+			},
+			{
+				test: /\.css$/,
+				use: [MiniCssExtractPlugin.loader, "css-loader"],
 			}
 		]
 	},

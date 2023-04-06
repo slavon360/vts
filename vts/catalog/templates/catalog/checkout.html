@@ -4,7 +4,6 @@
 
 {% block local_styles %}
 	<link rel="stylesheet" href="{% static 'styles/css/checkout/checkout.css' %}">
-	<link rel="stylesheet" href="{% static 'styles/css/checkout/checkout-local-styles.css' %}">
 {% endblock %}
 {% block content %}
 	<div class="checkout-page">
@@ -99,5 +98,5 @@
 {% endblock %}
 
 {% block local_scripts %}
-	<script src="{% static 'js/modules/checkout/dist/main.js' %}"></script>
+	<script src="{% static 'js/modules/checkout/dist/' %}{{js_name}}" defer></script>
 {% endblock %}

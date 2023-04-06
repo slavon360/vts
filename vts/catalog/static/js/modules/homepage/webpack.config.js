@@ -13,18 +13,12 @@ module.exports = {
 	...base_config,
 	entry: SRC_DIR,
 	output: {
+		...base_config.output,
 		path: DIST_DIR
 	},
 	module: {
 		rules: [
-			{
-				test: /\.html$/i,
-				loader: "html-loader",
-			},
-			{
-				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
-			}
+			...base_config.module.rules
 		]
 	},
 	plugins: [

@@ -42,3 +42,7 @@
 	</div>
 <!--Shopping Cart Area End-->
 {% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/modules/shopping-cart/dist/' %}{{js_name}}" defer></script>
+{% endblock %}

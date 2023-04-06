@@ -9,36 +9,32 @@ const current_working_dir = process.cwd();
 const base_config = require(`${current_working_dir}/webpack.base.config.js`);
 const working_dir_inverse_path = getWorkingDirInversePath(__dirname, current_working_dir);
 
+console.log('process.env.NODE_ENV: ', process.env.NODE_ENV);
+const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
 	...base_config,
 	entry: SRC_DIR,
 	output: {
+		...base_config.output,
 		path: DIST_DIR
 	},
 	module: {
 		rules: [
-			{
-				test: /\.html$/i,
-				loader: "html-loader",
-			},
-			{
-				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
-			}
+			...base_config.module.rules
 		]
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 		  filename: `${working_dir_inverse_path}styles/css/shopping-cart/shopping-cart.css`,
 		}),
-		new PurgeCSSPlugin({
+		isProduction ? new PurgeCSSPlugin({
 			paths: glob.sync([
 				`${SRC_DIR}/*`,
 				`${current_working_dir}/js/modules/products-search/src/*.js`,
-				`${current_working_dir}/js/jquery.meanmenu.min.js`,
+				
 				`${current_working_dir}/html/shopping-cart.html`
 			]),
 			keyframes: true
-		})
+		}) : function() {}
 	]
 };

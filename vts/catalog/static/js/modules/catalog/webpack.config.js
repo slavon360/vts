@@ -13,18 +13,12 @@ module.exports = {
 	...base_config,
 	entry: SRC_DIR,
 	output: {
+		...base_config.output,
 		path: DIST_DIR
 	},
 	module: {
 		rules: [
-			{
-				test: /\.html$/i,
-				loader: "html-loader",
-			},
-			{
-				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
-			}
+			...base_config.module.rules
 		]
 	},
 	plugins: [
@@ -35,8 +29,8 @@ module.exports = {
 			paths: glob.sync([
 				`${SRC_DIR}/*`,
 				`${current_working_dir}/js/modules/products-search/src/*.js`,
-				`${current_working_dir}/js/jquery.nice-select.min.js`,
-				`${current_working_dir}/js/jquery.meanmenu.min.js`,
+				
+				
 				`${current_working_dir}/html/catalog.html`
 			]),
 			keyframes: true

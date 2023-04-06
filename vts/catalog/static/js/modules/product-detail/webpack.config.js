@@ -18,29 +18,7 @@ module.exports = {
 	},
 	module: {
 		rules: [
-			...base_config.module.rules,
-			{
-				test: /\.html$/i,
-				loader: "html-loader",
-			},
-			{
-				test: /\.css$/,
-				use: [MiniCssExtractPlugin.loader, "css-loader"],
-			},
-			{
-				test: /\.scss$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							outputPath: `${working_dir_inverse_path}styles/css/product-detail/`,
-							name: '[name]-local-styles.css'
-						}
-					},
-					'sass-loader'
-				]
-			}
+			...base_config.module.rules
 		]
 	},
 	plugins: [

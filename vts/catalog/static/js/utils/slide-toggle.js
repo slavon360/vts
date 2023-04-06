@@ -1,3 +1,4 @@
+require('@styles/modules/slide-toggle/slide-toggle.scss');
 export const slideToggle = ({
 	selector,
 	target_container_selector
@@ -5,6 +6,7 @@ export const slideToggle = ({
 	const linkToggles = document.querySelectorAll(selector);
 	const target_container = document.querySelector(target_container_selector);
 
+	console.log(linkToggles);
 	linkToggles.forEach(linkToggle => {
 		linkToggle.addEventListener('click', function (event) {
 			event.preventDefault();

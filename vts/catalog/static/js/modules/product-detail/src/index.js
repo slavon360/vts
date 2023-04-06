@@ -10,7 +10,6 @@ import '@modules/shopping-cart/src';
 import { mmenu } from '@utils/mean-menu.js';
 require('@styles/css/common.css');
 require('@styles/modules/product-detail/product-detail.scss');
-require('@styles/modules/slide-toggle/slide-toggle.scss');
 
 class ProductDetails extends ProductQtyInput {
     constructor() {

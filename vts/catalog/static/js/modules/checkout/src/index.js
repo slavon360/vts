@@ -2,21 +2,12 @@ import * as Sqrl from 'squirrelly';
 import ordered_products from '../../../../../templates/ordered-products.html';
 import { debounce, numberWithCommas } from '../../../utils/utils.js';
 import { IconsLoader } from '@root/js/modules/icons-loader/src';
-require('@root/styles/css/material-design-iconic-font.min.css');
-require('@root/styles/css/font-awesome.min.css');
-require('@root/styles/css/fontawesome-stars.css');
-require('@root/styles/css/meanmenu.css');
-require('@root/styles/css/owl.carousel.min.css');
-require('@root/styles/css/slick.css');
-require('@root/styles/css/animate.css');
-require('@root/styles/css/jquery-ui.min.css');
-require('@root/styles/css/venobox.css');
-require('@root/styles/css/nice-select.css');
-require('@root/styles/css/magnific-popup.css');
-require('@root/styles/css/bootstrap.min.css');
-require('@root/styles/css/helper.css');
-require('@root/styles/css/style.css');
-require('@root/styles/css/responsive.css');
+import '@modules/shopping-cart/src';
+import '@modules/products-search/src';
+import { slideToggle } from '@utils/slide-toggle.js';
+import { mmenu } from '@utils/mean-menu.js';
+import { scrollUp } from '@utils/scroll-up.js';
+require('@styles/css/common.css');
 require('@root/styles/modules/checkout/checkout.scss');
 
 const COUNTRY_CODE = '+38';
@@ -42,6 +33,12 @@ class Checkout extends IconsLoader {
 
 		this.setPhoneNumberCode();
 		this.bindListeners();
+		slideToggle({
+			selector: '.hm-minicart-trigger',
+			target_container_selector: '.toggle-container'
+		});
+		scrollUp('#scrollUp');
+        mmenu();
 	}
 	getShoppingCartData() {
 		const cart_data = JSON.parse(localStorage.getItem(this.shopping_cart_key));

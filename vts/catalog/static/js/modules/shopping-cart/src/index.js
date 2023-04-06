@@ -1,7 +1,11 @@
 import { render } from 'squirrelly';
-import { numberWithCommas } from '../../../utils/utils.js';
 import shopping_cart_products_template from '../../../../../templates/catalog/shopping-cart/products.html';
 import shopping_cart_product_list_template from '../../../../../templates/catalog/shopping-cart/products-list.html';
+import '@modules/products-search/src';
+import { slideToggle } from '@utils/slide-toggle.js';
+import { numberWithCommas } from '@utils/utils.js';
+import { mmenu } from '@utils/mean-menu.js';
+import { scrollUp } from '@utils/scroll-up.js';
 require('@styles/css/common.css');
 
 const squirellyRender = render;
@@ -9,7 +13,7 @@ const squirellyRender = render;
 class ShoppingCart {
 	static shopping_cart_key = 'shopping-cart-vts-service';
 	constructor() {
-		this.is_single_product_page = document.querySelector('.single-product-area');
+		this.single_product_or_checkout_page = document.querySelectorAll('.single-product-area, .checkout-page');
 		this.addToCartBindListenersHandler = null;
 		this.updateAddToCartBtnsHandler = null;
 		this.updateSingleAddProductAreaHandler = null;
@@ -33,6 +37,14 @@ class ShoppingCart {
 		this.initShoppingCartTableHandler();
 		this.initBindListeners();
 		this.initUnbindListeners();
+		if (!this.single_product_or_checkout_page.length) {
+			slideToggle({
+				selector: '.hm-minicart-trigger',
+				target_container_selector: '.toggle-container'
+			});
+		}
+		scrollUp('#scrollUp');
+        mmenu();
 	}
 	getProductTotal(price, qty) {
 		return Number(price.replace(/,/g, '')) * Number(qty);
@@ -85,7 +97,7 @@ class ShoppingCart {
 		const add_to_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .add-product-to-cart:not([from-modal="true"])`);
 		const shopping_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .go-to-cart-btn`);
 
-		if (this.is_single_product_page) {
+		if (this.single_product_or_checkout_page.length) {
 			this.updateSingleAddProductArea({ detail: { product_id } });
 			return;
 		}
@@ -110,7 +122,7 @@ class ShoppingCart {
 		}
 	}
 	updateAddToCartBtns() {
-		if (!this.is_single_product_page) {
+		if (!this.single_product_or_checkout_page.length) {
 			this.shopping_cart_data.forEach(({ id }) => {
 				this.updateAddToCartBtn(id);
 			});

@@ -9,64 +9,30 @@ const current_working_dir = process.cwd();
 const base_config = require(`${current_working_dir}/webpack.base.config.js`);
 
 const working_dir_inverse_path = getWorkingDirInversePath(__dirname, current_working_dir);
-console.log(__dirname, current_working_dir);
-console.log('working_dir_inverse_path: ', working_dir_inverse_path);
+const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
 	...base_config,
 	entry: SRC_DIR,
 	output: {
+		...base_config.output,
 		path: DIST_DIR
 	},
 	module: {
 		rules: [
-			...base_config.module.rules,
-			{
-				test: /\.html$/i,
-				loader: "html-loader",
-			},
-			{
-				test: /\.css$/,
-				use: [
-					MiniCssExtractPlugin.loader, 
-					{
-						loader: "css-loader",
-						// options: {
-						// 	modules: {
-						// 		mode: 'global',
-						// 		localIdentName: '[sha512:hash:base64:7]'
-						// 	},
-						// }
-					}
-				],
-			},
-			{
-				test: /\.scss$/,
-				exclude: /node_modules/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							outputPath: `${working_dir_inverse_path}styles/css/checkout/`,
-							name: '[name]-local-styles.css'
-						}
-					},
-					'sass-loader'
-				]
-			}
+			...base_config.module.rules
 		]
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
 		  filename: `${working_dir_inverse_path}styles/css/checkout/checkout.css`,
 		}),
-		new PurgeCSSPlugin({
+		isProduction ? new PurgeCSSPlugin({
 			paths: glob.sync([
 				`${SRC_DIR}/*`,
 				`${current_working_dir}/js/modules/products-search/src/*.js`,
-				`${current_working_dir}/js/jquery.meanmenu.min.js`,
 				`${current_working_dir}/html/checkout.html`
 			]),
 			keyframes: true
-		})
+		}) : function() {}
 	]
 };

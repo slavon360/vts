@@ -57,11 +57,13 @@ def shopping_cart(request):
 		subsubcategory = '',
 		optional_title = 'Кошик'
 	)
+	js_name = get_js_file_name('/static/js/modules/shopping-cart/dist')
 
 	context = {
 		'categories': categories,
 		'phones': phones,
-		'breadcrumbs': breadcrumbs_data
+		'breadcrumbs': breadcrumbs_data,
+		'js_name': js_name
 	}
 	return render(request, 'catalog/shopping-cart.html', context=context)
 
@@ -77,6 +79,7 @@ def checkout_page(request):
 		subsubcategory = '',
 		optional_title = 'Оформлення замовлення'
 	)
+	js_name = get_js_file_name('/static/js/modules/checkout/dist')
 
 	if request.method == 'POST':
 		form = CheckoutForm(request.POST)
@@ -120,7 +123,8 @@ def checkout_page(request):
 		'categories': categories,
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
-		'form': form
+		'form': form,
+		'js_name': js_name
 	}
 
 	return render(request, 'catalog/checkout.html', context=context)
@@ -333,8 +337,10 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 
 		return queryset
 	def get_context_data(self, **kwargs):
+		js_name = get_js_file_name('/static/js/modules/catalog/dist')
 		context = super().get_context_data(**kwargs)
 
+		context['js_name'] = js_name
 		context['categories'] = Category.objects.all()
 		context['phones'] = Phone.objects.all()
 		context['breadcrumbs'] = self.get_breadcrumbs(
