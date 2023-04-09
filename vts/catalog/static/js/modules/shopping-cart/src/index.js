@@ -4,7 +4,6 @@ import shopping_cart_product_list_template from '../../../../../templates/catalo
 import '@modules/products-search/src';
 import { slideToggle } from '@utils/slide-toggle.js';
 import { numberWithCommas } from '@utils/utils.js';
-import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
 require('@styles/css/common.css');
 
@@ -13,7 +12,7 @@ const squirellyRender = render;
 class ShoppingCart {
 	static shopping_cart_key = 'shopping-cart-vts-service';
 	constructor() {
-		this.single_product_or_checkout_page = document.querySelectorAll('.single-product-area, .checkout-page');
+		this.single_product_page = document.querySelectorAll('.single-product-area');
 		this.addToCartBindListenersHandler = null;
 		this.updateAddToCartBtnsHandler = null;
 		this.updateSingleAddProductAreaHandler = null;
@@ -37,20 +36,31 @@ class ShoppingCart {
 		this.initShoppingCartTableHandler();
 		this.initBindListeners();
 		this.initUnbindListeners();
-		if (!this.single_product_or_checkout_page.length) {
+		if (this.isShoppingCartPage) {
 			slideToggle({
 				selector: '.hm-minicart-trigger',
 				target_container_selector: '.toggle-container'
 			});
 		}
 		scrollUp('#scrollUp');
-        mmenu();
+		this.initializeMeanMenu();
+	}
+	get isShoppingCartPage() {
+		return location.pathname.includes('shopping-cart');
+	}
+	async initializeMeanMenu() {
+		console.log('this.isShoppingCartPage: ', this.isShoppingCartPage);
+		if (this.isShoppingCartPage) {
+			const { mmenu } = await import('@utils/mean-menu.js');
+			console.log(mmenu);
+			mmenu();
+		}
 	}
 	getProductTotal(price, qty) {
 		return Number(price.replace(/,/g, '')) * Number(qty);
 	}
 	removeProductFromShoppingCartTable(product_id) {
-		if (location.pathname.includes('shopping-cart')) {
+		if (this.isShoppingCartPage) {
 			const tr_product = this.shopping_cart_tbody_element.querySelector(`[id="${product_id}"]`);
 
 			if (tr_product) {
@@ -60,7 +70,7 @@ class ShoppingCart {
 		}
 	}
 	initShoppingCartTableHandler() {
-		if (location.pathname.includes('shopping-cart')) {
+		if (this.isShoppingCartPage) {
 			this.renderShoppingCartTable();
 		}
 	}
@@ -97,7 +107,7 @@ class ShoppingCart {
 		const add_to_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .add-product-to-cart:not([from-modal="true"])`);
 		const shopping_cart_btns = document.querySelectorAll(`[data-product-id="${product_id}"] .go-to-cart-btn`);
 
-		if (this.single_product_or_checkout_page.length) {
+		if (this.single_product_page) {
 			this.updateSingleAddProductArea({ detail: { product_id } });
 			return;
 		}
@@ -122,7 +132,7 @@ class ShoppingCart {
 		}
 	}
 	updateAddToCartBtns() {
-		if (!this.single_product_or_checkout_page.length) {
+		if (!this.single_product_page) {
 			this.shopping_cart_data.forEach(({ id }) => {
 				this.updateAddToCartBtn(id);
 			});

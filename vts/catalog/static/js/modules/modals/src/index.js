@@ -1,33 +1,41 @@
-import { triggerUpdateSingleAddProductArea } from '../../../utils/events.js';
-import { ProductQtyInput } from '../../../utils/utils.js';
+import { tns } from 'tiny-slider';
+import 'bootstrap/js/src/modal';
+import { triggerUpdateSingleAddProductArea } from '@utils/events.js';
+import { ProductQtyInput } from '@utils/utils.js';
 
-$('#exampleModalCenter').on('show.bs.modal', function (event) {
+import 'tiny-slider/dist/tiny-slider.css';
+import '@styles/modules/tiny-slider/tiny-slider.scss'
+
+let gallery_images = null;
+// const mm_wrapper = document.querySelector('#mm-30');
+const modal = document.querySelector('#exampleModalCenter');
+modal.addEventListener('show.bs.modal', function (event) {
     const modal_body = this.querySelector('.modal-body');
 
     modal_body.classList.remove('show');
     const currentTarget = event.currentTarget;
-    const $relatedTarget = $(event.relatedTarget);
-    const productTitle = $relatedTarget.data('product-title');
-    const productManufacturer = $relatedTarget.data('product-manufacturer');
-    const actualPrice = $relatedTarget.data('product-actual-price');
-    const discountPrice = $relatedTarget.data('product-discount-price');
-    const productDescription = $relatedTarget.data('product-description');
-    const productImagesUrls = $relatedTarget.data('product-images-urls');
-    const productId = $relatedTarget.data('product-id');
-    const productPrice = $relatedTarget.data('product-price');
-    const productLink = $relatedTarget.data('product-link');
-    const productImageUrl = $relatedTarget.data('product-img-url');
-    const productQty = $relatedTarget.data('product-qty');
-    const preorder_phone = $relatedTarget.data('product-preorder-only-phone');
+    const relatedTarget = event.relatedTarget;
+    const productTitle = relatedTarget.dataset['productTitle'];
+    const productManufacturer = relatedTarget.dataset['productManufacturer'];
+    const actualPrice = relatedTarget.dataset['productActualPrice'];
+    const discountPrice = relatedTarget.dataset['productDiscountPrice'];
+    const productDescription = relatedTarget.dataset['productDescription'];
+    const productImagesUrls = relatedTarget.dataset['productImagesUrls'];
+    const productId = relatedTarget.dataset['productId'];
+    const productPrice = relatedTarget.dataset['productPrice'];
+    const productLink = relatedTarget.dataset['productLink'];
+    const productImageUrl = relatedTarget.dataset['productImgUrl'];
+    const productQty = relatedTarget.dataset['productQty'];
+    const preorder_phone = relatedTarget.dataset['productPreorderOnlyPhone'];
     const productDetailsLeft = document.querySelector('.product-details-left');
     const addToCartContainer = currentTarget.querySelector('.add-to-cart-container');
     const preorderOnlyBtn = currentTarget.querySelector('.preorder-only');
     const renderProductImages = () => {
         const img_regex = /(?:jpg|gif|png|jpeg)/gi;
         const details_images = document.createElement('div');
-        details_images.classList.add('slider-navigation-1', 'product-details-images');
+        details_images.classList.add('product-tns-details-images');
         const details_thumbs = document.createElement('div');
-        details_thumbs.classList.add('product-details-thumbs', 'slider-thumbs-1');
+        details_thumbs.classList.add('product-tns-details-thumbs');
         const urls = productImagesUrls.split(img_regex).reduce((result, current, index) => {
             const ext = productImagesUrls.match(img_regex)[index];
 
@@ -46,8 +54,8 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
             lg_img.src = url;
             sm_img.src = url;
 
-            lg_image_container.classList.add('lg-image');
-            sm_image_container.classList.add('sm-image');
+            lg_image_container.classList.add('product-image-item');
+            sm_image_container.classList.add('product-thumb-item');
             lg_image_container.appendChild(lg_img);
             sm_image_container.appendChild(sm_img);
 
@@ -57,44 +65,19 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
             productDetailsLeft.insertAdjacentElement('beforeend', details_thumbs);
         });
 
-        $('.product-details-images').not('.slick-initialized').each(function(){
-            const $this = $(this);
-            const $thumb = $this.siblings('.product-details-thumbs');
-
-            $this.slick({
-                arrows: false,
-                slidesToShow: 1,
-                slidesToScroll: 1,
-                autoplay: false,
-                autoplaySpeed: 5000,
-                dots: false,
-                infinite: true,
-                centerMode: false,
-                centerPadding: 0,
-                asNavFor: $thumb,
-            });
-        });
-        $('.product-details-thumbs').not('.slick-initialized').each(function(){
-            var $this = $(this);
-            var $details = $this.siblings('.product-details-images');
-            $this.slick({
-                slidesToShow: 4,
-                slidesToScroll: 1,
-                autoplay: false,
-                autoplaySpeed: 5000,
-                dots: false,
-                infinite: true,
-                focusOnSelect: true,
-                centerMode: true,
-                centerPadding: 0,
-                prevArrow: '<span class="slick-prev"><i class="fa fa-angle-left"></i></span>',
-                nextArrow: '<span class="slick-next"><i class="fa fa-angle-right"></i></span>',
-                asNavFor: $details,
-            });
+        gallery_images = tns({
+            container: '.product-tns-details-images',
+            items: 1,
+            controls: false,
+            navAsThumbnails: true,
+            // nav: false,
+            navContainer: '.product-tns-details-thumbs',
+            // controlsContainer: ''
         });
     }
 
     new ProductQtyInput();
+    document.querySelector('#mm-30').classList.remove('mm-page', 'mm-slideout');
 
     addToCartContainer.setAttribute('data-product-id', productId);
     addToCartContainer.setAttribute('data-product-title', productTitle);
@@ -119,6 +102,9 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
     currentTarget.querySelector('.product-details-ref').textContent = productManufacturer;
     currentTarget.querySelector('.product-desc').innerHTML = productDescription;
 
+    if (gallery_images) {
+        gallery_images.destroy();
+    }
     renderProductImages();
 
     if (discountPrice) {
@@ -131,4 +117,8 @@ $('#exampleModalCenter').on('show.bs.modal', function (event) {
     modal_body.classList.add('show');
     modal_body.querySelector('.cart-plus-minus-box').value = 1;
     triggerUpdateSingleAddProductArea(productId);
+});
+
+modal.addEventListener('hide.bs.modal', function (event) {
+    document.querySelector('#mm-30').classList.add('mm-page', 'mm-slideout');
 });

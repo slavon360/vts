@@ -1,6 +1,7 @@
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
 	resolve: {
 		alias: {
@@ -11,7 +12,7 @@ module.exports = {
 		}
 	},
 	optimization : {
-		minimizer: [ 
+		minimizer: [
 			new CssMinimizerPlugin({
 				minimizerOptions: {
 					preset: [
@@ -31,7 +32,30 @@ module.exports = {
 				}).apply(compiler);
 			}
 		],
+		splitChunks: {
+			chunks: 'async',
+			minSize: 20000,
+			minChunks: 1,
+			maxAsyncRequests: 30,
+			maxInitialRequests: 30,
+			enforceSizeThreshold: 50000,
+			cacheGroups: {
+			  defaultVendors: {
+				test: /[\\/]node_modules[\\/]/,
+				priority: -10,
+				reuseExistingChunk: true
+			  },
+			  default: {
+				minChunks: 2,
+				priority: -20,
+				reuseExistingChunk: true
+			  }
+			}
+		},
+		usedExports: true,
+		sideEffects: true
 	},
+	devtool: !isProduction ? 'inline-source-map' : false,
 	module: {
 		rules: [
 			{
@@ -59,11 +83,19 @@ module.exports = {
 			{
 				test: /\.css$/,
 				use: [MiniCssExtractPlugin.loader, "css-loader"],
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				use: {
+				  loader: 'babel-loader'
+				}
 			}
 		]
 	},
 	output: {
-		filename: '[name].[contenthash].js',
-		clean: true
+		filename: isProduction ? '[name].[contenthash].js' : 'index.js',
+		clean: true,
+		chunkFilename: isProduction ? '[name].[contenthash].chunk.js' : '[name].bundle.js'
 	}
 };

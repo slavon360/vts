@@ -6,12 +6,14 @@ import {
 	triggerAddToCartBtnsListeners,
 	triggerAddToCartBtnsRemoveListeners,
 	triggerUpdateAddToCartBtns
-} from '../../../utils/events.js';
+} from '@utils/events.js';
+import '@modules/modals/src';
 import '@modules/shopping-cart/src';
 import '@modules/products-search/src';
 import { slideToggle } from '@utils/slide-toggle.js';
 import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
+import { IconsLoader } from '@modules/icons-loader/src';
 require('@styles/css/common.css');
 
 const squirellyRender = render;
@@ -25,6 +27,8 @@ slideToggle({
 });
 scrollUp('#scrollUp');
 mmenu();
+new IconsLoader();
+
 const renderPagination = ({ count, next, previous, results}) => {
 	function makePagesArray ({current_page, last_page, show_on_both_sides}) {
 		const page_link = current_page === last_page ? previous : next;

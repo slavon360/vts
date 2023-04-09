@@ -82,6 +82,7 @@ body {
 a {
 	color: #a4a4a4;
 	transition: 0.3s ease-in-out;
+	text-decoration: none;
 }
 a:hover {
 	color: #fed700;
@@ -1025,6 +1026,8 @@ textarea:focus {
   right: 15px;
   top: 5px;
   z-index: 99;
+  background: none;
+  border-style: none;
 }
 .modal-wrapper .close:hover {
 	color: #fed700;
@@ -1668,6 +1671,7 @@ textarea:focus {
 	display: block;
 	font-size: 14px;
 	z-index: 1;
+	border-style: none;
 }
 .minicart .minicart-product-list li button.close:hover {
 	color: #fed700;
@@ -1757,10 +1761,12 @@ textarea:focus {
 	line-height: 35px;
 	font-weight: 500;
 	padding: 8px 0;
+	text-decoration: none;
 }
 .hb-menu-2 nav > ul > li > .address > a {
 	display: block;
 	color: #444;
+	text-decoration: none;
 }
 .hb-menu-2 nav > ul > li > .address > a:hover {
 	color: #fff;
@@ -1868,6 +1874,7 @@ textarea:focus {
 	font-weight: 500;
 	font-size: 14px;
 	transition: all 0.3s ease-in-out;
+	text-decoration: none;
 }
 .megamenu-static-holder ul li ul li.active a, 
 .dropdown-holder ul li ul li.active a {
@@ -1883,7 +1890,8 @@ textarea:focus {
 	color: #7e7e7e;
 	font-size: 14px;
 	padding: 7px 0;
-	display: block
+	display: block;
+	text-decoration: none;
 }
 .megamenu-holder .megamenu.is-visible, .megamenu-static-holder .megamenu.is-visible {
 	-webkit-transform: scaleY(1);
@@ -5500,6 +5508,7 @@ span.required {
 	color: #000;
 	border-bottom: 1px solid #ccc;
 	cursor: pointer;
+	text-decoration: none;
  }
  .searched-results .searched-product:hover,
  .searched-results .searched-city:hover {

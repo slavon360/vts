@@ -1,68 +1,74 @@
 <!-- Begin Quick View | Modal Area -->
-	<div class="modal fade modal-wrapper" id="exampleModalCenter" >
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-body fade">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<div class="modal-inner-area row">
-						<div class="col-lg-5 col-md-6 col-sm-6">
-							<!-- Product Details Left -->
-							<div class="product-details-left"></div>
-							<!--// Product Details Left -->
-						</div>
+	<div class="modal-wrapper">
+		<div class="modal fade"
+			id="exampleModalCenter"
+			tabindex="-1"
+			aria-hidden="true"
+		>
+			<div class="modal-dialog modal-xl modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-body">
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<div class="modal-inner-area row">
+							<div class="col-lg-5 col-md-6 col-sm-6">
+								<!-- Product Details Left -->
+								<div class="product-details-left"></div>
+								<!--// Product Details Left -->
+							</div>
 
-						<div class="col-lg-7 col-md-6 col-sm-6">
-							<div class="product-details-view-content pt-60">
-								<div class="product-info">
-									<h2 class="product-title"></h2>
-									<span class="product-details-ref"></span>
-									<div class="rating-box pt-20">
-										<ul class="rating rating-with-review-item">
-											<li><i class="fa fa-star-o"></i></li>
-											<li><i class="fa fa-star-o"></i></li>
-											<li><i class="fa fa-star-o"></i></li>
-											<li class="no-star"><i class="fa fa-star-o"></i></li>
-											<li class="no-star"><i class="fa fa-star-o"></i></li>
-											<li class="review-item"><a href="#">Read Review</a></li>
-											<li class="review-item"><a href="#">Write Review</a></li>
-										</ul>
-									</div>
-									<div class="price-box pt-20">
-										<span class="new-price new-price-2"></span>
-										<span class="old-price"></span>
-									</div>
-									<div class="product-desc"></div>
-									<div class="single-add-to-cart">
-										<div class="cart-quantity">
-											<div class="quantity">
-												<label>Кількість</label>
-												<div class="cart-plus-minus">
-													<input class="cart-plus-minus-box" value="1" type="text">
-													<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-													<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+							<div class="col-lg-7 col-md-6 col-sm-6">
+								<div class="product-details-view-content pt-60">
+									<div class="product-info">
+										<h2 class="product-title"></h2>
+										<span class="product-details-ref"></span>
+										<div class="rating-box pt-20">
+											<ul class="rating rating-with-review-item">
+												<li><i class="fa fa-star-o"></i></li>
+												<li><i class="fa fa-star-o"></i></li>
+												<li><i class="fa fa-star-o"></i></li>
+												<li class="no-star"><i class="fa fa-star-o"></i></li>
+												<li class="no-star"><i class="fa fa-star-o"></i></li>
+												<li class="review-item"><a href="#">Read Review</a></li>
+												<li class="review-item"><a href="#">Write Review</a></li>
+											</ul>
+										</div>
+										<div class="price-box pt-20">
+											<span class="new-price new-price-2"></span>
+											<span class="old-price"></span>
+										</div>
+										<div class="product-desc"></div>
+										<div class="single-add-to-cart">
+											<div class="cart-quantity">
+												<div class="quantity">
+													<label>Кількість</label>
+													<div class="cart-plus-minus">
+														<input class="cart-plus-minus-box" value="1" type="text">
+														<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+														<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+													</div>
+												</div>
+												<div class="add-to-cart-container d-inline-block">
+													<button from-modal="true" class="add-to-cart add-product-to-cart">Купити</button>
+												</div>
+												<div class="preorder-only d-none mt-n5">
+													<a class="btn btn-secondary" href="">під замовлення</a>
 												</div>
 											</div>
-											<div class="add-to-cart-container d-inline-block">
-												<button from-modal="true" class="add-to-cart add-product-to-cart">Купити</button>
-											</div>
-											<div class="preorder-only d-none mt-n5">
-												<a class="btn btn-secondary" href="">під замовлення</a>
+											<div class="alert alert-success d-none">
+												<i class="fa fa-check" aria-hidden="true"></i> 
+												Товар додано в <a href="/shopping-cart" class="text-primary">кошик</a>
 											</div>
 										</div>
-										<div class="alert alert-success d-none">
-											<i class="fa fa-check" aria-hidden="true"></i> 
-											Товар додано в <a href="/shopping-cart" class="text-primary">кошик</a>
-										</div>
-									</div>
-									<div class="product-additional-info pt-25">
-										<a class="wishlist-btn" href="wishlist.html"><i class="fa fa-heart-o"></i>Добавити у вибрані</a>
-										<div class="product-social-sharing pt-25">
-											<ul>
-												<li class="facebook"><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
-												<li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
-											</ul>
+										<div class="product-additional-info pt-25">
+											<a class="wishlist-btn" href="wishlist.html"><i class="fa fa-heart-o"></i>Добавити у вибрані</a>
+											<div class="product-social-sharing pt-25">
+												<ul>
+													<li class="facebook"><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+													<li class="twitter"><a href="#"><i class="fa fa-twitter"></i>Twitter</a></li>
+												</ul>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -71,6 +77,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>   
+		</div>   
+	</div>
 	<!-- Quick View | Modal Area End Here -->

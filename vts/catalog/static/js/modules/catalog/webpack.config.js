@@ -8,6 +8,7 @@ const SRC_DIR = path.resolve(__dirname, 'src');
 const current_working_dir = process.cwd();
 const base_config = require(`${current_working_dir}/webpack.base.config.js`);
 const working_dir_inverse_path = getWorkingDirInversePath(__dirname, current_working_dir);
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
 	...base_config,
@@ -25,15 +26,15 @@ module.exports = {
 		new MiniCssExtractPlugin({
 		  filename: `${working_dir_inverse_path}styles/css/catalog/catalog.css`,
 		}),
-		new PurgeCSSPlugin({
-			paths: glob.sync([
-				`${SRC_DIR}/*`,
-				`${current_working_dir}/js/modules/products-search/src/*.js`,
+		// isProduction ? new PurgeCSSPlugin({
+		// 	paths: glob.sync([
+		// 		`${SRC_DIR}/*`,
+		// 		`${current_working_dir}/js/modules/products-search/src/*.js`,
 				
 				
-				`${current_working_dir}/html/catalog.html`
-			]),
-			keyframes: true
-		})
+		// 		`${current_working_dir}/html/catalog.html`
+		// 	]),
+		// 	keyframes: true
+		// }) : function() {}
 	]
 };

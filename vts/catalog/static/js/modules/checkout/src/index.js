@@ -1,7 +1,7 @@
 import * as Sqrl from 'squirrelly';
 import ordered_products from '../../../../../templates/ordered-products.html';
 import { debounce, numberWithCommas } from '../../../utils/utils.js';
-import { IconsLoader } from '@root/js/modules/icons-loader/src';
+import { IconsLoader } from '@modules/icons-loader/src';
 import '@modules/shopping-cart/src';
 import '@modules/products-search/src';
 import { slideToggle } from '@utils/slide-toggle.js';

@@ -13,7 +13,6 @@ export class IconsLoader {
     setPhoneImagesSources() {
         this.phone_icon_imgs.forEach(img => {
             const img_name = img.getAttribute('data-image-name');
-            console.log('img_name: ', img_name);
             img.src = images_collection[img_name];
         });
     }
