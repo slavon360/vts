@@ -1,0 +1,11 @@
+.product-area #product-details {
+    .table {
+        tr {
+            &:first-child {
+                td {
+                    border: none;
+                }
+            }
+        }
+    }
+}

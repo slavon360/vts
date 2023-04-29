@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}<title>Оформлення замовлення</title>{% endblock %}
+
+{% block local_styles %}
+	<link rel="stylesheet" href="{% static 'styles/css/success-checkout/success-checkout.css' %}">
+{% endblock %}
+{% block content %}
+	<div class="checkout-page">
+		<div class="content-wraper mt-25 mb-25">
+			<div class="container">
+				<div class="alert alert-success">
+                    Ваше замовлення успішно оформлене.<br>
+                    Повернутися на <a href="/">головну</a>.
+                </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block local_scripts %}
+	<script src="{% static 'js/modules/success-checkout/dist/' %}{{js_name}}" defer></script>
+{% endblock %}

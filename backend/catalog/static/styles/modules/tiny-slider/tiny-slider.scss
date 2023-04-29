@@ -1,0 +1,28 @@
+.product-details-left {
+    .product-tns-details-thumbs {
+        margin: 5px 0;
+        text-align: center;
+
+        .product-thumb-item {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            border: 5px solid #fff;
+            cursor: pointer;
+            opacity: .5;
+
+            &.tns-nav-active {
+                opacity: 1;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+    img {
+        max-width: 100%;
+    }
+}
