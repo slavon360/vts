@@ -453,6 +453,8 @@ class Order(models.Model):
     shipping_address = models.CharField(max_length=200, default='', blank=True)
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     details = HTMLField('Деталі', max_length=999999, blank=True, null=True)
+    problem_description = models.CharField('Опис проблеми', max_length=400, default='', blank=True)
+    model_name = models.CharField('Марка та модель', max_length=100, default='', blank=True)
 
     def __str__(self):
         return f'{self.name} #{self.number}'

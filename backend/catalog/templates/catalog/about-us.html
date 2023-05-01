@@ -2,14 +2,14 @@
 {% block title %}<title>Про нас</title>{% endblock %}
 {% load static %}
 {% block local_styles %}
-	<link rel="stylesheet" href="{% static 'styles/css/shopping-cart/shopping-cart.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/css/about-us/about-us.css' %}">
 {% endblock %}
 {% block content %}
-	<div class="about-us-page pt-60 pb-60">
+	<div class="about-us-page pt-20 pb-30">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
-					<h1>Про нас</h1>
+					<h1 class="mb-4">Про нас</h1>
 					<p>
 						Ми раді вітати Вас на сторінках нашого інтернет-маркету. 
 						Метою його створення було максимально спростити Вам процес вибору і покупки, 
@@ -34,5 +34,5 @@
 {% endblock %}
 
 {% block local_scripts %}
-	<script src="{% static 'js/modules/shopping-cart/dist/index.js' %}" defer></script>
+	<script src="{% static 'js/modules/about-us/dist/' %}{{js_name}}" defer></script>
 {% endblock %}

@@ -1,0 +1,29 @@
+.repair-services-page {
+    .form-container {
+        form {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+    }
+
+    .intro p,
+    .our-advantages .advantage-text {
+        font-size: 16px;
+        color: #898989;
+    }
+
+    .our-advantages {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 15px;
+
+        .svg-advantage-icon {
+            display: inline-block;
+
+            svg {
+                width: 4.5em;
+                height: 4.5em;
+            }
+        }
+    }
+}

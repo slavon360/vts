@@ -1,0 +1,38 @@
+{% extends "base_generic.html" %}
+{% block title %}<title>Обмін та повернення</title>{% endblock %}
+{% load static %}
+{% block local_styles %}
+	<link rel="stylesheet" href="{% static 'styles/css/exchange-and-return/exchange-and-return.css' %}">
+{% endblock %}
+{% block content %}
+	<div class="exchange-and-return-page pt-20 pb-30">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1 class="mb-4">Обмін та повернення</h1>
+					<p>
+						У нашому інтернет-магазині Ви можете обміняти або повернути товар протягом 14 днів після покупки.
+					</p>
+					<p>
+						Це право гарантує вам «Закон про захист прав споживача».
+                        Щоб скористатися цією можливістю, будь ласка переконайтеся що:
+					</p>
+                    <ul style="color: #898989;" class="mx-5">
+                        <li>-товар, не був у вжитку і не має слідів використання: подряпин, сколів, потертостей</li>
+                        <li>-товар повністю укомплектований і не порушена цілісність упаковки</li>
+                        <li>-збережені всі ярлики і заводське маркування</li>
+                    </ul>
+                    <br/>
+                    <p>
+                        Якщо товар не працює, обмін або повернення товару здійснюється тільки за наявності висновку сервісного центру, авторизованого виробником, 
+                        про те, що умови експлуатації не порушені.
+                    </p>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/modules/exchange-and-return/dist/' %}{{js_name}}" defer></script>
+{% endblock %}

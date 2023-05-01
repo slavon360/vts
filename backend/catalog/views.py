@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.views.generic import DetailView, ListView
 from .models import Category, Phone, Banner, Product, Customer, Order
 from .serializers import ProductSerializer, ProductSearchSerializer 
-from .forms import CheckoutForm
+from .forms import CheckoutForm, RepairOrderForm
 
 # Create your views here.
 
@@ -150,6 +150,104 @@ def checkout_success_page(request):
 	}
 
 	return render(request, 'catalog/success-checkout.html', context=context)
+
+def about_us_page(request):
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = 'Про нас'
+	)
+	js_name = get_js_file_name('/static/js/modules/about-us/dist')
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data,
+		'js_name': js_name
+	}
+
+	return render(request, 'catalog/about-us.html', context=context)
+
+def exchange_and_return_page(request):
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = 'Обмін та повернення'
+	)
+	js_name = get_js_file_name('/static/js/modules/exchange-and-return/dist')
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data,
+		'js_name': js_name
+	}
+
+	return render(request, 'catalog/exchange-and-return.html', context=context)
+
+def repair_page(request):
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = 'Ремонт та обслуговування'
+	)
+	js_name = get_js_file_name('/static/js/modules/repair/dist')
+
+	if request.method == 'POST':
+		form = RepairOrderForm(request.POST)
+		if form.is_valid():
+			name = form.cleaned_data['name']
+			phone_number = form.cleaned_data['phone_number']
+			shipping_address = form.cleaned_data['shipping_address']
+			problem_description = form.cleaned_data['problem_description']
+			model_name = form.cleaned_data['model_name']
+
+			new_customer = Customer(
+				name = name,
+				phone_number = phone_number,
+				shipping_address = shipping_address
+			)
+			print(dir(request.POST))
+			new_order = Order(
+				name = name,
+				phone_number = phone_number,
+				shipping_address = shipping_address,
+				customer = new_customer,
+				problem_description = problem_description,
+				model_name = model_name
+			)
+
+			new_customer.save()
+			new_order.save()
+			return HttpResponseRedirect(reverse('success-checkout'))
+	else:
+		form = RepairOrderForm()
+
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data,
+		'js_name': js_name,
+		'form': form
+	}
+
+	return render(request, 'catalog/repair.html', context=context)
 
 def nova_poshta_settlements(request):
 	request_data = request.POST
