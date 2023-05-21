@@ -23,7 +23,7 @@
 				<div class="mb-4">
 					<h4 class="text-center mb-3">Заповніть будь ласка форму і ми Вам зателефонуємо</h4>
 					<div class="form-container">
-						<form id="repair-service" action="/repair-order" method="POST">
+						<form id="repair-service-form" action="/repair-order" method="POST">
 							{% csrf_token %}
 							<div data-aosx="fade-down" data-aosx-duration="2000" class="form-group">
 								<label for="{{ form.name.id_for_label }}">П.І.Б:</label>
@@ -52,6 +52,7 @@
 								<label for="{{ form.model_name.id_for_label }}">Марка та модель:</label>
 								{{ form.model_name }}
 							</div>
+							<button type="submit" class="btn btn-success">Відправити</button>
 						</form>
 					</div>
 				</div>

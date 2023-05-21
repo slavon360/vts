@@ -1,6 +1,13 @@
 import * as Sqrl from 'squirrelly';
 import ordered_products from '@backend/catalog/templates/ordered-products.html';
-import { debounce, numberWithCommas } from '@utils/utils.js';
+import {
+	debounce,
+	numberWithCommas,
+	is_valid_phone_number,
+	phoneNumberFormatHandler,
+	isFilledElement,
+	setPhoneNumberCode
+} from '@utils/utils.js';
 import { IconsLoader } from '@utils/icons-loader.js';
 import '@modules/shopping-cart/src';
 import '@modules/products-search/src';
@@ -31,7 +38,7 @@ class Checkout extends IconsLoader {
 		this.nova_post_settlements_url = '/external/nova-poshta/search-settlements/api';
 		this.nova_post_warehouses_url = '/external/nova-poshta/search-warehouses/api';
 
-		this.setPhoneNumberCode();
+		setPhoneNumberCode.call(this);
 		this.bindListeners();
 		slideToggle({
 			selector: '.hm-minicart-trigger',
@@ -47,21 +54,21 @@ class Checkout extends IconsLoader {
 
 		return result;
 	}
-	isFilledElement(element) {
-		const filled = element.value.trim();
+	// isFilledElement(element) {
+	// 	const filled = element.value.trim();
 
-		element.nextElementSibling.textContent = !filled ? 'Поле обов\'язкове для вводу' : '';
+	// 	element.nextElementSibling.textContent = !filled ? 'Поле обов\'язкове для вводу' : '';
 
-		return filled;
-	}
+	// 	return filled;
+	// }
 	validate(event) {
 		event.preventDefault();
 		const required_fields_not_filled = [].filter.call(this.required_fields, field => {
-			return !this.isFilledElement(field);
+			return !isFilledElement(field);
 		});
-		const required_fields_filled = [].every.call(this.required_fields, elem => this.isFilledElement(elem));
+		const required_fields_filled = [].every.call(this.required_fields, elem => isFilledElement(elem));
 		const valid_shipping_address = this.validateShippingAddress();
-		const valid_phone = this.is_valid_phone_number(this.phone_field.value);
+		const valid_phone = is_valid_phone_number.call(this, this.phone_field.value);
 		const valid_email = this.is_valid_email(this.email_field.value);
 		const all_fields_valid = valid_shipping_address && valid_phone && required_fields_filled;
 		
@@ -85,16 +92,16 @@ class Checkout extends IconsLoader {
 
 		return filled_address;
 	}
-	setPhoneNumberCode() {
-		this.phone_number_code.textContent = COUNTRY_CODE;
-	}
-	is_valid_phone_number = phone => {
-		const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
-		const valid = phone.match(regex);
-		this.phone_field.nextElementSibling.textContent = valid ? '' : 'Будь ласка, введіть валідний номер';
-		this.phone_field.parentElement.style.marginBottom = valid ? '' : '25px';
-		return valid;
-	}
+	// setPhoneNumberCode() {
+	// 	this.phone_number_code.textContent = COUNTRY_CODE;
+	// }
+	// is_valid_phone_number = phone => {
+	// 	const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
+	// 	const valid = phone.match(regex);
+	// 	this.phone_field.nextElementSibling.textContent = valid ? '' : 'Будь ласка, введіть валідний номер';
+	// 	this.phone_field.parentElement.style.marginBottom = valid ? '' : '25px';
+	// 	return valid;
+	// }
 	is_valid_email = email => {
 		const valid = String(email)
 			.toLowerCase()
@@ -116,32 +123,32 @@ class Checkout extends IconsLoader {
 		this.nova_post_office_select.addEventListener('change', this.setNovaPostShippingAddress.bind(this));
 	}
 	requiredFieldsKeyupHandler(elem, event) {
-		this.isFilledElement(elem);
-		this.phoneNumberFormatHandler(elem, event);
+		isFilledElement(elem);
+		phoneNumberFormatHandler.call(this, elem, event);
 	}
-	phoneNumberFormatHandler(elem, event) {
-		if (elem.id === this.phone_field.id) {
-			if (!event.key.match(/^\d+$/)) {
-				this.phone_field.value = this.phone_field.value.replaceAll(event.key, '');
-				return;
-			}
-			if (elem.value.length > 14) {
-				this.phone_field.value = elem.value.slice(0, 14);
-				return;
-			}
-			switch (elem.value.length) {
-				case 3:
-					this.phone_field.value = `(${elem.value})`;
-					break;
-				case 8:
-					this.phone_field.value = `${elem.value.slice(0,5)} ${elem.value.slice(5)}`;
-				case 10:
-					this.phone_field.value = `${elem.value.slice(0,9)} ${elem.value.slice(9)}`;
-				default:
-					break;
-			}
-		}
-	}
+	// phoneNumberFormatHandler(elem, event) {
+	// 	if (elem.id === this.phone_field.id) {
+	// 		if (!event.key.match(/^\d+$/)) {
+	// 			this.phone_field.value = this.phone_field.value.replaceAll(event.key, '');
+	// 			return;
+	// 		}
+	// 		if (elem.value.length > 14) {
+	// 			this.phone_field.value = elem.value.slice(0, 14);
+	// 			return;
+	// 		}
+	// 		switch (elem.value.length) {
+	// 			case 3:
+	// 				this.phone_field.value = `(${elem.value})`;
+	// 				break;
+	// 			case 8:
+	// 				this.phone_field.value = `${elem.value.slice(0,5)} ${elem.value.slice(5)}`;
+	// 			case 10:
+	// 				this.phone_field.value = `${elem.value.slice(0,9)} ${elem.value.slice(9)}`;
+	// 			default:
+	// 				break;
+	// 		}
+	// 	}
+	// }
 	showPreloader(active_field) {
 		active_field.setAttribute('disabled', true);
 		active_field.nextElementSibling.classList.remove('d-none');

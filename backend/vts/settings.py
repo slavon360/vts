@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from os import path
+from decouple import config
+
+MYSQL_USER = config('MYSQL_USER')
+MYSQL_PASSWORD = config('MYSQL_PASSWORD')
+MYSQL_DATABASE = config('MYSQL_DATABASE')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +31,7 @@ SECRET_KEY = 'django-insecure-$q9b8hp#%$e4opv6-p$*@0v#b(ma(5ohicc!dz#m5n0wz$d1zj
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -82,10 +87,10 @@ WSGI_APPLICATION = 'vts.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'vts_db',
-        'USER': 'root',
-        'PASSWORD': 'slavon360',
-        'HOST': '127.0.0.1',
+        'NAME': MYSQL_DATABASE,
+        'USER': MYSQL_USER,
+        'PASSWORD': MYSQL_PASSWORD,
+        'HOST': 'mysqldb',
         'PORT': '3306',
         'default-character-set': 'utf8'
     }

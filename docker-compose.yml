@@ -1,0 +1,57 @@
+version: '3.8'
+services:
+  mysqldb:
+    # image: 'mysql'
+    build: ./mysql
+    ports:
+      - 3308:3306
+    volumes: 
+      # - vts-volume4:/var/lib/mysql
+      - vts-volume4:/docker-entrypoint-initdb.d
+      # - ./vts_dump.sql:/docker-entrypoint-initdb.d/vts_dump.sql
+    env_file:
+      - ./.env
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
+      interval: 5s
+      timeout: 1s
+      retries: 10
+  # migration:
+  #   build: 
+  #     context: ./backend
+  #     dockerfile: migration.dockerfile
+  #   env_file:
+  #     - ./.env
+  #   depends_on:
+  #     - mysqldb
+    # command: mysql -uroot root -p slavon360 -e "create database vts_db;"
+  # mysqlinit:
+  #   image: 'mysql'
+  #   volumes:
+  #     - vts-volume1:/var/lib/mysql
+  #   command: bash -c "sleep 20 && mysql -h mysqldb -uviacheslav -pslavon360 vts_db < ./vts_dump.sql"
+  #   # depends_on:
+  #   #   - mysqldb
+  backend:
+    build: ./backend
+    # build:
+    #   context: ./backend
+    #   dockerfile: Dockerfile
+    # command: bash -c "sleep 30" 
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./.env
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+      # - migration
+      # - mysqlinit
+    tty: true
+  frontend:
+    build: ./frontend
+    tty: true
+volumes:
+  vts-volume4:
