@@ -52,6 +52,12 @@ services:
     tty: true
   frontend:
     build: ./frontend
+    volumes:
+      - ./frontend:/app
     tty: true
+    depends_on:
+      - mysqldb
+      - backend
+    # command: nodemon ./frontend/js scripts-bundler.js --env development --all
 volumes:
   vts-volume4:

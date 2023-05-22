@@ -1,0 +1,158 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}<title>{{ product.title }}</title>{% endblock %}
+{% block local_styles %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
+	<!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+	<link rel="stylesheet" href="{% static 'styles/css/product-detail/product-detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content-wraper mt-25 mb-25">
+	<div class="container">
+		<div class="row single-product-area">
+			<div class="col-lg-5 col-md-6">
+				<!-- Product Details Left -->
+				<div class="product-details-left">
+					<div class="product-tns-details-images">
+						{% for product_image in product.images.all %}
+							<div class="product-image-item">
+								<img src="/image/{{product_image.image_url}}" alt="product image">
+							</div>
+						{% endfor %}
+					</div>
+					<div class="product-tns-details-thumbs">
+						{% for product_image in product.images.all %}
+							<div class="product-thumb-item">
+								<img src="/image/{{product_image.image_url}}" alt="product image thumb">
+							</div>
+						{% endfor %}
+					</div>
+				</div>
+				<!--// Product Details Left -->
+			</div>
+
+			<div class="col-lg-7 col-md-6">
+				<div class="product-details-view-content sp-sale-content pt-60">
+					<div class="product-info">
+						<h2>
+							{{ product.title }}
+							<br>
+							{% if product.article %}
+								<small class="text-muted">(Артикул: {{ product.article }})</small>
+							{% endif %}
+						</h2>
+						{% if product.manufacturer %}
+							<span class="pull-left product-details-ref">Виробник: {{ product.manufacturer }}</span>
+						{% endif %}
+						{% if product.available %}
+							<span class="pull-right alert alert-success">В наявності</span>
+						{% else %}
+							<div class="pull-right">
+								<div class="alert alert-warning">Під замовлення</div>
+								{% for phone in phones %}
+									<a href="tel:{{ phone.phone_number | cut:" " }}"
+										class="d-inline pr-10">
+										{{ phone.phone_number }}
+										{% if phone.image %}
+											<img class="pl-5" src="/image/{{ phone.image }}">
+										{% endif %}
+									</a>
+								{% endfor %}
+							</div>
+						{% endif %}
+						<div class="price-box pt-20">
+							{% if product.discount_price %}
+								<span class="new-price new-price-2">{{ product.get_actual_discount_price }} грн.</span>
+								<span class="old-price">{{ product.get_actual_price }} грн.</span>
+							{% else %}
+								<span class="new-price">{{ product.get_actual_price }} грн.</span>
+							{% endif %}
+						</div>
+						{% if product.discount_end_date %}
+							<div class="countersection">
+								<div class="li-countdown product-sale-countdown"
+									data-end-date="{{ product.discount_end_date|date:"Y/m/d" }}"></div>
+							</div>
+						{% endif %}
+						<div class="product-desc">
+							<p>{{ product.description | safe }}</p>
+						</div>
+						<div class="single-add-to-cart">
+							{% if product.available %}
+								<div class="cart-quantity">
+									<div class="quantity">
+										<label>Кількість</label>
+										<div class="cart-plus-minus">
+											<input class="cart-plus-minus-box" value="1" type="text">
+											<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
+											<div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
+										</div>
+									</div>
+									<div class="add-to-cart-container d-inline-block"
+										data-product-id="{{ product.id }}"
+										data-product-title="{{ product.title }}"
+										data-product-qty="1"
+										data-product-price="{{ product.get_actual_price }}"
+										data-product-link="{{ product.get_absolute_url }}"
+										data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+									>
+										<button from-modal="true" class="add-to-cart add-product-to-cart">Купити</button>
+									</div>
+								</div>
+							{% endif %}
+							<div class="alert alert-success d-none">
+								<i class="fa fa-check" aria-hidden="true"></i> 
+								Товар додано в <a href="/shopping-cart" class="text-primary go-to-cart-btn">кошик</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <div class="product-area pt-35">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="li-product-tab">
+					<ul class="nav li-product-menu">
+						<li><a class="active" data-toggle="tab" href="#product-details"><span>Характеристики</span></a></li>
+					</ul>               
+				</div>
+				<!-- Begin Li's Tab Menu Content Area -->
+			</div>
+		</div>
+		<div class="tab-content">
+			<div id="product-details" class="tab-pane active show" role="tabpanel">
+				<div class="product-details-manufacturer">
+					<table class="table table-sm">
+						<tbody>
+							{% for prop_key, prop_value in product.get_fields %}
+								{% if prop_value %}
+									<tr class="d-flex">
+										<td class="col-3">{{ prop_key }}:</td>
+										{% if prop_value is True %}
+											<td class="col-3"><i class="fa fa-check text-success" aria-hidden="true"></i></td>
+										{% elif prop_value is 'False' %}
+											<td class="col-3"><i class="fa fa-times text-danger" aria-hidden="true"></i></td>
+										{% else %}
+											<td class="col-3">{{ prop_value }}</td>
+										{% endif %}
+									</tr>
+								{% endif %}
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/modules/product-detail/dist/' %}{{js_name}}" defer></script>
+{% endblock %}
+

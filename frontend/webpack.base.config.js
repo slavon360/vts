@@ -6,7 +6,8 @@ const isProduction = process.env.NODE_ENV === 'production';
 module.exports = {
 	resolve: {
 		alias: {
-			'@backend': path.resolve(__dirname, '../backend'),
+			'@templates': `${process.cwd()}/templates`,
+			'@images': `${process.cwd()}/images`,
 			'@root': process.cwd(),
 			'@styles': `${process.cwd()}/styles`,
 			'@utils': `${process.cwd()}/js/utils`,

@@ -1,6 +1,6 @@
 import { render } from 'squirrelly';
-import shopping_cart_products_template from '@backend/catalog/templates/catalog/shopping-cart/products.html';
-import shopping_cart_product_list_template from '@backend/catalog/templates/catalog/shopping-cart/products-list.html';
+import shopping_cart_products_template from '@templates/catalog/shopping-cart/products.html';
+import shopping_cart_product_list_template from '@templates/catalog/shopping-cart/products-list.html';
 import '@modules/products-search/src';
 import { slideToggle } from '@utils/slide-toggle.js';
 import { numberWithCommas } from '@utils/utils.js';

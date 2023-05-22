@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col-lg-4 col-md-3 d-none d-md-block">
+		<p>Сторінка <b>{{it.current_page}}</b> з <b>{{it.last_page_number}}</b></p>
+	</div>
+	<div class="col-lg-8 col-md-9">
+		<ul class="pagination-box">
+		{{@if (it.previous_page)}}
+			<li>
+				<div data-link="{{it.previous_page}}" class="Previous page-number">
+					<i class="fa fa-chevron-left"></i> Попередня
+				</div>
+			</li>
+		{{/if}}
+		{{@each(it.pages_elements) => page, index}}
+		{{@if (page.active)}}
+			<li class="active">
+			{{#else}}
+			<li>
+		{{/if}}
+				<div class="page-number" data-link="{{page.link}}">
+					{{page.number}}
+				</div>
+			</li>
+		{{/each}}
+		{{@if (it.next_page)}}
+			<li>
+				<div data-link="{{it.next_page}}" class="Next page-number">
+					Наступна <i class="fa fa-chevron-right"></i>
+				</div>
+			</li>
+		{{/if}}
+		</ul>
+	</div>
+</div>

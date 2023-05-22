@@ -1,7 +1,7 @@
 import { render } from 'squirrelly';
-import grid_view_template from '@backend/catalog/templates/catalog/products/grid-view.html';
-import list_view_template from '@backend/catalog/templates/catalog/products/list-view.html';
-import pagination_view_template from '@backend/catalog/templates/catalog/products/pagination.html';
+import grid_view_template from '@templates/catalog/products/grid-view.html';
+import list_view_template from '@templates/catalog/products/list-view.html';
+import pagination_view_template from '@templates/catalog/products/pagination.html';
 import {
 	triggerAddToCartBtnsListeners,
 	triggerAddToCartBtnsRemoveListeners,

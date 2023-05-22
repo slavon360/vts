@@ -1,5 +1,5 @@
 import * as Sqrl from 'squirrelly';
-import ordered_products from '@backend/catalog/templates/ordered-products.html';
+import ordered_products from '@templates/ordered-products.html';
 import {
 	debounce,
 	numberWithCommas,
@@ -16,9 +16,7 @@ import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
 require('@styles/css/common.css');
 require('@root/styles/modules/checkout/checkout.scss');
-
-const COUNTRY_CODE = '+38';
-
+// 292
 class Checkout extends IconsLoader {
 	constructor() {
 		super();
@@ -54,13 +52,6 @@ class Checkout extends IconsLoader {
 
 		return result;
 	}
-	// isFilledElement(element) {
-	// 	const filled = element.value.trim();
-
-	// 	element.nextElementSibling.textContent = !filled ? 'Поле обов\'язкове для вводу' : '';
-
-	// 	return filled;
-	// }
 	validate(event) {
 		event.preventDefault();
 		const required_fields_not_filled = [].filter.call(this.required_fields, field => {
@@ -92,16 +83,6 @@ class Checkout extends IconsLoader {
 
 		return filled_address;
 	}
-	// setPhoneNumberCode() {
-	// 	this.phone_number_code.textContent = COUNTRY_CODE;
-	// }
-	// is_valid_phone_number = phone => {
-	// 	const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4}$/im;
-	// 	const valid = phone.match(regex);
-	// 	this.phone_field.nextElementSibling.textContent = valid ? '' : 'Будь ласка, введіть валідний номер';
-	// 	this.phone_field.parentElement.style.marginBottom = valid ? '' : '25px';
-	// 	return valid;
-	// }
 	is_valid_email = email => {
 		const valid = String(email)
 			.toLowerCase()
@@ -126,29 +107,6 @@ class Checkout extends IconsLoader {
 		isFilledElement(elem);
 		phoneNumberFormatHandler.call(this, elem, event);
 	}
-	// phoneNumberFormatHandler(elem, event) {
-	// 	if (elem.id === this.phone_field.id) {
-	// 		if (!event.key.match(/^\d+$/)) {
-	// 			this.phone_field.value = this.phone_field.value.replaceAll(event.key, '');
-	// 			return;
-	// 		}
-	// 		if (elem.value.length > 14) {
-	// 			this.phone_field.value = elem.value.slice(0, 14);
-	// 			return;
-	// 		}
-	// 		switch (elem.value.length) {
-	// 			case 3:
-	// 				this.phone_field.value = `(${elem.value})`;
-	// 				break;
-	// 			case 8:
-	// 				this.phone_field.value = `${elem.value.slice(0,5)} ${elem.value.slice(5)}`;
-	// 			case 10:
-	// 				this.phone_field.value = `${elem.value.slice(0,9)} ${elem.value.slice(9)}`;
-	// 			default:
-	// 				break;
-	// 		}
-	// 	}
-	// }
 	showPreloader(active_field) {
 		active_field.setAttribute('disabled', true);
 		active_field.nextElementSibling.classList.remove('d-none');

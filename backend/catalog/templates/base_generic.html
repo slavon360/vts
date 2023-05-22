@@ -68,16 +68,20 @@
 					<div class="container">
 						<div class="row">
 							<!-- Begin Header Logo Area -->
-							<div class="col-lg-3">
+							<div class="col-lg-2">
 								<div class="logo pb-sm-30 pb-xs-30">
 									<a href="/">
-										<img src="images/menu/logo/1.jpg" alt="">
+										<img class="site-logo-img"
+											height="75"
+											data-image-name="logo-image"
+											alt="VTS Logo"
+										>
 									</a>
 								</div>
 							</div>
 							<!-- Header Logo Area End Here -->
 							<!-- Begin Header Middle Right Area -->
-							<div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+							<div class="col-lg-10 pl-0 ml-sm-15 ml-xs-15">
 								<!-- Begin Header Middle Searchbox Area -->
 								<form action="#" class="hm-searchbox">
 									<div class="search-input-container">
@@ -243,42 +247,39 @@
 		<div class="footer">
 			<div class="footer-static-middle">
 				<div class="container">
-					<div class="footer-logo-wrap pt-50 pb-35">
+					<div class="footer-logo-wrap pt-20 pb-35">
 						<div class="row">
 							<!-- Begin Footer Logo Area -->
 							<div class="col-md-4">
-								<div class="footer-logo">
-									<img src="images/menu/logo/1.jpg" alt="Footer Logo">
-									<p class="info">
-										{% comment %} We are a team of designers and developers that create high quality HTML Template & Woocommerce, Shopify Theme. {% endcomment %}
-									</p>
-								</div>
-								<ul class="des">
-									<li>
-										<span>Адреса: </span>
-										<a href="https://goo.gl/maps/G3E46L1FV4m91pGp6">вулиця Краснопільська, 9, офіс 209, Дніпро</a>
-									</li>
-									<li>
-										<span>Контакти: </span>
-										{% for phone in phones %}
-											{% if forloop.last %}
-												| 
-											{% endif %}
-											<a href="tel:{{ phone.phone_number | cut:" " }}">
-												{{ phone.phone_number }}
-											</a>
-										{% endfor %}
-									</li>
-									<li>
-										<span>Email: </span>
-										<a href="mailto://vts.07@ukr.net">vts.07@ukr.net</a>
-									</li>
-								</ul>
-								<div class="footer-block">
-									<span>Ми в соцмережах: </span>
-									<a class="facebook" href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
-										<i class="fa fa-facebook"></i>
-									</a>
+								<div class="footer-contacts">
+									<h3 class="footer-block-title mb-20">Контакти</h3>
+									<ul class="des">
+										<li>
+											<span>Адреса: </span>
+											<a href="https://goo.gl/maps/G3E46L1FV4m91pGp6">вулиця Краснопільська, 9, офіс 209, Дніпро</a>
+										</li>
+										<li>
+											<span>Телефони: </span>
+											{% for phone in phones %}
+												{% if forloop.last %}
+													| 
+												{% endif %}
+												<a href="tel:{{ phone.phone_number | cut:" " }}">
+													{{ phone.phone_number }}
+												</a>
+											{% endfor %}
+										</li>
+										<li>
+											<span>Email: </span>
+											<a href="mailto://vts.07@ukr.net">vts.07@ukr.net</a>
+										</li>
+									</ul>
+									<div class="footer-block">
+										<span>Ми в соцмережах: </span>
+										<a class="facebook" href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
+											<i class="fa fa-facebook"></i>
+										</a>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-4">

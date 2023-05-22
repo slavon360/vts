@@ -1,0 +1,69 @@
+{{@each(it.products) => prod, index}}
+	{{@if (prod.is_last)}}
+		<div class="row product-layout-list last-child">
+		{{#else}}
+		<div class="row product-layout-list">
+	{{/if}}
+		<div class="col-lg-3 col-md-5">
+			<div class="product-image">
+				<a href="{{prod.get_absolute_url}}">
+					<img src="{{prod.first_image_url}}" alt="{{prod.title}}">
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-5 col-md-7">
+			<div class="product_desc">
+				<div class="product_desc_info">
+					<div class="product-review">
+						<h5 class="manufacturer">
+							<a href="">{{prod.manufacturer}}</a>
+						</h5>
+						<div class="rating-box">
+							<ul class="rating">
+								<li><i class="fa fa-star-o"></i></li>
+								<li><i class="fa fa-star-o"></i></li>
+								<li><i class="fa fa-star-o"></i></li>
+								<li class="no-star"><i class="fa fa-star-o"></i></li>
+								<li class="no-star"><i class="fa fa-star-o"></i></li>
+							</ul>
+						</div>
+					</div>
+					<div class="price-box">
+						{{prod.price_block}}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="shop-add-action">
+				<ul class="add-actions-link">
+					<li class="add-cart"
+						data-product-id="{{prod.id}}"
+						data-product-title="{{prod.title}}"
+						data-product-qty="1"
+						data-product-price="{{prod.get_actual_price}}"
+						data-product-link="{{prod.get_absolute_url}}"
+						data-product-img-url="{{prod.first_image_url}}"
+					>
+						<div class="add-product-to-cart">
+							Купити
+						</div>
+					</li>
+					<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
+					<li>
+						<a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#"
+							data-product-title="{{prod.title}}"
+							data-product-manufacturer="{{prod.manufacturer}}"
+							data-product-actual-price="{{prod.get_actual_price}}"
+							{{prod.discount}}
+							data-product-description="{{prod.description}}"
+							data-product-images-urls="{{prod.images_urls}}"
+						>
+							<i class="fa fa-eye"></i>Швидкий перегляд
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+{{/each}}

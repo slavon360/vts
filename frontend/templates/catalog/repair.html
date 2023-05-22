@@ -1,0 +1,107 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}<title>Ремонт та сервісне обслуговування</title>{% endblock %}
+{% load static %}
+{% block local_styles %}
+	<link rel="stylesheet" href="{% static 'styles/css/repair/repair.css' %}">
+{% endblock %}
+{% block content %}
+	<div class="repair-services-page">
+		<div class="content-wraper mt-25 mb-25">
+			<div class="container">
+				<h2 class="mb-3">Ремонт котлів, колонок, накопичувальних та проточних водонагрівачів</h2>
+				<div class="intro mb-4 px-5">
+					<p>
+						<b>Вода Тепло Сервіс</b> виконує виїзд сервісного інженера з діагностики, ремонту та обслуговування газового, електричного опалювального 
+						обладнання, газових колонок, накопичувальних та проточних водонагрівачів.
+					</p>
+					<p>
+						Наші спеціалісти виконують роботу по вводу обладнання в експлуатацію, гарантійний, постгарантійний ремонт, технічне обслуговування,
+						хімічне промивання теплообмінників.
+					</p>
+				</div>
+				<div class="mb-4">
+					<h4 class="text-center mb-3">Заповніть будь ласка форму і ми Вам зателефонуємо</h4>
+					<div class="form-container">
+						<form id="repair-service-form" action="/repair-order" method="POST">
+							{% csrf_token %}
+							<div data-aosx="fade-down" data-aosx-duration="2000" class="form-group">
+								<label for="{{ form.name.id_for_label }}">П.І.Б:</label>
+								<div class="text-danger asterisk"></div>
+								{{ form.name }}
+								<span class="text-danger">{{ form.name.errors }}</span>
+							</div>
+							<div data-aosx="fade-down" data-aosx-duration="2000" class="form-group">
+								<label for="{{ form.phone_number.id_for_label }}">Мобільний Телефон:</label>
+								<div class="text-danger asterisk"></div>
+								<div class="phone-number-container">
+									<span class="number-code"></span>
+									{{ form.phone_number }}
+									<div class="text-danger">{{ form.phone_number.errors }}</div>
+								</div>
+							</div>
+							<div data-aosx="fade-down" data-aosx-duration="2000" class="form-group">
+								<label for="{{ form.shipping_address.id_for_label }}">Адреса:</label>
+								{{ form.shipping_address }}
+							</div>
+							<div data-aosx="fade-down" data-aosx-duration="2000" class="form-group">
+								<label for="{{ form.problem_description.id_for_label }}">Опис проблеми:</label>
+								{{ form.problem_description }}
+							</div>
+							<div data-aosx="fade-down" data-aosx-duration="2000" class="form-group">
+								<label for="{{ form.model_name.id_for_label }}">Марка та модель:</label>
+								{{ form.model_name }}
+							</div>
+							<button type="submit" class="btn btn-success">Відправити</button>
+						</form>
+					</div>
+				</div>
+				<h2 class="mb-4 text-center advantages-header" data-aosx="fade-down" data-aosx-duration="1600">
+					Наші переваги
+				</h2>
+				<ul class="our-advantages">
+					<li class="mb-4">
+						<div class="svg-advantage-icon" data-aosx="flip-down" data-aosx-duration="1600">
+							{% include "icons/stock.html" %}
+						</div>
+						<span class="advantage-text" data-aosx="fade-down" data-aosx-duration="1600"> - Склад запасних частин</span>
+					</li>
+					<li class="mb-4">
+						<div class="svg-advantage-icon" data-aosx="flip-down" data-aosx-duration="1600">
+							{% include "icons/employes.html" %}
+						</div>
+						<span class="advantage-text" data-aosx="fade-down" data-aosx-duration="1600"> - Сертифіковані працівники, які пройшли навчання</span>
+					</li>
+					<li class="mb-4">
+						<div class="svg-advantage-icon" data-aosx="flip-down" data-aosx-duration="1600">
+							{% include "icons/fast-delivery-service.html" %}
+						</div>
+						<span class="advantage-text" data-aosx="fade-down" data-aosx-duration="1600"> - Швидкий виїзд майстра на місце встановлення обладнання</span>
+					</li>
+					<li class="mb-4">
+						<div class="svg-advantage-icon" data-aosx="flip-down" data-aosx-duration="1600">
+							{% include "icons/phone-support.html" %}
+						</div>
+						<span class="advantage-text" data-aosx="fade-down" data-aosx-duration="1600"> - Консультативна допомога користувачу в експлуатації в телефонному режимі</span>
+					</li>
+					<li class="mb-4">
+						<div class="svg-advantage-icon" data-aosx="flip-down" data-aosx-duration="1600">
+							{% include "icons/warantee-agreement.html" %}
+						</div>
+						<span class="advantage-text" data-aosx="fade-down" data-aosx-duration="1600"> - Заключаємо договір на гарантійне та постгарантійне обслуговування обладнання з повним пакетом документів</span>
+					</li>
+					<li class="mb-4">
+						<div class="svg-advantage-icon" data-aosx="flip-down" data-aosx-duration="1600">
+							{% include "icons/24h.html" %}
+						</div>
+						<span class="advantage-text" data-aosx="fade-down" data-aosx-duration="1600"> - В опалювальний сезон працюємо без вихідних</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block local_scripts %}
+	<script src="{% static 'js/modules/repair/dist/' %}{{js_name}}" defer></script>
+{% endblock %}

@@ -8,4 +8,6 @@ RUN npm install
 
 COPY . /app
 
-RUN npm run build:all-scripts-dev
+# RUN npm install -g nodemon
+
+CMD npm run build:script-dev js/modules/checkout watch;
