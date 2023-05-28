@@ -52,7 +52,7 @@
 
 	<!-- Begin Li's Special Product Area -->
 	{% if hot_deal_products %}
-		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+		<section class="product-area li-laptop-product Special-product">
 			<div class="container">
 				<div class="row">
 					<!-- Begin Li's Section Area -->
@@ -62,98 +62,105 @@
 								<span>Акційні товари</span>
 							</h2>
 						</div>
-						<div class="row">
-							<div class="special-product-active owl-carousel">
+						<div class="products-carousel-container">
+							<div class="products-tns-carousel">
 								{% for hot_deal_product in hot_deal_products %}
-								<div class="col-lg-12">
 									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="{{ hot_deal_product.get_absolute_url }}">
-												<img src="image/{{ hot_deal_product.image }}" alt="{{ hot_deal_product.title_without_serial_number }}">
-											</a>
-											<span class="sticker">New</span>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="#">{{ hot_deal_product.manufacturer }}</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
+									<div class="single-product">
+										<div class="single-product-wrap">
+											<div class="product-image">
+												<a href="{{ hot_deal_product.get_absolute_url }}">
+													<img data-src="image/{{ hot_deal_product.image }}"
+														class="tns-lazy-img"
+														alt="{{ hot_deal_product.title_without_serial_number }}"
+													>
+												</a>
+												<span class="sticker">New</span>
+											</div>
+											<div class="product_desc">
+												<div class="product_desc_info">
+													<div class="product-review">
+														<h5 class="manufacturer">
+															<a href="#">{{ hot_deal_product.manufacturer }}</a>
+														</h5>
+														<div class="rating-box">
+															<ul class="rating">
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+															</ul>
+														</div>
+													</div>
+													<h4><a class="product_name" href="{{ hot_deal_product.get_absolute_url }}">{{ hot_deal_product.title }}</a></h4>
+													<div class="price-box">
+														{% if hot_deal_product.discount_price %}
+															<span class="new-price new-price-2">₴ {{ hot_deal_product.get_actual_discount_price }}</span>
+																<span class="old-price">₴ {{ hot_deal_product.get_actual_price }}</span>
+															<span class="discount-percentage">{{hot_deal_product.get_discount_in_percents}}</span>
+														{% else %}
+															<span class="new-price">₴ {{ hot_deal_product.get_actual_price }}</span>
+														{% endif %}
+													</div>
+													<div class="countersection">
+														<div class="li-countdown" data-end-date="{{ hot_deal_product.discount_end_date|date:"Y/m/d" }}"></div>
 													</div>
 												</div>
-												<h4><a class="product_name" href="{{ hot_deal_product.get_absolute_url }}">{{ hot_deal_product.title }}</a></h4>
-												<div class="price-box">
-													{% if hot_deal_product.discount_price %}
-														<span class="new-price new-price-2">₴ {{ hot_deal_product.get_actual_discount_price }}</span>
-															<span class="old-price">₴ {{ hot_deal_product.get_actual_price }}</span>
-														<span class="discount-percentage">{{hot_deal_product.get_discount_in_percents}}</span>
-													{% else %}
-														<span class="new-price">₴ {{ hot_deal_product.get_actual_price }}</span>
-													{% endif %}
-												</div>
-												<div class="countersection">
-													<div class="li-countdown" data-end-date="{{ hot_deal_product.discount_end_date|date:"Y/m/d" }}"></div>
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-												{% if hot_deal_product.available %}
-													<li class="add-cart active"
-														data-product-id="{{ hot_deal_product.id }}"
-														data-product-title="{{ hot_deal_product.title }}"
-														data-product-qty="1"
-														data-product-price="{{ hot_deal_product.get_actual_price }}"
-														data-product-link="{{ hot_deal_product.get_absolute_url }}"
-														data-product-img-url="{% with hot_deal_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-													>
-														<div class="add-product-to-cart">
-															Купити
-														</div>
-													</li>
-													{% else %}
-													<li class="text-nowrap preorder-only">
-														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
-														під замовлення
-														</a>
-													</li>
-												{% endif %}
-													<li>
-														<a href="#" title="quick view" class="quick-view-btn"
-															data-toggle="modal"
-															data-target="#exampleModalCenter"
+												<div class="add-actions">
+													<ul class="add-actions-link">
+													{% if hot_deal_product.available %}
+														<li class="add-cart active"
 															data-product-id="{{ hot_deal_product.id }}"
+															data-product-title="{{ hot_deal_product.title }}"
 															data-product-qty="1"
 															data-product-price="{{ hot_deal_product.get_actual_price }}"
 															data-product-link="{{ hot_deal_product.get_absolute_url }}"
 															data-product-img-url="{% with hot_deal_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-															data-product-title="{{ hot_deal_product.title }}"
-															data-product-manufacturer="{{ hot_deal_product.manufacturer }}"
-															data-product-actual-price="{{ hot_deal_product.get_actual_price }}"
-															{% if hot_deal_product.get_actual_discount_price %}
-																data-product-discount-price="{{ hot_deal_product.get_actual_discount_price }}"
-															{% endif %}
-															data-product-description="{{ hot_deal_product.description }}"
-															data-product-images-urls="{% for product_image in hot_deal_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
 														>
-															<i class="fa fa-eye"></i>
-														</a>
-													</li>
-												</ul>
+															<div class="add-product-to-cart">
+																Купити
+															</div>
+														</li>
+														{% else %}
+														<li class="text-nowrap preorder-only">
+															<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+															під замовлення
+															</a>
+														</li>
+													{% endif %}
+														<li>
+															<a href="#" title="quick view" class="quick-view-btn"
+																data-toggle="modal"
+																data-target="#exampleModalCenter"
+																data-product-id="{{ hot_deal_product.id }}"
+																data-product-qty="1"
+																data-product-price="{{ hot_deal_product.get_actual_price }}"
+																data-product-link="{{ hot_deal_product.get_absolute_url }}"
+																data-product-img-url="{% with hot_deal_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+																data-product-title="{{ hot_deal_product.title }}"
+																data-product-manufacturer="{{ hot_deal_product.manufacturer }}"
+																data-product-actual-price="{{ hot_deal_product.get_actual_price }}"
+																{% if hot_deal_product.get_actual_discount_price %}
+																	data-product-discount-price="{{ hot_deal_product.get_actual_discount_price }}"
+																{% endif %}
+																data-product-description="{{ hot_deal_product.description }}"
+																data-product-images-urls="{% for product_image in hot_deal_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+															>
+																<i class="fa fa-eye"></i>
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
 									<!-- single-product-wrap end -->
-								</div>
 								{% endfor %}
+							</div>
+							<div class="products-tns-controls">
+								<i class="fa fa-angle-left" data-controls="prev"></i>
+								<i class="fa fa-angle-right" data-controls="next"></i>
 							</div>
 						</div>
 					</div>
@@ -165,7 +172,7 @@
 	<!-- Li's Special Product Area End Here -->
 
 	{% if spare_parts_products %}
-		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+		<section class="product-area li-laptop-product Special-product">
 			<div class="container">
 				<div class="row">
 					<!-- Begin Li's Section Area -->
@@ -499,6 +506,5 @@
 {% endblock %}
 
 {% block local_scripts %}
-	<script src="{% static 'js/modules/modals/dist/main.js' %}"></script>
-	<script src="{% static 'js/modules/homepage/dist/main.js' %}" defer></script>
+	<script src="{% static 'js/modules/homepage/dist/' %}{{js_name}}" defer></script>
 {% endblock %}

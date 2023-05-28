@@ -1,18 +1,53 @@
-import { triggerAddToCartBtnsListeners } from '../../../utils/events.js';
-require('@root/styles/css/material-design-iconic-font.min.css');
-require('@root/styles/css/font-awesome.min.css');
-require('@root/styles/css/fontawesome-stars.css');
-require('@root/styles/css/meanmenu.css');
-require('@root/styles/css/owl.carousel.min.css');
-require('@root/styles/css/slick.css');
-require('@root/styles/css/animate.css');
-require('@root/styles/css/jquery-ui.min.css');
-require('@root/styles/css/venobox.css');
-require('@root/styles/css/nice-select.css');
-require('@root/styles/css/magnific-popup.css');
-require('@root/styles/css/bootstrap.min.css');
-require('@root/styles/css/helper.css');
-require('@root/styles/css/style.css');
-require('@root/styles/css/responsive.css');
+import { tns } from 'tiny-slider';
+import { triggerAddToCartBtnsListeners } from '@utils/events.js';
+import { slideToggle } from '@utils/slide-toggle.js';
+import { mmenu } from '@utils/mean-menu.js';
+import { scrollUp } from '@utils/scroll-up.js';
+import { IconsLoader } from '@utils/icons-loader.js';
+import '@modules/shopping-cart/src';
+import 'tiny-slider/dist/tiny-slider.css';
+require('@styles/modules/homepage/homepage.scss');
 
-triggerAddToCartBtnsListeners();
+require('@styles/css/common.css');
+
+class Homepage {
+	constructor () {
+		this.product_gallery = null;
+
+		triggerAddToCartBtnsListeners();
+		slideToggle({
+			selector: '.hm-minicart-trigger',
+			target_container_selector: '.toggle-container'
+		});
+		scrollUp('#scrollUp');
+		mmenu();
+		new IconsLoader();
+
+		this.initProductGallery();
+	}
+
+	initProductGallery() {
+        this.product_gallery = tns({
+            container: '.products-tns-carousel',
+			controlsContainer: '.products-tns-controls',
+            items: 4,
+            // controls: false,
+			lazyload: true,
+			responsive: {
+				150: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				992: {
+					items: 3
+				}
+			},
+            nav: false
+            // controlsContainer: ''
+        });
+    }
+}
+
+new Homepage();

@@ -32,6 +32,7 @@ def index(request):
 	boiler_products = Product.objects.filter(category__name='Водонагрівачі')[:10]
 	gas_boiler_products = Product.objects.filter(category__name='Котли')[:10]
 	phones = Phone.objects.all()
+	js_name = get_js_file_name('/static/js/modules/homepage/dist')
 
 	context = {
 		'categories': categories,
@@ -40,7 +41,8 @@ def index(request):
 		'hot_deal_products': hot_deal_products,
 		'spare_parts_products': spare_parts_products,
 		'boiler_products': boiler_products,
-		'gas_boiler_products': gas_boiler_products
+		'gas_boiler_products': gas_boiler_products,
+		'js_name': js_name
 	}
 
 	return render(request, 'index.html', context=context)

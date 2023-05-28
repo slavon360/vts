@@ -1424,6 +1424,10 @@ textarea:focus {
 .header-middle {
 	padding: 30px;
 }
+.header-middle .site-logo-container {
+	display: block;
+	transform: translateY(-5px);
+}
 .hm-searchbox {
 	display: flex;
 	position: relative;
