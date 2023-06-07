@@ -11,24 +11,18 @@ const base_config = require(`${current_working_dir}/webpack.base.config.js`);
 const working_dir_inverse_path = getWorkingDirInversePath(__dirname, current_working_dir);
 const isProduction = process.env.NODE_ENV === 'production';
 
+function collectSafelist() {
+	return {
+		standard: [/mm-/, /mean-menu-toggler/]
+	}
+}
+
 const common_config = {
 	module: {
 		rules: [
 			...base_config.module.rules
 		]
-	},
-	plugins: [
-		isProduction ? new PurgeCSSPlugin({
-			paths: glob.sync([
-				`${SRC_DIR}/*`,
-				`${current_working_dir}/js/modules/products-search/src/*.js`,
-				`${current_working_dir}/node_modules/mmenu-js/dist/mmenu.js`,
-				`${current_working_dir}/node_modules/tiny-slider/src/tiny-slider.js`,
-				`${current_working_dir}/html/product-detail.html`
-			]),
-			keyframes: true
-		}) : function() {}
-	]
+	}
 }
 
 const frontend_folder_config = {
@@ -40,7 +34,6 @@ const frontend_folder_config = {
 		path: DIST_DIR
 	},
 	plugins: [
-		...common_config.plugins,
 		new MiniCssExtractPlugin({
 			filename: `${working_dir_inverse_path}styles/css/product-detail/product-detail.css`,
 		})
@@ -55,10 +48,20 @@ const backend_folder_config = {
 		path: path.resolve(current_working_dir, `../backend/catalog/static/js/modules/${folder_name}/dist`)
 	},
 	plugins: [
-		...common_config.plugins,
 		new MiniCssExtractPlugin({
 			filename: '../../../../../static/styles/css/product-detail/product-detail.css',
-		})
+		}),
+		isProduction ? new PurgeCSSPlugin({
+			paths: glob.sync([
+				`${SRC_DIR}/*`,
+				`${current_working_dir}/js/modules/products-search/src/*.js`,
+				`${current_working_dir}/node_modules/mmenu-js/dist/mmenu.js`,
+				`${current_working_dir}/node_modules/tiny-slider/src/tiny-slider.js`,
+				`${current_working_dir}/html-statics/product-detail.html`
+			]),
+			keyframes: true,
+			safelist: collectSafelist
+		}) : function() {}
 	]
 };
 

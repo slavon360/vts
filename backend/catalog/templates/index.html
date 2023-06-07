@@ -6,18 +6,19 @@
 {% endblock %}
 {% block content %}
 	<!-- Begin Slider With Category Menu Area -->
+	{% if banners %}
 		<div class="slider-with-banner">
 			<div class="container">
 				<div class="row">
 					<!-- Begin Slider Area -->
 					<div class="col-lg-12">
-						<div class="slider-area pt-sm-30 pt-xs-30">
-							<div class="slider-active owl-carousel">
-								<!-- Begin Single Slide Area -->
-								{% if banners %}
-									{% for banner in banners %}
+						<div class="products-carousel-container">
+						<!-- Begin Single Slide Area -->
+							<div class="banner-products products-tns-carousel">
+								{% for banner in banners %}
+								<div class="single-product">
+									<div class="single-product-wrap">
 										<div class="single-slide align-center-left animation-style-02 bg-4">
-											<div class="slider-progress"></div>
 											<div class="slider-content">
 												<h3>{{ banner.brief_text }}</h3>
 												<h2>{{ banner.product.title }}</h2>
@@ -32,15 +33,20 @@
 													</h3>
 												{% endif %}
 												<div class="default-btn slide-btn">
-													<a class="links" href="{{ banner.product.get_absolute_url }}">Дізнатися більше</a>
+													<a class="links banner-link" href="{{ banner.product.get_absolute_url }}">Дізнатися більше</a>
 												</div>
 											</div>
-											<div class="slider-product-image-wrp">
+											<div class="slider-product-image-wrp ml-50">
 												<img class="slider-product-image" src="image/{{ banner.product.image }}">
 											</div>
 										</div>
-									{% endfor %}
-								{% endif %}
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+							<div class="banner-products products-tns-controls">
+								<i class="fa fa-angle-left" data-controls="prev"></i>
+								<i class="fa fa-angle-right" data-controls="next"></i>
 							</div>
 						</div>
 					</div>
@@ -48,6 +54,7 @@
 				</div>
 			</div>
 		</div>
+	{% endif %}
 	<!-- Slider With Category Menu Area End Here -->
 
 	<!-- Begin Li's Special Product Area -->
@@ -63,7 +70,7 @@
 							</h2>
 						</div>
 						<div class="products-carousel-container">
-							<div class="products-tns-carousel">
+							<div class="hot-deal-products products-tns-carousel">
 								{% for hot_deal_product in hot_deal_products %}
 									<!-- single-product-wrap start -->
 									<div class="single-product">
@@ -75,7 +82,6 @@
 														alt="{{ hot_deal_product.title_without_serial_number }}"
 													>
 												</a>
-												<span class="sticker">New</span>
 											</div>
 											<div class="product_desc">
 												<div class="product_desc_info">
@@ -83,7 +89,7 @@
 														<h5 class="manufacturer">
 															<a href="#">{{ hot_deal_product.manufacturer }}</a>
 														</h5>
-														<div class="rating-box">
+														{% comment %} <div class="rating-box">
 															<ul class="rating">
 																<li><i class="fa fa-star-o"></i></li>
 																<li><i class="fa fa-star-o"></i></li>
@@ -91,7 +97,7 @@
 																<li class="no-star"><i class="fa fa-star-o"></i></li>
 																<li class="no-star"><i class="fa fa-star-o"></i></li>
 															</ul>
-														</div>
+														</div> {% endcomment %}
 													</div>
 													<h4><a class="product_name" href="{{ hot_deal_product.get_absolute_url }}">{{ hot_deal_product.title }}</a></h4>
 													<div class="price-box">
@@ -158,7 +164,7 @@
 									<!-- single-product-wrap end -->
 								{% endfor %}
 							</div>
-							<div class="products-tns-controls">
+							<div class="hot-deal-products products-tns-controls">
 								<i class="fa fa-angle-left" data-controls="prev"></i>
 								<i class="fa fa-angle-right" data-controls="next"></i>
 							</div>
@@ -182,100 +188,104 @@
 								<span>Запчастини</span>
 							</h2>
 						</div>
-						<div class="row">
-							<div class="product-active owl-carousel">
+						<div class="products-carousel-container">
+							<div class="spare-parts-products products-tns-carousel">
 								{% for spare_parts_product in spare_parts_products %}
-								<div class="col-lg-12">
 									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="{{ spare_parts_product.get_absolute_url }}">
-												<img src="image/{{ spare_parts_product.image }}" alt="{{ spare_parts_product.title_without_serial_number }}">
-											</a>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="#">{{ spare_parts_product.manufacturer }}</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
+									<div class="single-product">
+										<div class="single-product-wrap">
+											<div class="product-image">
+												<a href="{{ spare_parts_product.get_absolute_url }}">
+													<img src="image/{{ spare_parts_product.image }}" alt="{{ spare_parts_product.title_without_serial_number }}">
+												</a>
+											</div>
+											<div class="product_desc">
+												<div class="product_desc_info">
+													<div class="product-review">
+														<h5 class="manufacturer">
+															<a href="#">{{ spare_parts_product.manufacturer }}</a>
+														</h5>
+														{% comment %} <div class="rating-box">
+															<ul class="rating">
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+															</ul>
+														</div> {% endcomment %}
+													</div>
+													<h4><a class="product_name" href="{{ spare_parts_product.get_absolute_url }}">{{ spare_parts_product.title }}</a></h4>
+													<div class="price-box">
+														{% if spare_parts_product.discount_price %}
+															<span class="new-price new-price-2">₴ {{ spare_parts_product.get_actual_discount_price }}</span>
+																<span class="old-price">₴ {{ spare_parts_product.get_actual_price }}</span>
+															<span class="discount-percentage">{{spare_parts_product.get_discount_in_percents}}</span>
+														{% else %}
+															<span class="new-price">₴ {{ spare_parts_product.get_actual_price }}</span>
+														{% endif %}
 													</div>
 												</div>
-												<h4><a class="product_name" href="{{ spare_parts_product.get_absolute_url }}">{{ spare_parts_product.title }}</a></h4>
-												<div class="price-box">
-													{% if spare_parts_product.discount_price %}
-														<span class="new-price new-price-2">₴ {{ spare_parts_product.get_actual_discount_price }}</span>
-															<span class="old-price">₴ {{ spare_parts_product.get_actual_price }}</span>
-														<span class="discount-percentage">{{spare_parts_product.get_discount_in_percents}}</span>
-													{% else %}
-														<span class="new-price">₴ {{ spare_parts_product.get_actual_price }}</span>
-													{% endif %}
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-												{% if spare_parts_product.available %}
-													<li class="add-cart active"
-														data-product-id="{{ spare_parts_product.id }}"
-														data-product-title="{{ spare_parts_product.title }}"
-														data-product-qty="1"
-														data-product-price="{{ spare_parts_product.get_actual_price }}"
-														data-product-link="{{ spare_parts_product.get_absolute_url }}"
-														data-product-img-url="{% with spare_parts_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-													>
-														<div class="add-product-to-cart">
-															Купити
-														</div>
-													</li>
-													{% else %}
-													<li class="text-nowrap preorder-only">
-														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
-														під замовлення
-														</a>
-													</li>
-												{% endif %}
-													<li>
-														<a href="#"
-															title="quick view"
-															class="quick-view-btn"
-															data-toggle="modal"
-															data-target="#exampleModalCenter"
+												<div class="add-actions">
+													<ul class="add-actions-link">
+													{% if spare_parts_product.available %}
+														<li class="add-cart active"
 															data-product-id="{{ spare_parts_product.id }}"
+															data-product-title="{{ spare_parts_product.title }}"
 															data-product-qty="1"
 															data-product-price="{{ spare_parts_product.get_actual_price }}"
 															data-product-link="{{ spare_parts_product.get_absolute_url }}"
 															data-product-img-url="{% with spare_parts_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-															data-product-title="{{ spare_parts_product.title }}"
-															data-product-manufacturer="{{ spare_parts_product.manufacturer }}"
-															data-product-actual-price="{{ spare_parts_product.get_actual_price }}"
-															{% if spare_parts_product.available %}
-																{% else %}
-																data-product-preorder-only-phone={% with phones.all|first as phone%}{{ phone.phone_number | cut:" " }}{% endwith %}
-															{% endif %}
-															{% if spare_parts_product.get_actual_discount_price %}
-																data-product-discount-price="{{ spare_parts_product.get_actual_discount_price }}"
-															{% endif %}
-															data-product-description="{{ spare_parts_product.description }}"
-															data-product-images-urls="{% for product_image in spare_parts_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
 														>
-															<i class="fa fa-eye"></i>
-														</a>
-													</li>
-												</ul>
+															<div class="add-product-to-cart">
+																Купити
+															</div>
+														</li>
+														{% else %}
+														<li class="text-nowrap preorder-only">
+															<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+															під замовлення
+															</a>
+														</li>
+													{% endif %}
+														<li>
+															<a href="#"
+																title="quick view"
+																class="quick-view-btn"
+																data-toggle="modal"
+																data-target="#exampleModalCenter"
+																data-product-id="{{ spare_parts_product.id }}"
+																data-product-qty="1"
+																data-product-price="{{ spare_parts_product.get_actual_price }}"
+																data-product-link="{{ spare_parts_product.get_absolute_url }}"
+																data-product-img-url="{% with spare_parts_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+																data-product-title="{{ spare_parts_product.title }}"
+																data-product-manufacturer="{{ spare_parts_product.manufacturer }}"
+																data-product-actual-price="{{ spare_parts_product.get_actual_price }}"
+																{% if spare_parts_product.available %}
+																	{% else %}
+																	data-product-preorder-only-phone={% with phones.all|first as phone%}{{ phone.phone_number | cut:" " }}{% endwith %}
+																{% endif %}
+																{% if spare_parts_product.get_actual_discount_price %}
+																	data-product-discount-price="{{ spare_parts_product.get_actual_discount_price }}"
+																{% endif %}
+																data-product-description="{{ spare_parts_product.description }}"
+																data-product-images-urls="{% for product_image in spare_parts_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+															>
+																<i class="fa fa-eye"></i>
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
 									<!-- single-product-wrap end -->
-								</div>
 								{% endfor %}
+							</div>
+							<div class="spare-parts-products products-tns-controls">
+								<i class="fa fa-angle-left" data-controls="prev"></i>
+								<i class="fa fa-angle-right" data-controls="next"></i>
 							</div>
 						</div>
 					</div>
@@ -286,7 +296,7 @@
 	{% endif %}
 
 	{% if boiler_products %}
-		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+		<section class="product-area li-laptop-product Special-product">
 			<div class="container">
 				<div class="row">
 					<!-- Begin Li's Section Area -->
@@ -296,96 +306,100 @@
 								<span>Водонагрівачі</span>
 							</h2>
 						</div>
-						<div class="row">
-							<div class="product-active owl-carousel">
+						<div class="products-carousel-container">
+							<div class="boiler-products products-tns-carousel">
 								{% for boiler_product in boiler_products %}
-								<div class="col-lg-12">
 									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="{{ boiler_product.get_absolute_url }}">
-												<img src="image/{{ boiler_product.image }}" alt="{{ boiler_product.title_without_serial_number }}">
-											</a>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="#">{{ boiler_product.manufacturer }}</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
+									<div class="single-product">
+										<div class="single-product-wrap">
+											<div class="product-image">
+												<a href="{{ boiler_product.get_absolute_url }}">
+													<img src="image/{{ boiler_product.image }}" alt="{{ boiler_product.title_without_serial_number }}">
+												</a>
+											</div>
+											<div class="product_desc">
+												<div class="product_desc_info">
+													<div class="product-review">
+														<h5 class="manufacturer">
+															<a href="#">{{ boiler_product.manufacturer }}</a>
+														</h5>
+														{% comment %} <div class="rating-box">
+															<ul class="rating">
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+															</ul>
+														</div> {% endcomment %}
+													</div>
+													<h4><a class="product_name" href="{{ boiler_product.get_absolute_url }}">{{ boiler_product.title }}</a></h4>
+													<div class="price-box">
+														{% if boiler_product.discount_price %}
+															<span class="new-price new-price-2">₴ {{ boiler_product.get_actual_discount_price }}</span>
+																<span class="old-price">₴ {{ boiler_product.get_actual_price }}</span>
+															<span class="discount-percentage">{{boiler_product.get_discount_in_percents}}</span>
+														{% else %}
+															<span class="new-price">₴ {{ boiler_product.get_actual_price }}</span>
+														{% endif %}
 													</div>
 												</div>
-												<h4><a class="product_name" href="{{ boiler_product.get_absolute_url }}">{{ boiler_product.title }}</a></h4>
-												<div class="price-box">
-													{% if boiler_product.discount_price %}
-														<span class="new-price new-price-2">₴ {{ boiler_product.get_actual_discount_price }}</span>
-															<span class="old-price">₴ {{ boiler_product.get_actual_price }}</span>
-														<span class="discount-percentage">{{boiler_product.get_discount_in_percents}}</span>
-													{% else %}
-														<span class="new-price">₴ {{ boiler_product.get_actual_price }}</span>
-													{% endif %}
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-												{% if boiler_product.available %}
-													<li class="add-cart active"
-														data-product-id="{{ boiler_product.id }}"
-														data-product-title="{{ boiler_product.title }}"
-														data-product-qty="1"
-														data-product-price="{{ boiler_product.get_actual_price }}"
-														data-product-link="{{ boiler_product.get_absolute_url }}"
-														data-product-img-url="{% with boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-													>
-														<div class="add-product-to-cart">
-															Купити
-														</div>
-													</li>
-													{% else %}
-													<li class="text-nowrap preorder-only">
-														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
-														під замовлення
-														</a>
-													</li>
-												{% endif %}
-													<li>
-														<a href="#"
-															title="quick view"
-															class="quick-view-btn"
-															data-toggle="modal"
-															data-target="#exampleModalCenter"
+												<div class="add-actions">
+													<ul class="add-actions-link">
+													{% if boiler_product.available %}
+														<li class="add-cart active"
 															data-product-id="{{ boiler_product.id }}"
+															data-product-title="{{ boiler_product.title }}"
 															data-product-qty="1"
 															data-product-price="{{ boiler_product.get_actual_price }}"
 															data-product-link="{{ boiler_product.get_absolute_url }}"
 															data-product-img-url="{% with boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-															data-product-title="{{ boiler_product.title }}"
-															data-product-manufacturer="{{ boiler_product.manufacturer }}"
-															data-product-actual-price="{{ boiler_product.get_actual_price }}"
-															{% if boiler_product.get_actual_discount_price %}
-															data-product-discount-price="{{ boiler_product.get_actual_discount_price }}"
-															{% endif %}
-															data-product-description="{{ boiler_product.description }}"
-															data-product-images-urls="{% for product_image in boiler_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
 														>
-															<i class="fa fa-eye"></i>
-														</a>
-													</li>
-												</ul>
+															<div class="add-product-to-cart">
+																Купити
+															</div>
+														</li>
+														{% else %}
+														<li class="text-nowrap preorder-only">
+															<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+															під замовлення
+															</a>
+														</li>
+													{% endif %}
+														<li>
+															<a href="#"
+																title="quick view"
+																class="quick-view-btn"
+																data-toggle="modal"
+																data-target="#exampleModalCenter"
+																data-product-id="{{ boiler_product.id }}"
+																data-product-qty="1"
+																data-product-price="{{ boiler_product.get_actual_price }}"
+																data-product-link="{{ boiler_product.get_absolute_url }}"
+																data-product-img-url="{% with boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+																data-product-title="{{ boiler_product.title }}"
+																data-product-manufacturer="{{ boiler_product.manufacturer }}"
+																data-product-actual-price="{{ boiler_product.get_actual_price }}"
+																{% if boiler_product.get_actual_discount_price %}
+																data-product-discount-price="{{ boiler_product.get_actual_discount_price }}"
+																{% endif %}
+																data-product-description="{{ boiler_product.description }}"
+																data-product-images-urls="{% for product_image in boiler_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+															>
+																<i class="fa fa-eye"></i>
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
 									</div>
 									<!-- single-product-wrap end -->
-								</div>
 								{% endfor %}
+							</div>
+							<div class="boiler-products products-tns-controls">
+								<i class="fa fa-angle-left" data-controls="prev"></i>
+								<i class="fa fa-angle-right" data-controls="next"></i>
 							</div>
 						</div>
 					</div>
@@ -396,7 +410,7 @@
 	{% endif %}
 
 	{% if gas_boiler_products %}
-		<section class="product-area li-laptop-product Special-product pt-60 pb-45">
+		<section class="product-area li-laptop-product Special-product">
 			<div class="container">
 				<div class="row">
 					<!-- Begin Li's Section Area -->
@@ -406,94 +420,98 @@
 								<span>Котли</span>
 							</h2>
 						</div>
-						<div class="row">
-							<div class="product-active owl-carousel">
+						<div class="products-carousel-container">
+							<div class="gas-boiler-products products-tns-carousel">
 								{% for gas_boiler_product in gas_boiler_products %}
-								<div class="col-lg-12">
-									<!-- single-product-wrap start -->
-									<div class="single-product-wrap">
-										<div class="product-image">
-											<a href="{{ gas_boiler_product.get_absolute_url }}">
-												<img src="image/{{ gas_boiler_product.image }}" alt="{{ gas_boiler_product.title_without_serial_number }}">
-											</a>
-										</div>
-										<div class="product_desc">
-											<div class="product_desc_info">
-												<div class="product-review">
-													<h5 class="manufacturer">
-														<a href="#">{{ gas_boiler_product.manufacturer }}</a>
-													</h5>
-													<div class="rating-box">
-														<ul class="rating">
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-															<li class="no-star"><i class="fa fa-star-o"></i></li>
-														</ul>
+									<div class="single-product">
+										<!-- single-product-wrap start -->
+										<div class="single-product-wrap">
+											<div class="product-image">
+												<a href="{{ gas_boiler_product.get_absolute_url }}">
+													<img src="image/{{ gas_boiler_product.image }}" alt="{{ gas_boiler_product.title_without_serial_number }}">
+												</a>
+											</div>
+											<div class="product_desc">
+												<div class="product_desc_info">
+													<div class="product-review">
+														<h5 class="manufacturer">
+															<a href="#">{{ gas_boiler_product.manufacturer }}</a>
+														</h5>
+														{% comment %} <div class="rating-box">
+															<ul class="rating">
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+																<li class="no-star"><i class="fa fa-star-o"></i></li>
+															</ul>
+														</div> {% endcomment %}
+													</div>
+													<h4><a class="product_name" href="{{ gas_boiler_product.get_absolute_url }}">{{ gas_boiler_product.title }}</a></h4>
+													<div class="price-box">
+														{% if gas_boiler_product.discount_price %}
+															<span class="new-price new-price-2">₴ {{ gas_boiler_product.get_actual_discount_price }}</span>
+															<span class="old-price">₴ {{ gas_boiler_product.get_actual_price }}</span>
+															<span class="discount-percentage">{{gas_boiler_product.get_discount_in_percents}}</span>
+														{% else %}
+															<span class="new-price">₴ {{ gas_boiler_product.get_actual_price }}</span>
+														{% endif %}
 													</div>
 												</div>
-												<h4><a class="product_name" href="{{ gas_boiler_product.get_absolute_url }}">{{ gas_boiler_product.title }}</a></h4>
-												<div class="price-box">
-													{% if gas_boiler_product.discount_price %}
-														<span class="new-price new-price-2">₴ {{ gas_boiler_product.get_actual_discount_price }}</span>
-														<span class="old-price">₴ {{ gas_boiler_product.get_actual_price }}</span>
-														<span class="discount-percentage">{{gas_boiler_product.get_discount_in_percents}}</span>
-													{% else %}
-														<span class="new-price">₴ {{ gas_boiler_product.get_actual_price }}</span>
-													{% endif %}
-												</div>
-											</div>
-											<div class="add-actions">
-												<ul class="add-actions-link">
-												{% if gas_boiler_product.available %}
-													<li class="add-cart active"
-														data-product-id="{{ gas_boiler_product.id }}"
-														data-product-title="{{ gas_boiler_product.title }}"
-														data-product-qty="1"
-														data-product-price="{{ gas_boiler_product.get_actual_price }}"
-														data-product-link="{{ gas_boiler_product.get_absolute_url }}"
-														data-product-img-url="{% with gas_boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-													>
-														<div class="add-product-to-cart">
-															Купити
-														</div>
-													</li>
-													{% else %}
-													<li class="text-nowrap preorder-only">
-														<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
-														під замовлення
-														</a>
-													</li>
-												{% endif %}
-													<li>
-														<a href="#" title="quick view" class="quick-view-btn"
-															data-toggle="modal"
-															data-target="#exampleModalCenter"
+												<div class="add-actions">
+													<ul class="add-actions-link">
+													{% if gas_boiler_product.available %}
+														<li class="add-cart active"
 															data-product-id="{{ gas_boiler_product.id }}"
+															data-product-title="{{ gas_boiler_product.title }}"
 															data-product-qty="1"
 															data-product-price="{{ gas_boiler_product.get_actual_price }}"
 															data-product-link="{{ gas_boiler_product.get_absolute_url }}"
 															data-product-img-url="{% with gas_boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-															data-product-title="{{ gas_boiler_product.title }}"
-															data-product-manufacturer="{{ gas_boiler_product.manufacturer }}"
-															data-product-actual-price="{{ gas_boiler_product.get_actual_price }}"
-															{% if gas_boiler_product.get_actual_discount_price %}
-															data-product-discount-price="{{ gas_boiler_product.get_actual_discount_price }}"
-															{% endif %}
-															data-product-description="{{ gas_boiler_product.description }}"
-															data-product-images-urls="{% for product_image in gas_boiler_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
 														>
-															<i class="fa fa-eye"></i>
-														</a>
-													</li>
-												</ul>
+															<div class="add-product-to-cart">
+																Купити
+															</div>
+														</li>
+														{% else %}
+														<li class="text-nowrap preorder-only">
+															<a href="{% with phones.all|first as phone%}tel:{{ phone.phone_number | cut:" " }}{% endwith %}">
+															під замовлення
+															</a>
+														</li>
+													{% endif %}
+														<li>
+															<a href="#" title="quick view" class="quick-view-btn"
+																data-toggle="modal"
+																data-target="#exampleModalCenter"
+																data-product-id="{{ gas_boiler_product.id }}"
+																data-product-qty="1"
+																data-product-price="{{ gas_boiler_product.get_actual_price }}"
+																data-product-link="{{ gas_boiler_product.get_absolute_url }}"
+																data-product-img-url="{% with gas_boiler_product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
+																data-product-title="{{ gas_boiler_product.title }}"
+																data-product-manufacturer="{{ gas_boiler_product.manufacturer }}"
+																data-product-actual-price="{{ gas_boiler_product.get_actual_price }}"
+																{% if gas_boiler_product.get_actual_discount_price %}
+																data-product-discount-price="{{ gas_boiler_product.get_actual_discount_price }}"
+																{% endif %}
+																data-product-description="{{ gas_boiler_product.description }}"
+																data-product-images-urls="{% for product_image in gas_boiler_product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
+															>
+																<i class="fa fa-eye"></i>
+															</a>
+														</li>
+													</ul>
+												</div>
 											</div>
 										</div>
+										<!-- single-product-wrap end -->
 									</div>
-									<!-- single-product-wrap end -->
-								</div>
 								{% endfor %}
+							</div>
+							<div class="gas-boiler-products products-tns-controls">
+								<i class="fa fa-angle-left" data-controls="prev"></i>
+								<i class="fa fa-angle-right" data-controls="next"></i>
 							</div>
 						</div>
 					</div>

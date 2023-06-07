@@ -1,6 +1,8 @@
 import { render } from 'squirrelly';
 import shopping_cart_products_template from '@templates/catalog/shopping-cart/products.html';
 import shopping_cart_product_list_template from '@templates/catalog/shopping-cart/products-list.html';
+import { IconsLoader } from '@utils/icons-loader.js';
+import { mmenu } from '@utils/mean-menu.js';
 import '@modules/products-search/src';
 import { slideToggle } from '@utils/slide-toggle.js';
 import { numberWithCommas } from '@utils/utils.js';
@@ -29,6 +31,7 @@ class ShoppingCart {
 		this.shopping_cart_qty_btns = [];
 		this.add_to_cart_qty_btns = document.querySelectorAll('.single-add-to-cart .qtybutton');
 		this.products_counter = null;
+		this.icons_loader = new IconsLoader();
 		this.getShoppingCartData();
 		this.updateProductsCounterAndSum();
 		this.updateAddToCartBtns();
@@ -44,6 +47,7 @@ class ShoppingCart {
 		}
 		scrollUp('#scrollUp');
 		this.initializeMeanMenu();
+		mmenu();
 	}
 	get isShoppingCartPage() {
 		return location.pathname.includes('shopping-cart');

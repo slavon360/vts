@@ -8,9 +8,10 @@ import { IconsLoader } from '@utils/icons-loader.js';
 import '@modules/products-search/src';
 import '@modules/shopping-cart/src';
 import { mmenu } from '@utils/mean-menu.js';
+import 'tiny-slider/dist/tiny-slider.css';
 import '@styles/modules/tiny-slider/tiny-slider.scss';
-require('@styles/css/common.css');
 require('@styles/modules/product-detail/product-detail.scss');
+require('@styles/css/common.css');
 
 class ProductDetails extends ProductQtyInput {
     constructor() {

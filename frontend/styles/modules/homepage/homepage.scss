@@ -1,5 +1,6 @@
 .products-carousel-container {
 	position: relative;
+	padding: 0 50px;
 
 	.products-tns-carousel {
 		.single-product {
@@ -11,16 +12,35 @@
 		}
 	}
 
+	.banner-products {
+		.banner-link {
+			font-family: 'Rubik', sans-serif;
+			font-weight: 400;
+		}
+	}
+
 	.products-tns-controls {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 100%;
+		right: 0;
 
 		[data-controls="prev"],
 		[data-controls="next"] {
-			top: 50%;
+			top: 244px;
 			position: inherit;
+			font-size: 55px;
+			color: rgba(36,36,36,.15);
+			font-weight: 800;
+			cursor: pointer;
+			
+			&:hover {
+				color: #fed700;
+			}
+		}
+
+		[data-controls="next"] {
+			right: 0;
 		}
 	}
 }

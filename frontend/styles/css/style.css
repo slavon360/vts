@@ -87,6 +87,41 @@ a {
 a:hover {
 	color: #fed700;
 }
+.preloader-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1000;
+	background-color: #fff;
+}
+.preloader-container .preloader-header-top,
+.preloader-container .preloader-header-logo,
+.preloader-container .preloader-header-search,
+.preloader-container .preloader-header-shopping-cart,
+.preloader-container .preloader-header-navigation,
+.preloader-container .preloader-main-content {
+	background-color: #f8f9f9;
+	width: 100%;
+	animation-duration: 1.7s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-name: placeholderAnimate;
+    background: linear-gradient(to right, #eee 2%, #ddd 18%, #eee 33%);
+    background-size: 1300px;
+}
+.preloader-container .preloader-header-top,
+.preloader-container .preloader-header-logo,
+.preloader-container .preloader-header-search,
+.preloader-container .preloader-header-shopping-cart,
+.preloader-container .preloader-header-navigation {
+	height: 50px;
+}
+.preloader-container .preloader-main-content {
+	height: 500px;
+}
 .img {
 	max-width: 100%;
 	transition: all 0.3s ease-out 0s;
@@ -1422,7 +1457,7 @@ textarea:focus {
 }
 /*Header Middle*/
 .header-middle {
-	padding: 30px;
+	padding: 30px 0 10px;
 }
 .header-middle .site-logo-container {
 	display: block;
@@ -2183,12 +2218,13 @@ textarea:focus {
   position: relative;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 300ms ease-in 0s;
-}
-.single-product-wrap:hover {
-  margin: 0 0 -75px;
   padding: 0 0 75px;
   z-index: 9;
 }
+/* .single-product-wrap:hover {
+  margin: 0 0 -75px;
+  
+} */
 .single-product-wrap.mt-40:hover {
   margin: 40px 0 -85px;
 }
@@ -2209,11 +2245,11 @@ textarea:focus {
 	visibility: hidden;
 	z-index: 0;
 }
-.single-product-wrap:hover:before{
+/* .single-product-wrap:hover:before{
   opacity: 1;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
   visibility: visible;
-}
+} */
 .product-image > a {
   display: block;
   position: relative;
@@ -2239,6 +2275,7 @@ textarea:focus {
 }
 .product-review {
 	border-bottom: 1px solid #ebebeb;
+	min-height: 30px;
 }
 .manufacturer {
 	font-size: 13px;
@@ -4994,13 +5031,9 @@ span.required {
 }
 .toolbar-amount {
   font-size: 14px;
-  margin-left: 30px;
   margin-top: 5px;
 }
 .product-short {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
   display: flex;
 }
 .product-short > p {
@@ -5637,6 +5670,11 @@ span.required {
   100% {
     transform: translate(50%)
   }
+}
+
+@keyframes placeholderAnimate {
+    0%{ background-position: -650px 0; }
+    100%{ background-position: 650px 0; }
 }
 /*----------------------------------------------------------------------------------------------------*/
 /*------------------------------------------> The End <-----------------------------------------------*/

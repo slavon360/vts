@@ -12,7 +12,12 @@ require('@styles/css/common.css');
 
 class Homepage {
 	constructor () {
-		this.product_gallery = null;
+		this.hot_deal_products = null;
+		this.spare_parts_products = null;
+		this.boiler_products = null;
+		this.gas_boiler_products = null;
+		this.banners = null;
+
 
 		triggerAddToCartBtnsListeners();
 		slideToggle({
@@ -23,15 +28,13 @@ class Homepage {
 		mmenu();
 		new IconsLoader();
 
-		this.initProductGallery();
+		this.initProductsGallery();
 	}
 
-	initProductGallery() {
-        this.product_gallery = tns({
-            container: '.products-tns-carousel',
-			controlsContainer: '.products-tns-controls',
-            items: 4,
-            // controls: false,
+	initProductsGallery() {
+		this.hot_deal_products = tns({
+			container: '.hot-deal-products.products-tns-carousel',
+			controlsContainer: '.hot-deal-products.products-tns-controls',
 			lazyload: true,
 			responsive: {
 				150: {
@@ -42,12 +45,81 @@ class Homepage {
 				},
 				992: {
 					items: 3
+				},
+				1366: {
+					items: 4
 				}
 			},
-            nav: false
-            // controlsContainer: ''
-        });
-    }
+			nav: false
+		});
+		this.spare_parts_products = tns({
+			container: '.spare-parts-products.products-tns-carousel',
+			controlsContainer: '.spare-parts-products.products-tns-controls',
+			lazyload: true,
+			responsive: {
+				150: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				992: {
+					items: 3
+				},
+				1366: {
+					items: 4
+				}
+			},
+			nav: false
+		});
+		this.boiler_products = tns({
+			container: '.boiler-products.products-tns-carousel',
+			controlsContainer: '.boiler-products.products-tns-controls',
+			lazyload: true,
+			responsive: {
+				150: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				992: {
+					items: 3
+				},
+				1366: {
+					items: 4
+				}
+			},
+			nav: false
+		});
+		this.gas_boiler_products = tns({
+			container: '.gas-boiler-products.products-tns-carousel',
+			controlsContainer: '.gas-boiler-products.products-tns-controls',
+			lazyload: true,
+			responsive: {
+				150: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				992: {
+					items: 3
+				},
+				1366: {
+					items: 4
+				}
+			},
+			nav: false
+		});
+		this.banners = tns({
+			container: '.banner-products.products-tns-carousel',
+			controlsContainer: '.banner-products.products-tns-controls',
+			lazyload: true,
+			items: 1,
+			nav: false
+		});
+	}
 }
 
 new Homepage();

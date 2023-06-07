@@ -1,6 +1,5 @@
 import { render } from 'squirrelly';
 import grid_view_template from '@templates/catalog/products/grid-view.html';
-import list_view_template from '@templates/catalog/products/list-view.html';
 import pagination_view_template from '@templates/catalog/products/pagination.html';
 import {
 	triggerAddToCartBtnsListeners,
@@ -140,47 +139,6 @@ const renderProductsGrid = (products) => {
 
 	grid_view_products.insertAdjacentHTML('beforeend', grid_view);
 };
-const renderProductsList = (products) => {
-	const list_view_products = document.querySelector('.list-view-products');
-
-	list_view_products.innerHTML = '';
-	const prod = products.map(({
-		id,
-		get_absolute_url,
-		manufacturer,
-		title,
-		discount_price,
-		get_actual_discount_price,
-		get_actual_price,
-		first_image,
-		images_list,
-		description
-	}, index) => ({
-		id,
-		get_absolute_url,
-		manufacturer,
-		title,
-		discount_price,
-		get_actual_discount_price,
-		get_actual_price,
-		first_image_url: first_image.image_url,
-		image_url: images_list[0].image_url,
-		description: description.replace(/"/gi, '\''),
-		price_block: discount_price 
-		? 
-		`
-		<span class="new-price new-price-2">${get_actual_discount_price} грн.</span>
-		<span class="old-price">${get_actual_price} грн.</span>
-		`
-		: `<span class="new-price">${get_actual_price} грн.</span>`,
-		discount: get_actual_discount_price ? `data-product-discount-price="${get_actual_discount_price}"` : '',
-		images_urls: images_list.reduce((result, { image_url }) => result += image_url, ''),
-		is_last: products.length - 1 === index
-	}));
-	const list_view = squirellyRender(list_view_template, { products: prod });
-
-	list_view_products.insertAdjacentHTML('beforeend', list_view);
-};
 
 function sortProductsHandler() {
 	const sort_by = this.value;
@@ -217,7 +175,6 @@ function updateProductsHandler (sort_by, response) {
 
 	triggerAddToCartBtnsRemoveListeners();
 	renderProductsGrid(results);
-	renderProductsList(results);
 	triggerAddToCartBtnsListeners();
 	triggerUpdateAddToCartBtns();
 	if (next || previous) {
