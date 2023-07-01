@@ -15,7 +15,6 @@
 
 		&.menu-toggler-fixed {
 			position: absolute;
-			top: 263px;
 			left: 5px;
 			background-color: #d9d7d7;
 
@@ -57,5 +56,13 @@
 				top: 32px;
 			}
 		}
+	}
+	&.mm-slideout {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		transition-duration: .4s;
+		transition-timing-function: ease;
+		transition-property: width,transform;
 	}
 }

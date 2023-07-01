@@ -17,12 +17,17 @@ from .forms import CheckoutForm, RepairOrderForm
 
 nova_post_url = 'https://api.novaposhta.ua/v2.0/json/'
 np_key = config('NOVA_POSHTA_API_KEY')
+DEV_MODE = config('DEV_MODE') == 'True'
 
-def get_js_file_name(directory_path):
+def get_file_name(directory_path, extention = '.js'):
 	current_file_path = os.path.abspath(__file__)
 	current_directory_path = os.path.dirname(current_file_path)
+	ext_name = extention if DEV_MODE else f'{extention}.gz' 
 
-	return [directory for directory in os.listdir(current_directory_path + directory_path) if directory.endswith('.js')][0]
+	print('ext_name')
+	print(ext_name)
+	print(os.listdir(current_directory_path + directory_path))
+	return [directory for directory in os.listdir(current_directory_path + directory_path) if directory.endswith(ext_name)][0]
 
 def index(request):
 	categories = Category.objects.all()
@@ -32,7 +37,8 @@ def index(request):
 	boiler_products = Product.objects.filter(category__name='Водонагрівачі')[:10]
 	gas_boiler_products = Product.objects.filter(category__name='Котли')[:10]
 	phones = Phone.objects.all()
-	js_name = get_js_file_name('/static/js/modules/homepage/dist')
+	js_name = get_file_name('/static/js/modules/homepage/dist')
+	css_name = get_file_name('/static/styles/css/homepage', '.css')
 
 	context = {
 		'categories': categories,
@@ -42,7 +48,8 @@ def index(request):
 		'spare_parts_products': spare_parts_products,
 		'boiler_products': boiler_products,
 		'gas_boiler_products': gas_boiler_products,
-		'js_name': js_name
+		'js_name': js_name,
+		'css_name': css_name
 	}
 
 	return render(request, 'index.html', context=context)
@@ -59,13 +66,15 @@ def shopping_cart(request):
 		subsubcategory = '',
 		optional_title = 'Кошик'
 	)
-	js_name = get_js_file_name('/static/js/modules/shopping-cart/dist')
+	js_name = get_file_name('/static/js/modules/shopping-cart/dist', '.main.js')
+	css_extention = '.css' if DEV_MODE else '.css.gz'
 
 	context = {
 		'categories': categories,
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
-		'js_name': js_name
+		'js_name': js_name,
+		'css_name': f'shopping-cart{css_extention}',
 	}
 	return render(request, 'catalog/shopping-cart.html', context=context)
 
@@ -81,7 +90,7 @@ def checkout_page(request):
 		subsubcategory = '',
 		optional_title = 'Оформлення замовлення'
 	)
-	js_name = get_js_file_name('/static/js/modules/checkout/dist')
+	js_name = get_file_name('/static/js/modules/checkout/dist')
 
 	if request.method == 'POST':
 		form = CheckoutForm(request.POST)
@@ -143,7 +152,7 @@ def checkout_success_page(request):
 		subsubcategory = '',
 		optional_title = ''
 	)
-	js_name = get_js_file_name('/static/js/modules/success-checkout/dist')
+	js_name = get_file_name('/static/js/modules/success-checkout/dist')
 	context = {
 		'categories': categories,
 		'phones': phones,
@@ -165,7 +174,7 @@ def about_us_page(request):
 		subsubcategory = '',
 		optional_title = 'Про нас'
 	)
-	js_name = get_js_file_name('/static/js/modules/about-us/dist')
+	js_name = get_file_name('/static/js/modules/about-us/dist')
 	context = {
 		'categories': categories,
 		'phones': phones,
@@ -187,7 +196,7 @@ def exchange_and_return_page(request):
 		subsubcategory = '',
 		optional_title = 'Обмін та повернення'
 	)
-	js_name = get_js_file_name('/static/js/modules/exchange-and-return/dist')
+	js_name = get_file_name('/static/js/modules/exchange-and-return/dist')
 	context = {
 		'categories': categories,
 		'phones': phones,
@@ -209,7 +218,7 @@ def repair_page(request):
 		subsubcategory = '',
 		optional_title = 'Ремонт та обслуговування'
 	)
-	js_name = get_js_file_name('/static/js/modules/repair/dist')
+	js_name = get_file_name('/static/js/modules/repair/dist')
 
 	if request.method == 'POST':
 		form = RepairOrderForm(request.POST)
@@ -356,9 +365,13 @@ class ProductDetailView(DetailView, Breadcrumbs):
 		category_id = getattr(categ, 'id')
 		subcategory_id = getattr(subcateg, 'id')
 		subsubcategory_id = getattr(subsubcateg, 'id')
-		js_name = get_js_file_name('/static/js/modules/product-detail/dist')
+		js_name = get_file_name('/static/js/modules/product-detail/dist')
+		css_name = get_file_name('/static/styles/css/product-detail', '.css')
 
+		print('css_name')
+		print(css_name)
 		context['js_name'] = js_name
+		context['css_name'] = css_name
 		context['categories'] = Category.objects.all()
 		context['phones'] = Phone.objects.all()
 		context['breadcrumbs'] = self.get_breadcrumbs(
@@ -439,7 +452,7 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 
 		return queryset
 	def get_context_data(self, **kwargs):
-		js_name = get_js_file_name('/static/js/modules/catalog/dist')
+		js_name = get_file_name('/static/js/modules/catalog/dist')
 		context = super().get_context_data(**kwargs)
 
 		context['js_name'] = js_name

@@ -2,7 +2,7 @@
 {% block title %}<title>Кошик</title>{% endblock %}
 {% load static %}
 {% block local_styles %}
-	<link rel="stylesheet" href="{% static 'styles/css/shopping-cart/shopping-cart.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/css/shopping-cart/' %}{{css_name}}">
 {% endblock %}
 {% block content %}
 <!--Shopping Cart Area Strat-->
@@ -45,5 +45,5 @@
 
 {% block local_scripts %}
 
-	<script src="{% static 'js/modules/shopping-cart/dist/index.js' %}" defer></script>
+	<script src="{% static 'js/modules/shopping-cart/dist/' %}{{js_name}}" defer></script>
 {% endblock %}

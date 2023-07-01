@@ -1,6 +1,6 @@
 import Mmenu from 'mmenu-js';
-require('@root/node_modules/mmenu-js/dist/mmenu.css');
-require('@root/styles/modules/mean-menu/mean-menu.scss');
+import '@root/node_modules/mmenu-js/dist/mmenu.css';
+import '@root/styles/modules/mean-menu/mean-menu.scss';
 
 export const mmenu = () => {
     const menu_toggler = document.querySelector('.mean-menu-toggler');
