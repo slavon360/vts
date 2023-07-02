@@ -16,7 +16,7 @@ import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
 require('@styles/css/common.css');
 require('@root/styles/modules/checkout/checkout.scss');
-// 292
+
 class Checkout extends IconsLoader {
 	constructor() {
 		super();
@@ -159,7 +159,6 @@ class Checkout extends IconsLoader {
 		const city_name = target.getAttribute('data-city-name');
 		const target_select_id = target.getAttribute('data-target-select-id');
 		const city_and_region_name = target.textContent;
-		console.log(target.textContent)
 
 		switch (target_select_id) {
 			case 'nova-post-office':
@@ -293,7 +292,6 @@ class Checkout extends IconsLoader {
 				})
 			})
 			.then(({redirected, status, url}) => {
-				console.log(status, redirected);
 				if (status === 200 && redirected) {
 					location.href = url;
 				}

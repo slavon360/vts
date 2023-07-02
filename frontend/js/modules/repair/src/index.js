@@ -40,7 +40,6 @@ class Repair extends IconsLoader {
             // easing: 'ease-in-out-back'
         });
         aosx.init();
-        console.log(aosx);
 		scrollUp('#scrollUp');
         mmenu();
 
@@ -72,7 +71,6 @@ class Repair extends IconsLoader {
 				})
 			})
 			.then(({redirected, status, url}) => {
-				console.log(status, redirected);
 				if (status === 200 && redirected) {
 					location.href = url;
 				}

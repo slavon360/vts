@@ -1,41 +1,29 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
-const glob = require('glob-all');
-const { getWorkingDirInversePath } = require('../../utils/webpack-utils.js');
+const purgeCss = require('../../../purge-css-config.js');
 const path = require('path');
 const folder_name = path.basename(__dirname);
-const DIST_DIR = path.resolve(__dirname, 'dist');
 const SRC_DIR = path.resolve(__dirname, 'src');
 const current_working_dir = process.cwd();
 const base_config = require(`${current_working_dir}/webpack.base.config.js`);
-const working_dir_inverse_path = getWorkingDirInversePath(__dirname, current_working_dir);
 const isProduction = process.env.NODE_ENV === 'production';
 
-module.exports = {
+const backend_folder_config = {
 	...base_config,
 	entry: SRC_DIR,
 	output: {
 		...base_config.output,
-		path: DIST_DIR
-	},
-	module: {
-		rules: [
-			...base_config.module.rules
-		]
+		path: path.resolve(current_working_dir, `../backend/catalog/static/js/modules/${folder_name}/dist`)
 	},
 	plugins: [
+		...base_config.plugins,
 		new MiniCssExtractPlugin({
-		  filename: `${working_dir_inverse_path}styles/css/success-checkout/success-checkout.css`,
+			filename: '../../../../../static/styles/css/success-checkout/success-checkout.css',
 		}),
-		// isProduction ? new PurgeCSSPlugin({
-		// 	paths: glob.sync([
-		// 		`${SRC_DIR}/*`,
-		// 		`${current_working_dir}/js/modules/products-search/src/*.js`,
-				
-				
-		// 		`${current_working_dir}/html/catalog.html`
-		// 	]),
-		// 	keyframes: true
-		// }) : function() {}
+		isProduction ? purgeCss([
+			`${SRC_DIR}/*`,
+			`${current_working_dir}/html-statics/success-checkout.html`
+		]) : function() {}
 	]
 };
+
+module.exports = backend_folder_config;

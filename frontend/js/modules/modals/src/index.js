@@ -15,7 +15,6 @@ modal.addEventListener('show.bs.modal', function (event) {
     modal_body.classList.remove('show');
     const currentTarget = event.currentTarget;
     const relatedTarget = event.relatedTarget;
-    console.log(relatedTarget);
     const productTitle = relatedTarget.dataset['productTitle'];
     const productManufacturer = relatedTarget.dataset['productManufacturer'];
     const actualPrice = relatedTarget.dataset['productActualPrice'];

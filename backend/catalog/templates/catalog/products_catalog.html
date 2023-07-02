@@ -2,7 +2,7 @@
 {% block title %}<title>{{ page_title }}</title>{% endblock %}
 {% load static %}
 {% block local_styles %}
-	<link rel="stylesheet" href="{% static 'styles/css/catalog/catalog.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/css/catalog/' %}{{css_name}}">
 {% endblock %}
 {% block content %}
 	<!-- Begin Li's Content Wraper Area -->
@@ -140,7 +140,6 @@
 																		<i class="fa fa-eye"></i>
 																	</a>
 																</li>
-																<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 															</ul>
 														</div>
 													</div>
@@ -211,7 +210,6 @@
 																		Купити
 																	</div>
 																</li>
-																<li class="wishlist"><a href=""><i class="fa fa-heart-o"></i>Додати до списку бажань</a></li>
 																<li>
 																	<a
 																		class="quick-view"

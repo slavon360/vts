@@ -51,10 +51,9 @@ class ShoppingCart {
 		return location.pathname.includes('shopping-cart');
 	}
 	async initializeMeanMenu() {
-		console.log('this.isShoppingCartPage: ', this.isShoppingCartPage);
 		if (this.isShoppingCartPage) {
 			const { mmenu } = await import('@utils/mean-menu.js');
-			console.log(mmenu);
+
 			mmenu();
 		}
 	}

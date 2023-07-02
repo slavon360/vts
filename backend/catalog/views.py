@@ -18,15 +18,13 @@ from .forms import CheckoutForm, RepairOrderForm
 nova_post_url = 'https://api.novaposhta.ua/v2.0/json/'
 np_key = config('NOVA_POSHTA_API_KEY')
 DEV_MODE = config('DEV_MODE') == 'True'
+css_extention = '.css' if DEV_MODE else '.css.gz'
 
 def get_file_name(directory_path, extention = '.js'):
 	current_file_path = os.path.abspath(__file__)
 	current_directory_path = os.path.dirname(current_file_path)
 	ext_name = extention if DEV_MODE else f'{extention}.gz' 
 
-	print('ext_name')
-	print(ext_name)
-	print(os.listdir(current_directory_path + directory_path))
 	return [directory for directory in os.listdir(current_directory_path + directory_path) if directory.endswith(ext_name)][0]
 
 def index(request):
@@ -67,7 +65,6 @@ def shopping_cart(request):
 		optional_title = 'Кошик'
 	)
 	js_name = get_file_name('/static/js/modules/shopping-cart/dist', '.main.js')
-	css_extention = '.css' if DEV_MODE else '.css.gz'
 
 	context = {
 		'categories': categories,
@@ -91,6 +88,7 @@ def checkout_page(request):
 		optional_title = 'Оформлення замовлення'
 	)
 	js_name = get_file_name('/static/js/modules/checkout/dist')
+	css_name = get_file_name('/static/styles/css/checkout', '.css')
 
 	if request.method == 'POST':
 		form = CheckoutForm(request.POST)
@@ -113,8 +111,6 @@ def checkout_page(request):
 				shipping_address = shipping_address
 			)
 			details = request.POST.get('details')
-			print(f'details: {details}')
-			print(dir(request.POST))
 			new_order = Order(
 				name = name,
 				phone_number = phone_number,
@@ -135,7 +131,8 @@ def checkout_page(request):
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
 		'form': form,
-		'js_name': js_name
+		'js_name': js_name,
+		'css_name': css_name
 	}
 
 	return render(request, 'catalog/checkout.html', context=context)
@@ -153,11 +150,13 @@ def checkout_success_page(request):
 		optional_title = ''
 	)
 	js_name = get_file_name('/static/js/modules/success-checkout/dist')
+	css_name = get_file_name('/static/styles/css/success-checkout', '.css')
 	context = {
 		'categories': categories,
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
-		'js_name': js_name
+		'js_name': js_name,
+		'css_name': css_name
 	}
 
 	return render(request, 'catalog/success-checkout.html', context=context)
@@ -175,11 +174,13 @@ def about_us_page(request):
 		optional_title = 'Про нас'
 	)
 	js_name = get_file_name('/static/js/modules/about-us/dist')
+	css_name = get_file_name('/static/styles/css/about-us', '.css')
 	context = {
 		'categories': categories,
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
-		'js_name': js_name
+		'js_name': js_name,
+		'css_name': css_name
 	}
 
 	return render(request, 'catalog/about-us.html', context=context)
@@ -234,7 +235,7 @@ def repair_page(request):
 				phone_number = phone_number,
 				shipping_address = shipping_address
 			)
-			print(dir(request.POST))
+
 			new_order = Order(
 				name = name,
 				phone_number = phone_number,
@@ -255,6 +256,7 @@ def repair_page(request):
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
 		'js_name': js_name,
+		'css_name': f'repair{css_extention}',
 		'form': form
 	}
 
@@ -368,8 +370,6 @@ class ProductDetailView(DetailView, Breadcrumbs):
 		js_name = get_file_name('/static/js/modules/product-detail/dist')
 		css_name = get_file_name('/static/styles/css/product-detail', '.css')
 
-		print('css_name')
-		print(css_name)
 		context['js_name'] = js_name
 		context['css_name'] = css_name
 		context['categories'] = Category.objects.all()
@@ -392,7 +392,7 @@ class ProductsSearchApiView(generics.ListAPIView):
 		title = self.request.query_params.get('title')
 
 		products = Product.objects.filter(title__icontains=title)
-		print(title)
+
 		return products
 
 class ProductsCatalogApiView(generics.ListAPIView):
@@ -453,9 +453,11 @@ class ProductsCatalogView(ListView, Breadcrumbs):
 		return queryset
 	def get_context_data(self, **kwargs):
 		js_name = get_file_name('/static/js/modules/catalog/dist')
+		css_name = get_file_name('/static/styles/css/catalog', '.css')
 		context = super().get_context_data(**kwargs)
 
 		context['js_name'] = js_name
+		context['css_name'] = css_name
 		context['categories'] = Category.objects.all()
 		context['phones'] = Phone.objects.all()
 		context['breadcrumbs'] = self.get_breadcrumbs(

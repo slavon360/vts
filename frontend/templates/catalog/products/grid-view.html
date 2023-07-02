@@ -47,30 +47,47 @@
 						</div>
 					</li>
 					<li>
-						<a
-							href="#"
-							title="quick view"
-							class="quick-view-btn"
-							data-bs-toggle="modal"
-							data-bs-target="#exampleModalCenter"
-							data-product-title="{{prod.title}}"
-							data-product-manufacturer="{{prod.manufacturer}}"
-							data-product-actual-price="{{prod.get_actual_price}}"
-							{{@if (prod.discount_price)}}
+						{{@if (prod.discount_price)}}
+							<a href="#"
+								title="quick view"
+								class="quick-view-btn"
+								data-bs-toggle="modal"
+								data-bs-target="#exampleModalCenter"
+								data-product-title="{{prod.title}}"
+								data-product-manufacturer="{{prod.manufacturer}}"
+								data-product-actual-price="{{prod.get_actual_price}}"
 								data-product-discount-price="{{prod.get_actual_discount_price}}"
-							{{/if}}
-							data-product-description="{{prod.description}}"
-							data-product-images-urls="{{prod.images_urls}}"
-							data-product-id="{{prod.id}}"
-							data-product-qty="1"
-							data-product-price="{{prod.get_actual_price}}"
-							data-product-link="{{prod.get_absolute_url}}"
-							data-product-img-url="{{prod.first_image_url}}"
-						>
-							<i class="fa fa-eye"></i>
-						</a>
+								data-product-description="{{prod.description}}"
+								data-product-images-urls="{{prod.images_urls}}"
+								data-product-id="{{prod.id}}"
+								data-product-qty="1"
+								data-product-price="{{prod.get_actual_price}}"
+								data-product-link="{{prod.get_absolute_url}}"
+								data-product-img-url="{{prod.first_image_url}}"
+							>
+								<i class="fa fa-eye"></i>
+							</a>
+							{{#else}}
+							<a href="#"
+								title="quick view"
+								class="quick-view-btn"
+								data-bs-toggle="modal"
+								data-bs-target="#exampleModalCenter"
+								data-product-title="{{prod.title}}"
+								data-product-manufacturer="{{prod.manufacturer}}"
+								data-product-actual-price="{{prod.get_actual_price}}"
+								data-product-description="{{prod.description}}"
+								data-product-images-urls="{{prod.images_urls}}"
+								data-product-id="{{prod.id}}"
+								data-product-qty="1"
+								data-product-price="{{prod.get_actual_price}}"
+								data-product-link="{{prod.get_absolute_url}}"
+								data-product-img-url="{{prod.first_image_url}}"
+							>
+								<i class="fa fa-eye"></i>
+							</a>
+						{{/if}}
 					</li>
-					<li><a class="links-details" href="#"><i class="fa fa-heart-o"></i></a></li>
 				</ul>
 			</div>
 		</div>

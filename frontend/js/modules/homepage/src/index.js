@@ -4,6 +4,7 @@ import { slideToggle } from '@utils/slide-toggle.js';
 import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
 import { IconsLoader } from '@utils/icons-loader.js';
+import '@modules/modals/src';
 import '@modules/shopping-cart/src';
 import 'tiny-slider/dist/tiny-slider.css';
 require('@styles/modules/homepage/homepage.scss');

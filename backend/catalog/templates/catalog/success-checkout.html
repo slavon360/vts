@@ -3,11 +3,11 @@
 {% block title %}<title>Оформлення замовлення</title>{% endblock %}
 
 {% block local_styles %}
-	<link rel="stylesheet" href="{% static 'styles/css/success-checkout/success-checkout.css' %}">
+	<link rel="stylesheet" href="{% static 'styles/css/success-checkout/' %}{{css_name}}">
 {% endblock %}
 {% block content %}
 	<div class="checkout-page">
-		<div class="content-wraper mt-25 mb-25">
+		<div class="content-wraper mt-40 mb-200">
 			<div class="container">
 				<div class="alert alert-success">
                     Ваше замовлення успішно оформлене.<br>
