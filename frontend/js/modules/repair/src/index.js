@@ -10,6 +10,7 @@ import {
 } from '@utils/utils.js';
 import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
+import { initFontAwesomeCommonIcons } from '@utils/fa-icons.js';
 import { AOSX } from 'aosx';
 import 'aosx/src/css/animation.css'; 
 require('@styles/css/common.css');
@@ -31,6 +32,7 @@ class Repair extends IconsLoader {
 		this.csrfmiddlewaretoken_field = this.repair_form.querySelector('[name="csrfmiddlewaretoken"]');
         this.repair_url = '/repair-order';
 
+		initFontAwesomeCommonIcons();
         slideToggle({
 			selector: '.hm-minicart-trigger',
 			target_container_selector: '.toggle-container'

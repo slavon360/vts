@@ -1317,11 +1317,10 @@ textarea:focus {
 #scrollUp:hover {
 	background: #fed700 none repeat scroll 0 0;
 }
-#scrollUp i {
+#scrollUp svg {
 	color: #ffffff;
 	font-size: 20px;
 	line-height: 50px;
-	display: block;
 }
 #scrollUp:hover i {
 	animation: liSlideInUp 1s infinite;
@@ -1558,12 +1557,10 @@ textarea:focus {
 		position: relative;
 		padding: 0 15px 0 55px;
 }
-.item-icon::before {
-		content: "\f291";
+.item-icon svg {
 		position: absolute;
-		font-family: fontawesome;
 		left: 10px;
-		top: 6px;
+		top: 12px;
 		display: block;
 		font-size: 20px;
 }
@@ -1811,29 +1808,27 @@ textarea:focus {
 	color: #fff;
 }
 .hb-menu nav > ul > li:hover > a, 
-.hb-menu nav > ul > li:hover > a::after {
+.hb-menu nav > ul > li:hover > a svg {
 		color: #ffffff;
 }
-.hb-menu nav > ul > li > a::after {
-	content: "\f107";
+.hb-menu nav > ul > li > a svg {
 	position: absolute;
-	top: 8px;
-	right: 15px;
-	font-family: fontawesome;
 	font-size: 18px;
 	transition: all 0.3s ease-in-out;
 	color: #242424;
 }
-.hb-menu nav > ul > li:nth-child(n+5) > a::after {
+.hb-menu nav > ul > li:nth-child(n+5) > a svg {
 	content: none;
 }
-.hb-menu nav > ul > li:hover  a::after {
-	transform: rotate(180deg);
+.hb-menu nav > ul > li:hover  a svg {
+	transform: translate(5px, 10px) rotate(180deg);
 }
 .ht-menu > li .ht-currency-trigger span::after,
 .ht-menu > li .ht-language-trigger span::after,
-.hm-minicart-trigger .item-text::after {
-	content: "\f106";
+.hm-minicart-trigger .item-text svg {
+	position: relative;
+	top: 15px;
+	left: 5px;
 	float: right;
 	font-weight: 400;
 	font-size: 18px;
@@ -1850,23 +1845,21 @@ textarea:focus {
 .ht-menu > li .ht-setting-trigger span::after, 
 .ht-menu > li .ht-currency-trigger span::after, 
 .ht-menu > li .ht-language-trigger span::after, 
-.hm-minicart-trigger .item-text::after {
-	content: "\f107";
+.hm-minicart-trigger .item-text svg {
 	font-size: 14px;
 	color: #a4a4a4;
 	margin-left: 5px;
-	font-family: fontawesome;
 }
-.hm-minicart-trigger .item-text::after {
+.hm-minicart-trigger .item-text svg {
 	color: #fff;
 } 
-.hm-minicart-trigger.active .item-text::after {
+.hm-minicart-trigger.active .item-text svg {
 	transform: rotate(180deg);
 }
 .ht-menu > li .ht-setting-trigger.is-active span::after, 
 .ht-menu > li .ht-currency-trigger.is-active span::after, 
 .ht-menu > li .ht-language-trigger.is-active span::after,
-.hm-minicart-trigger.is-active .item-text::after {
+.hm-minicart-trigger.is-active .item-text svg {
 	transform: rotate(-180deg);
 }
 .megamenu {
@@ -1979,9 +1972,10 @@ textarea:focus {
 	max-height: 400px;
 	overflow-y: auto;
 }
-.hb-menu nav > ul > .megamenu-static-holder > a::after {
+.hb-menu nav > ul > .megamenu-static-holder > a svg {
 	position: static;
 	margin: -1px 0 0 10px;
+	transform: translate(5px, 10px);
 }
 /*Sticky*/
 .header-sticky.sticky {
@@ -2984,15 +2978,9 @@ textarea:focus {
 	background: #ed3c32;
 }
 .facebook {
-	width: 20px;
     text-align: center;
     display: inline-block;
-    border-radius: 5px;
-	background-color: #d9d9d9;
 	margin-left: 15px;
-}
-.facebook:hover {
-	background: #3c5b9b;
 }
 .youtube {
 	background: #c72982;
@@ -3102,7 +3090,7 @@ text-align: center;
 	transition: all 0.3s ease-in-out;
 }
 .li-header-4 .hb-menu nav > ul > li:hover > a, 
-.li-header-4 .hb-menu nav > ul > li:hover > a::after {
+.li-header-4 .hb-menu nav > ul > li:hover > a svg {
 	color: #fed700;
 }
 /*Header Bottom*/

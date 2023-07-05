@@ -23,8 +23,6 @@ export class IconsLoader {
 
 	setPhoneImagesSources() {
 		updateImagesSources(this.phone_icon_imgs);
-		console.log(this.phone_icon_imgs);
-		
 	}
 
 	setSiteLogosSources() {

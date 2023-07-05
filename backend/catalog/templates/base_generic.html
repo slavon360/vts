@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
 	<head>	
-		{% load static %}
 		{% block title %}{% endblock %}
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<!-- Favicon -->
+		{% load static %}
 		<link rel="shortcut icon" type="image/x-icon" href="{% static 'images/icons/vtslogo.png' %}">
 	
 		{% block local_styles %}{% endblock %}
@@ -100,10 +100,13 @@
 										<!-- Begin Header Mini Cart Area -->
 										<li class="hm-minicart">
 											<div class="hm-minicart-trigger">
-												<span class="item-icon"></span>
+												<span class="item-icon">
+													<i class="fa-solid fa-basket-shopping"></i>
+												</span>
 												<span class="item-text">
 													<span class="cart-sum"></span>
 													<span class="cart-item-count"></span>
+													<i class="fa-solid fa-angle-down"></i>
 												</span>
 											</div>
 											<span></span>
@@ -148,7 +151,11 @@
 										<ul>
 										{% for category in categories %}
 											{% if category.subcategory_set.all.count > 0 %}
-												<li class="megamenu-static-holder"><a href="/products-catalog/{{category.id}}">{{ category.name }}</a>
+												<li class="megamenu-static-holder">
+													<a href="/products-catalog/{{category.id}}">
+														{{ category.name }} 
+														<i class="fa-solid fa-angle-down"></i>
+													</a>
 													<ul class="megamenu hb-megamenu">
 														{% for subcategory in category.subcategory_set.all %}
 															<li style="min-width: calc(100% / {{ category.subcategory_set.all.count }})">
@@ -251,7 +258,7 @@
 									<div class="footer-block">
 										<span>Ми в соцмережах: </span>
 										<a class="facebook" href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
-											<i class="fa fa-facebook"></i>
+											<i class="fa-brands fa-facebook fa-xl"></i>
 										</a>
 									</div>
 								</div>
@@ -287,7 +294,7 @@
 
 		</div>
 		<!-- Body Wrapper End Here -->
-		<a id="scrollUp"><i class="fa fa-angle-double-up"></i></a>
+		<a id="scrollUp"><i class="fas fa-angle-double-up"></i></a>
 
 		<div class="d-none">
 			<nav id="mean-menu-mobile">
@@ -327,7 +334,7 @@
 				</ul>
 			</nav>
 		</div>
-		<script src="{% static 'js/modules/assets-handler/dist/index.js' %}"></script>
+		<script src="{% static 'js/modules/assets-handler/dist/index.main.js' %}"></script>
 		{% block local_scripts %}{% endblock %}
 	</body>
 </html>

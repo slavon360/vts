@@ -17,6 +17,7 @@ from decouple import config
 MYSQL_USER = config('MYSQL_USER')
 MYSQL_PASSWORD = config('MYSQL_PASSWORD')
 MYSQL_DATABASE = config('MYSQL_DATABASE')
+RUN_FROM_DOCKER = config('RUN_FROM_DOCKER', False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -32,7 +33,8 @@ SECRET_KEY = 'django-insecure-$q9b8hp#%$e4opv6-p$*@0v#b(ma(5ohicc!dz#m5n0wz$d1zj
 DEBUG = config('DJANGO_DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1']
-
+print('RUN_FROM_DOCKER: ', RUN_FROM_DOCKER)
+ACTIVE_DB_HOST = 'mysqldb' if RUN_FROM_DOCKER == 'True' else '127.0.0.1'
 
 # Application definition
 
@@ -52,7 +54,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.middleware.gzip.GZipMiddleware',
+    # 'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,7 +93,7 @@ DATABASES = {
         'NAME': MYSQL_DATABASE,
         'USER': 'root',
         'PASSWORD': MYSQL_PASSWORD,
-        'HOST': '127.0.0.1',
+        'HOST': ACTIVE_DB_HOST,
         'PORT': '3306',
         'default-character-set': 'utf8'
     }
@@ -134,7 +136,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-MEDIA_ROOT =  path.join(BASE_DIR, 'image') 
+MEDIA_ROOT =  path.join(BASE_DIR, 'image')
 MEDIA_URL = 'image/'
 
 # Default primary key field type

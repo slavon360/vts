@@ -6,6 +6,7 @@ import { scrollUp } from '@utils/scroll-up.js';
 import { IconsLoader } from '@utils/icons-loader.js';
 import '@modules/modals/src';
 import '@modules/shopping-cart/src';
+import { initFontAwesomeCommonIcons } from '@utils/fa-icons.js';
 import 'tiny-slider/dist/tiny-slider.css';
 require('@styles/modules/homepage/homepage.scss');
 
@@ -19,7 +20,7 @@ class Homepage {
 		this.gas_boiler_products = null;
 		this.banners = null;
 
-
+		initFontAwesomeCommonIcons();
 		triggerAddToCartBtnsListeners();
 		slideToggle({
 			selector: '.hm-minicart-trigger',
@@ -33,93 +34,113 @@ class Homepage {
 	}
 
 	initProductsGallery() {
-		this.hot_deal_products = tns({
-			container: '.hot-deal-products.products-tns-carousel',
-			controlsContainer: '.hot-deal-products.products-tns-controls',
-			lazyload: true,
-			responsive: {
-				150: {
-					items: 1
+		const hot_deal_elm = document.querySelector('.hot-deal-products.products-tns-carousel');
+		const spare_parts_elm = document.querySelector('.spare-parts-products.products-tns-carousel');
+		const boiler_products_elm = document.querySelector('.boiler-products.products-tns-carousel');
+		const gas_boiler_products_elm = document.querySelector('.gas-boiler-products.products-tns-carousel');
+		const banner_elm = document.querySelector('.banner-products.products-tns-carousel');
+
+		if (hot_deal_elm) {
+			this.hot_deal_products = tns({
+				container: '.hot-deal-products.products-tns-carousel',
+				controlsContainer: '.hot-deal-products.products-tns-controls',
+				lazyload: true,
+				responsive: {
+					150: {
+						items: 1
+					},
+					768: {
+						items: 2
+					},
+					992: {
+						items: 3
+					},
+					1366: {
+						items: 4
+					}
 				},
-				768: {
-					items: 2
+				nav: false
+			});
+		}
+
+		if (spare_parts_elm) {
+			this.spare_parts_products = tns({
+				container: '.spare-parts-products.products-tns-carousel',
+				controlsContainer: '.spare-parts-products.products-tns-controls',
+				lazyload: true,
+				responsive: {
+					150: {
+						items: 1
+					},
+					768: {
+						items: 2
+					},
+					992: {
+						items: 3
+					},
+					1366: {
+						items: 4
+					}
 				},
-				992: {
-					items: 3
+				nav: false
+			});
+		}
+
+		if (boiler_products_elm) {
+			this.boiler_products = tns({
+				container: '.boiler-products.products-tns-carousel',
+				controlsContainer: '.boiler-products.products-tns-controls',
+				lazyload: true,
+				responsive: {
+					150: {
+						items: 1
+					},
+					768: {
+						items: 2
+					},
+					992: {
+						items: 3
+					},
+					1366: {
+						items: 4
+					}
 				},
-				1366: {
-					items: 4
-				}
-			},
-			nav: false
-		});
-		this.spare_parts_products = tns({
-			container: '.spare-parts-products.products-tns-carousel',
-			controlsContainer: '.spare-parts-products.products-tns-controls',
-			lazyload: true,
-			responsive: {
-				150: {
-					items: 1
+				nav: false
+			});
+		}
+
+		if (gas_boiler_products_elm) {
+			this.gas_boiler_products = tns({
+				container: '.gas-boiler-products.products-tns-carousel',
+				controlsContainer: '.gas-boiler-products.products-tns-controls',
+				lazyload: true,
+				responsive: {
+					150: {
+						items: 1
+					},
+					768: {
+						items: 2
+					},
+					992: {
+						items: 3
+					},
+					1366: {
+						items: 4
+					}
 				},
-				768: {
-					items: 2
-				},
-				992: {
-					items: 3
-				},
-				1366: {
-					items: 4
-				}
-			},
-			nav: false
-		});
-		this.boiler_products = tns({
-			container: '.boiler-products.products-tns-carousel',
-			controlsContainer: '.boiler-products.products-tns-controls',
-			lazyload: true,
-			responsive: {
-				150: {
-					items: 1
-				},
-				768: {
-					items: 2
-				},
-				992: {
-					items: 3
-				},
-				1366: {
-					items: 4
-				}
-			},
-			nav: false
-		});
-		this.gas_boiler_products = tns({
-			container: '.gas-boiler-products.products-tns-carousel',
-			controlsContainer: '.gas-boiler-products.products-tns-controls',
-			lazyload: true,
-			responsive: {
-				150: {
-					items: 1
-				},
-				768: {
-					items: 2
-				},
-				992: {
-					items: 3
-				},
-				1366: {
-					items: 4
-				}
-			},
-			nav: false
-		});
-		this.banners = tns({
-			container: '.banner-products.products-tns-carousel',
-			controlsContainer: '.banner-products.products-tns-controls',
-			lazyload: true,
-			items: 1,
-			nav: false
-		});
+				nav: false
+			});
+		}
+
+		if (banner_elm) {
+			this.banners = tns({
+				container: '.banner-products.products-tns-carousel',
+				controlsContainer: '.banner-products.products-tns-controls',
+				lazyload: true,
+				items: 1,
+				nav: false
+			});
+		}
 	}
 }
 

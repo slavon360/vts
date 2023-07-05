@@ -8,6 +8,7 @@ import { IconsLoader } from '@utils/icons-loader.js';
 import '@modules/products-search/src';
 import '@modules/shopping-cart/src';
 import { mmenu } from '@utils/mean-menu.js';
+import { initFontAwesomeCommonIcons } from '@utils/fa-icons.js';
 import 'tiny-slider/dist/tiny-slider.css';
 import '@styles/modules/tiny-slider/tiny-slider.scss';
 require('@styles/modules/product-detail/product-detail.scss');
@@ -20,6 +21,7 @@ class ProductDetails extends ProductQtyInput {
         this.product_gallery = null;
         this.icons_loader = new IconsLoader();
         this.initProductGallery();
+        initFontAwesomeCommonIcons();
 
         this.triggerAddToCartBtnsListenersHandler();
         this.triggerUpdateSingleAddProductAreaHandler();

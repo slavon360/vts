@@ -33,6 +33,9 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "aosx": "^1.0.18",
     "bootstrap": "^5.2.3",
     "minimist": "^1.2.7",

@@ -7,7 +7,7 @@ services:
       - 3308:3306
     volumes: 
       # - vts-volume4:/var/lib/mysql
-      - vts-volume4:/docker-entrypoint-initdb.d
+      - vts-volume-test:/docker-entrypoint-initdb.d
       # - ./vts_dump.sql:/docker-entrypoint-initdb.d/vts_dump.sql
     env_file:
       - ./.env
@@ -44,6 +44,8 @@ services:
       - ./backend:/app
     env_file:
       - ./.env
+    environment:
+      - RUN_FROM_DOCKER=True
     depends_on:
       mysqldb:
         condition: service_healthy
@@ -60,4 +62,4 @@ services:
       - backend
     # command: nodemon ./frontend/js scripts-bundler.js --env development --all
 volumes:
-  vts-volume4:
+  vts-volume-test:

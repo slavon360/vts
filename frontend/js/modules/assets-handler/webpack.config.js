@@ -10,6 +10,7 @@ module.exports = {
 	entry: SRC_DIR,
 	output: {
 		...base_config.output,
-		path: path.resolve(current_working_dir, `../backend/catalog/static/js/modules/${folder_name}/dist`)
+		path: path.resolve(current_working_dir, `../backend/catalog/static/js/modules/${folder_name}/dist`),
+		filename: 'index.main.js'
 	},
 };

@@ -1,18 +1,772 @@
-<html class="no-js" lang="zxx"><head>
+<html class="no-js fontawesome-i2svg-active fontawesome-i2svg-complete" lang="zxx"><head>	
     <title>Обмін та повернення</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-    <!-- Add additional CSS in static file -->
     
+    <style type="text/css">:root, :host {
+--fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
+--fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
+--fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
+--fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
+--fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+--fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+--fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+--fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+--fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+overflow: visible;
+box-sizing: content-box;
+}
+
+.svg-inline--fa {
+display: var(--fa-display, inline-block);
+height: 1em;
+overflow: visible;
+vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+margin-right: var(--fa-pull-margin, 0.3em);
+width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+margin-left: var(--fa-pull-margin, 0.3em);
+width: auto;
+}
+.svg-inline--fa.fa-li {
+width: var(--fa-li-width, 2em);
+top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+bottom: 0;
+left: 0;
+margin: auto;
+position: absolute;
+right: 0;
+top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+display: inline-block;
+position: absolute;
+text-align: center;
+}
+
+.fa-layers {
+display: inline-block;
+height: 1em;
+position: relative;
+text-align: center;
+vertical-align: -0.125em;
+width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+-webkit-transform-origin: center center;
+      transform-origin: center center;
+}
+
+.fa-layers-text {
+left: 50%;
+top: 50%;
+-webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+-webkit-transform-origin: center center;
+      transform-origin: center center;
+}
+
+.fa-layers-counter {
+background-color: var(--fa-counter-background-color, #ff253a);
+border-radius: var(--fa-counter-border-radius, 1em);
+box-sizing: border-box;
+color: var(--fa-inverse, #fff);
+line-height: var(--fa-counter-line-height, 1);
+max-width: var(--fa-counter-max-width, 5em);
+min-width: var(--fa-counter-min-width, 1.5em);
+overflow: hidden;
+padding: var(--fa-counter-padding, 0.25em 0.5em);
+right: var(--fa-right, 0);
+text-overflow: ellipsis;
+top: var(--fa-top, 0);
+-webkit-transform: scale(var(--fa-counter-scale, 0.25));
+      transform: scale(var(--fa-counter-scale, 0.25));
+-webkit-transform-origin: top right;
+      transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+bottom: var(--fa-bottom, 0);
+right: var(--fa-right, 0);
+top: auto;
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: bottom right;
+      transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+bottom: var(--fa-bottom, 0);
+left: var(--fa-left, 0);
+right: auto;
+top: auto;
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: bottom left;
+      transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+top: var(--fa-top, 0);
+right: var(--fa-right, 0);
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: top right;
+      transform-origin: top right;
+}
+
+.fa-layers-top-left {
+left: var(--fa-left, 0);
+right: auto;
+top: var(--fa-top, 0);
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: top left;
+      transform-origin: top left;
+}
+
+.fa-1x {
+font-size: 1em;
+}
+
+.fa-2x {
+font-size: 2em;
+}
+
+.fa-3x {
+font-size: 3em;
+}
+
+.fa-4x {
+font-size: 4em;
+}
+
+.fa-5x {
+font-size: 5em;
+}
+
+.fa-6x {
+font-size: 6em;
+}
+
+.fa-7x {
+font-size: 7em;
+}
+
+.fa-8x {
+font-size: 8em;
+}
+
+.fa-9x {
+font-size: 9em;
+}
+
+.fa-10x {
+font-size: 10em;
+}
+
+.fa-2xs {
+font-size: 0.625em;
+line-height: 0.1em;
+vertical-align: 0.225em;
+}
+
+.fa-xs {
+font-size: 0.75em;
+line-height: 0.0833333337em;
+vertical-align: 0.125em;
+}
+
+.fa-sm {
+font-size: 0.875em;
+line-height: 0.0714285718em;
+vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+font-size: 1.25em;
+line-height: 0.05em;
+vertical-align: -0.075em;
+}
+
+.fa-xl {
+font-size: 1.5em;
+line-height: 0.0416666682em;
+vertical-align: -0.125em;
+}
+
+.fa-2xl {
+font-size: 2em;
+line-height: 0.03125em;
+vertical-align: -0.1875em;
+}
+
+.fa-fw {
+text-align: center;
+width: 1.25em;
+}
+
+.fa-ul {
+list-style-type: none;
+margin-left: var(--fa-li-margin, 2.5em);
+padding-left: 0;
+}
+.fa-ul > li {
+position: relative;
+}
+
+.fa-li {
+left: calc(var(--fa-li-width, 2em) * -1);
+position: absolute;
+text-align: center;
+width: var(--fa-li-width, 2em);
+line-height: inherit;
+}
+
+.fa-border {
+border-color: var(--fa-border-color, #eee);
+border-radius: var(--fa-border-radius, 0.1em);
+border-style: var(--fa-border-style, solid);
+border-width: var(--fa-border-width, 0.08em);
+padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+float: left;
+margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+float: right;
+margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+-webkit-animation-name: fa-beat;
+      animation-name: fa-beat;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+      animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+-webkit-animation-name: fa-bounce;
+      animation-name: fa-bounce;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+      animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+-webkit-animation-name: fa-fade;
+      animation-name: fa-fade;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+      animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+-webkit-animation-name: fa-beat-fade;
+      animation-name: fa-beat-fade;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+      animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+-webkit-animation-name: fa-flip;
+      animation-name: fa-flip;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+      animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+-webkit-animation-name: fa-shake;
+      animation-name: fa-shake;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, linear);
+      animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+-webkit-animation-name: fa-spin;
+      animation-name: fa-spin;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 2s);
+      animation-duration: var(--fa-animation-duration, 2s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, linear);
+      animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+--fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+-webkit-animation-name: fa-spin;
+      animation-name: fa-spin;
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
+      animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+.fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+-webkit-animation-delay: -1ms;
+        animation-delay: -1ms;
+-webkit-animation-duration: 1ms;
+        animation-duration: 1ms;
+-webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+-webkit-transition-delay: 0s;
+        transition-delay: 0s;
+-webkit-transition-duration: 0s;
+        transition-duration: 0s;
+}
+}
+@-webkit-keyframes fa-beat {
+0%, 90% {
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+45% {
+-webkit-transform: scale(var(--fa-beat-scale, 1.25));
+        transform: scale(var(--fa-beat-scale, 1.25));
+}
+}
+@keyframes fa-beat {
+0%, 90% {
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+45% {
+-webkit-transform: scale(var(--fa-beat-scale, 1.25));
+        transform: scale(var(--fa-beat-scale, 1.25));
+}
+}
+@-webkit-keyframes fa-bounce {
+0% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+10% {
+-webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+        transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+}
+30% {
+-webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+        transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+}
+50% {
+-webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+        transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+}
+57% {
+-webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+        transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+}
+64% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+100% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+}
+@keyframes fa-bounce {
+0% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+10% {
+-webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+        transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+}
+30% {
+-webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+        transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+}
+50% {
+-webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+        transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+}
+57% {
+-webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+        transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+}
+64% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+100% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+}
+@-webkit-keyframes fa-fade {
+50% {
+opacity: var(--fa-fade-opacity, 0.4);
+}
+}
+@keyframes fa-fade {
+50% {
+opacity: var(--fa-fade-opacity, 0.4);
+}
+}
+@-webkit-keyframes fa-beat-fade {
+0%, 100% {
+opacity: var(--fa-beat-fade-opacity, 0.4);
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+50% {
+opacity: 1;
+-webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+        transform: scale(var(--fa-beat-fade-scale, 1.125));
+}
+}
+@keyframes fa-beat-fade {
+0%, 100% {
+opacity: var(--fa-beat-fade-opacity, 0.4);
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+50% {
+opacity: 1;
+-webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+        transform: scale(var(--fa-beat-fade-scale, 1.125));
+}
+}
+@-webkit-keyframes fa-flip {
+50% {
+-webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+        transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+}
+}
+@keyframes fa-flip {
+50% {
+-webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+        transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+}
+}
+@-webkit-keyframes fa-shake {
+0% {
+-webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+}
+4% {
+-webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+}
+8%, 24% {
+-webkit-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+}
+12%, 28% {
+-webkit-transform: rotate(18deg);
+        transform: rotate(18deg);
+}
+16% {
+-webkit-transform: rotate(-22deg);
+        transform: rotate(-22deg);
+}
+20% {
+-webkit-transform: rotate(22deg);
+        transform: rotate(22deg);
+}
+32% {
+-webkit-transform: rotate(-12deg);
+        transform: rotate(-12deg);
+}
+36% {
+-webkit-transform: rotate(12deg);
+        transform: rotate(12deg);
+}
+40%, 100% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+}
+@keyframes fa-shake {
+0% {
+-webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+}
+4% {
+-webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+}
+8%, 24% {
+-webkit-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+}
+12%, 28% {
+-webkit-transform: rotate(18deg);
+        transform: rotate(18deg);
+}
+16% {
+-webkit-transform: rotate(-22deg);
+        transform: rotate(-22deg);
+}
+20% {
+-webkit-transform: rotate(22deg);
+        transform: rotate(22deg);
+}
+32% {
+-webkit-transform: rotate(-12deg);
+        transform: rotate(-12deg);
+}
+36% {
+-webkit-transform: rotate(12deg);
+        transform: rotate(12deg);
+}
+40%, 100% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+}
+@-webkit-keyframes fa-spin {
+0% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+}
+}
+@keyframes fa-spin {
+0% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+}
+}
+.fa-rotate-90 {
+-webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+-webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+-webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+-webkit-transform: scale(-1, 1);
+      transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+-webkit-transform: scale(1, -1);
+      transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+-webkit-transform: scale(-1, -1);
+      transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+-webkit-transform: rotate(var(--fa-rotate-angle, none));
+      transform: rotate(var(--fa-rotate-angle, none));
+}
+
+.fa-stack {
+display: inline-block;
+vertical-align: middle;
+height: 2em;
+position: relative;
+width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+bottom: 0;
+left: 0;
+margin: auto;
+position: absolute;
+right: 0;
+top: 0;
+z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+height: 1em;
+width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+height: 2em;
+width: 2.5em;
+}
+
+.fa-inverse {
+color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+fill: var(--fa-primary-color, currentColor);
+opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+fill: var(--fa-secondary-color, currentColor);
+opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+fill: black;
+}
+
+.fad.fa-inverse,
+.fa-duotone.fa-inverse {
+color: var(--fa-inverse, #fff);
+}</style><link rel="shortcut icon" type="image/x-icon" href="/static/images/icons/vtslogo.png">
+
     
 <link rel="stylesheet" href="/static/styles/css/exchange-and-return/exchange-and-return.css">
 
-    <!-- Modernizr js -->
-    
 <style>.toggle-container {
 transition: all 0.35s ease-in-out;
 overflow: hidden;
@@ -187,7 +941,7 @@ transition-property: width, transform;
                                     <div class="overlay"></div>
                                     <div class="searched-results" data-phones="099 365 88 71|068 40 20 821"></div>
                                 </div>
-                                <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                <button class="li-btn" type="submit"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fa fa-search"></i> Font Awesome fontawesome.com --></button>
                             </form>
                             <!-- Header Middle Searchbox Area End Here -->
                             <!-- Begin Header Middle Right Area -->
@@ -196,14 +950,17 @@ transition-property: width, transform;
                                     <!-- Begin Header Mini Cart Area -->
                                     <li class="hm-minicart">
                                         <div class="hm-minicart-trigger">
-                                            <span class="item-icon"></span>
+                                            <span class="item-icon">
+                                                <svg class="svg-inline--fa fa-basket-shopping" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="basket-shopping" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"></path></svg><!-- <i class="fa-solid fa-basket-shopping"></i> Font Awesome fontawesome.com -->
+                                            </span>
                                             <span class="item-text">
-                                                <span class="cart-sum">18,223.06 грн.</span>
-                                                <span class="cart-item-count">23</span>
+                                                <span class="cart-sum">18,186.34 грн.</span>
+                                                <span class="cart-item-count">22</span>
+                                                <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
                                             </span>
                                         </div>
                                         <span></span>
-                                        <div class="toggle-container toggle-container-align-right">
+                                        <div class="toggle-container toggle-container-align-right" style="height: 0px;">
                                             <div class="minicart">
                                                 <ul class="minicart-product-list">
 <li class="product-cart-info">
@@ -213,7 +970,7 @@ transition-property: width, transform;
     <span>679.32 грн. x 9</span>
 </div>
 <button data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="close">
-    <i data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="fa fa-close"></i>
+    <svg data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -224,18 +981,7 @@ transition-property: width, transform;
     <span>20.20 грн. x 2</span>
 </div>
 <button data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="close">
-    <i data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="fa fa-close"></i>
-</button>
-</li>
-
-<li class="product-cart-info">
-<a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="minicart-product-image"><img src="/image/products/ibuxki5wgiqetzuw8cpv.png" alt="39837690  Уплотнение теплообменника отопительного контура Ferroli "></a>
-<div class="minicart-product-details">
-    <h6><a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc">39837690  Уплотнение теплообменника отопительного контура Ferroli </a></h6>
-    <span>36.72 грн. x 1</span>
-</div>
-<button data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="close">
-    <i data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="fa fa-close"></i>
+    <svg data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -246,7 +992,7 @@ transition-property: width, transform;
     <span>41.13 грн. x 2</span>
 </div>
 <button data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="close">
-    <i data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="fa fa-close"></i>
+    <svg data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -257,7 +1003,7 @@ transition-property: width, transform;
     <span>36.72 грн. x 1</span>
 </div>
 <button data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="close">
-    <i data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="fa fa-close"></i>
+    <svg data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -268,7 +1014,7 @@ transition-property: width, transform;
     <span>2,570.40 грн. x 4</span>
 </div>
 <button data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="close">
-    <i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-close"></i>
+    <svg data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -279,7 +1025,7 @@ transition-property: width, transform;
     <span>510.78 грн. x 3</span>
 </div>
 <button data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="close">
-    <i data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="fa fa-close"></i>
+    <svg data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -290,11 +1036,11 @@ transition-property: width, transform;
     <span>99.14 грн. x 1</span>
 </div>
 <button data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="close">
-    <i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-close"></i>
+    <svg data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 </ul>
-                                                <p class="minicart-total">До сплати: <span class="sum">18,223.06 <span class="text-lowercase">грн.</span></span></p>
+                                                <p class="minicart-total">До сплати: <span class="sum">18,186.34 <span class="text-lowercase">грн.</span></span></p>
                                                 <div class="minicart-button">
                                                     <a href="/shopping-cart" class="li-button btn li-button-dark li-button-fullwidth li-button-sm">
                                                         <span>Перейти до кошику</span>
@@ -332,7 +1078,11 @@ transition-property: width, transform;
                                     <ul>
                                     
                                         
-                                            <li class="megamenu-static-holder"><a href="/products-catalog/8b3742d8-8c43-4902-8c78-c2156857c814">Водонагрівачі</a>
+                                            <li class="megamenu-static-holder">
+                                                <a href="/products-catalog/8b3742d8-8c43-4902-8c78-c2156857c814">
+                                                    Водонагрівачі 
+                                                    <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
+                                                </a>
                                                 <ul class="megamenu hb-megamenu">
                                                     
                                                         <li style="min-width: calc(100% / 2)">
@@ -362,7 +1112,11 @@ transition-property: width, transform;
                                         
                                     
                                         
-                                            <li class="megamenu-static-holder"><a href="/products-catalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536">Запчастини</a>
+                                            <li class="megamenu-static-holder">
+                                                <a href="/products-catalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536">
+                                                    Запчастини 
+                                                    <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
+                                                </a>
                                                 <ul class="megamenu hb-megamenu">
                                                     
                                                         <li style="min-width: calc(100% / 5)">
@@ -499,7 +1253,11 @@ transition-property: width, transform;
                                         
                                     
                                         
-                                            <li class="megamenu-static-holder"><a href="/products-catalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e">Котли</a>
+                                            <li class="megamenu-static-holder">
+                                                <a href="/products-catalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e">
+                                                    Котли 
+                                                    <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
+                                                </a>
                                                 <ul class="megamenu hb-megamenu">
                                                     
                                                         <li style="min-width: calc(100% / 3)">
@@ -683,7 +1441,7 @@ transition-property: width, transform;
                                 <div class="footer-block">
                                     <span>Ми в соцмережах: </span>
                                     <a class="facebook" href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
-                                        <i class="fa fa-facebook"></i>
+                                        <svg class="svg-inline--fa fa-facebook fa-xl" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg><!-- <i class="fa-brands fa-facebook fa-xl"></i> Font Awesome fontawesome.com -->
                                     </a>
                                 </div>
                             </div>
@@ -717,7 +1475,7 @@ transition-property: width, transform;
                                 <h3 class="footer-block-title">Клієнтам</h3>
                                 <ul>
                                     <li><a href="/about-us">Про нас</a></li>
-                                    <li><a href="/shipping">Оплата і доставка</a></li>
+                                    
                                     <li><a href="/exchange-and-return">Обмін та повернення</a></li>
                                     <li><a href="/repair">Ремонт та обслуговування</a></li>
                                 </ul>
@@ -735,10 +1493,10 @@ transition-property: width, transform;
     <!-- Begin Body Wrapper -->
     
     <!-- Body Wrapper End Here -->
-    <a id="scrollUp" style="display: none;"><i class="fa fa-angle-double-up"></i></a>
+    <a id="scrollUp" style="display: none;"><svg class="svg-inline--fa fa-angle-double-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-double-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><g class="missing"><path fill="currentColor" d="M156.5,447.7l-12.6,29.5c-18.7-9.5-35.9-21.2-51.5-34.9l22.7-22.7C127.6,430.5,141.5,440,156.5,447.7z M40.6,272H8.5 c1.4,21.2,5.4,41.7,11.7,61.1L50,321.2C45.1,305.5,41.8,289,40.6,272z M40.6,240c1.4-18.8,5.2-37,11.1-54.1l-29.5-12.6 C14.7,194.3,10,216.7,8.5,240H40.6z M64.3,156.5c7.8-14.9,17.2-28.8,28.1-41.5L69.7,92.3c-13.7,15.6-25.5,32.8-34.9,51.5 L64.3,156.5z M397,419.6c-13.9,12-29.4,22.3-46.1,30.4l11.9,29.8c20.7-9.9,39.8-22.6,56.9-37.6L397,419.6z M115,92.4 c13.9-12,29.4-22.3,46.1-30.4l-11.9-29.8c-20.7,9.9-39.8,22.6-56.8,37.6L115,92.4z M447.7,355.5c-7.8,14.9-17.2,28.8-28.1,41.5 l22.7,22.7c13.7-15.6,25.5-32.9,34.9-51.5L447.7,355.5z M471.4,272c-1.4,18.8-5.2,37-11.1,54.1l29.5,12.6 c7.5-21.1,12.2-43.5,13.6-66.8H471.4z M321.2,462c-15.7,5-32.2,8.2-49.2,9.4v32.1c21.2-1.4,41.7-5.4,61.1-11.7L321.2,462z M240,471.4c-18.8-1.4-37-5.2-54.1-11.1l-12.6,29.5c21.1,7.5,43.5,12.2,66.8,13.6V471.4z M462,190.8c5,15.7,8.2,32.2,9.4,49.2h32.1 c-1.4-21.2-5.4-41.7-11.7-61.1L462,190.8z M92.4,397c-12-13.9-22.3-29.4-30.4-46.1l-29.8,11.9c9.9,20.7,22.6,39.8,37.6,56.9 L92.4,397z M272,40.6c18.8,1.4,36.9,5.2,54.1,11.1l12.6-29.5C317.7,14.7,295.3,10,272,8.5V40.6z M190.8,50 c15.7-5,32.2-8.2,49.2-9.4V8.5c-21.2,1.4-41.7,5.4-61.1,11.7L190.8,50z M442.3,92.3L419.6,115c12,13.9,22.3,29.4,30.5,46.1 l29.8-11.9C470,128.5,457.3,109.4,442.3,92.3z M397,92.4l22.7-22.7c-15.6-13.7-32.8-25.5-51.5-34.9l-12.6,29.5 C370.4,72.1,384.4,81.5,397,92.4z"></path><circle fill="currentColor" cx="256" cy="364" r="28"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="r" values="28;14;28;28;14;28;"></animate><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;1;1;0;1;"></animate></circle><path fill="currentColor" opacity="1" d="M263.7,312h-16c-6.6,0-12-5.4-12-12c0-71,77.4-63.9,77.4-107.8c0-20-17.8-40.2-57.4-40.2c-29.1,0-44.3,9.6-59.2,28.7 c-3.9,5-11.1,6-16.2,2.4l-13.1-9.2c-5.6-3.9-6.9-11.8-2.6-17.2c21.2-27.2,46.4-44.7,91.2-44.7c52.3,0,97.4,29.8,97.4,80.2 c0,67.6-77.4,63.5-77.4,107.8C275.7,306.6,270.3,312,263.7,312z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="1;0;0;0;0;1;"></animate></path><path fill="currentColor" opacity="0" d="M232.5,134.5l7,168c0.3,6.4,5.6,11.5,12,11.5h9c6.4,0,11.7-5.1,12-11.5l7-168c0.3-6.8-5.2-12.5-12-12.5h-23 C237.7,122,232.2,127.7,232.5,134.5z"><animate attributeType="XML" repeatCount="indefinite" dur="2s" attributeName="opacity" values="0;0;1;1;0;0;"></animate></path></g></svg><!-- <i class="fa fa-angle-double-up"></i> Font Awesome fontawesome.com --></a>
 
     
-    <script src="/static/js/modules/assets-handler/dist/index.js"></script>
+    <script src="/static/js/modules/assets-handler/dist/index.main.js"></script>
     
 <script src="/static/js/modules/exchange-and-return/dist/index.main.js.gz" defer=""></script>
 
