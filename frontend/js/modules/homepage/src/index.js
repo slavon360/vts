@@ -30,7 +30,9 @@ class Homepage {
 		mmenu();
 		new IconsLoader();
 
-		this.initProductsGallery();
+		setTimeout(() => {
+			this.initProductsGallery();
+		}, 1000);
 	}
 
 	initProductsGallery() {

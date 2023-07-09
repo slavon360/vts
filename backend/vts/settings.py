@@ -27,13 +27,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$q9b8hp#%$e4opv6-p$*@0v#b(ma(5ohicc!dz#m5n0wz$d1zj'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DJANGO_DEBUG') == 'True'
 
 ALLOWED_HOSTS = ['127.0.0.1']
 print('RUN_FROM_DOCKER: ', RUN_FROM_DOCKER)
+print('DEBUG: ', DEBUG)
 ACTIVE_DB_HOST = 'mysqldb' if RUN_FROM_DOCKER == 'True' else '127.0.0.1'
 
 # Application definition

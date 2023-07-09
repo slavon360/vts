@@ -1,18 +1,772 @@
-<html class="no-js" lang="zxx"><head>
+<html class="no-js fontawesome-i2svg-active fontawesome-i2svg-complete" lang="zxx"><head>	
     <title>Кошик</title>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-    <!-- Add additional CSS in static file -->
     
+    <style type="text/css">:root, :host {
+--fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
+--fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
+--fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
+--fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
+--fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+--fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+--fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+--fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+--fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+overflow: visible;
+box-sizing: content-box;
+}
+
+.svg-inline--fa {
+display: var(--fa-display, inline-block);
+height: 1em;
+overflow: visible;
+vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+margin-right: var(--fa-pull-margin, 0.3em);
+width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+margin-left: var(--fa-pull-margin, 0.3em);
+width: auto;
+}
+.svg-inline--fa.fa-li {
+width: var(--fa-li-width, 2em);
+top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+bottom: 0;
+left: 0;
+margin: auto;
+position: absolute;
+right: 0;
+top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+display: inline-block;
+position: absolute;
+text-align: center;
+}
+
+.fa-layers {
+display: inline-block;
+height: 1em;
+position: relative;
+text-align: center;
+vertical-align: -0.125em;
+width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+-webkit-transform-origin: center center;
+      transform-origin: center center;
+}
+
+.fa-layers-text {
+left: 50%;
+top: 50%;
+-webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+-webkit-transform-origin: center center;
+      transform-origin: center center;
+}
+
+.fa-layers-counter {
+background-color: var(--fa-counter-background-color, #ff253a);
+border-radius: var(--fa-counter-border-radius, 1em);
+box-sizing: border-box;
+color: var(--fa-inverse, #fff);
+line-height: var(--fa-counter-line-height, 1);
+max-width: var(--fa-counter-max-width, 5em);
+min-width: var(--fa-counter-min-width, 1.5em);
+overflow: hidden;
+padding: var(--fa-counter-padding, 0.25em 0.5em);
+right: var(--fa-right, 0);
+text-overflow: ellipsis;
+top: var(--fa-top, 0);
+-webkit-transform: scale(var(--fa-counter-scale, 0.25));
+      transform: scale(var(--fa-counter-scale, 0.25));
+-webkit-transform-origin: top right;
+      transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+bottom: var(--fa-bottom, 0);
+right: var(--fa-right, 0);
+top: auto;
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: bottom right;
+      transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+bottom: var(--fa-bottom, 0);
+left: var(--fa-left, 0);
+right: auto;
+top: auto;
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: bottom left;
+      transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+top: var(--fa-top, 0);
+right: var(--fa-right, 0);
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: top right;
+      transform-origin: top right;
+}
+
+.fa-layers-top-left {
+left: var(--fa-left, 0);
+right: auto;
+top: var(--fa-top, 0);
+-webkit-transform: scale(var(--fa-layers-scale, 0.25));
+      transform: scale(var(--fa-layers-scale, 0.25));
+-webkit-transform-origin: top left;
+      transform-origin: top left;
+}
+
+.fa-1x {
+font-size: 1em;
+}
+
+.fa-2x {
+font-size: 2em;
+}
+
+.fa-3x {
+font-size: 3em;
+}
+
+.fa-4x {
+font-size: 4em;
+}
+
+.fa-5x {
+font-size: 5em;
+}
+
+.fa-6x {
+font-size: 6em;
+}
+
+.fa-7x {
+font-size: 7em;
+}
+
+.fa-8x {
+font-size: 8em;
+}
+
+.fa-9x {
+font-size: 9em;
+}
+
+.fa-10x {
+font-size: 10em;
+}
+
+.fa-2xs {
+font-size: 0.625em;
+line-height: 0.1em;
+vertical-align: 0.225em;
+}
+
+.fa-xs {
+font-size: 0.75em;
+line-height: 0.0833333337em;
+vertical-align: 0.125em;
+}
+
+.fa-sm {
+font-size: 0.875em;
+line-height: 0.0714285718em;
+vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+font-size: 1.25em;
+line-height: 0.05em;
+vertical-align: -0.075em;
+}
+
+.fa-xl {
+font-size: 1.5em;
+line-height: 0.0416666682em;
+vertical-align: -0.125em;
+}
+
+.fa-2xl {
+font-size: 2em;
+line-height: 0.03125em;
+vertical-align: -0.1875em;
+}
+
+.fa-fw {
+text-align: center;
+width: 1.25em;
+}
+
+.fa-ul {
+list-style-type: none;
+margin-left: var(--fa-li-margin, 2.5em);
+padding-left: 0;
+}
+.fa-ul > li {
+position: relative;
+}
+
+.fa-li {
+left: calc(var(--fa-li-width, 2em) * -1);
+position: absolute;
+text-align: center;
+width: var(--fa-li-width, 2em);
+line-height: inherit;
+}
+
+.fa-border {
+border-color: var(--fa-border-color, #eee);
+border-radius: var(--fa-border-radius, 0.1em);
+border-style: var(--fa-border-style, solid);
+border-width: var(--fa-border-width, 0.08em);
+padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+float: left;
+margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+float: right;
+margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+-webkit-animation-name: fa-beat;
+      animation-name: fa-beat;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+      animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+-webkit-animation-name: fa-bounce;
+      animation-name: fa-bounce;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+      animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+-webkit-animation-name: fa-fade;
+      animation-name: fa-fade;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+      animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+-webkit-animation-name: fa-beat-fade;
+      animation-name: fa-beat-fade;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+      animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+-webkit-animation-name: fa-flip;
+      animation-name: fa-flip;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+      animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+-webkit-animation-name: fa-shake;
+      animation-name: fa-shake;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, linear);
+      animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+-webkit-animation-name: fa-spin;
+      animation-name: fa-spin;
+-webkit-animation-delay: var(--fa-animation-delay, 0s);
+      animation-delay: var(--fa-animation-delay, 0s);
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 2s);
+      animation-duration: var(--fa-animation-duration, 2s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, linear);
+      animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+--fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+-webkit-animation-name: fa-spin;
+      animation-name: fa-spin;
+-webkit-animation-direction: var(--fa-animation-direction, normal);
+      animation-direction: var(--fa-animation-direction, normal);
+-webkit-animation-duration: var(--fa-animation-duration, 1s);
+      animation-duration: var(--fa-animation-duration, 1s);
+-webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+      animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+-webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
+      animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+.fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+-webkit-animation-delay: -1ms;
+        animation-delay: -1ms;
+-webkit-animation-duration: 1ms;
+        animation-duration: 1ms;
+-webkit-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+-webkit-transition-delay: 0s;
+        transition-delay: 0s;
+-webkit-transition-duration: 0s;
+        transition-duration: 0s;
+}
+}
+@-webkit-keyframes fa-beat {
+0%, 90% {
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+45% {
+-webkit-transform: scale(var(--fa-beat-scale, 1.25));
+        transform: scale(var(--fa-beat-scale, 1.25));
+}
+}
+@keyframes fa-beat {
+0%, 90% {
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+45% {
+-webkit-transform: scale(var(--fa-beat-scale, 1.25));
+        transform: scale(var(--fa-beat-scale, 1.25));
+}
+}
+@-webkit-keyframes fa-bounce {
+0% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+10% {
+-webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+        transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+}
+30% {
+-webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+        transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+}
+50% {
+-webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+        transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+}
+57% {
+-webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+        transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+}
+64% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+100% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+}
+@keyframes fa-bounce {
+0% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+10% {
+-webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+        transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+}
+30% {
+-webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+        transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+}
+50% {
+-webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+        transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+}
+57% {
+-webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+        transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+}
+64% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+100% {
+-webkit-transform: scale(1, 1) translateY(0);
+        transform: scale(1, 1) translateY(0);
+}
+}
+@-webkit-keyframes fa-fade {
+50% {
+opacity: var(--fa-fade-opacity, 0.4);
+}
+}
+@keyframes fa-fade {
+50% {
+opacity: var(--fa-fade-opacity, 0.4);
+}
+}
+@-webkit-keyframes fa-beat-fade {
+0%, 100% {
+opacity: var(--fa-beat-fade-opacity, 0.4);
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+50% {
+opacity: 1;
+-webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+        transform: scale(var(--fa-beat-fade-scale, 1.125));
+}
+}
+@keyframes fa-beat-fade {
+0%, 100% {
+opacity: var(--fa-beat-fade-opacity, 0.4);
+-webkit-transform: scale(1);
+        transform: scale(1);
+}
+50% {
+opacity: 1;
+-webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+        transform: scale(var(--fa-beat-fade-scale, 1.125));
+}
+}
+@-webkit-keyframes fa-flip {
+50% {
+-webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+        transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+}
+}
+@keyframes fa-flip {
+50% {
+-webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+        transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+}
+}
+@-webkit-keyframes fa-shake {
+0% {
+-webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+}
+4% {
+-webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+}
+8%, 24% {
+-webkit-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+}
+12%, 28% {
+-webkit-transform: rotate(18deg);
+        transform: rotate(18deg);
+}
+16% {
+-webkit-transform: rotate(-22deg);
+        transform: rotate(-22deg);
+}
+20% {
+-webkit-transform: rotate(22deg);
+        transform: rotate(22deg);
+}
+32% {
+-webkit-transform: rotate(-12deg);
+        transform: rotate(-12deg);
+}
+36% {
+-webkit-transform: rotate(12deg);
+        transform: rotate(12deg);
+}
+40%, 100% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+}
+@keyframes fa-shake {
+0% {
+-webkit-transform: rotate(-15deg);
+        transform: rotate(-15deg);
+}
+4% {
+-webkit-transform: rotate(15deg);
+        transform: rotate(15deg);
+}
+8%, 24% {
+-webkit-transform: rotate(-18deg);
+        transform: rotate(-18deg);
+}
+12%, 28% {
+-webkit-transform: rotate(18deg);
+        transform: rotate(18deg);
+}
+16% {
+-webkit-transform: rotate(-22deg);
+        transform: rotate(-22deg);
+}
+20% {
+-webkit-transform: rotate(22deg);
+        transform: rotate(22deg);
+}
+32% {
+-webkit-transform: rotate(-12deg);
+        transform: rotate(-12deg);
+}
+36% {
+-webkit-transform: rotate(12deg);
+        transform: rotate(12deg);
+}
+40%, 100% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+}
+@-webkit-keyframes fa-spin {
+0% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+}
+}
+@keyframes fa-spin {
+0% {
+-webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+}
+}
+.fa-rotate-90 {
+-webkit-transform: rotate(90deg);
+      transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+-webkit-transform: rotate(180deg);
+      transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+-webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+-webkit-transform: scale(-1, 1);
+      transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+-webkit-transform: scale(1, -1);
+      transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+-webkit-transform: scale(-1, -1);
+      transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+-webkit-transform: rotate(var(--fa-rotate-angle, none));
+      transform: rotate(var(--fa-rotate-angle, none));
+}
+
+.fa-stack {
+display: inline-block;
+vertical-align: middle;
+height: 2em;
+position: relative;
+width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+bottom: 0;
+left: 0;
+margin: auto;
+position: absolute;
+right: 0;
+top: 0;
+z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+height: 1em;
+width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+height: 2em;
+width: 2.5em;
+}
+
+.fa-inverse {
+color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+position: absolute;
+width: 1px;
+height: 1px;
+padding: 0;
+margin: -1px;
+overflow: hidden;
+clip: rect(0, 0, 0, 0);
+white-space: nowrap;
+border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+fill: var(--fa-primary-color, currentColor);
+opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+fill: var(--fa-secondary-color, currentColor);
+opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+fill: black;
+}
+
+.fad.fa-inverse,
+.fa-duotone.fa-inverse {
+color: var(--fa-inverse, #fff);
+}</style><link rel="shortcut icon" type="image/x-icon" href="/static/images/icons/vtslogo.png">
+
     
 <link rel="stylesheet" href="/static/styles/css/shopping-cart/shopping-cart.css">
 
-    <!-- Modernizr js -->
-    
 <style>.toggle-container {
 transition: all 0.35s ease-in-out;
 overflow: hidden;
@@ -183,11 +937,11 @@ transition-property: width, transform;
                             <!-- Begin Header Middle Searchbox Area -->
                             <form action="#" class="hm-searchbox">
                                 <div class="search-input-container">
-                                    <input id="search-products" class="search-products-input" type="text" placeholder="Я шукаю...">
+                                    <input id="search-products" class="search-products-input" type="text" placeholder="Я шукаю..." autocomplete="off">
                                     <div class="overlay"></div>
                                     <div class="searched-results" data-phones="099 365 88 71|068 40 20 821"></div>
                                 </div>
-                                <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                <button class="li-btn" type="submit"><svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path></svg><!-- <i class="fa fa-search"></i> Font Awesome fontawesome.com --></button>
                             </form>
                             <!-- Header Middle Searchbox Area End Here -->
                             <!-- Begin Header Middle Right Area -->
@@ -196,10 +950,13 @@ transition-property: width, transform;
                                     <!-- Begin Header Mini Cart Area -->
                                     <li class="hm-minicart">
                                         <div class="hm-minicart-trigger">
-                                            <span class="item-icon"></span>
+                                            <span class="item-icon">
+                                                <svg class="svg-inline--fa fa-basket-shopping" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="basket-shopping" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M253.3 35.1c6.1-11.8 1.5-26.3-10.2-32.4s-26.3-1.5-32.4 10.2L117.6 192H32c-17.7 0-32 14.3-32 32s14.3 32 32 32L83.9 463.5C91 492 116.6 512 146 512H430c29.4 0 55-20 62.1-48.5L544 256c17.7 0 32-14.3 32-32s-14.3-32-32-32H458.4L365.3 12.9C359.2 1.2 344.7-3.4 332.9 2.7s-16.3 20.6-10.2 32.4L404.3 192H171.7L253.3 35.1zM192 304v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16zm96-16c8.8 0 16 7.2 16 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16zm128 16v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V304c0-8.8 7.2-16 16-16s16 7.2 16 16z"></path></svg><!-- <i class="fa-solid fa-basket-shopping"></i> Font Awesome fontawesome.com -->
+                                            </span>
                                             <span class="item-text">
-                                                <span class="cart-sum">8,412.57 грн.</span>
-                                                <span class="cart-item-count">15</span>
+                                                <span class="cart-sum">18,186.34 грн.</span>
+                                                <span class="cart-item-count">22</span>
+                                                <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
                                             </span>
                                         </div>
                                         <span></span>
@@ -210,10 +967,10 @@ transition-property: width, transform;
 <a href="/products/36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="minicart-product-image"><img src="/image/products/w7frj6x52zgmcqpw1xe8.jpg" alt="482979 Фланец под &quot;сухой ТЭН&quot;   Gorenje "></a>
 <div class="minicart-product-details">
     <h6><a href="/products/36d9370b-ed92-4bd7-8e6e-7b092d14f54f">482979 Фланец под "сухой ТЭН"   Gorenje </a></h6>
-    <span>679.32 грн. x 6</span>
+    <span>679.32 грн. x 9</span>
 </div>
 <button data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="close">
-    <i data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="fa fa-close"></i>
+    <svg data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -221,21 +978,10 @@ transition-property: width, transform;
 <a href="/products/efdba493-095c-4bc8-92d6-8d138644c766" class="minicart-product-image"><img src="/image/products/mw8znhemnbswnxjlpmqg.jpg" alt="3500 Прокладка ТЭНа ARTI"></a>
 <div class="minicart-product-details">
     <h6><a href="/products/efdba493-095c-4bc8-92d6-8d138644c766">3500 Прокладка ТЭНа ARTI</a></h6>
-    <span>20.20 грн. x 1</span>
+    <span>20.20 грн. x 2</span>
 </div>
 <button data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="close">
-    <i data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="fa fa-close"></i>
-</button>
-</li>
-
-<li class="product-cart-info">
-<a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="minicart-product-image"><img src="/image/products/ibuxki5wgiqetzuw8cpv.png" alt="39837690  Уплотнение теплообменника отопительного контура Ferroli "></a>
-<div class="minicart-product-details">
-    <h6><a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc">39837690  Уплотнение теплообменника отопительного контура Ferroli </a></h6>
-    <span>36.72 грн. x 1</span>
-</div>
-<button data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="close">
-    <i data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="fa fa-close"></i>
+    <svg data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -243,10 +989,10 @@ transition-property: width, transform;
 <a href="/products/7e4cd090-475e-4a75-841d-8537fcaedd86" class="minicart-product-image"><img src="/image/products/g2xf1lohfwvw3ofqwl1y.jpg" alt="65104262 Кольцо-прокладка для теплообменника Ariston Clas (3,53X17,04)"></a>
 <div class="minicart-product-details">
     <h6><a href="/products/7e4cd090-475e-4a75-841d-8537fcaedd86">65104262 Кольцо-прокладка для теплообменника Ariston Clas (3,53X17,04)</a></h6>
-    <span>41.13 грн. x 1</span>
+    <span>41.13 грн. x 2</span>
 </div>
 <button data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="close">
-    <i data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="fa fa-close"></i>
+    <svg data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -257,7 +1003,7 @@ transition-property: width, transform;
     <span>36.72 грн. x 1</span>
 </div>
 <button data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="close">
-    <i data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="fa fa-close"></i>
+    <svg data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -265,10 +1011,10 @@ transition-property: width, transform;
 <a href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535" class="minicart-product-image"><img src="/image/products/zc0uucitbiibelrtxyg1.jpg" alt="39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M"></a>
 <div class="minicart-product-details">
     <h6><a href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535">39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M</a></h6>
-    <span>2,570.40 грн. x 1</span>
+    <span>2,570.40 грн. x 4</span>
 </div>
 <button data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="close">
-    <i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-close"></i>
+    <svg data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -279,7 +1025,7 @@ transition-property: width, transform;
     <span>510.78 грн. x 3</span>
 </div>
 <button data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="close">
-    <i data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="fa fa-close"></i>
+    <svg data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 
@@ -290,11 +1036,11 @@ transition-property: width, transform;
     <span>99.14 грн. x 1</span>
 </div>
 <button data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="close">
-    <i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-close"></i>
+    <svg data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-close"></i> Font Awesome fontawesome.com -->
 </button>
 </li>
 </ul>
-                                                <p class="minicart-total">До сплати: <span class="sum">8,412.57 <span class="text-lowercase">грн.</span></span></p>
+                                                <p class="minicart-total">До сплати: <span class="sum">18,186.34 <span class="text-lowercase">грн.</span></span></p>
                                                 <div class="minicart-button">
                                                     <a href="/shopping-cart" class="li-button btn li-button-dark li-button-fullwidth li-button-sm">
                                                         <span>Перейти до кошику</span>
@@ -332,7 +1078,11 @@ transition-property: width, transform;
                                     <ul>
                                     
                                         
-                                            <li class="megamenu-static-holder"><a href="/products-catalog/8b3742d8-8c43-4902-8c78-c2156857c814">Водонагрівачі</a>
+                                            <li class="megamenu-static-holder">
+                                                <a href="/products-catalog/8b3742d8-8c43-4902-8c78-c2156857c814">
+                                                    Водонагрівачі 
+                                                    <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
+                                                </a>
                                                 <ul class="megamenu hb-megamenu">
                                                     
                                                         <li style="min-width: calc(100% / 2)">
@@ -362,7 +1112,11 @@ transition-property: width, transform;
                                         
                                     
                                         
-                                            <li class="megamenu-static-holder"><a href="/products-catalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536">Запчастини</a>
+                                            <li class="megamenu-static-holder">
+                                                <a href="/products-catalog/bdbf63e6-ff51-44b9-ba27-5fe26404e536">
+                                                    Запчастини 
+                                                    <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
+                                                </a>
                                                 <ul class="megamenu hb-megamenu">
                                                     
                                                         <li style="min-width: calc(100% / 5)">
@@ -499,7 +1253,11 @@ transition-property: width, transform;
                                         
                                     
                                         
-                                            <li class="megamenu-static-holder"><a href="/products-catalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e">Котли</a>
+                                            <li class="megamenu-static-holder">
+                                                <a href="/products-catalog/808062c4-1e13-46a6-8cce-c1c7d3ac4d5e">
+                                                    Котли 
+                                                    <svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa-solid fa-angle-down"></i> Font Awesome fontawesome.com -->
+                                                </a>
                                                 <ul class="megamenu hb-megamenu">
                                                     
                                                         <li style="min-width: calc(100% / 3)">
@@ -637,120 +1395,105 @@ transition-property: width, transform;
                         </thead>
                         <tbody class="shopping-cart-tbody">
 <tr id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f">
-    <td class="li-product-remove"><a href="#" data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f"><i data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f"><svg data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/36d9370b-ed92-4bd7-8e6e-7b092d14f54f"><img src="/image/products/w7frj6x52zgmcqpw1xe8.jpg" alt="482979 Фланец под &quot;сухой ТЭН&quot;   Gorenje "></a></td>
     <td class="li-product-name"><a href="/products/36d9370b-ed92-4bd7-8e6e-7b092d14f54f">482979 Фланец под "сухой ТЭН"   Gorenje </a></td>
     <td class="li-product-price"><span class="amount">679.32 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
-            <input class="cart-plus-minus-box" value="6" type="text">
-            <div class="dec qtybutton" data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" data-product-price="679.32"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" data-product-price="679.32"><i class="fa fa-angle-up"></i></div>
+            <input class="cart-plus-minus-box" value="9" type="text">
+            <div class="dec qtybutton" data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" data-product-price="679.32"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="36d9370b-ed92-4bd7-8e6e-7b092d14f54f" data-product-price="679.32"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
-    <td class="product-subtotal"><span class="amount sum">4,075.92 грн.</span></td>
+    <td class="product-subtotal"><span class="amount sum">6,113.88 грн.</span></td>
 </tr>
 
 <tr id="efdba493-095c-4bc8-92d6-8d138644c766">
-    <td class="li-product-remove"><a href="#" data-product-id="efdba493-095c-4bc8-92d6-8d138644c766"><i data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="efdba493-095c-4bc8-92d6-8d138644c766"><svg data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/efdba493-095c-4bc8-92d6-8d138644c766"><img src="/image/products/mw8znhemnbswnxjlpmqg.jpg" alt="3500 Прокладка ТЭНа ARTI"></a></td>
     <td class="li-product-name"><a href="/products/efdba493-095c-4bc8-92d6-8d138644c766">3500 Прокладка ТЭНа ARTI</a></td>
     <td class="li-product-price"><span class="amount">20.20 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
-            <input class="cart-plus-minus-box" value="1" type="text">
-            <div class="dec qtybutton" data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" data-product-price="20.20"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" data-product-price="20.20"><i class="fa fa-angle-up"></i></div>
+            <input class="cart-plus-minus-box" value="2" type="text">
+            <div class="dec qtybutton" data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" data-product-price="20.20"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="efdba493-095c-4bc8-92d6-8d138644c766" data-product-price="20.20"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
-    <td class="product-subtotal"><span class="amount sum">20.20 грн.</span></td>
-</tr>
-
-<tr id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc">
-    <td class="li-product-remove"><a href="#" data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc"><i data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" class="fa fa-times"></i></a></td>
-    <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc"><img src="/image/products/ibuxki5wgiqetzuw8cpv.png" alt="39837690  Уплотнение теплообменника отопительного контура Ferroli "></a></td>
-    <td class="li-product-name"><a href="/products/1a94f20c-551e-4f7a-9e8b-23afc33f75bc">39837690  Уплотнение теплообменника отопительного контура Ferroli </a></td>
-    <td class="li-product-price"><span class="amount">36.72 грн.</span></td>
-    <td class="quantity">
-        <div class="cart-plus-minus">
-            <input class="cart-plus-minus-box" value="1" type="text">
-            <div class="dec qtybutton" data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" data-product-price="36.72"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="1a94f20c-551e-4f7a-9e8b-23afc33f75bc" data-product-price="36.72"><i class="fa fa-angle-up"></i></div>
-        </div>
-    </td>
-    <td class="product-subtotal"><span class="amount sum">36.72 грн.</span></td>
+    <td class="product-subtotal"><span class="amount sum">40.40 грн.</span></td>
 </tr>
 
 <tr id="7e4cd090-475e-4a75-841d-8537fcaedd86">
-    <td class="li-product-remove"><a href="#" data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86"><i data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86"><svg data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/7e4cd090-475e-4a75-841d-8537fcaedd86"><img src="/image/products/g2xf1lohfwvw3ofqwl1y.jpg" alt="65104262 Кольцо-прокладка для теплообменника Ariston Clas (3,53X17,04)"></a></td>
     <td class="li-product-name"><a href="/products/7e4cd090-475e-4a75-841d-8537fcaedd86">65104262 Кольцо-прокладка для теплообменника Ariston Clas (3,53X17,04)</a></td>
     <td class="li-product-price"><span class="amount">41.13 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
-            <input class="cart-plus-minus-box" value="1" type="text">
-            <div class="dec qtybutton" data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" data-product-price="41.13"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" data-product-price="41.13"><i class="fa fa-angle-up"></i></div>
+            <input class="cart-plus-minus-box" value="2" type="text">
+            <div class="dec qtybutton" data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" data-product-price="41.13"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="7e4cd090-475e-4a75-841d-8537fcaedd86" data-product-price="41.13"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
-    <td class="product-subtotal"><span class="amount sum">41.13 грн.</span></td>
+    <td class="product-subtotal"><span class="amount sum">82.26 грн.</span></td>
 </tr>
 
 <tr id="c5154efd-8734-45e0-ad94-5a7432dadb36">
-    <td class="li-product-remove"><a href="#" data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36"><i data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36"><svg data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/c5154efd-8734-45e0-ad94-5a7432dadb36"><img src="/image/products/oto3d44f1tixlueznecf.png" alt="39837700  Уплотнение теплообменника контура ГВС Ferroli "></a></td>
     <td class="li-product-name"><a href="/products/c5154efd-8734-45e0-ad94-5a7432dadb36">39837700  Уплотнение теплообменника контура ГВС Ferroli </a></td>
     <td class="li-product-price"><span class="amount">36.72 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
             <input class="cart-plus-minus-box" value="1" type="text">
-            <div class="dec qtybutton" data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" data-product-price="36.72"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" data-product-price="36.72"><i class="fa fa-angle-up"></i></div>
+            <div class="dec qtybutton" data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" data-product-price="36.72"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="c5154efd-8734-45e0-ad94-5a7432dadb36" data-product-price="36.72"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
     <td class="product-subtotal"><span class="amount sum">36.72 грн.</span></td>
 </tr>
 
 <tr id="0733d41c-2db4-4904-bba6-cb53c4b73535">
-    <td class="li-product-remove"><a href="#" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535"><i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535"><svg data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535"><img src="/image/products/zc0uucitbiibelrtxyg1.jpg" alt="39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M"></a></td>
     <td class="li-product-name"><a href="/products/0733d41c-2db4-4904-bba6-cb53c4b73535">39804970 (36802650) Газовый клапан Sit 825 Nova 0.825.023 Ferroli Domina C24M</a></td>
     <td class="li-product-price"><span class="amount">2,570.40 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
-            <input class="cart-plus-minus-box" value="1" type="text">
-            <div class="dec qtybutton" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" data-product-price="2,570.40"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" data-product-price="2,570.40"><i class="fa fa-angle-up"></i></div>
+            <input class="cart-plus-minus-box" value="4" type="text">
+            <div class="dec qtybutton" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" data-product-price="2,570.40"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="0733d41c-2db4-4904-bba6-cb53c4b73535" data-product-price="2,570.40"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
-    <td class="product-subtotal"><span class="amount sum">2,570.40 грн.</span></td>
+    <td class="product-subtotal"><span class="amount sum">10,281.60 грн.</span></td>
 </tr>
 
 <tr id="64b7a1df-ff5c-414e-9419-847ed55d6a25">
-    <td class="li-product-remove"><a href="#" data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25"><i data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25"><svg data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/64b7a1df-ff5c-414e-9419-847ed55d6a25"><img src="/image/products/txv3ga6etishtq0cfo1a.jpg" alt="39819110 Электрод розжига Ferroli PEGASUS (T) F2N T  (36702400)"></a></td>
     <td class="li-product-name"><a href="/products/64b7a1df-ff5c-414e-9419-847ed55d6a25">39819110 Электрод розжига Ferroli PEGASUS (T) F2N T  (36702400)</a></td>
     <td class="li-product-price"><span class="amount">510.78 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
             <input class="cart-plus-minus-box" value="3" type="text">
-            <div class="dec qtybutton" data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" data-product-price="510.78"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" data-product-price="510.78"><i class="fa fa-angle-up"></i></div>
+            <div class="dec qtybutton" data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" data-product-price="510.78"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="64b7a1df-ff5c-414e-9419-847ed55d6a25" data-product-price="510.78"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
     <td class="product-subtotal"><span class="amount sum">1,532.34 грн.</span></td>
 </tr>
 
 <tr id="2386f32c-5822-43fd-9c05-970ba3b9ea1a">
-    <td class="li-product-remove"><a href="#" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a"><i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-times"></i></a></td>
+    <td class="li-product-remove"><a href="#" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a"><svg data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="svg-inline--fa fa-xmark" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-fa-i2svg=""><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg><!-- <i data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" class="fa fa-times"></i> Font Awesome fontawesome.com --></a></td>
     <td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="/products/2386f32c-5822-43fd-9c05-970ba3b9ea1a"><img src="/image/products/arpusjsstgyvwgwmoqtp.jpg" alt="Z0380.03.00.06 Ручка выбора температуры G19-01, 02  Termet"></a></td>
     <td class="li-product-name"><a href="/products/2386f32c-5822-43fd-9c05-970ba3b9ea1a">Z0380.03.00.06 Ручка выбора температуры G19-01, 02  Termet</a></td>
     <td class="li-product-price"><span class="amount">99.14 грн.</span></td>
     <td class="quantity">
         <div class="cart-plus-minus">
             <input class="cart-plus-minus-box" value="1" type="text">
-            <div class="dec qtybutton" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" data-product-price="99.14"><i class="fa fa-angle-down"></i></div>
-            <div class="inc qtybutton" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" data-product-price="99.14"><i class="fa fa-angle-up"></i></div>
+            <div class="dec qtybutton" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" data-product-price="99.14"><svg class="svg-inline--fa fa-angle-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 342.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 274.7 86.6 137.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"></path></svg><!-- <i class="fa fa-angle-down"></i> Font Awesome fontawesome.com --></div>
+            <div class="inc qtybutton" data-product-id="2386f32c-5822-43fd-9c05-970ba3b9ea1a" data-product-price="99.14"><svg class="svg-inline--fa fa-angle-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"></path></svg><!-- <i class="fa fa-angle-up"></i> Font Awesome fontawesome.com --></div>
         </div>
     </td>
     <td class="product-subtotal"><span class="amount sum">99.14 грн.</span></td>
@@ -763,7 +1506,7 @@ transition-property: width, transform;
                         <div class="cart-page-total">
                             <h2>Підсумок</h2>
                             <ul>
-                                <li>Загальна сума <span class="sum">8,412.57 грн.</span></li>
+                                <li>Загальна сума <span class="sum">18,186.34 грн.</span></li>
                             </ul>
                             <a href="/checkout">Оформити замовлення</a>
                         </div>
@@ -813,7 +1556,7 @@ transition-property: width, transform;
                                 <div class="footer-block">
                                     <span>Ми в соцмережах: </span>
                                     <a class="facebook" href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
-                                        <i class="fa fa-facebook"></i>
+                                        <svg class="svg-inline--fa fa-facebook fa-xl" aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg><!-- <i class="fa-brands fa-facebook fa-xl"></i> Font Awesome fontawesome.com -->
                                     </a>
                                 </div>
                             </div>
@@ -847,7 +1590,7 @@ transition-property: width, transform;
                                 <h3 class="footer-block-title">Клієнтам</h3>
                                 <ul>
                                     <li><a href="/about-us">Про нас</a></li>
-                                    <li><a href="/shipping">Оплата і доставка</a></li>
+                                    
                                     <li><a href="/exchange-and-return">Обмін та повернення</a></li>
                                     <li><a href="/repair">Ремонт та обслуговування</a></li>
                                 </ul>
@@ -865,10 +1608,10 @@ transition-property: width, transform;
     <!-- Begin Body Wrapper -->
     
     <!-- Body Wrapper End Here -->
-    <a id="scrollUp" style="display: none;"><i class="fa fa-angle-double-up"></i></a>
+    <a id="scrollUp" style="display: none;"><svg class="svg-inline--fa fa-angles-up" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="angles-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M246.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 109.3 361.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160zm160 352l-160-160c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 301.3 361.4 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3z"></path></svg><!-- <i class="fas fa-angle-double-up"></i> Font Awesome fontawesome.com --></a>
 
     
-    <script src="/static/js/modules/assets-handler/dist/index.js"></script>
+    <script src="/static/js/modules/assets-handler/dist/index.main.js"></script>
     
 
 <script src="/static/js/modules/shopping-cart/dist/index.main.js" defer=""></script>

@@ -16,6 +16,8 @@ services:
       interval: 5s
       timeout: 1s
       retries: 10
+    depends_on:
+      - frontend
   # migration:
   #   build: 
   #     context: ./backend
@@ -32,6 +34,17 @@ services:
   #   command: bash -c "sleep 20 && mysql -h mysqldb -uviacheslav -pslavon360 vts_db < ./vts_dump.sql"
   #   # depends_on:
   #   #   - mysqldb
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - builded-frontend:/backend/catalog/static
+    tty: true
+    # depends_on:
+    #   - mysqldb
+          # condition: service_healthy
+      # - backend
+    # command: nodemon ./frontend/js scripts-bundler.js --env development --all
   backend:
     build: ./backend
     # build:
@@ -42,24 +55,20 @@ services:
       - '8000:8000'
     volumes:
       - ./backend:/app
+      - builded-frontend:/./app/catalog/static
     env_file:
       - ./.env
-    environment:
-      - RUN_FROM_DOCKER=True
+      - ./production/.env
+    # environment:
+    #   - RUN_FROM_DOCKER=True
+    #   - DEBUG=False
+    #   - DEV_MODE=False
     depends_on:
       mysqldb:
-        condition: service_healthy
+          condition: service_healthy
       # - migration
       # - mysqlinit
     tty: true
-  frontend:
-    build: ./frontend
-    volumes:
-      - ./frontend:/app
-    tty: true
-    depends_on:
-      - mysqldb
-      - backend
-    # command: nodemon ./frontend/js scripts-bundler.js --env development --all
 volumes:
   vts-volume-test:
+  builded-frontend:

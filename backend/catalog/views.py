@@ -19,6 +19,7 @@ nova_post_url = 'https://api.novaposhta.ua/v2.0/json/'
 np_key = config('NOVA_POSHTA_API_KEY')
 DEV_MODE = config('DEV_MODE') == 'True'
 css_extention = '.css' if DEV_MODE else '.css.gz'
+print('DEV_MODE: ', DEV_MODE)
 
 def get_file_name(directory_path, extention = '.js'):
 	current_file_path = os.path.abspath(__file__)
