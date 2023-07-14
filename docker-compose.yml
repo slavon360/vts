@@ -83,6 +83,7 @@ services:
       - MYSQL_DATABASE=vts_db
       - DJANGO_DEBUG=True
       - DEV_MODE=False
+      - RUN_FROM_DOCKER=True
     depends_on:
       mysqldb:
           condition: service_healthy
