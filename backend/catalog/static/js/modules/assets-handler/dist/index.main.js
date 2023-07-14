@@ -1,0 +1,1 @@
+window.addEventListener("load",(function(){document.querySelector(".preloader-container").classList.add("d-none")}));
