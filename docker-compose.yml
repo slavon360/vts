@@ -9,8 +9,8 @@ services:
       # - vts-volume4:/var/lib/mysql
       - vts-volume-test:/docker-entrypoint-initdb.d
       # - ./vts_dump.sql:/docker-entrypoint-initdb.d/vts_dump.sql
-    env_file:
-      - ./.env
+    # env_file:
+    #   - ./.env
     environment:
       - NOVA_POSHTA_API_KEY=60635140d18ae9c0354f3158bc6c77bb
       - SECRET_KEY=django-secure-q9b8he4opv6-p*@0vbNma05oh_+Liccdz_m5n0wzd1zj
@@ -68,9 +68,9 @@ services:
     volumes:
       - ./backend:/app
       - builded-frontend:/./app/catalog/static
-    env_file:
-      - ./.env
-      - ./production/.env
+    # env_file:
+    #   - ./.env
+    #   - ./production/.env
     environment:
       - NOVA_POSHTA_API_KEY=60635140d18ae9c0354f3158bc6c77bb
       - SECRET_KEY=django-secure-q9b8he4opv6-p*@0vbNma05oh_+Liccdz_m5n0wzd1zj
