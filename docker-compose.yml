@@ -11,6 +11,18 @@ services:
       # - ./vts_dump.sql:/docker-entrypoint-initdb.d/vts_dump.sql
     env_file:
       - ./.env
+    environment:
+      - NOVA_POSHTA_API_KEY=60635140d18ae9c0354f3158bc6c77bb
+      - SECRET_KEY=django-secure-q9b8he4opv6-p*@0vbNma05oh_+Liccdz_m5n0wzd1zj
+      - DB_USERNAME=viacheslav
+      - DB_PASSWORD=slavon360
+      - MYSQL_USER=viacheslav
+      - MYSQL_PASSWORD=slavon360
+      - MYSQL_ROOT_PASSWORD=slavon360
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=vts_db
+      - DJANGO_DEBUG=True
+      - DEV_MODE=False
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1"]
       interval: 5s
@@ -59,10 +71,18 @@ services:
     env_file:
       - ./.env
       - ./production/.env
-    # environment:
-    #   - RUN_FROM_DOCKER=True
-    #   - DEBUG=False
-    #   - DEV_MODE=False
+    environment:
+      - NOVA_POSHTA_API_KEY=60635140d18ae9c0354f3158bc6c77bb
+      - SECRET_KEY=django-secure-q9b8he4opv6-p*@0vbNma05oh_+Liccdz_m5n0wzd1zj
+      - DB_USERNAME=viacheslav
+      - DB_PASSWORD=slavon360
+      - MYSQL_USER=viacheslav
+      - MYSQL_PASSWORD=slavon360
+      - MYSQL_ROOT_PASSWORD=slavon360
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=vts_db
+      - DJANGO_DEBUG=True
+      - DEV_MODE=False
     depends_on:
       mysqldb:
           condition: service_healthy
