@@ -21,6 +21,7 @@ class ShoppingCart {
 		this.addProductToCartHandler = null;
 		this.shopping_cart_data = [];
 		this.hm_minicart = document.querySelector('.hm-minicart');
+		this.hm_item_text = this.hm_minicart.querySelector('.item-text');
 		this.products_quantity_element = this.hm_minicart.querySelector('.cart-item-count');
 		this.products_sum_element = this.hm_minicart.querySelector('.cart-sum');
 		this.cart_products_list = this.hm_minicart.querySelector('.minicart-product-list');
@@ -153,6 +154,7 @@ class ShoppingCart {
 		this.products_sum_element.textContent = this.products_counter.sum > 0 ? `${products_sum} грн.` : '';
 		this.cart_total_element.innerHTML = `${numberWithCommas(this.products_counter.sum)} <span class="text-lowercase">грн.</span>`;
 		this.conditionallyDisableMinicartButtons();
+		this.hm_item_text.classList[this.products_counter.qty > 0 ? 'remove' : 'add']('empty');
 	}
 	conditionallyDisableMinicartButtons() {
 		if (this.products_counter.qty <= 0) {

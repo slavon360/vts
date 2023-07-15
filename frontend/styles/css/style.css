@@ -1578,6 +1578,9 @@ textarea:focus {
 		background: rgba(255,255,255,.3);
 		top: -3px;
 }
+.item-text.empty::before {
+	top: 10px;
+}
 .cart-item-count {
 		position: absolute;
 		top: -25px;

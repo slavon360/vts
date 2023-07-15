@@ -362,12 +362,12 @@ class ProductDetailView(DetailView, Breadcrumbs):
 
 	def get_context_data(self, **kwargs):
 		context = super().get_context_data(**kwargs)
-		categ = self.object.category.all()[0]
-		subcateg = self.object.subcategory.all()[0]
-		subsubcateg = self.object.subsubcategory.all()[0]
-		category_id = getattr(categ, 'id')
-		subcategory_id = getattr(subcateg, 'id')
-		subsubcategory_id = getattr(subsubcateg, 'id')
+		categ = self.object.category.all()[0] if self.object.category.all().count() > 0 else None
+		subcateg = self.object.subcategory.all()[0] if self.object.subcategory.all().count() > 0 else None
+		subsubcateg = self.object.subsubcategory.all()[0] if self.object.subsubcategory.all().count() > 0 else None
+		category_id = getattr(categ, 'id') if categ else None
+		subcategory_id = getattr(subcateg, 'id') if subcateg else None
+		subsubcategory_id = getattr(subsubcateg, 'id') if subsubcateg else None
 		js_name = get_file_name('/static/js/modules/product-detail/dist')
 		css_name = get_file_name('/static/styles/css/product-detail', '.css')
 
