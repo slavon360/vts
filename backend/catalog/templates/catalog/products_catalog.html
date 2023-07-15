@@ -70,7 +70,7 @@
 													<div class="product-image">
 													{% with product.images.all|first as first_image %} 
 														<a href="{{ product.get_absolute_url }}">
-															<img src="/image/{{first_image.image_url}}" alt="Li's Product Image">
+															<img data-src="/image/{{first_image.image_url}}" class="lozad" alt="Li's Product Image">
 														</a>
 													{% endwith %}
 													</div>

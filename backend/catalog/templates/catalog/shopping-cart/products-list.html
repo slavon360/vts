@@ -1,6 +1,6 @@
 {{@each(it.products) => prod, index}}
 <li class="product-cart-info">
-	<a href="{{prod.link}}" class="minicart-product-image"><img src="{{prod.img_url}}" alt="{{prod.title}}"></a>
+	<a href="{{prod.link}}" class="minicart-product-image"><img class="lozad" data-src="{{prod.img_url}}" alt="{{prod.title}}"></a>
 	<div class="minicart-product-details">
 		<h6><a href="{{prod.link}}">{{prod.title}}</a></h6>
 		<span>{{prod.price}} грн. x {{prod.qty}}</span>

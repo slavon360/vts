@@ -13,6 +13,7 @@ import { slideToggle } from '@utils/slide-toggle.js';
 import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
 import { IconsLoader } from '@utils/icons-loader.js';
+import imgLazy from '@utils/imgs-lazy.js';
 import { initFontAwesomeCommonIcons } from '@utils/fa-icons.js';
 require('@styles/css/common.css');
 
@@ -29,7 +30,7 @@ slideToggle({
 scrollUp('#scrollUp');
 mmenu();
 new IconsLoader();
-
+imgLazy();
 const renderPagination = ({ count, next, previous, results}) => {
 	function makePagesArray ({current_page, last_page, show_on_both_sides}) {
 		const page_link = current_page === last_page ? previous : next;
@@ -140,6 +141,8 @@ const renderProductsGrid = (products) => {
 	const grid_view = squirellyRender(grid_view_template, {products: prod});
 
 	grid_view_products.insertAdjacentHTML('beforeend', grid_view);
+
+	imgLazy();
 };
 
 function sortProductsHandler() {

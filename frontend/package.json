@@ -38,6 +38,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "aosx": "^1.0.18",
     "bootstrap": "^5.2.3",
+    "lozad": "^1.16.0",
     "minimist": "^1.2.7",
     "mmenu-js": "^9.3.0",
     "squirrelly": "^8.0.8",

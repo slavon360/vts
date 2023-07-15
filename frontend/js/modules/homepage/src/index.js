@@ -7,6 +7,7 @@ import { IconsLoader } from '@utils/icons-loader.js';
 import '@modules/modals/src';
 import '@modules/shopping-cart/src';
 import { initFontAwesomeCommonIcons } from '@utils/fa-icons.js';
+import imgLazy from '@utils/imgs-lazy.js';
 import 'tiny-slider/dist/tiny-slider.css';
 require('@styles/modules/homepage/homepage.scss');
 
@@ -63,7 +64,8 @@ class Homepage {
 						items: 4
 					}
 				},
-				nav: false
+				nav: false,
+				onInit: imgLazy
 			});
 		}
 
@@ -88,7 +90,8 @@ class Homepage {
 						items: 4
 					}
 				},
-				nav: false
+				nav: false,
+				onInit: imgLazy
 			});
 		}
 
@@ -113,7 +116,8 @@ class Homepage {
 						items: 4
 					}
 				},
-				nav: false
+				nav: false,
+				onInit: imgLazy
 			});
 		}
 
@@ -138,7 +142,8 @@ class Homepage {
 						items: 4
 					}
 				},
-				nav: false
+				nav: false,
+				onInit: imgLazy
 			});
 		}
 
@@ -156,7 +161,8 @@ class Homepage {
 					768: {
 						edgePadding: 0
 					}
-				}
+				},
+				onInit: imgLazy
 			});
 		}
 	}

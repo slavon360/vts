@@ -1,7 +1,7 @@
 {{@each(it.products) => prod, index}}
 	<tr id="{{prod.id}}">
 		<td class="li-product-remove"><a href="#" data-product-id="{{prod.id}}"><i data-product-id="{{prod.id}}" class="fa fa-times"></i></a></td>
-		<td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="{{prod.link}}"><img src="{{prod.img_url}}" alt="{{prod.title}}"></a></td>
+		<td class="li-product-thumbnail"><a class="img-thumbnail-wrp" href="{{prod.link}}"><img class="lozad" data-src="{{prod.img_url}}" alt="{{prod.title}}"></a></td>
 		<td class="li-product-name"><a href="{{prod.link}}">{{prod.title}}</a></td>
 		<td class="li-product-price"><span class="amount">{{prod.price}} грн.</span></td>
 		<td class="quantity">

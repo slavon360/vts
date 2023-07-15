@@ -37,7 +37,7 @@
 												</div>
 											</div>
 											<div class="slider-product-image-wrp ml-50">
-												<img class="slider-product-image" src="image/{{ banner.product.image }}">
+												<img class="slider-product-image lozad"  data-src="image/{{ banner.product.image }}">
 											</div>
 										</div>
 									</div>
@@ -78,7 +78,7 @@
 											<div class="product-image">
 												<a href="{{ hot_deal_product.get_absolute_url }}">
 													<img data-src="image/{{ hot_deal_product.image }}"
-														class="tns-lazy-img"
+														class="lozad"
 														alt="{{ hot_deal_product.title_without_serial_number }}"
 													>
 												</a>
@@ -196,7 +196,7 @@
 										<div class="single-product-wrap">
 											<div class="product-image">
 												<a href="{{ spare_parts_product.get_absolute_url }}">
-													<img src="image/{{ spare_parts_product.image }}" alt="{{ spare_parts_product.title_without_serial_number }}">
+													<img data-src="image/{{ spare_parts_product.image }}" class="lozad"  alt="{{ spare_parts_product.title_without_serial_number }}">
 												</a>
 											</div>
 											<div class="product_desc">
@@ -314,7 +314,7 @@
 										<div class="single-product-wrap">
 											<div class="product-image">
 												<a href="{{ boiler_product.get_absolute_url }}">
-													<img src="image/{{ boiler_product.image }}" alt="{{ boiler_product.title_without_serial_number }}">
+													<img data-src="image/{{ boiler_product.image }}" class="lozad"  alt="{{ boiler_product.title_without_serial_number }}">
 												</a>
 											</div>
 											<div class="product_desc">
@@ -428,7 +428,11 @@
 										<div class="single-product-wrap">
 											<div class="product-image">
 												<a href="{{ gas_boiler_product.get_absolute_url }}">
-													<img src="image/{{ gas_boiler_product.image }}" alt="{{ gas_boiler_product.title_without_serial_number }}">
+													<img
+														data-src="image/{{ gas_boiler_product.image }}"
+														class="lozad"
+														alt="{{ gas_boiler_product.title_without_serial_number }}"
+													>
 												</a>
 											</div>
 											<div class="product_desc">
