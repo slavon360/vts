@@ -64,7 +64,7 @@
 									<div class="product-area shop-product-area">
 										<div class="row grid-view-products">
 											{% for product in products_catalog %}
-											<div class="col-lg-3 col-md-4 col-sm-6 mt-40">
+											<div class="col-lg-3 col-md-4 col-sm-6">
 												<!-- single-product-wrap start -->
 												<div class="single-product-wrap">
 													<div class="product-image">
@@ -146,93 +146,6 @@
 												</div>
 												<!-- single-product-wrap end -->
 											</div>
-											{% endfor %}
-										</div>
-									</div>
-								</div>
-								<div id="list-view" class="tab-pane product-list-view fade" role="tabpanel">
-									<div class="row">
-										<div class="col list-view-products">
-											{% for product in products_catalog %}
-												<div class="row product-layout-list {% if forloop.last%}last-child{% endif %}">
-													<div class="col-lg-3 col-md-5 ">
-														<div class="product-image">
-															{% with product.images.all|first as first_image %}
-																<a href="{{ product.get_absolute_url }}">
-																	<img src="/image/{{first_image.image_url}}" alt="Li's Product Image">
-																</a>
-															{% endwith %}
-														</div>
-													</div>
-													<div class="col-lg-5 col-md-7">
-														<div class="product_desc">
-															<div class="product_desc_info">
-																<div class="product-review">
-																	<h5 class="manufacturer">
-																		<a href="">{{ product.manufacturer }}</a>
-																	</h5>
-																	{% comment %} <div class="rating-box">
-																		<ul class="rating">
-																			<li><i class="fa fa-star-o"></i></li>
-																			<li><i class="fa fa-star-o"></i></li>
-																			<li><i class="fa fa-star-o"></i></li>
-																			<li class="no-star"><i class="fa fa-star-o"></i></li>
-																			<li class="no-star"><i class="fa fa-star-o"></i></li>
-																		</ul>
-																	</div> {% endcomment %}
-																</div>
-																<div class="price-box">
-																	{% if product.discount_price %}
-																		<span class="new-price new-price-2">{{ product.get_actual_discount_price }} грн.</span>
-																		<span class="old-price">{{ product.get_actual_price }} грн.</span>
-																	{% else %}
-																		<span class="new-price">{{ product.get_actual_price }} грн.</span>
-																	{% endif %}
-																</div>
-																{% comment %} <div class="description-block">
-																	<p>{{ product.description | safe }}</p>
-																</div> {% endcomment %}
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-4">
-														<div class="shop-add-action">
-															<ul class="add-actions-link">
-																<li class="add-cart"
-																	data-product-id="{{ product.id }}"
-																	data-product-title="{{ product.title }}"
-																	data-product-qty="1"
-																	data-product-price="{{ product.get_actual_price }}"
-																	data-product-link="{{ product.get_absolute_url }}"
-																	data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
-																>
-																	<div class="add-product-to-cart">
-																		Купити
-																	</div>
-																</li>
-																<li>
-																	<a
-																		class="quick-view"
-																		data-bs-toggle="modal"
-																		data-bs-target="#exampleModalCenter"
-																		href="#"
-																		data-product-title="{{ product.title }}"
-																		data-product-manufacturer="{{ product.manufacturer }}"
-																		data-product-actual-price="{{ product.get_actual_price }}"
-																		{% if product.get_actual_discount_price %}
-																			data-product-discount-price="{{ product.get_actual_discount_price }}"
-																		{% endif %}
-																		data-product-description="{{ product.description }}"
-																		data-product-images-urls="{% for product_image in product.images.all %}/image/{{ product_image.image_url }}{% endfor %}"
-																	>
-																		<i class="fa fa-eye"></i>
-																		Швидкий перегляд
-																	</a>
-																</li>
-															</ul>
-														</div>
-													</div>
-												</div>
 											{% endfor %}
 										</div>
 									</div>

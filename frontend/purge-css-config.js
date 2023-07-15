@@ -3,7 +3,7 @@ const { PurgeCSSPlugin } = require('purgecss-webpack-plugin');
 const current_working_dir = process.cwd();
 function collectSafelist() {
 	return {
-		standard: [/mm-/, /mean-/, /:where\(\.mm-slideout\)/]
+		standard: [/mm-/, /mean-/, /:where\(\.mm-slideout\)/, /empty/]
 	}
 };
 

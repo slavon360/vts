@@ -2216,7 +2216,6 @@ textarea:focus {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 300ms ease-in 0s;
   padding: 0 0 75px;
-  z-index: 9;
 }
 /* .single-product-wrap:hover {
   margin: 0 0 -75px;
@@ -5047,6 +5046,12 @@ span.required {
 	.product-short .nice-select {
 		width: 180px;
 	}
+	.single-product-wrap {
+		padding: 0 0 10px;
+	}
+	.single-product-wrap .product_desc .add-actions {
+		display: none;
+	}
 }
 .product-short .nice-select .list {
   border-radius: 0px;
@@ -5061,6 +5066,7 @@ span.required {
 	.shop-top-bar {
 		display: flex;
 		flex-wrap: wrap;
+		margin-bottom: 15px;
 	}
 }
 .product-short  .nice-select .option {

@@ -6,6 +6,9 @@ export const mmenu = () => {
     const menu_toggler = document.querySelector('.mean-menu-toggler');
 
     const mMenu = new Mmenu(document.querySelector('#mean-menu-mobile'), {
+        navbar: {
+            title: 'Каталог'
+        },
         hooks: {
             'open:before': panel => {
                 menu_toggler.classList.add('menu-toggler-fixed');
@@ -13,6 +16,10 @@ export const mmenu = () => {
             'close:before': panel => {
                 menu_toggler.classList.remove('menu-toggler-fixed');
             }
+        },
+        slidingSubmenus: false,
+        offCanvas: {
+            position: 'bottom'
         }
     });
 };

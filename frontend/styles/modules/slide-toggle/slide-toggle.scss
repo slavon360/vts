@@ -12,3 +12,12 @@
 		display: none;
 	}
 }
+
+
+@media only screen and (max-width: 767px) {
+	.toggle-container {
+		&.toggle-container-align-right {
+			right: auto;
+		}
+	}
+}

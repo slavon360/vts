@@ -49,10 +49,12 @@ class Homepage {
 				lazyload: true,
 				responsive: {
 					150: {
-						items: 1
+						items: 1,
+						edgePadding: -1
 					},
 					768: {
-						items: 2
+						items: 2,
+						edgePadding: 0
 					},
 					992: {
 						items: 3
@@ -72,10 +74,12 @@ class Homepage {
 				lazyload: true,
 				responsive: {
 					150: {
-						items: 1
+						items: 1,
+						edgePadding: -1
 					},
 					768: {
-						items: 2
+						items: 2,
+						edgePadding: 0
 					},
 					992: {
 						items: 3
@@ -95,10 +99,12 @@ class Homepage {
 				lazyload: true,
 				responsive: {
 					150: {
-						items: 1
+						items: 1,
+						edgePadding: -1
 					},
 					768: {
-						items: 2
+						items: 2,
+						edgePadding: -0
 					},
 					992: {
 						items: 3
@@ -118,10 +124,12 @@ class Homepage {
 				lazyload: true,
 				responsive: {
 					150: {
-						items: 1
+						items: 1,
+						edgePadding: -1
 					},
 					768: {
-						items: 2
+						items: 2,
+						edgePadding: 0
 					},
 					992: {
 						items: 3
@@ -140,7 +148,15 @@ class Homepage {
 				controlsContainer: '.banner-products.products-tns-controls',
 				lazyload: true,
 				items: 1,
-				nav: false
+				nav: false,
+				responsive: {
+					150: {
+						edgePadding: -5
+					},
+					768: {
+						edgePadding: 0
+					}
+				}
 			});
 		}
 	}

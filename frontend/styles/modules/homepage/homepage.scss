@@ -4,7 +4,7 @@
 
 	.products-tns-carousel {
 		.single-product {
-			padding: 15px 0;
+			padding: 15px 0 0;
 
 			.single-product-wrap {
 				margin: 5px 20px;
@@ -41,6 +41,39 @@
 
 		[data-controls="next"] {
 			right: 0;
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.products-carousel-container {
+		.products-tns-controls {
+			[data-controls="prev"],
+			[data-controls="next"] {
+				top: 180px;
+			}
+		}
+	}
+	.single-product-wrap {
+		background-color: transparent;
+		margin: 0 !important;
+
+		.single-slide {
+			position: relative;
+
+			.slider-content {
+				position: relative;
+				z-index: 1;
+			}
+
+			.slider-product-image-wrp {
+				position: absolute;
+				margin: 0 !important;
+			}
+
+			.slider-product-image-wrp img {
+				height: 75%;
+			}
 		}
 	}
 }
