@@ -47,10 +47,19 @@
 
 @media only screen and (max-width: 767px) {
 	.products-carousel-container {
-		.products-tns-controls {
+		padding-bottom: 20px;
+
+		.banner-products.products-tns-controls {
 			[data-controls="prev"],
 			[data-controls="next"] {
 				top: 180px;
+			}
+		}
+
+		.products-tns-controls {
+			[data-controls="prev"],
+			[data-controls="next"] {
+				top: 140px;
 			}
 		}
 	}
@@ -68,7 +77,6 @@
 
 			.slider-product-image-wrp {
 				position: absolute;
-				margin: 0 !important;
 			}
 
 			.slider-product-image-wrp img {

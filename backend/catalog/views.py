@@ -1,12 +1,15 @@
 import os
 import datetime
 import requests
+import mimetypes
+from PIL import Image
 from operator import itemgetter
 from django.shortcuts import render
 from django.core.mail import send_mail
 from rest_framework import status, generics
 from decouple import config
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpResponse
+from django.conf import settings
 from django.urls import reverse
 from django.views.generic import DetailView, ListView
 from .models import Category, Phone, Banner, Product, Customer, Order
@@ -20,6 +23,41 @@ np_key = config('NOVA_POSHTA_API_KEY')
 DEV_MODE = config('DEV_MODE') == 'True'
 css_extention = '.css' if DEV_MODE else '.css.gz'
 print('DEV_MODE: ', DEV_MODE)
+
+def get_base_width(device_width, image):
+	image_width = image.size[0]
+	recommended_img_width = int(device_width / 2.5)
+
+	if device_width <= 768 and image_width > recommended_img_width:
+		return recommended_img_width
+	if device_width <= 992 and image_width > recommended_img_width:
+		return recommended_img_width
+	if device_width <= 1366 and image_width > recommended_img_width:
+		return recommended_img_width
+	if device_width <= 1920 and image_width > recommended_img_width:
+		return int(recommended_img_width / 1.5)
+	if device_width <= 3000 and image_width > recommended_img_width:
+		return int(recommended_img_width / 1.5)
+	if device_width <= 6000 and image_width > recommended_img_width:
+		return int(recommended_img_width / 2.5)
+	else: return image_width
+
+def resize_image_view(request, **kwargs):
+    device_width = int(request.COOKIES.get('device-width', 0))
+    image_relative_path = request.path.split(settings.MEDIA_URL).pop(-1)
+    image_path = f'{settings.MEDIA_ROOT}/{image_relative_path}'
+    image_type = mimetypes.guess_type(image_path)[0]
+    image_format = image_type.split('/')[-1]
+    image = Image.open(image_path)
+    
+    basewidth = get_base_width(device_width, image)
+    width_percent = (basewidth/float(image.size[0]))
+    height_size = int((float(image.size[1])*float(width_percent)))
+    image = image.resize((basewidth, height_size), Image.Resampling.LANCZOS)
+    response = HttpResponse(content_type=image_type)
+
+    image.save(response, format=image_format)
+    return response
 
 def get_file_name(directory_path, extention = '.js'):
 	current_file_path = os.path.abspath(__file__)

@@ -1,1 +1,1 @@
-window.addEventListener("load",(function(){document.querySelector(".preloader-container").classList.add("d-none")}));
+(()=>{"use strict";(()=>{window.addEventListener("DOMContentLoaded",(()=>{const e=window.innerWidth||document.documentElement.clientWidth;document.cookie=`device-width=${e}`}))})(),window.addEventListener("load",(function(){document.querySelector(".preloader-container").classList.add("d-none")}))})();

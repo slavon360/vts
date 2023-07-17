@@ -32,6 +32,7 @@ urlpatterns = [
 			'category': None
 		}
 	),
+    path('image/<img_folder>/<img_name>', views.resize_image_view, name='resize_image'),
 	path(
 		'products-catalog/api',
 		views.ProductsCatalogApiView.as_view()
