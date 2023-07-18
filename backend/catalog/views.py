@@ -43,7 +43,8 @@ def get_base_width(device_width, image):
 	else: return image_width
 
 def resize_image_view(request, **kwargs):
-    device_width = int(request.COOKIES.get('device-width', 0))
+    screen_width = int(request.GET.get('device-width', 50))
+    device_width = int(request.COOKIES.get('device-width', 50)) or screen_width
     print('request.COOKIES: ', request.COOKIES)
     image_relative_path = request.path.split(settings.MEDIA_URL).pop(-1)
     image_path = f'{settings.MEDIA_ROOT}/{image_relative_path}'

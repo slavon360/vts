@@ -27,7 +27,7 @@
 
 		[data-controls="prev"],
 		[data-controls="next"] {
-			top: 244px;
+			top: 160px;
 			position: inherit;
 			font-size: 55px;
 			color: rgba(36,36,36,.15);
@@ -38,10 +38,17 @@
 				color: #fed700;
 			}
 		}
+	}
 
+	.banner-products.products-tns-controls {
+		[data-controls="prev"],
 		[data-controls="next"] {
-			right: 0;
+			top: 240px;
 		}
+	}
+
+	[data-controls="next"] {
+		right: 0;
 	}
 }
 
