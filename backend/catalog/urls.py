@@ -8,6 +8,7 @@ urlpatterns = [
 	path('exchange-and-return', views.exchange_and_return_page),
 	path('repair', views.repair_page),
 	path('checkout/success', views.checkout_success_page, name='success-checkout'),
+	path('repair/success', views.repair_success_page, name='success-repair'),
 	path('checkout', views.checkout_page),
 	path('products/<uuid:pk>', views.ProductDetailView.as_view(), name='product-detail'),
 	path(

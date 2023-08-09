@@ -15,8 +15,8 @@ class CheckoutForm(forms.ModelForm):
 		}
 
 class RepairOrderForm(forms.ModelForm):
-	problem_description = forms.CharField()
-	model_name = forms.CharField()
+	problem_description = forms.CharField(max_length=999, required=False)
+	model_name = forms.CharField(required=False)
 	class Meta:
 		model = Customer
 		fields = ('name', 'phone_number', 'shipping_address')

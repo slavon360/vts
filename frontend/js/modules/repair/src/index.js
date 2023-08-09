@@ -24,14 +24,15 @@ class Repair extends IconsLoader {
         this.phone_field = this.repair_form.querySelector('#id_phone_number');
 		this.phone_number_code = this.repair_form.querySelector('.number-code');
         this.required_fields = this.repair_form.querySelectorAll('input[required]');
-		this.shipping_address_field = this.repair_form.querySelector('#shipping-address');
+		this.shipping_address_field = this.repair_form.querySelector('#id_shipping_address');
 		this.shipping_address_error_msg = this.repair_form.querySelector('.shipping-address-error-msg');
         this.problem_description_field = this.repair_form.querySelector('#id_problem_description');
         this.model_name_field = this.repair_form.querySelector('#id_model_name');
 		this.submit_btn = this.repair_form.querySelector('[type="submit"]');
 		this.csrfmiddlewaretoken_field = this.repair_form.querySelector('[name="csrfmiddlewaretoken"]');
-        this.repair_url = '/repair-order';
+        this.repair_url = '/repair';
 
+		this.bindListeners();
 		initFontAwesomeCommonIcons();
         slideToggle({
 			selector: '.hm-minicart-trigger',
@@ -108,9 +109,11 @@ class Repair extends IconsLoader {
 
     bindListeners() {
 		this.submit_btn.addEventListener('click', this.submit.bind(this));
-		this.checkout_form.addEventListener('submit', this.submit.bind(this));
+		this.repair_form.addEventListener('submit', this.submit.bind(this));
 		this.required_fields.forEach(elem => {
-			elem.addEventListener('keyup', this.requiredFieldsKeyupHandler.bind(this, elem));
+			['keyup', 'touchend'].forEach(event => {
+				elem.addEventListener(event, this.requiredFieldsKeyupHandler.bind(this, elem));
+			});
 		});
     }
 

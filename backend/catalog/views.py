@@ -202,6 +202,31 @@ def checkout_success_page(request):
 
 	return render(request, 'catalog/success-checkout.html', context=context)
 
+
+def repair_success_page(request):
+	categories = Category.objects.all()
+	phones = Phone.objects.all()
+	breadcrumbs = Breadcrumbs()
+	breadcrumbs_data = breadcrumbs.get_breadcrumbs(
+		breadcrumbs,
+		None,
+		category = '',
+		subcategory = '',
+		subsubcategory = '',
+		optional_title = ''
+	)
+	js_name = get_file_name('/static/js/modules/success-repair/dist')
+	css_name = get_file_name('/static/styles/css/success-repair', '.css')
+	context = {
+		'categories': categories,
+		'phones': phones,
+		'breadcrumbs': breadcrumbs_data,
+		'js_name': js_name,
+		'css_name': css_name
+	}
+
+	return render(request, 'catalog/success-repair.html', context=context)
+
 def about_us_page(request):
 	categories = Category.objects.all()
 	phones = Phone.objects.all()
@@ -288,7 +313,7 @@ def repair_page(request):
 
 			new_customer.save()
 			new_order.save()
-			return HttpResponseRedirect(reverse('success-checkout'))
+			return HttpResponseRedirect(reverse('success-repair'))
 	else:
 		form = RepairOrderForm()
 

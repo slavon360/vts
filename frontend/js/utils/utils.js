@@ -11,7 +11,7 @@ export function debounce(func, timeout = 300){
 
 export function phoneNumberFormatHandler(elem, event) {
 	if (elem.id === this.phone_field.id) {
-		if (!event.key.match(/^\d+$/)) {
+		if (event.key && !event.key.match(/^\d+$/)) {
 			this.phone_field.value = this.phone_field.value.replaceAll(event.key, '');
 			return;
 		}
@@ -42,6 +42,8 @@ export function is_valid_phone_number(phone){
 }
 
 export function isFilledElement(element) {
+	console.log(element);
+	console.log(element.nextElementSibling);
 	const filled = element.value.trim();
 
 	element.nextElementSibling.textContent = !filled ? 'Поле обов\'язкове для вводу' : '';

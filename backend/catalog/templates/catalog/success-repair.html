@@ -1,0 +1,24 @@
+{% extends "base_generic.html" %}
+{% load static %}
+{% block title %}<title>Оформлення заявки на ремонт</title>{% endblock %}
+
+{% block local_styles %}
+	<link rel="stylesheet" href="{% static 'styles/css/success-repair/' %}{{css_name}}">
+{% endblock %}
+{% block content %}
+	<div class="checkout-page">
+		<div class="content-wraper mt-40 mb-200">
+			<div class="container">
+				<div class="alert alert-success">
+                    Ваша заявка успішно подана.<br>
+                    Повернутися на <a href="/">головну</a>.
+                </div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+
+{% block local_scripts %}
+	<script src="{% static 'js/modules/success-repair/dist/' %}{{js_name}}" defer></script>
+{% endblock %}

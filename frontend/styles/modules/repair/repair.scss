@@ -3,6 +3,24 @@
         form {
             max-width: 550px;
             margin: 0 auto;
+
+            .phone-number-container {
+
+                [name="phone_number"] {
+                    width: calc(100% - 35px);
+                    padding-left: 0;
+                    margin-left: -4px;
+                    background-color: #eceff8;
+                }
+                .number-code {
+                    display: inline-block;
+                    background-color: #eceff8;
+                    height: 45px;
+                    line-height: 3.2;
+                    vertical-align: top;
+                    padding-right: 5px;
+                }
+            }
         }
     }
 
