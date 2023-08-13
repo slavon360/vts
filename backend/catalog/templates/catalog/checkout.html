@@ -9,7 +9,7 @@
 	<div class="checkout-page">
 		<div class="content-wraper mt-25 mb-25">
 			<div class="container">
-				<form id="checkout-form" action="/checkout" method="POST">
+				<form id="checkout-form" action="/checkout" method="POST" autocomplete="off">
 					{% csrf_token %}
 					<h4>Ваші контактні дані</h4>
 					<div class="form-group">

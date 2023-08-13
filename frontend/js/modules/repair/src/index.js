@@ -6,7 +6,7 @@ import {
     is_valid_phone_number,
     isFilledElement,
     setPhoneNumberCode,
-    phoneNumberFormatHandler
+    validateRequiredFields
 } from '@utils/utils.js';
 import { mmenu } from '@utils/mean-menu.js';
 import { scrollUp } from '@utils/scroll-up.js';
@@ -111,16 +111,17 @@ class Repair extends IconsLoader {
 		this.submit_btn.addEventListener('click', this.submit.bind(this));
 		this.repair_form.addEventListener('submit', this.submit.bind(this));
 		this.required_fields.forEach(elem => {
-			['keyup', 'touchend'].forEach(event => {
-				elem.addEventListener(event, this.requiredFieldsKeyupHandler.bind(this, elem));
+			['keyup', 'touchend'].forEach(event_key => {
+				elem.addEventListener(event_key, event => {
+					if (event.key === 'Tab') {
+						return;
+					}
+
+					validateRequiredFields.call(this, elem, event);
+				})
 			});
 		});
     }
-
-    requiredFieldsKeyupHandler(elem, event) {
-		isFilledElement(elem);
-		phoneNumberFormatHandler.call(this, elem, event);
-	}
 };
 
 const repair_page = new Repair();

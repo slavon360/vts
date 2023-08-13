@@ -42,8 +42,6 @@ export function is_valid_phone_number(phone){
 }
 
 export function isFilledElement(element) {
-	console.log(element);
-	console.log(element.nextElementSibling);
 	const filled = element.value.trim();
 
 	element.nextElementSibling.textContent = !filled ? 'Поле обов\'язкове для вводу' : '';
@@ -57,6 +55,11 @@ export function setPhoneNumberCode() {
 
 export function numberWithCommas(x) {
 	return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
+export function validateRequiredFields(elem, event) {
+	isFilledElement(elem);
+	phoneNumberFormatHandler.call(this, elem, event);
 }
 
 export class ProductQtyInput {

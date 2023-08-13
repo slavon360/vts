@@ -4,7 +4,7 @@ import {
 	debounce,
 	numberWithCommas,
 	is_valid_phone_number,
-	phoneNumberFormatHandler,
+	validateRequiredFields,
 	isFilledElement,
 	setPhoneNumberCode
 } from '@utils/utils.js';
@@ -28,6 +28,7 @@ class Checkout extends IconsLoader {
 		this.email_field = this.checkout_form.querySelector('[type="email"]');
 		this.submit_btn = this.checkout_form.querySelector('[type="submit"]');
 		this.required_fields = this.checkout_form.querySelectorAll('input[required]');
+		// this.input_fields = document.querySelectorAll('form input');
 		this.shipping_address_field = this.checkout_form.querySelector('#shipping-address');
 		this.shipping_address_error_msg = this.checkout_form.querySelector('.shipping-address-error-msg');
 		this.nova_post_city_field = this.checkout_form.querySelector('#nova-post-city');
@@ -46,6 +47,8 @@ class Checkout extends IconsLoader {
 		});
 		scrollUp('#scrollUp');
         mmenu();
+
+		// this.input_fields.forEach(input => input.setAttribute('autocomplete', 'false'));
 	}
 	getShoppingCartData() {
 		const cart_data = JSON.parse(localStorage.getItem(this.shopping_cart_key));
@@ -98,16 +101,21 @@ class Checkout extends IconsLoader {
 		this.submit_btn.addEventListener('click', this.submit.bind(this));
 		this.checkout_form.addEventListener('submit', this.submit.bind(this));
 		this.required_fields.forEach(elem => {
-			elem.addEventListener('keyup', this.requiredFieldsKeyupHandler.bind(this, elem));
+			['keyup', 'touchend'].forEach(event_key => {
+				elem.addEventListener(event_key, event => {
+
+					if (event.key === 'Tab') {
+						return;
+					}
+
+					validateRequiredFields.call(this, elem, event);
+				});
+			});
 		});
 		this.nova_post_city_field.addEventListener('keyup', debounce(this.searchCityNovaPost.bind(this), 800));
 		this.checkout_form.addEventListener('click', this.hideSearchedResults.bind(this));
 		this.nova_post_city_field.addEventListener('click', this.showSearchedResults);
 		this.nova_post_office_select.addEventListener('change', this.setNovaPostShippingAddress.bind(this));
-	}
-	requiredFieldsKeyupHandler(elem, event) {
-		isFilledElement(elem);
-		phoneNumberFormatHandler.call(this, elem, event);
 	}
 	showPreloader(active_field) {
 		active_field.setAttribute('disabled', true);
@@ -271,6 +279,7 @@ class Checkout extends IconsLoader {
 	}
 	submit(event) {
 		// event.preventDefault();
+		console.log('submit');
 		const is_valid = this.validate(event);
 		const required_fields = [].reduce.call(this.required_fields, (result, {name, value}) => {
 			return result = {...result, [name]: value};
