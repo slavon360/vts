@@ -61,10 +61,9 @@
 -----------------------------------------------------------------------------------*/
 
 /* Google Fonts------------------
-	font-family: 'Poppins', sans-serif;
 	font-family: 'Rubik', sans-serif;
 */
-@import url('https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i');
 /*----------------------------------------*/
 /*  01. Dfault Style
 /*----------------------------------------*/
@@ -1725,7 +1724,6 @@ textarea:focus {
 	text-transform: uppercase;
 	width: 100%;
 	font-weight: bold;
-	font-family: "Poppins", sans-serif;
 	margin-top: 10px;
 }
 .minicart .minicart-total span {
@@ -1734,7 +1732,6 @@ textarea:focus {
 }
 .li-button {
 	display: inline-block;
-	font-family: "Poppins", sans-serif;
 	font-weight: 500;
 	font-size: 14px;
 	text-transform: uppercase;
@@ -1974,6 +1971,18 @@ textarea:focus {
 .megamenu-static-holder .hb-megamenu > li > ul {
 	max-height: 400px;
 	overflow-y: auto;
+}
+.megamenu-static-holder .hb-megamenu > li > ul::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+}
+.megamenu-static-holder .hb-megamenu > li > ul::-webkit-scrollbar-thumb {
+	background-color: #fed700;
+	background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+}
+.megamenu-static-holder .hb-megamenu > li > ul::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+	background-color: #F5F5F5;
 }
 .hb-menu nav > ul > .megamenu-static-holder > a svg {
 	position: static;
@@ -4265,7 +4274,6 @@ thead {
 	text-transform: uppercase;
 	position: relative;
 	margin-bottom: 52px;
-	font-family: Poppins;
 }
 .li-blog-sidebar .li-blog-sidebar-title::before {
 	width: 55px;
@@ -4333,7 +4341,6 @@ thead {
 	line-height: 30px;
 	font-weight: 600;
 	text-transform: capitalize;
-	font-family: Poppins;
 	padding-bottom: 15px;
 	margin: 0;
 }
@@ -5144,10 +5151,6 @@ span.required {
 /*----------------------------------------*/
 /* 6.12 Li's Single Product
 /*----------------------------------------*/
-.product-details-view-content .product-desc {
-	border-bottom: 1px solid #e1e1e1;
-	margin-bottom: 25px;
-}
 .product-details-view-content .product-desc p {
 	margin-bottom: 20px;
 }

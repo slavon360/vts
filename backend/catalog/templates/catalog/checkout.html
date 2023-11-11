@@ -35,7 +35,7 @@
 					<br>
 					<h4>Доставка</h4>
 					<input type="text" id="shipping-address" name="shipping_address" hidden="true">
-					<div class="delivery-company-container">
+					{% comment %} <div class="delivery-company-container">
 						<input type="radio" id="ukr-post" name="delivery_company" class="form-check-input d-none">
 						<div class="form-check mb-2">
 							<label class="form-check-label" for="ukr-post">
@@ -52,9 +52,9 @@
 								<select id="ukr-post-office" class="form-control"></select>
 							</div>
 						</div>
-					</div>
+					</div> {% endcomment %}
 					<div class="delivery-company-container">
-						<input class="form-check-input d-none" type="radio" id="nova-post" name="delivery_company">
+						<input class="form-check-input d-none" type="radio" id="nova-post" name="delivery_company" checked>
 						<div class="form-check mb-2">
 							<label class="form-check-label" for="nova-post">
 								Нова Пошта

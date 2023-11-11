@@ -12,4 +12,25 @@
 
 .product-details-view-content {
     margin-top: 15px;
+
+    .product-desc {
+        max-height: 600px;
+        overflow-y: auto;
+        padding-left: 10px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .product-desc::-webkit-scrollbar {
+        width: 10px;
+        background-color: #F5F5F5;
+    }
+    .product-desc::-webkit-scrollbar-thumb {
+        background-color: #fed700;
+        background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+    }
+    .product-desc::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+        background-color: #F5F5F5;
+    }
 }

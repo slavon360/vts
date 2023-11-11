@@ -1,6 +1,7 @@
 import { render } from 'squirrelly';
 import shopping_cart_products_template from '@templates/catalog/shopping-cart/products.html';
 import shopping_cart_product_list_template from '@templates/catalog/shopping-cart/products-list.html';
+import shopping_cart_product_detail_template from '@templates/catalog/shopping-cart/product-detail.html';
 import { IconsLoader } from '@utils/icons-loader.js';
 import '@modules/products-search/src';
 import { slideToggle } from '@utils/slide-toggle.js';
@@ -96,6 +97,23 @@ class ShoppingCart {
 		const table_data = squirellyRender(shopping_cart_product_list_template, { products: this.shopping_cart_data });
 		this.cart_products_list.innerHTML = table_data;
 	}
+	addNewProductToProductsList(product_detail) {
+		const product_data = squirellyRender(shopping_cart_product_detail_template, { product_data: product_detail });
+
+		this.cart_products_list.insertAdjacentHTML('beforeend', product_data);
+	}
+	removeProductFromList(product_id) {
+		const product_to_remove = this.cart_products_list.querySelector(`.product-cart-info[data-product-id="${product_id}"]`);
+
+		product_to_remove.remove();
+	}
+	partiallyUpdateProductsList(product_id, qty) {
+		const product_qty = this.cart_products_list.querySelector(`.minicart-product-details[data-product-id*="${product_id}"] .product-quantity`);
+
+		if (product_qty) {
+			product_qty.textContent = qty;
+		}
+	}
 	updateSingleAddProductArea(event) {
 		const { detail: { product_id }} = event;
 		const single_add_to_cart = document.querySelector('.single-add-to-cart');
@@ -189,6 +207,7 @@ class ShoppingCart {
 		};
 		const existed_product = this.shopping_cart_data.find(({id}) => id === added_product.id);
 		const product = existed_product ? { ...existed_product, qty: ++existed_product.qty } : added_product;
+		const shopping_cart_products_method = existed_product ? 'partiallyUpdateProductsList' : 'renderProductsList';
 
 		this.shopping_cart_data = [
 			...this.shopping_cart_data.filter(({id}) => id !== product.id),
@@ -196,10 +215,14 @@ class ShoppingCart {
 		];
 		this.setShoppingCartData(this.shopping_cart_data);
 		this.updateProductsCounterAndSum();
-		this.renderProductsList();
 
 		if (is_from_modal) {
 			this.updateSingleAddProductArea({ detail: { product_id: added_product.id } });
+		}
+		if (existed_product) {
+			this.partiallyUpdateProductsList(product.id, product.qty);
+		} else {
+			this.addNewProductToProductsList(added_product);
 		}
 		this.updateAddToCartBtn(added_product.id);
 	}
@@ -216,14 +239,19 @@ class ShoppingCart {
 	}
 	removeCartProduct(event) {
 		const { target } = event;
-		const product_id = target.getAttribute('data-product-id');
+		const getProductId = target => {
+			const btn = target.closest('button[data-product-id]') || target.closest('a[data-product-id]');
+
+			return btn && btn.getAttribute('data-product-id');
+		}
+		const product_id = getProductId(target);
 
 		if (!target.href && !target.parentElement.href) event.preventDefault();
 
 		if (product_id) {
 			this.shopping_cart_data = this.shopping_cart_data.filter(({ id }) => id !== product_id);
 			this.setShoppingCartData(this.shopping_cart_data);
-			this.renderProductsList();
+			this.removeProductFromList(product_id);
 			this.updateProductsCounterAndSum();
 			this.updateAddToCartBtn(product_id);
 			this.removeProductFromShoppingCartTable(product_id);
@@ -294,7 +322,7 @@ class ShoppingCart {
 			qty: product.id === product_id ? current_qty : product.qty
 		}));
 		this.setShoppingCartData(this.shopping_cart_data);
-		this.renderProductsList();
+		this.partiallyUpdateProductsList(product_id, current_qty);
 		this.updateProductsCounterAndSum();
 		this.updateShoppingCartPageSum();
 	}

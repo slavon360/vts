@@ -1,0 +1,10 @@
+<li class="product-cart-info" data-product-id="{{it.product_data.id}}">
+	<a href="{{it.product_data.link}}" class="minicart-product-image"><img src="{{it.product_data.img_url}}" alt="{{it.product_data.title}}"></a>
+	<div class="minicart-product-details" data-product-id="{{it.product_data.id}}">
+		<h6><a href="{{it.product_data.link}}">{{it.product_data.title}}</a></h6>
+		<span class="product-price">{{it.product_data.price}} грн.</span> x <span class="product-quantity">{{it.product_data.qty}}</span>
+	</div>
+	<button data-product-id="{{it.product_data.id}}" class="close">
+		<i data-product-id="{{it.product_data.id}}" class="fa fa-close close"></i>
+	</button>
+</li>

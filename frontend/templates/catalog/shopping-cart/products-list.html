@@ -1,12 +1,12 @@
 {{@each(it.products) => prod, index}}
-<li class="product-cart-info">
+<li class="product-cart-info" data-product-id="{{prod.id}}">
 	<a href="{{prod.link}}" class="minicart-product-image"><img src="{{prod.img_url}}" alt="{{prod.title}}"></a>
-	<div class="minicart-product-details">
+	<div class="minicart-product-details" data-product-id="{{prod.id}}">
 		<h6><a href="{{prod.link}}">{{prod.title}}</a></h6>
-		<span>{{prod.price}} грн. x {{prod.qty}}</span>
+		<span class="product-price">{{prod.price}} грн.</span> x <span class="product-quantity">{{prod.qty}}</span>
 	</div>
 	<button data-product-id="{{prod.id}}" class="close">
-		<i data-product-id="{{prod.id}}" class="fa fa-close"></i>
+		<i data-product-id="{{prod.id}}" class="fa fa-close close"></i>
 	</button>
 </li>
 {{/each}}

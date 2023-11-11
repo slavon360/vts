@@ -2,6 +2,8 @@ import os
 import datetime
 import requests
 import mimetypes
+import schedule
+from time import sleep
 from PIL import Image
 from operator import itemgetter
 from django.shortcuts import render
@@ -23,6 +25,18 @@ np_key = config('NOVA_POSHTA_API_KEY')
 DEV_MODE = config('DEV_MODE') == 'True'
 css_extention = '.css' if DEV_MODE else '.css.gz'
 print('DEV_MODE: ', DEV_MODE)
+# def schedulter_test():
+# 	print('scheduler test')
+
+# schedule.every().minute.do(schedulter_test)
+# # schedule.run_pending()
+# # Checks whether a scheduled task is pending to run or not
+# while True:
+# 	print('run-pending')
+# 	schedule.run_pending()
+
+# 	# set the sleep time to fit your needs
+# 	sleep(60)
 
 def get_base_width(device_width, image):
 	image_width = image.size[0]
@@ -42,13 +56,24 @@ def get_base_width(device_width, image):
 		return int(recommended_img_width / 2.5)
 	else: return image_width
 
+def guess_file_type(file_path):
+	file_type = mimetypes.guess_type(file_path)[0]
+
+	if file_type is None:
+		file_extention = file_path.split('.')[-1]
+		
+		return f'image/{file_extention}'
+	else:
+		return file_type
+
 def resize_image_view(request, **kwargs):
     screen_width = int(request.GET.get('device-width', 50))
     device_width = int(request.COOKIES.get('device-width', 50)) or screen_width
     print('request.COOKIES: ', request.COOKIES)
     image_relative_path = request.path.split(settings.MEDIA_URL).pop(-1)
     image_path = f'{settings.MEDIA_ROOT}/{image_relative_path}'
-    image_type = mimetypes.guess_type(image_path)[0]
+    image_type = guess_file_type(image_path)
+    print('image_type: ', image_type, image_path)
     image_format = image_type.split('/')[-1]
     image = Image.open(image_path)
     

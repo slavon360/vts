@@ -3,3 +3,4 @@ vts/image
 .env
 node_modules
 frontend/**/dist
+copy-html-pages.py

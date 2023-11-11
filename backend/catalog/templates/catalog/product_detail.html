@@ -90,7 +90,7 @@
 										data-product-id="{{ product.id }}"
 										data-product-title="{{ product.title }}"
 										data-product-qty="1"
-										data-product-price="{{ product.get_actual_price }}"
+										data-product-price="{% if product.discount_price %}{{ product.get_actual_discount_price }}{% else %}{{ product.get_actual_price }}{% endif %}"
 										data-product-link="{{ product.get_absolute_url }}"
 										data-product-img-url="{% with product.images.all|first as first_image %}/image/{{first_image.image_url}}{% endwith %}"
 									>
