@@ -32,7 +32,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DJANGO_DEBUG') == 'True'
 
-ALLOWED_HOSTS = ['127.0.0.1', '164.92.226.43']
+ALLOWED_HOSTS = ['127.0.0.1', '164.92.226.43', '164.92.224.41']
 print('RUN_FROM_DOCKER: ', RUN_FROM_DOCKER)
 print('DEBUG: ', DEBUG)
 ACTIVE_DB_HOST = 'mysqldb' if RUN_FROM_DOCKER == 'True' else '127.0.0.1'
