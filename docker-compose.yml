@@ -15,7 +15,9 @@ services:
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
       - /etc/letsencrypt:/etc/letsencrypt
-    command: certonly --webroot --webroot-path=/var/www/html --email vodateploservice@gmail.com --agree-tos --no-eff-email -d voda-teplo-service.com
+    command: >
+      certbot renew
+      && nginx -s reload
     depends_on:
       - nginx
   mysqldb:
