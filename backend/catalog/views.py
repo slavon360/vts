@@ -23,7 +23,6 @@ from .forms import CheckoutForm, RepairOrderForm
 nova_post_url = 'https://api.novaposhta.ua/v2.0/json/'
 np_key = config('NOVA_POSHTA_API_KEY')
 DEV_MODE = config('DEV_MODE') == 'True'
-css_extention = '.css' if DEV_MODE else '.css.gz'
 print('DEV_MODE: ', DEV_MODE)
 # def schedulter_test():
 # 	print('scheduler test')
@@ -89,9 +88,8 @@ def resize_image_view(request, **kwargs):
 def get_file_name(directory_path, extention = '.js'):
 	current_file_path = os.path.abspath(__file__)
 	current_directory_path = os.path.dirname(current_file_path)
-	ext_name = extention if DEV_MODE else f'{extention}.gz' 
 
-	return [directory for directory in os.listdir(current_directory_path + directory_path) if directory.endswith(ext_name)][0]
+	return [directory for directory in os.listdir(current_directory_path + directory_path) if directory.endswith(extention)][0]
 
 def index(request):
 	categories = Category.objects.all()
@@ -137,7 +135,7 @@ def shopping_cart(request):
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
 		'js_name': js_name,
-		'css_name': f'shopping-cart{css_extention}',
+		'css_name': f'shopping-cart.css',
 	}
 	return render(request, 'catalog/shopping-cart.html', context=context)
 
@@ -347,7 +345,7 @@ def repair_page(request):
 		'phones': phones,
 		'breadcrumbs': breadcrumbs_data,
 		'js_name': js_name,
-		'css_name': f'repair{css_extention}',
+		'css_name': f'repair.css',
 		'form': form
 	}
 
