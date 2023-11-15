@@ -98,7 +98,7 @@ services:
       - MYSQL_ROOT_PASSWORD=slavon360
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
       - MYSQL_DATABASE=vts_db
-      - DJANGO_DEBUG=True
+      - DJANGO_DEBUG=False
       - DEV_MODE=False
       - RUN_FROM_DOCKER=True
     depends_on:
