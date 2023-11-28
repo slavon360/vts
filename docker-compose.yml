@@ -55,7 +55,7 @@ services:
       interval: 5s
       timeout: 1s
       retries: 10
-    command: --ulimit nofile=262144:262144
+    # command: --ulimit nofile=262144:262144
     # depends_on:
     #   - frontend
   # migration:
