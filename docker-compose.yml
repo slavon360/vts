@@ -112,6 +112,7 @@ services:
       - DJANGO_DEBUG=False
       - DEV_MODE=False
       - RUN_FROM_DOCKER=True
+      - SECURE_SSL_REDIRECT=True
     depends_on:
       mysqldb:
           condition: service_healthy
