@@ -90,15 +90,15 @@ const renderPagination = ({ count, next, previous, results}) => {
 	});
 	const pages_elements = pages_array.map(({page, link, active}) => ({
 		number: page,
-		link,
+		link: convertHttpToHttps(link), // production fix
 		active
 	}));
 	const pagination_view = squirellyRender(pagination_view_template, {
 		pages_elements,
 		current_page,
 		last_page_number,
-		previous_page: previous,
-		next_page: next
+		previous_page: convertHttpToHttps(previous), // production fix
+		next_page: convertHttpToHttps(next) // production fix
 	});
 
 	if (page_num_element) {
@@ -167,6 +167,9 @@ function sortProductsHandler() {
 }
 
 sort_products_catalog.addEventListener('change', sortProductsHandler);
+function convertHttpToHttps (link) {
+	return link ? link.replace(/http:/g, 'https:') : null;
+}
 function updateProductsHandler (sort_by, response) {
 	let { results = [], next, previous } = response;
 

@@ -18,8 +18,6 @@ MYSQL_USER = config('MYSQL_USER')
 MYSQL_PASSWORD = config('MYSQL_PASSWORD')
 MYSQL_DATABASE = config('MYSQL_DATABASE')
 RUN_FROM_DOCKER = config('RUN_FROM_DOCKER', False)
-# SECURE_SSL_REDIRECT = config('SECURE_SSL_REDIRECT', False)
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
