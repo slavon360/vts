@@ -9,7 +9,7 @@ services:
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
       - ./backend/catalog/static:/usr/share/nginx/html/static
-      - /usr/local/lib/python3.12/site-packages/django/contrib/admin/static/admin:/usr/share/nginx/html/static
+      - django-admin-static:/usr/share/nginx/html/static
       # - ../../etc/ssl:/etc/letsencrypt
       - /etc/letsencrypt:/etc/letsencrypt
       # - /var/www/html:/var/www/html <-- this volume should be setted in certbot and nginx services
@@ -96,6 +96,7 @@ services:
       - '8000:8000'
     volumes:
       - ./backend:/app
+      - django-admin-static:/usr/local/lib/python3.12/site-packages/django/contrib/admin/static/admin
       # - builded-frontend:/./app/catalog/static
     # env_file:
     #   - ./.env
@@ -122,4 +123,5 @@ services:
     tty: true
 volumes:
   vts-volume-test:
+  django-admin-static:
   # builded-frontend:
