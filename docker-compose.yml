@@ -9,7 +9,7 @@ services:
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
       - ./backend/catalog/static:/usr/share/nginx/html/static
-      - /usr/local/lib/python3.12/site-packages/django/contrib/admin/static:/usr/share/nginx/html/static
+      - /usr/local/lib/python3.12/site-packages/django/contrib/admin/static/admin:/usr/share/nginx/html/static
       # - ../../etc/ssl:/etc/letsencrypt
       - /etc/letsencrypt:/etc/letsencrypt
       # - /var/www/html:/var/www/html <-- this volume should be setted in certbot and nginx services
