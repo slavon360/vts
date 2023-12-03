@@ -33,7 +33,7 @@ services:
     ports:
       - 3308:3306
     volumes: 
-      # - vts-volume4:/var/lib/mysql
+      - persistent-data:/var/lib/mysql
       - vts-volume-test:/docker-entrypoint-initdb.d
       # - ./vts_dump.sql:/docker-entrypoint-initdb.d/vts_dump.sql
     # env_file:
@@ -123,4 +123,5 @@ services:
 volumes:
   vts-volume-test:
   django-admin-static:
+  persistent-data:
   # builded-frontend:
