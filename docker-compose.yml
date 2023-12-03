@@ -8,9 +8,8 @@ services:
       - 443:443
     volumes:
       - ./nginx-conf:/etc/nginx/conf.d
-      - ./backend/catalog/static:/usr/share/nginx/html/static
+      # - ./backend/catalog/static:/usr/share/nginx/html/static
       - django-admin-static:/usr/share/nginx/html/static
-      # - ../../etc/ssl:/etc/letsencrypt
       - /etc/letsencrypt:/etc/letsencrypt
       # - /var/www/html:/var/www/html <-- this volume should be setted in certbot and nginx services
     restart: always
