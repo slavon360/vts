@@ -7,8 +7,8 @@ services:
       - 80:80
       - 443:443
     volumes:
-      # - ./nginx-conf:/etc/nginx/conf.d
-      # - ./backend/catalog/static:/usr/share/nginx/html/static
+      - ./nginx-conf:/etc/nginx/conf.d
+      - ./backend/catalog/static:/usr/share/nginx/html/static
       - django-admin-static:/usr/share/nginx/html/static/admin
       # - /etc/letsencrypt:/etc/letsencrypt
       # - /var/www/html:/var/www/html
