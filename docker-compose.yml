@@ -10,25 +10,25 @@ services:
       - ./nginx-conf:/etc/nginx/conf.d
       - ./backend/catalog/static:/usr/share/nginx/html/static
       - django-admin-static:/usr/share/nginx/html/static/admin
-      # - /etc/letsencrypt:/etc/letsencrypt
-      # - /var/www/html:/var/www/html
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/html:/var/www/html
       # - /var/www/html:/var/www/html <-- this volume should be setted in certbot and nginx services
     restart: always
     depends_on:
       - backend
-  # certbot:
-  #   image: certbot/certbot
-  #   container_name: certbot-ssl
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/:rw
-  #     - ./certbot/conf/:/etc/letsencrypt/:rw
-  #     - ./nginx-conf:/etc/nginx/conf.d
-  #     - /etc/letsencrypt:/etc/letsencrypt
-  #     - /var/www/html:/var/www/html
-  #     # - /var/www/html:/var/www/html <-- this volume should be setted in certbot and nginx services
-  #   command: certonly --webroot --webroot-path /var/www/html --email vodateploservice@gmail.com --agree-tos --no-eff-email -d voda-teplo-service.com.ua
-  #   depends_on:
-  #     - nginx
+  certbot:
+    image: certbot/certbot
+    container_name: certbot-ssl
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./nginx-conf:/etc/nginx/conf.d
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/html:/var/www/html
+      # - /var/www/html:/var/www/html <-- this volume should be setted in certbot and nginx services
+    command: certonly --webroot --webroot-path /var/www/html --email vodateploservice@gmail.com --agree-tos --no-eff-email -d voda-teplo-service.com.ua
+    depends_on:
+      - nginx
   mysqldb:
     # image: 'mysql'
     build: ./mysql
